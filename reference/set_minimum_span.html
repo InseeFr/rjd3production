@@ -56,6 +56,35 @@
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="arguments">
+    <h2>Arguments</h2>
+
+
+<dl><dt id="arg-spec">spec<a class="anchor" aria-label="anchor" href="#arg-spec"></a></dt>
+<dd><p>Specification (object of class <code>JD3_X13_SPEC</code> or
+<code>JD3_TRAMOSEATS_SPEC</code></p></dd>
+
+
+<dt id="arg-d-">d0<a class="anchor" aria-label="anchor" href="#arg-d-"></a></dt>
+<dd><p>characters in the format "YYYY-MM-DD" to specify first date of the
+span</p></dd>
+
+
+<dt id="arg-model-span">model_span<a class="anchor" aria-label="anchor" href="#arg-model-span"></a></dt>
+<dd><p>Boolean. Should the estimation (= model) span be modifed?</p></dd>
+
+
+<dt id="arg-series-span">series_span<a class="anchor" aria-label="anchor" href="#arg-series-span"></a></dt>
+<dd><p>Boolean. Should the series (= basic) span be modifed?</p></dd>
+
+
+<dt id="arg-without-outliers">without_outliers<a class="anchor" aria-label="anchor" href="#arg-without-outliers"></a></dt>
+<dd><p>Boolean. Should the outliers set before the starting
+date be removed?
+(Small crutch while waiting for the resolution of jdemetra/jdplus-main issue
+858.)</p></dd>
+
+</dl></div>
     <div id="details">
     <h2>Details</h2>
     <p>model_span = estimation_span
