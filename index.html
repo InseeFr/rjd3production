@@ -58,7 +58,182 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-You can use this package as a toollbox to prepare and make in production your seasonnal series.
+<div class="section level1">
+<div class="page-header"><h1 id="rjd3production">{rjd3production}<a class="anchor" aria-label="anchor" href="#rjd3production"></a>
+</h1></div>
+<!-- badges: start -->
+
+<p><a href="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml" class="external-link"><img src="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml/badge.svg" alt="lint"></a></p>
+<p><a href="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgdown.yaml/badge.svg" alt="GH Pages built"></a> <!-- badges: end --></p>
+<div class="section level2" align="center">
+<h2 id="id_-readme-en-français---readme-in-english">
+<a href="#pr%C3%A9sentation">🇫🇷 README en français</a> | <a href="#overview">🇬🇧 README in english</a>
+<a class="anchor" aria-label="anchor" href="#id_-readme-en-fran%C3%A7ais---readme-in-english"></a>
+</h2>
+</div>
+<div class="section level3">
+<h3 id="présentation">Présentation<a class="anchor" aria-label="anchor" href="#pr%C3%A9sentation"></a>
+</h3>
+<p><strong>{rjd3production}</strong> aide les producteurs de données CVS CJO à mettre en place des chaînes de production.</p>
+<p>Il permet notamment de :</p>
+<ul>
+<li><p>Créer des calendriers français et régresseurs de calendrier compatibles JDemetra+</p></li>
+<li><p>Identifier des SAI par leur nom</p></li>
+<li><p>Selectionner les jeux de calendrier pour une ou plusieurs séries</p></li>
+<li>
+<p>Manipuler les régresseurs de calendrier et les outliers d’un Workspace selon la dynamique suivante:</p>
+<ul>
+<li>Les fonctions <code>import_XXX()</code> et <code>export_XXX()</code> permettent de convertir les data.frame contenant les outliers et régresseurs de calendrier en fichiers et inversement</li>
+<li>Les fonctions <code>retrieve_XXX()</code> et <code>assign_XXX()</code> permettent d’extraire (resp. d’assigner) les outliers et régresseurs de calendrier d’un workspace</li>
+</ul>
+</li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+    %% Objects
+    WS["WS&lt;br/&gt;(JDemetra+&lt;br/&gt;workspace)"]
+    DF_OUT["outliers_df&lt;br/&gt;(data.frame)"]
+    DF_CJO["cjo_df&lt;br/&gt;(data.frame)"]
+    YAML_OUT["outliers YAML&lt;br/&gt;(outliers_&amp;lt;ws_name&amp;gt;.yaml)"]
+    YAML_CJO["CJO YAML&lt;br/&gt;(cjo_&amp;lt;ws_name&amp;gt;.yaml)"]
+    SERIES["Series&lt;br/&gt;(time series data)"]
+
+    %% Outliers workflow
+    DF_OUT --&gt;|"assign_outliers()"| WS
+    WS --&gt;|"retrieve_outliers()"| DF_OUT
+    DF_OUT --&gt;|"export_outliers()"| YAML_OUT
+    YAML_OUT --&gt;|"import_outliers()"| DF_OUT
+
+    %% CJO workflow
+    SERIES --&gt;|"select_cjo()"| DF_CJO
+    WS --&gt;|"retrieve_cjo()"| DF_CJO
+    DF_CJO --&gt;|"export_cjo()"| YAML_CJO
+    YAML_CJO --&gt;|"import_cjo()"| DF_CJO
+    DF_CJO --&gt;|"assign_cjo()"| WS
+
+    %% Styles
+    classDef ws fill:#e6f2ff,stroke:#4a7ebb,stroke-width:1px;
+    classDef df fill:#e9f7ef,stroke:#2e8b57,stroke-width:1px;
+    classDef yaml fill:#fff3e0,stroke:#cc8400,stroke-width:1px;
+    classDef series fill:#f5e6ff,stroke:#7a3db8,stroke-width:1px;
+
+    class WS ws
+    class DF_OUT,DF_CJO df
+    class YAML_OUT,YAML_CJO yaml
+    class SERIES series</code></pre>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p><strong>{rjd3production}</strong> s’appuie sur le paquetage <a href="https://CRAN.R-project.org/package=rJava" class="external-link"><strong>{rJava}</strong></a></p>
+<p>L’exécution des paquets rjd3 nécessite <strong>Java 17 ou plus</strong>. La manière de mettre en place une telle configuration dans R est expliquée <a href="https://jdemetra-new-documentation.netlify.app/#Rconfig" class="external-link">ici</a></p>
+<div class="section level3">
+<h3 id="latest-release">Latest release<a class="anchor" aria-label="anchor" href="#latest-release"></a>
+</h3>
+<p>Pour obtenir la version stable actuelle (à partir de la dernière version) :</p>
+<ul>
+<li>Depuis GitHub :</li>
+</ul>
+<p>``{r, echo = TRUE, eval = FALSE} # install.packages(“remotes”) remotes::install_github(“TanguyBarthelemy/rjd3production@*release”)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="sc">-</span> De [r<span class="sc">-</span>universe](https<span class="sc">:</span><span class="er">//</span>TanguyBarthelemy.r<span class="sc">-</span>universe.dev<span class="sc">/</span>rjd3production) <span class="sc">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="st">``</span>{r, echo <span class="ot">=</span> <span class="cn">TRUE</span>, eval <span class="ot">=</span> <span class="cn">FALSE</span>}</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rjd3production"</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">"https://TanguyBarthelemy.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span>))</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="version-de-développement">Version de développement<a class="anchor" aria-label="anchor" href="#version-de-d%C3%A9veloppement"></a>
+</h3>
+<p>Vous pouvez installer la version de développement de <strong>{rjd3production}</strong> depuis [GitHub] (<a href="https://github.com/" class="external-link uri">https://github.com/</a>) avec :</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"TanguyBarthelemy/rjd3production"</span><span class="op">)</span></span></code></pre></div>
+<!-- ### Usage -->
+<!-- #### Chargement du package -->
+<!-- ```{r fr-loading-rjd3production, eval = TRUE} -->
+<!-- library("rjd3production") -->
+<!-- ``` -->
+</div>
+<div class="section level3">
+<h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h3>
+<p><strong>{rjd3production}</strong> helps producers of CVS CJO data to set up production lines.</p>
+<p>In particular, it enables you to:</p>
+<ul>
+<li><p>Create JDemetra+-compatible French calendars and calendar regressors</p></li>
+<li><p>Identify SAIs by name</p></li>
+<li><p>Select calendar sets for one or more series</p></li>
+<li>
+<p>Manipulate Workspace calendar regressors and outliers according to the following dynamics:</p>
+<ul>
+<li>The <code>import_XXX()</code> and <code>export_XXX()</code> functions convert data.frames containing calendar outliers and regressors into files, and vice versa.</li>
+<li>The <code>retrieve_XXX()</code> and <code>assign_XXX()</code> functions extract (resp. assign) calendar outliers and regressors from a workspace.</li>
+</ul>
+</li>
+</ul>
+<pre class="mermaid"><code>
+flowchart LR
+    %% Objects
+    WS["WS&lt;br/&gt;(JDemetra+&lt;br/&gt;workspace)"]
+    DF_OUT["outliers_df&lt;br/&gt;(data.frame)"]
+    DF_CJO["cjo_df&lt;br/&gt;(data.frame)"]
+    YAML_OUT["outliers YAML&lt;br/&gt;(outliers_&amp;lt;ws_name&amp;gt;.yaml)"]
+    YAML_CJO["CJO YAML&lt;br/&gt;(cjo_&amp;lt;ws_name&amp;gt;.yaml)"]
+    SERIES["Series&lt;br/&gt;(time series data)"]
+
+    %% Outliers workflow
+    DF_OUT --&gt;|"assign_outliers()"| WS
+    WS --&gt;|"retrieve_outliers()"| DF_OUT
+    DF_OUT --&gt;|"export_outliers()"| YAML_OUT
+    YAML_OUT --&gt;|"import_outliers()"| DF_OUT
+
+    %% CJO workflow
+    SERIES --&gt;|"select_cjo()"| DF_CJO
+    WS --&gt;|"retrieve_cjo()"| DF_CJO
+    DF_CJO --&gt;|"export_cjo()"| YAML_CJO
+    YAML_CJO --&gt;|"import_cjo()"| DF_CJO
+    DF_CJO --&gt;|"assign_cjo()"| WS
+
+    %% Styles
+    classDef ws fill:#e6f2ff,stroke:#4a7ebb,stroke-width:1px;
+    classDef df fill:#e9f7ef,stroke:#2e8b57,stroke-width:1px;
+    classDef yaml fill:#fff3e0,stroke:#cc8400,stroke-width:1px;
+    classDef series fill:#f5e6ff,stroke:#7a3db8,stroke-width:1px;
+
+    class WS ws
+    class DF_OUT,DF_CJO df
+    class YAML_OUT,YAML_CJO yaml
+    class SERIES series</code></pre>
+</div>
+<div class="section level3">
+<h3 id="installation-1">Installation<a class="anchor" aria-label="anchor" href="#installation-1"></a>
+</h3>
+<p>To get the current stable version (from the latest release):</p>
+<ul>
+<li>From GitHub:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"TanguyBarthelemy/rjd3production@*release"</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>From <a href="https://TanguyBarthelemy.r-universe.dev/rjd3production" class="external-link">r-universe</a>:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rjd3production"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://TanguyBarthelemy.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="development-version">Development version<a class="anchor" aria-label="anchor" href="#development-version"></a>
+</h3>
+<p>You can install the development version of <strong>{rjd3production}</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"TanguyBarthelemy/rjd3production"</span><span class="op">)</span></span></code></pre></div>
+<!-- ### Usage -->
+<!-- #### Loading the package -->
+<!-- ```{r en-loading-rjd3production, eval = TRUE} -->
+<!-- library("rjd3production") -->
+<!-- ``` -->
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -84,7 +259,12 @@ You can use this package as a toollbox to prepare and make in production your se
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=rjd3production" class="external-link"><img src="https://www.r-pkg.org/badges/version/rjd3production" alt="CRAN status"></a></li>
+</ul>
+</div>
 
   </div>
 </div>
