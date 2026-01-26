@@ -18,6 +18,12 @@ remove_non_significative_outliers(
 \item{threshold}{[\link[base]{numeric}] Maximum p-value for keeping
 an outlier. Outliers with \verb{Pr(>|t|) > threshold} are removed.
 Default is \code{0.3}.}
+
+\item{domain}{Boolean indicating if the domain specification should be
+modified.}
+
+\item{estimation}{Boolean indicating if the estimation specification should
+be modified.}
 }
 \value{
 The function invisibly returns \code{NULL}, but it \strong{modifies the workspace file

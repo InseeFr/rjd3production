@@ -14,6 +14,7 @@
 #' @param frequency [integer] Series frequency (default `12L`).
 #' @param length [integer] Series length (default `492L`).
 #' @param s [\link[base]{numeric} or NULL] Optional argument for adjustment (passed to `rjd3toolkit`).
+#' @param cal a calendar of class `JD3_CALENDAR`.
 #'
 #' @return
 #' - `create_french_calendar()` returns a `national_calendar` object.
@@ -46,7 +47,7 @@ NULL
 #' @importFrom rjd3toolkit national_calendar fixed_day special_day
 #' @export
 create_french_calendar <- function() {
-    cal <- rjd3toolkit::national_calendar(
+    cal_FR <- rjd3toolkit::national_calendar(
         days = list(
             Bastille_day = rjd3toolkit::fixed_day(7, 14), # Bastille Day
             Victory_day = rjd3toolkit::fixed_day(
@@ -66,7 +67,7 @@ create_french_calendar <- function() {
         )
     )
 
-    return(cal)
+    return(cal_FR)
 }
 
 #' @importFrom rjd3toolkit calendar_td lp_variable

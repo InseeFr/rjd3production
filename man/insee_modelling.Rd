@@ -41,6 +41,8 @@ create_insee_context(
 \item{length}{\link{integer} Series length (default \code{492L}).}
 
 \item{s}{[\link[base]{numeric} or NULL] Optional argument for adjustment (passed to \code{rjd3toolkit}).}
+
+\item{cal}{a calendar of class \code{JD3_CALENDAR}.}
 }
 \value{
 \itemize{

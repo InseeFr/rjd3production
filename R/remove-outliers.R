@@ -15,6 +15,10 @@
 #' @param threshold [\link[base]{numeric}] Maximum p-value for keeping
 #' an outlier. Outliers with `Pr(>|t|) > threshold` are removed.
 #' Default is `0.3`.
+#' @param domain Boolean indicating if the domain specification should be
+#' modified.
+#' @param estimation Boolean indicating if the estimation specification should
+#' be modified.
 #'
 #' @details
 #' The function:
