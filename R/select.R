@@ -158,7 +158,12 @@ verif_LY <- function(jeu, diags) {
     if (jeu == "LY") {
         jeu_sans_LY <- "Pas_CJO"
     } else {
-        jeu_sans_LY <- gsub(pattern = "_LY", replacement = "", x = jeu, ignore.case = TRUE)
+        jeu_sans_LY <- gsub(
+            pattern = "_LY",
+            replacement = "",
+            x = jeu,
+            ignore.case = TRUE
+        )
     }
     id_jeu_sans_LY <- which(diags$regs == jeu_sans_LY)
 
@@ -192,11 +197,11 @@ verif_LY <- function(jeu, diags) {
 #' @importFrom stats time
 #' @importFrom utils tail
 select_reg_one_series <- function(
-        series,
-        name = "",
-        specs_set = NULL,
-        context = NULL,
-        ...
+    series,
+    name = "",
+    specs_set = NULL,
+    context = NULL,
+    ...
 ) {
     if (is.null(context)) {
         context <- create_insee_context(s = series)

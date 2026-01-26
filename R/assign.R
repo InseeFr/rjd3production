@@ -169,7 +169,6 @@ assign_outliers <- function(outliers, ws_path) {
 #'
 #' @export
 assign_cjo <- function(cjo, ws_path, context = NULL) {
-
     if (is.null(context)) {
         context <- create_insee_context()
     }
@@ -191,10 +190,17 @@ assign_cjo <- function(cjo, ws_path, context = NULL) {
             ", ",
             id_sai,
             "/",
-            rjd3workspace::sap_sai_count(jsap), "\n"
+            rjd3workspace::sap_sai_count(jsap),
+            "\n"
         ))
-        jeu_regresseur <- cjo[which(cjo[["series"]] == series_name), "reg_selected"]
-        all_regs <- c(paste0("REG", rep(c(1:3, 5:6), each = 2), c("", "_LY")), "LY")
+        jeu_regresseur <- cjo[
+            which(cjo[["series"]] == series_name),
+            "reg_selected"
+        ]
+        all_regs <- c(
+            paste0("REG", rep(c(1:3, 5:6), each = 2), c("", "_LY")),
+            "LY"
+        )
         if (jeu_regresseur %in% all_regs) {
             cjo_variables <- var_names[[jeu_regresseur]]
         } else if (nzchar(jeu_regresseur)) {

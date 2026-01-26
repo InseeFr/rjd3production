@@ -1,4 +1,3 @@
-
 #' @importFrom usethis create_project
 init_env <- function(path, open = FALSE) {
     if (dir.exists(path)) {

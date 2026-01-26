@@ -1,4 +1,3 @@
-
 #' @importFrom yaml write_yaml
 #' @rdname outliers_tools
 #' @export
@@ -9,7 +8,10 @@ export_outliers <- function(x, ws_name, path = NULL, verbose = TRUE) {
     }
     if (is.null(path)) {
         file_name <- paste0("outliers_", ws_name, ".yaml")
-        path <- normalizePath(file.path("regression", file_name), mustWork = FALSE)
+        path <- normalizePath(
+            file.path("regression", file_name),
+            mustWork = FALSE
+        )
     }
     if (verbose) {
         cat("The outliers will be written at ", path, "\n")
@@ -24,14 +26,17 @@ export_outliers <- function(x, ws_name, path = NULL, verbose = TRUE) {
 #' @importFrom yaml read_yaml
 #' @rdname outliers_tools
 #' @export
-import_outliers <- function(x, ws_name, path = NULL, verbose = TRUE) {
+import_outliers <- function(ws_name, path = NULL, verbose = TRUE) {
     if (dir.exists(path)) {
         file_name <- paste0("outliers_", ws_name, ".yaml")
         path <- normalizePath(file.path(path, file_name), mustWork = FALSE)
     }
     if (is.null(path)) {
         file_name <- paste0("outliers_", ws_name, ".yaml")
-        path <- normalizePath(file.path("regression", file_name), mustWork = FALSE)
+        path <- normalizePath(
+            file.path("regression", file_name),
+            mustWork = FALSE
+        )
     }
     if (verbose) {
         cat("The outliers will be read at ", path, "\n")
@@ -39,6 +44,7 @@ import_outliers <- function(x, ws_name, path = NULL, verbose = TRUE) {
     outliers <- yaml::read_yaml(
         file = path
     )
+    return(outliers)
 }
 
 #' @importFrom yaml write_yaml
@@ -51,7 +57,10 @@ export_cjo <- function(x, ws_name, path = NULL, verbose = TRUE) {
     }
     if (is.null(path)) {
         file_name <- paste0("cjo_", ws_name, ".yaml")
-        path <- normalizePath(file.path("regression", file_name), mustWork = FALSE)
+        path <- normalizePath(
+            file.path("regression", file_name),
+            mustWork = FALSE
+        )
     }
     if (verbose) {
         cat("The cjo will be written at ", path, "\n")
@@ -66,14 +75,17 @@ export_cjo <- function(x, ws_name, path = NULL, verbose = TRUE) {
 #' @importFrom yaml read_yaml
 #' @name cjo_tools
 #' @export
-import_cjo <- function(x, ws_name, path = NULL, verbose = TRUE) {
+import_cjo <- function(ws_name, path = NULL, verbose = TRUE) {
     if (dir.exists(path)) {
         file_name <- paste0("cjo_", ws_name, ".yaml")
         path <- normalizePath(file.path(path, file_name), mustWork = FALSE)
     }
     if (is.null(path)) {
         file_name <- paste0("cjo_", ws_name, ".yaml")
-        path <- normalizePath(file.path("regression", file_name), mustWork = FALSE)
+        path <- normalizePath(
+            file.path("regression", file_name),
+            mustWork = FALSE
+        )
     }
     if (verbose) {
         cat("The cjo will be read at ", path, "\n")
@@ -81,4 +93,5 @@ import_cjo <- function(x, ws_name, path = NULL, verbose = TRUE) {
     cjo <- yaml::read_yaml(
         file = path
     )
+    return(cjo)
 }

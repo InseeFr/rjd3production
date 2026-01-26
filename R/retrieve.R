@@ -62,23 +62,63 @@ get_named_variables <- function(context = NULL) {
 #' @importFrom tools file_path_sans_ext
 #' @name outliers_tools
 #' @export
-retrieve_outliers <- function(ws_path) {
+retrieve_outliers <- function(ws_path, verbose = TRUE) {
     jws <- rjd3workspace::jws_open(file = ws_path)
     ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
     ws_name <- ws_path |> basename() |> tools::file_path_sans_ext()
 
     sap <- ws[["processing"]][[1L]]
-    ps_outliers <- list()
+    ps_outliers <- data.frame(
+        series = character(),
+        type = character(),
+        date = character()
+    )
 
     for (id_sai in seq_along(sap)) {
         series_name <- names(sap)[id_sai]
-        cat(paste0("S\u00e9rie ", series_name, ", ", id_sai, "/", length(sap), "\n"))
+
+        if (verbose) {
+            cat(paste0(
+                "S\u00e9rie ",
+                series_name,
+                ", ",
+                id_sai,
+                "/",
+                length(sap),
+                "\n"
+            ))
+        }
 
         sai <- sap[[id_sai]]
         regression_section <- sai[["domainSpec"]][["regarima"]][["regression"]]
 
         outliers <- regression_section[["outliers"]] |> unique()
-        ps_outliers[[series_name]] <- sapply(X = outliers, FUN = `[[`, "name")
+
+        if (!is.null(outliers)) {
+            type <- vapply(
+                X = outliers,
+                FUN = base::`[[`,
+                FUN.VALUE = character(1L),
+                "code"
+            )
+            date <- vapply(
+                X = outliers,
+                FUN = base::`[[`,
+                FUN.VALUE = double(1L),
+                "pos"
+            ) |>
+                as.Date() |>
+                as.character()
+
+            ps_outliers <- rbind(
+                ps_outliers,
+                data.frame(
+                    series = series_name,
+                    type = type,
+                    date = date
+                )
+            )
+        }
     }
 
     return(ps_outliers)
@@ -151,7 +191,15 @@ retrieve_cjo <- function(ws_path) {
 
     for (id_sai in seq_along(sap)) {
         series_name <- names(sap)[id_sai]
-        cat(paste0("S\u00e9rie ", series_name, ", ", id_sai, "/", length(sap), "\n"))
+        cat(paste0(
+            "S\u00e9rie ",
+            series_name,
+            ", ",
+            id_sai,
+            "/",
+            length(sap),
+            "\n"
+        ))
 
         sai <- sap[[id_sai]]
         regression_section <- sai[["domainSpec"]][["regarima"]][["regression"]]
@@ -160,19 +208,31 @@ retrieve_cjo <- function(ws_path) {
         regs_cjo <- "Pas_CJO"
         if (any(grepl(pattern = "REG1", x = regressors, ignore.case = TRUE))) {
             regs_cjo <- "REG1"
-        } else if (any(grepl(pattern = "REG5", x = regressors, ignore.case = TRUE))) {
+        } else if (
+            any(grepl(pattern = "REG5", x = regressors, ignore.case = TRUE))
+        ) {
             regs_cjo <- "REG5"
-        } else if (any(grepl(pattern = "REG2", x = regressors, ignore.case = TRUE))) {
+        } else if (
+            any(grepl(pattern = "REG2", x = regressors, ignore.case = TRUE))
+        ) {
             regs_cjo <- "REG2"
-        } else if (any(grepl(pattern = "REG3", x = regressors, ignore.case = TRUE))) {
+        } else if (
+            any(grepl(pattern = "REG3", x = regressors, ignore.case = TRUE))
+        ) {
             regs_cjo <- "REG3"
-        } else if (any(grepl(pattern = "REG6", x = regressors, ignore.case = TRUE))) {
+        } else if (
+            any(grepl(pattern = "REG6", x = regressors, ignore.case = TRUE))
+        ) {
             regs_cjo <- "REG6"
         }
         if (
             any(
-                grepl(pattern = "LeapYear", x = regressors, ignore.case = TRUE) |
-                grepl(pattern = "LY", x = regressors, ignore.case = TRUE)
+                grepl(
+                    pattern = "LeapYear",
+                    x = regressors,
+                    ignore.case = TRUE
+                ) |
+                    grepl(pattern = "LY", x = regressors, ignore.case = TRUE)
             )
         ) {
             regs_cjo <- paste0(regs_cjo, "_LY")

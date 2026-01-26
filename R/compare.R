@@ -182,33 +182,53 @@ run_app <- function(data, ...) {
         shiny::titlePanel("Comparateur de s\u00e9ries"),
         shiny::sidebarLayout(
             shiny::sidebarPanel(
-                shiny::selectInput("sai", "Choisir un SAI :",
-                                   choices = unique(data$SAI),
-                                   selected = unique(data$SAI)[1]),
-                shiny::selectInput("serie", "Choisir une s\u00e9rie :",
-                                   choices = unique(data$series),
-                                   selected = unique(data$series)[1]),
-                shiny::checkboxInput("filter_by_sai", "Filtrer par SAI", value = TRUE),
-                shiny::checkboxInput("filter_by_serie", "Filtrer par s\u00e9rie", value = TRUE),
+                shiny::selectInput(
+                    "sai",
+                    "Choisir un SAI :",
+                    choices = unique(data$SAI),
+                    selected = unique(data$SAI)[1]
+                ),
+                shiny::selectInput(
+                    "serie",
+                    "Choisir une s\u00e9rie :",
+                    choices = unique(data$series),
+                    selected = unique(data$series)[1]
+                ),
+                shiny::checkboxInput(
+                    "filter_by_sai",
+                    "Filtrer par SAI",
+                    value = TRUE
+                ),
+                shiny::checkboxInput(
+                    "filter_by_serie",
+                    "Filtrer par s\u00e9rie",
+                    value = TRUE
+                ),
                 shiny::br(),
-                shiny::downloadButton("export_csv", "Exporter le tableau en CSV")
+                shiny::downloadButton(
+                    "export_csv",
+                    "Exporter le tableau en CSV"
+                )
             ),
             shiny::mainPanel(
                 dygraphs::dygraphOutput("plot", height = "400px"),
                 shiny::br(),
                 shiny::h4("Tableau des donn\u00e9es affich\u00e9es"),
-                shiny::uiOutput("table_ui")  # l’objet HTML qui contiendra le flextable
+                shiny::uiOutput("table_ui") # l’objet HTML qui contiendra le flextable
             )
         )
     )
 
     server <- function(input, output, session) {
-
         # Données filtrées
         filtered_data <- shiny::reactive({
             d <- data
-            if (input$filter_by_sai) d <- d[d$SAI == input$sai, ]
-            if (input$filter_by_serie) d <- d[d$series == input$serie, ]
+            if (input$filter_by_sai) {
+                d <- d[d$SAI == input$sai, ]
+            }
+            if (input$filter_by_serie) {
+                d <- d[d$series == input$serie, ]
+            }
             d
         })
 

@@ -39,67 +39,152 @@
 #' @importFrom rjd3toolkit remove_outlier
 #' @importFrom tools file_path_sans_ext
 #' @export
-remove_non_significative_outliers <- function(ws_path, threshold = 0.3) {
-    ws_name <- basename(ws_path) |> tools::file_path_sans_ext()
-    cat("\n\U1F3F7 WS ", ws_name, "\n")
+remove_non_significative_outliers <- function(
+    ws_path,
+    threshold = 0.3,
+    domain = FALSE,
+    estimation = FALSE
+) {
+    if (!domain && !estimation) {
+        warning(
+            "No SA-Items will be modified if neither domainspec nor estimationspec are selected."
+        )
+        return(invisible(NULL))
+    }
+    ws_name <- tools::file_path_sans_ext(basename(ws_path))
+    cat("\n🏷 WS ", ws_name, "\n")
     jws <- rjd3workspace::jws_open(file = ws_path)
     rjd3workspace::jws_compute(jws)
     jsap <- rjd3workspace::jws_sap(jws, 1L)
-
     nb_sai <- rjd3workspace::sap_sai_count(jsap)
 
+    outliers_table <- data.frame(series = character(), name = character())
+
     for (id_sai in seq_len(nb_sai)) {
-        cat("\U1F4CC SAI n\UB0", id_sai, "\n")
+        cat("📌 SAI n°", id_sai, "\n")
         jsai <- rjd3workspace::jsap_sai(jsap, idx = id_sai)
         sai <- rjd3workspace::read_sai(jsai)
         series_name <- rjd3workspace::sai_name(jsai)
-
         new_estimationSpec <- estimationSpec <- sai$estimationSpec
         new_domainSpec <- domainSpec <- sai$domainSpec
-
         outliers <- estimationSpec$regarima$regression$outliers
         outliers_domain <- domainSpec$regarima$regression$outliers
-        outliers_name_domain <- lapply(
-            X = outliers_domain,
-            FUN = \(outlier) paste0(outlier$code, " (", outlier$pos, ")")
-        ) |>
-            do.call(what = c)
-
+        outliers_name_domain <- do.call(
+            lapply(X = outliers_domain, FUN = function(outlier) {
+                paste0(outlier$code, " (", outlier$pos, ")")
+            }),
+            what = c
+        )
         xregs <- summary(sai)$preprocessing$xregs
         outliers_to_remove <- NULL
-
         for (id_out in seq_along(outliers)) {
             outlier <- outliers[[id_out]]
             outlier_name <- paste0(outlier$code, " (", outlier$pos, ")")
-
             if (
                 outlier_name %in%
                     rownames(xregs) &&
                     !is.na(xregs[outlier_name, "Pr(>|t|)"]) &&
                     xregs[outlier_name, "Pr(>|t|)"] > threshold
             ) {
-                cat("\U274C Suppression de l'outlier :", outlier_name, "\n")
-
-                new_estimationSpec <- new_estimationSpec |>
-                    rjd3toolkit::remove_outlier(type = outlier$code, date = outlier$pos)
+                cat("❌ Suppression de l'outlier :", outlier_name, "\n")
+                new_estimationSpec <- rjd3toolkit::remove_outlier(
+                    new_estimationSpec,
+                    type = outlier$code,
+                    date = outlier$pos
+                )
                 if (outlier_name %in% outliers_name_domain) {
-                    new_domainSpec <- new_domainSpec |>
-                        rjd3toolkit::remove_outlier(type = outlier$code, date = outlier$pos)
+                    new_domainSpec <- rjd3toolkit::remove_outlier(
+                        new_domainSpec,
+                        type = outlier$code,
+                        date = outlier$pos
+                    )
                     cat("L'outlier est dans la domainSpec.\n")
                 }
                 outliers_to_remove <- c(outlier_name, outliers_to_remove)
             }
         }
-
-        rjd3workspace::set_specification(jsap, id_sai, new_estimationSpec)
-        rjd3workspace::set_domain_specification(jsap, id_sai, new_domainSpec)
+        if (estimation) {
+            rjd3workspace::set_specification(jsap, id_sai, new_estimationSpec)
+        }
+        if (domain) {
+            rjd3workspace::set_domain_specification(
+                jsap,
+                id_sai,
+                new_domainSpec
+            )
+        }
         rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
+        outliers_table <- rbind(
+            outliers_table,
+            data.frame(series = series_name, name = outliers_to_remove)
+        )
     }
-
     cat("\U1F4BE Saving WS file\n")
     rjd3workspace::save_workspace(
         jws = jws,
         file = ws_path,
         replace = TRUE
     )
+}
+
+#' Set span minimum to a value
+#'
+#' @details
+#' model_span = estimation_span
+#' series_span = basic_span
+#'
+#' @importFrom rjd3toolkit set_basic
+#' @importFrom rjd3toolkit set_estimate
+#'
+#' @export
+#'
+set_minimum_span <- function(
+    spec,
+    d0,
+    model_span = TRUE,
+    series_span = TRUE,
+    without_outliers = TRUE
+) {
+    if ((model_span || series_span) && without_outliers) {
+        outliers <- spec$regarima$regression$outliers
+        date <- vapply(
+            X = outliers,
+            FUN = base::`[[`,
+            FUN.VALUE = double(1L),
+            "pos"
+        ) |>
+            as.Date()
+        cond <- date < as.Date(d0)
+        if (!is.null(outliers) && any(cond)) {
+            spec$regarima$regression$outliers <- outliers[!cond]
+        }
+    }
+
+    if (series_span) {
+        span <- d0
+        current_span <- spec |>
+            base::`[[`("regarima") |>
+            base::`[[`("basic") |>
+            base::`[[`("span") |>
+            base::`[[`("d0")
+        if (!is.null(current_span) && as.Date(span) < as.Date(current_span)) {
+            span <- current_span
+        }
+        spec <- spec |>
+            rjd3toolkit::set_basic(type = "From", d0 = span)
+    }
+    if (model_span) {
+        span <- d0
+        current_span <- spec |>
+            base::`[[`("regarima") |>
+            base::`[[`("estimate") |>
+            base::`[[`("span") |>
+            base::`[[`("d0")
+        if (!is.null(current_span) && as.Date(span) < as.Date(current_span)) {
+            span <- current_span
+        }
+        spec <- spec |>
+            rjd3toolkit::set_estimate(type = "From", d0 = span)
+    }
+    return(spec)
 }
