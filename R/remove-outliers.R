@@ -61,7 +61,7 @@ remove_non_significative_outliers <- function(
     outliers_table <- data.frame(series = character(), name = character())
 
     for (id_sai in seq_len(nb_sai)) {
-        cat("📌 SAI n°", id_sai, "\n")
+        cat("\U1F4CC SAI n°", id_sai, "\n")
         jsai <- rjd3workspace::jsap_sai(jsap, idx = id_sai)
         sai <- rjd3workspace::read_sai(jsai)
         series_name <- rjd3workspace::sai_name(jsai)
@@ -86,7 +86,7 @@ remove_non_significative_outliers <- function(
                     !is.na(xregs[outlier_name, "Pr(>|t|)"]) &&
                     xregs[outlier_name, "Pr(>|t|)"] > threshold
             ) {
-                cat("❌ Suppression de l'outlier :", outlier_name, "\n")
+                cat("\U274C Suppression de l'outlier :", outlier_name, "\n")
                 new_estimationSpec <- rjd3toolkit::remove_outlier(
                     new_estimationSpec,
                     type = outlier$code,

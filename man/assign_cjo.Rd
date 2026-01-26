@@ -4,7 +4,7 @@
 \alias{assign_cjo}
 \title{Assign CJO regressors to a JDemetra+ workspace}
 \usage{
-assign_cjo(cjo, ws_path, context = NULL)
+assign_cjo(cjo, ws_path)
 }
 \arguments{
 \item{cjo}{[\link[base]{data.frame}] A data.frame with at least two columns:

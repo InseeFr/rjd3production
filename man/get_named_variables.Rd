@@ -9,6 +9,9 @@ get_named_variables(context = NULL)
 \arguments{
 \item{context}{a modelling context}
 }
+\value{
+a list with all the groups and named variables
+}
 \description{
 List all the variables in a modelling context.
 }

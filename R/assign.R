@@ -1,6 +1,10 @@
 date_pattern <- "\\d{4}-\\d{2}-\\d{2}"
 outliers_type_pattern <- "(AO|TC|LS|SO)"
 
+complete_context <- function(context = NULL) {
+    return(context)
+}
+
 #' @title Assign outliers to a JDemetra+ workspace
 #'
 #' @description
@@ -168,11 +172,7 @@ assign_outliers <- function(outliers, ws_path) {
 #' @importFrom tools file_path_sans_ext
 #'
 #' @export
-assign_cjo <- function(cjo, ws_path, context = NULL) {
-    if (is.null(context)) {
-        context <- create_insee_context()
-    }
-
+assign_cjo <- function(cjo, ws_path) {
     cjo <- as.data.frame(cjo)
 
     var_names <- get_named_variables(create_insee_context())
@@ -236,6 +236,7 @@ assign_cjo <- function(cjo, ws_path, context = NULL) {
         rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
     }
 
+    context <- complete_context(rjd3workspace::get_context(jws))
     rjd3workspace::set_context(jws = jws, modelling_context = context)
     rjd3workspace::save_workspace(
         jws = jws,

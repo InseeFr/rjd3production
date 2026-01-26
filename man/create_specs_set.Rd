@@ -2,7 +2,7 @@
 % Please edit documentation in R/create.R
 \name{create_specs_set}
 \alias{create_specs_set}
-\title{Création d'un ensemble de spécifications X13}
+\title{Creating a set of X13 specifications}
 \usage{
 create_specs_set(
   spec_0 = NULL,
@@ -12,23 +12,25 @@ create_specs_set(
 )
 }
 \arguments{
-\item{context}{\link{list} Contexte de modélisation créé par
+\item{spec_0}{Basic specification}
+
+\item{context}{\link{list} Modeling context created by
 \code{\link[rjd3toolkit:modelling_context]{rjd3toolkit::modelling_context()}}.}
 
-\item{outliers}{[\link[base]{list} or NULL] Liste optionnelle avec les éléments :
+\item{outliers}{[\link[base]{list} or NULL] Optional list with elements :
 \itemize{
-\item \code{type} : vecteur de types d'outliers (ex. "AO", "LS", "TC")
-\item \code{date} : vecteur de dates correspondantes
+\item \code{type}: vector of outlier types (e.g. "AO", "LS", "TC")
+\item \code{date}: vector of corresponding dates
 }}
 
-\item{span_start}{\link{character} Date de début de l'estimation (format "YYYY-MM-DD").}
+\item{span_start}{\link{character} Estimation start date (format "YYYY-MM-DD").}
 }
 \value{
-Une liste de spécifications X13 nommées (CJO et variantes).
+A list of named X13 specifications (CJO and variants).
 }
 \description{
-Construit un jeu de spécifications X13 à partir d'une date de début,
-d'un contexte (variables explicatives) et éventuellement d'outliers.
+Builds a set of X13 specifications from a start date,
+a context (explanatory variables) and possibly outliers.
 }
 \examples{
 my_context <- create_insee_context()

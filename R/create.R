@@ -199,22 +199,21 @@ create_insee_context <- function(
 }
 
 
-#' @title Création d'un ensemble de spécifications X13
+#' @title Creating a set of X13 specifications
 #'
 #' @description
-#' Construit un jeu de spécifications X13 à partir d'une date de début,
-#' d'un contexte (variables explicatives) et éventuellement d'outliers.
+#' Builds a set of X13 specifications from a start date,
+#' a context (explanatory variables) and possibly outliers.
 #'
-#' @param span_start [character] Date de début de l'estimation (format "YYYY-MM-DD").
-#' @param context [list] Contexte de modélisation créé par
-#'   [rjd3toolkit::modelling_context()].
-#' @param outliers [\link[base]{list} or NULL] Liste optionnelle avec les éléments :
-#'   \itemize{
-#'     \item `type` : vecteur de types d'outliers (ex. "AO", "LS", "TC")
-#'     \item `date` : vecteur de dates correspondantes
-#'   }
+#' @param spec_0 Basic specification
+#' @param span_start [character] Estimation start date (format "YYYY-MM-DD").
+#' @param context [list] Modeling context created by
+#' [rjd3toolkit::modelling_context()].
+#' @param outliers [\link[base]{list} or NULL] Optional list with elements :
+#' - `type`: vector of outlier types (e.g. "AO", "LS", "TC")
+#' - `date`: vector of corresponding dates
 #'
-#' @return Une liste de spécifications X13 nommées (CJO et variantes).
+#' @return A list of named X13 specifications (CJO and variants).
 #'
 #' @examples
 #' my_context <- create_insee_context()
