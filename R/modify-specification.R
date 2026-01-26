@@ -133,6 +133,17 @@ remove_non_significative_outliers <- function(
 
 #' Set span minimum to a value
 #'
+#' @param spec Specification (object of class `JD3_X13_SPEC` or
+#' `JD3_TRAMOSEATS_SPEC`
+#' @param d0 characters in the format "YYYY-MM-DD" to specify first date of the
+#' span
+#' @param model_span Boolean. Should the estimation (= model) span be modifed?
+#' @param series_span Boolean. Should the series (= basic) span be modifed?
+#' @param without_outliers Boolean. Should the outliers set before the starting
+#' date be removed?
+#' (Small crutch while waiting for the resolution of jdemetra/jdplus-main issue
+#' 858.)
+#'
 #' @details
 #' model_span = estimation_span
 #' series_span = basic_span
