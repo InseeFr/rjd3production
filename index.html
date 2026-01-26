@@ -88,7 +88,8 @@
 </ul>
 </li>
 </ul>
-<pre class="mermaid"><code>flowchart LR
+<pre class="mermaid"><code>
+flowchart LR
     %% Objects
     WS["WS&lt;br/&gt;(JDemetra+&lt;br/&gt;workspace)"]
     DF_OUT["outliers_df&lt;br/&gt;(data.frame)"]
@@ -133,17 +134,20 @@
 <ul>
 <li>Depuis GitHub :</li>
 </ul>
-<p>``{r, echo = TRUE, eval = FALSE} # install.packages(“remotes”) remotes::install_github(“TanguyBarthelemy/rjd3production@*release”)</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="sc">-</span> De [r<span class="sc">-</span>universe](https<span class="sc">:</span><span class="er">//</span>TanguyBarthelemy.r<span class="sc">-</span>universe.dev<span class="sc">/</span>rjd3production) <span class="sc">:</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="st">``</span>{r, echo <span class="ot">=</span> <span class="cn">TRUE</span>, eval <span class="ot">=</span> <span class="cn">FALSE</span>}</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rjd3production"</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">"https://TanguyBarthelemy.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"TanguyBarthelemy/rjd3production@*release"</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>De <a href="https://TanguyBarthelemy.r-universe.dev/rjd3production" class="external-link">r-universe</a> :</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rjd3production"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://TanguyBarthelemy.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="version-de-développement">Version de développement<a class="anchor" aria-label="anchor" href="#version-de-d%C3%A9veloppement"></a>
 </h3>
 <p>Vous pouvez installer la version de développement de <strong>{rjd3production}</strong> depuis [GitHub] (<a href="https://github.com/" class="external-link uri">https://github.com/</a>) avec :</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"TanguyBarthelemy/rjd3production"</span><span class="op">)</span></span></code></pre></div>
 <!-- ### Usage -->
@@ -210,20 +214,20 @@ flowchart LR
 <ul>
 <li>From GitHub:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"TanguyBarthelemy/rjd3production@*release"</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>From <a href="https://TanguyBarthelemy.r-universe.dev/rjd3production" class="external-link">r-universe</a>:</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rjd3production"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://TanguyBarthelemy.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="development-version">Development version<a class="anchor" aria-label="anchor" href="#development-version"></a>
 </h3>
 <p>You can install the development version of <strong>{rjd3production}</strong> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"TanguyBarthelemy/rjd3production"</span><span class="op">)</span></span></code></pre></div>
 <!-- ### Usage -->
