@@ -46,6 +46,7 @@ Il permet notamment de :
     calendrier d’un workspace
 
 ``` mermaid
+
 flowchart LR
     %% Objects
     WS["WS<br/>(JDemetra+<br/>workspace)"]
@@ -80,7 +81,6 @@ flowchart LR
     class SERIES series
 ```
 
-
 ## Installation
 
 **{rjd3production}** s’appuie sur le paquetage
@@ -97,14 +97,17 @@ version) :
 
 - Depuis GitHub :
 
-\`\`{r, echo = TRUE, eval = FALSE} \# install.packages(“remotes”)
-remotes::install_github(“TanguyBarthelemy/rjd3production@\*release”)
+``` r
+# install.packages("remotes")
+remotes::install_github("TanguyBarthelemy/rjd3production@*release")
+```
 
+- De
+  [r-universe](https://TanguyBarthelemy.r-universe.dev/rjd3production) :
 
-    - De [r-universe](https://TanguyBarthelemy.r-universe.dev/rjd3production) :
-
-    ``{r, echo = TRUE, eval = FALSE}
-    install.packages("rjd3production", repos = c("https://TanguyBarthelemy.r-universe.dev", "https://cloud.r-project.org"))
+``` r
+install.packages("rjd3production", repos = c("https://TanguyBarthelemy.r-universe.dev", "https://cloud.r-project.org"))
+```
 
 ### Version de développement
 
