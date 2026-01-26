@@ -9,7 +9,7 @@
 \usage{
 export_cjo(x, ws_name, path = NULL, verbose = TRUE)
 
-import_cjo(x, ws_name, path = NULL, verbose = TRUE)
+import_cjo(ws_name, path = NULL, verbose = TRUE)
 
 retrieve_cjo(ws_path)
 }

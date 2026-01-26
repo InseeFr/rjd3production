@@ -4,7 +4,12 @@
 \alias{remove_non_significative_outliers}
 \title{Remove non-significant outliers from a JDemetra+ workspace}
 \usage{
-remove_non_significative_outliers(ws_path, threshold = 0.3)
+remove_non_significative_outliers(
+  ws_path,
+  threshold = 0.3,
+  domain = FALSE,
+  estimation = FALSE
+)
 }
 \arguments{
 \item{ws_path}{[\link[base]{character}] Path to a JDemetra+ workspace file

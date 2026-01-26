@@ -1,6 +1,17 @@
+#' @title Variables named in workspace
+#'
+#' @description
+#' List all the variables in a modelling context.
+#'
+#' @param context a modelling context
+#'
+#' @returns a list with all the groups and named variables
+#' @export
+#'
 get_named_variables <- function(context = NULL) {
     if (is.null(context)) {
-        context <- create_insee_context()
+        message("Without context, the output is NULL.")
+        return(invisible(NULL))
     }
     all_vars <- context$variables
     named_vars <- lapply(seq_along(all_vars), function(k) {

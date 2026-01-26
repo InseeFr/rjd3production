@@ -175,7 +175,7 @@ assign_cjo <- function(cjo, ws_path, context = NULL) {
 
     cjo <- as.data.frame(cjo)
 
-    var_names <- get_named_variables()
+    var_names <- get_named_variables(create_insee_context())
 
     jws <- rjd3workspace::jws_open(file = ws_path)
     ws_name <- tools::file_path_sans_ext(basename(ws_path))

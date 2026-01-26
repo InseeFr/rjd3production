@@ -9,9 +9,9 @@
 \usage{
 export_outliers(x, ws_name, path = NULL, verbose = TRUE)
 
-import_outliers(x, ws_name, path = NULL, verbose = TRUE)
+import_outliers(ws_name, path = NULL, verbose = TRUE)
 
-retrieve_outliers(ws_path)
+retrieve_outliers(ws_path, verbose = TRUE)
 }
 \arguments{
 \item{x}{\link{list} A list of outliers, as returned by
