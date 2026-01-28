@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+* New function to make a ws crunchable
 * Shiny app to compare WS with button to export table
 
 ### Changed
