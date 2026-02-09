@@ -87,13 +87,13 @@ corresponds to a series in the workspace (created by <a href="outliers_tools.htm
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># Retrieve outliers from an existing workspace</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Retrieve outliers from an existing workspace</span></span></span>
 <span class="r-in"><span><span class="va">outs</span> <span class="op">&lt;-</span> <span class="fu"><a href="outliers_tools.html">retrieve_outliers</a></span><span class="op">(</span><span class="st">"workspace.xml"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .jcall(jws, "I", "getMultiProcessingCount"):</span> RcallMethod: cannot determine object class</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Reapply them to another workspace</span></span></span>
 <span class="r-in"><span><span class="fu">assign_outliers</span><span class="op">(</span>outliers <span class="op">=</span> <span class="va">outs</span>, ws_path <span class="op">=</span> <span class="st">"workspace.xml"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in assign_outliers(outliers = outs, ws_path = "workspace.xml"):</span> unused argument (ws_path = "workspace.xml")</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
