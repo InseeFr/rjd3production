@@ -156,19 +156,19 @@ verif_LY <- function(jeu, diags) {
     mode <- diags[id_jeu, "mode"]
 
     if (jeu == "LY") {
-        jeu_sans_LY <- "Pas_CJO"
+        jeu_without_LY <- "No_TD"
     } else {
-        jeu_sans_LY <- gsub(
+        jeu_without_LY <- gsub(
             pattern = "_LY",
             replacement = "",
             x = jeu,
             ignore.case = TRUE
         )
     }
-    id_jeu_sans_LY <- which(diags$regs == jeu_sans_LY)
+    id_jeu_without_LY <- which(diags$regs == jeu_without_LY)
 
     # On reprend le choix avec et sans LY
-    diags_jeu <- diags[c(id_jeu, id_jeu_sans_LY), ]
+    diags_jeu <- diags[c(id_jeu, id_jeu_without_LY), ]
 
     if (diags_jeu$note[1] != diags_jeu$note[2]) {
         return(rownames(diags_jeu)[which.min(diags_jeu$note)])
@@ -186,7 +186,7 @@ verif_LY <- function(jeu, diags) {
 
     jeu_final <- ifelse(
         test = coef_incoherent | coef_non_signif,
-        yes = jeu_sans_LY,
+        yes = jeu_without_LY,
         no = jeu
     )
 

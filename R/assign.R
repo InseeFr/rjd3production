@@ -18,9 +18,8 @@ complete_context <- function(context = NULL) {
 #' to a series in the workspace.
 #' Each element should be a character vector of outlier specifications
 #' (e.g. `"AO (2020-03)"`, `"LS (2008-09)"`).
-#'
-#' @param ws_path [\link[base]{character}] Path to a JDemetra+ workspace file
-#' (usually with extension `.xml`).
+#' @param jws A Java Workspace object, as returned by [jws_open()] or
+#' [jws_new()].
 #'
 #' @details
 #' For each series in the workspace:
@@ -32,9 +31,7 @@ complete_context <- function(context = NULL) {
 #'
 #' The modified workspace is saved **in place** (argument `replace = TRUE`).
 #'
-#' @return
-#' Invisibly returns `NULL`. The workspace file at `ws_path` is updated on disk
-#' with the new outliers.
+#' @returns The object `jws` updated with new prespecified outliers.
 #'
 #' @seealso
 #' - [retrieve_outliers()] to extract outliers from an existing workspace.
@@ -54,9 +51,8 @@ complete_context <- function(context = NULL) {
 #' @importFrom tools file_path_sans_ext
 #'
 #' @export
-assign_outliers <- function(outliers, ws_path) {
+assign_outliers <- function(jws, outliers) {
     jws <- rjd3workspace::jws_open(file = ws_path)
-    ws_name <- ws_path |> basename() |> tools::file_path_sans_ext()
     jsap <- rjd3workspace::jws_sap(jws, 1L)
 
     for (id_sai in seq_len(rjd3workspace::sap_sai_count(jsap))) {
@@ -117,13 +113,7 @@ assign_outliers <- function(outliers, ws_path) {
         )
         rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
     }
-
-    # Save WS automatique
-    rjd3workspace::save_workspace(
-        jws = jws,
-        file = ws_path,
-        replace = TRUE
-    )
+    return(jws)
 }
 
 #' @title Assign CJO regressors to a JDemetra+ workspace
@@ -132,24 +122,24 @@ assign_outliers <- function(outliers, ws_path) {
 #' This function updates a JDemetra+ workspace (`.xml`) by assigning
 #' user-defined trading day regressors (CJO) to each seasonal adjustment model
 #' (SAI), based on an external classification (typically created with
-#' [retrieve_cjo()]).
+#' [retrieve_td()]).
 #'
 #' The function modifies the `domainSpec` of each series by setting
 #' `tradingdays` to `"UserDefined"` with the appropriate regressors
 #' (`REG1` … `REG6`, optionally with `LY` for leap year).
 #'
-#' @param cjo [\link[base]{data.frame}] A data.frame with at least two columns:
+#' @param td [\link[base]{data.frame}] A data.frame with at least two columns:
 #' - `series`: names of the series in the workspace.
 #' - `regs`: the standard INSEE CJO set (`REG1`, `REG2`, …, `REG6`, with or without `_LY`).
 #'
-#' Typically this table is produced by [retrieve_cjo()].
+#' Typically this table is produced by [retrieve_td()].
 #'
 #' @param ws_path [\link[base]{character}] Path to a JDemetra+ workspace file
 #' (usually with extension `.xml`).
 #'
 #' @details
 #' For each series in the workspace:
-#' - the function looks up its assigned `regs` in the `cjo` table,
+#' - the function looks up its assigned `regs` in the `td` table,
 #' - translates the label (`REG1`, `REG2`, …) into the corresponding
 #'   user-defined regressors (e.g. `r.REG1_Semaine`, `r.REG5_Lundi`, …),
 #' - updates the `domainSpec` with `set_tradingdays(option = "UserDefined", ...)`,
@@ -164,16 +154,16 @@ assign_outliers <- function(outliers, ws_path) {
 #' @examples
 #' \dontrun{
 #' # Load a workspace and apply INSEE CJO sets
-#' cjo_table <- retrieve_cjo("workspace.xml")
-#' assign_cjo(cjo = cjo_table, ws_path = "workspace.xml")
+#' td_table <- retrieve_td("workspace.xml")
+#' assign_td(td = td_table, ws_path = "workspace.xml")
 #' }
 #'
 #' @importFrom rjd3workspace jws_open jws_sap sap_sai_count jsap_sai sai_name sap_sai_count read_sai set_specification set_domain_specification set_name save_workspace
 #' @importFrom tools file_path_sans_ext
 #'
 #' @export
-assign_cjo <- function(cjo, ws_path) {
-    cjo <- as.data.frame(cjo)
+assign_td <- function(td, ws_path) {
+    td <- as.data.frame(td)
 
     var_names <- get_named_variables(create_insee_context())
 
@@ -193,8 +183,8 @@ assign_cjo <- function(cjo, ws_path) {
             rjd3workspace::sap_sai_count(jsap),
             "\n"
         ))
-        jeu_regresseur <- cjo[
-            which(cjo[["series"]] == series_name),
+        jeu_regresseur <- td[
+            which(td[["series"]] == series_name),
             "reg_selected"
         ]
         all_regs <- c(
@@ -202,11 +192,11 @@ assign_cjo <- function(cjo, ws_path) {
             "LY"
         )
         if (jeu_regresseur %in% all_regs) {
-            cjo_variables <- var_names[[jeu_regresseur]]
+            td_variables <- var_names[[jeu_regresseur]]
         } else if (nzchar(jeu_regresseur)) {
             stop("Weird TD selection...", jeu_regresseur)
         } else {
-            cjo_variables <- NULL
+            td_variables <- NULL
         }
         sai <- rjd3workspace::read_sai(jsai)
         new_estimationSpec <- estimationSpec <- sai$estimationSpec
@@ -214,13 +204,13 @@ assign_cjo <- function(cjo, ws_path) {
         new_domainSpec <- domainSpec |>
             set_tradingdays(
                 option = "UserDefined",
-                uservariable = cjo_variables,
+                uservariable = td_variables,
                 test = "None"
             )
         new_estimationSpec <- estimationSpec |>
             set_tradingdays(
                 option = "UserDefined",
-                uservariable = cjo_variables,
+                uservariable = td_variables,
                 test = "None"
             )
         rjd3workspace::set_specification(
@@ -245,5 +235,5 @@ assign_cjo <- function(cjo, ws_path) {
     )
 }
 
-# Fonction d'ajout des regresseurs cjo Insee à un WS
+# Fonction d'ajout des regresseurs td Insee à un WS
 add_insee_regressor <- function() {}

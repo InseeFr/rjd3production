@@ -141,9 +141,9 @@ retrieve_outliers <- function(ws_path, verbose = TRUE) {
 #' These functions allow extracting, exporting, and importing the
 #' *calendrier jours ouvrés* (CJO) regressors used in JDemetra+ workspaces:
 #'
-#' - [retrieve_cjo()] extracts the CJO specification from a `.xml` workspace.
-#' - [export_cjo()] saves extracted CJO information into a YAML file.
-#' - [import_cjo()] loads CJO information back from a YAML file.
+#' - [retrieve_td()] extracts the CJO specification from a `.xml` workspace.
+#' - [export_td()] saves extracted CJO information into a YAML file.
+#' - [import_td()] loads CJO information back from a YAML file.
 #'
 #' They are useful for documenting and reusing the regression settings
 #' applied in seasonal adjustment workflows.
@@ -151,49 +151,49 @@ retrieve_outliers <- function(ws_path, verbose = TRUE) {
 #' @param ws_path [\link[base]{character}] Path to a JDemetra+ workspace
 #' file (usually with extension `.xml`).
 #' @param x [\link[base]{list} | \link[base]{data.frame}] An object containing
-#' the CJO information, typically the output of [retrieve_cjo()].
+#' the CJO information, typically the output of [retrieve_td()].
 #' @param ws_name [\link[base]{character}] The name of the workspace,
 #' used to build default YAML filenames.
 #' @param path [\link[base]{character}] Path to a YAML file to write to
 #' or read from. If missing, defaults to
-#' `"regression/cjo_<ws_name>.yaml"`.
+#' `"regression/td_<ws_name>.yaml"`.
 #' @param verbose [\link[base]{logical}] Whether to print informative
 #' messages (default: `TRUE`).
 #'
 #' @return
-#' - `retrieve_cjo()` returns a [data.frame] with columns:
+#' - `retrieve_td()` returns a [data.frame] with columns:
 #'   - `series`: series names,
 #'   - `regs`: CJO regressor specification (`REG1`, `REG2`, …, `REG6`,
 #'     with or without `_LY`),
 #'   - `series_span`: currently empty but reserved for series span.
-#' - `export_cjo()` invisibly returns the path of the YAML file written.
-#' - `import_cjo()` returns a list or data structure read from YAML.
+#' - `export_td()` invisibly returns the path of the YAML file written.
+#' - `import_td()` returns a list or data structure read from YAML.
 #'
 #' @examples
 #' \dontrun{
 #' ws_file <- "path/to/workspace.xml"
 #'
 #' # 1. Retrieve CJO specification
-#' cjo <- retrieve_cjo(ws_file)
+#' td <- retrieve_td(ws_file)
 #'
 #' # 2. Export to YAML
-#' export_cjo(cjo, ws_name = "workspace1")
+#' export_td(td, ws_name = "workspace1")
 #'
 #' # 3. Import back from YAML
-#' imported <- import_cjo(x = NULL, ws_name = "workspace1")
+#' imported <- import_td(x = NULL, ws_name = "workspace1")
 #' }
 #'
 #' @importFrom rjd3workspace jws_open read_workspace
 #' @importFrom tools file_path_sans_ext
-#' @name cjo_tools
+#' @name td_tools
 #' @export
-retrieve_cjo <- function(ws_path) {
+retrieve_td <- function(ws_path) {
     jws <- rjd3workspace::jws_open(file = ws_path)
     ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
     ws_name <- ws_path |> basename() |> tools::file_path_sans_ext()
     sap <- ws[["processing"]][[1L]]
 
-    cjo <- data.frame(
+    td <- data.frame(
         series = names(sap),
         regs = character(length(sap)),
         series_span = character(length(sap)),
@@ -216,25 +216,25 @@ retrieve_cjo <- function(ws_path) {
         regression_section <- sai[["domainSpec"]][["regarima"]][["regression"]]
         regressors <- regression_section[["td"]][["users"]]
 
-        regs_cjo <- "Pas_CJO"
+        regs_td <- "No_TD"
         if (any(grepl(pattern = "REG1", x = regressors, ignore.case = TRUE))) {
-            regs_cjo <- "REG1"
+            regs_td <- "REG1"
         } else if (
             any(grepl(pattern = "REG5", x = regressors, ignore.case = TRUE))
         ) {
-            regs_cjo <- "REG5"
+            regs_td <- "REG5"
         } else if (
             any(grepl(pattern = "REG2", x = regressors, ignore.case = TRUE))
         ) {
-            regs_cjo <- "REG2"
+            regs_td <- "REG2"
         } else if (
             any(grepl(pattern = "REG3", x = regressors, ignore.case = TRUE))
         ) {
-            regs_cjo <- "REG3"
+            regs_td <- "REG3"
         } else if (
             any(grepl(pattern = "REG6", x = regressors, ignore.case = TRUE))
         ) {
-            regs_cjo <- "REG6"
+            regs_td <- "REG6"
         }
         if (
             any(
@@ -246,10 +246,10 @@ retrieve_cjo <- function(ws_path) {
                     grepl(pattern = "LY", x = regressors, ignore.case = TRUE)
             )
         ) {
-            regs_cjo <- paste0(regs_cjo, "_LY")
+            regs_td <- paste0(regs_td, "_LY")
         }
-        cjo[id_sai, "regs"] <- regs_cjo
+        td[id_sai, "regs"] <- regs_td
     }
 
-    return(cjo)
+    return(td)
 }

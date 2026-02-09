@@ -4,20 +4,19 @@
 \alias{assign_outliers}
 \title{Assign outliers to a JDemetra+ workspace}
 \usage{
-assign_outliers(outliers, ws_path)
+assign_outliers(jws, outliers)
 }
 \arguments{
+\item{jws}{A Java Workspace object, as returned by \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}} or
+\code{\link[rjd3workspace:jws_new]{rjd3workspace::jws_new()}}.}
+
 \item{outliers}{[\link[base]{list}] A named list where each element corresponds
 to a series in the workspace.
 Each element should be a character vector of outlier specifications
 (e.g. \code{"AO (2020-03)"}, \code{"LS (2008-09)"}).}
-
-\item{ws_path}{[\link[base]{character}] Path to a JDemetra+ workspace file
-(usually with extension \code{.xml}).}
 }
 \value{
-Invisibly returns \code{NULL}. The workspace file at \code{ws_path} is updated on disk
-with the new outliers.
+The object \code{jws} updated with new prespecified outliers.
 }
 \description{
 This function updates a JDemetra+ workspace (\code{.xml}) by inserting

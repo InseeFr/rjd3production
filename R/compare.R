@@ -59,7 +59,8 @@ get_series <- function(jsai) {
 #' Searches a workspace for a seasonal adjustment item (SAI) whose name matches
 #' the user-supplied string and returns the corresponding object.
 #'
-#' @param jws A Java Workspace object, as returned by [jws_open()].
+#' @param jws A Java Workspace object, as returned by [jws_open()] or
+#' [jws_new()].
 #' @param series_name [character] Name of the SAI to retrieve.
 #'
 #' @return A Java Seasonal Adjustment Item object (`jsai`).

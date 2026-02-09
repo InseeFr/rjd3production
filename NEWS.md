@@ -16,6 +16,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 * Rename `affect_XXX` functions in `assign_XXX` functions
+* Rename `cjo` to `td` in functions name (`assign_cjo`, `export_cjo`, `retrieve_cjo`, `import_cjo`, ) and argument (`cjo` -> `td`)
 
 ### Fixed
 

@@ -92,7 +92,7 @@ create_insee_regressors <- function(
         REG6 = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
     )
 
-    regs_cjo <- lapply(
+    regs_td <- lapply(
         X = groups,
         FUN = rjd3toolkit::calendar_td,
         calendar = cal,
@@ -102,9 +102,9 @@ create_insee_regressors <- function(
         s = s
     ) |>
         do.call(what = cbind)
-    cols <- colnames(regs_cjo) |>
+    cols <- colnames(regs_td) |>
         gsub(pattern = ".", replacement = "_", fixed = TRUE)
-    regs_cjo <- cbind(
+    regs_td <- cbind(
         LY = rjd3toolkit::lp_variable(
             frequency = frequency,
             start = start,
@@ -112,11 +112,11 @@ create_insee_regressors <- function(
             s = s,
             type = "LeapYear"
         ),
-        regs_cjo
+        regs_td
     )
-    colnames(regs_cjo)[-1] <- cols
+    colnames(regs_td)[-1] <- cols
 
-    return(regs_cjo)
+    return(regs_td)
 }
 
 #' @rdname insee_modelling
@@ -128,7 +128,7 @@ create_insee_regressors_sets <- function(
     s = NULL,
     cal = NULL
 ) {
-    regs_cjo <- create_insee_regressors(
+    regs_td <- create_insee_regressors(
         frequency = frequency,
         start = start,
         length = length,
@@ -136,38 +136,38 @@ create_insee_regressors_sets <- function(
         cal = cal
     )
 
-    n <- colnames(regs_cjo)
+    n <- colnames(regs_td)
 
-    REG1 <- regs_cjo[, startsWith(n, prefix = "REG1"), drop = FALSE]
+    REG1 <- regs_td[, startsWith(n, prefix = "REG1"), drop = FALSE]
     attr(REG1, "class") <- c("mts", "ts", "matrix", "array")
 
-    LY <- regs_cjo[, startsWith(n, prefix = "LY"), drop = FALSE]
+    LY <- regs_td[, startsWith(n, prefix = "LY"), drop = FALSE]
     attr(LY, "class") <- c("mts", "ts", "matrix", "array")
 
     sets <- list(
         REG1 = REG1,
-        REG2 = regs_cjo[, startsWith(n, prefix = "REG2")],
-        REG3 = regs_cjo[, startsWith(n, prefix = "REG3")],
-        REG5 = regs_cjo[, startsWith(n, prefix = "REG5")],
-        REG6 = regs_cjo[, startsWith(n, prefix = "REG6")],
+        REG2 = regs_td[, startsWith(n, prefix = "REG2")],
+        REG3 = regs_td[, startsWith(n, prefix = "REG3")],
+        REG5 = regs_td[, startsWith(n, prefix = "REG5")],
+        REG6 = regs_td[, startsWith(n, prefix = "REG6")],
         LY = LY,
-        REG1_LY = regs_cjo[,
+        REG1_LY = regs_td[,
             startsWith(n, prefix = "REG1") |
                 startsWith(n, prefix = "LY")
         ],
-        REG2_LY = regs_cjo[,
+        REG2_LY = regs_td[,
             startsWith(n, prefix = "REG2") |
                 startsWith(n, prefix = "LY")
         ],
-        REG3_LY = regs_cjo[,
+        REG3_LY = regs_td[,
             startsWith(n, prefix = "REG3") |
                 startsWith(n, prefix = "LY")
         ],
-        REG5_LY = regs_cjo[,
+        REG5_LY = regs_td[,
             startsWith(n, prefix = "REG5") |
                 startsWith(n, prefix = "LY")
         ],
-        REG6_LY = regs_cjo[,
+        REG6_LY = regs_td[,
             startsWith(n, prefix = "REG6") |
                 startsWith(n, prefix = "LY")
         ]
@@ -248,7 +248,7 @@ create_specs_set <- function(
             )
     }
     specs_set <- c(
-        list(Pas_CJO = spec_0),
+        list(No_TD = spec_0),
         lapply(
             X = var_names,
             FUN = rjd3toolkit::set_tradingdays,
