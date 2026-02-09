@@ -34,8 +34,8 @@ get_named_variables <- function(context = NULL) {
 #' They are useful for archiving and reusing regression outliers detected
 #' during seasonal adjustment workflows.
 #'
-#' @param ws_path [\link[base]{character}] Path to a JDemetra+ workspace file
-#' (usually with extension `.xml`).
+#' @param jws A Java Workspace object, as returned by [jws_open()] or
+#' [jws_new()].
 #' @param x [list] A list of outliers, as returned by
 #' [retrieve_outliers()].
 #' @param ws_name [\link[base]{character}] The name of the workspace,
@@ -73,10 +73,8 @@ get_named_variables <- function(context = NULL) {
 #' @importFrom tools file_path_sans_ext
 #' @name outliers_tools
 #' @export
-retrieve_outliers <- function(ws_path, verbose = TRUE) {
-    jws <- rjd3workspace::jws_open(file = ws_path)
+retrieve_outliers <- function(jws, verbose = TRUE) {
     ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
-    ws_name <- ws_path |> basename() |> tools::file_path_sans_ext()
 
     sap <- ws[["processing"]][[1L]]
     ps_outliers <- data.frame(
@@ -148,8 +146,8 @@ retrieve_outliers <- function(ws_path, verbose = TRUE) {
 #' They are useful for documenting and reusing the regression settings
 #' applied in seasonal adjustment workflows.
 #'
-#' @param ws_path [\link[base]{character}] Path to a JDemetra+ workspace
-#' file (usually with extension `.xml`).
+#' @param jws A Java Workspace object, as returned by [jws_open()] or
+#' [jws_new()].
 #' @param x [\link[base]{list} | \link[base]{data.frame}] An object containing
 #' the CJO information, typically the output of [retrieve_td()].
 #' @param ws_name [\link[base]{character}] The name of the workspace,
@@ -187,10 +185,8 @@ retrieve_outliers <- function(ws_path, verbose = TRUE) {
 #' @importFrom tools file_path_sans_ext
 #' @name td_tools
 #' @export
-retrieve_td <- function(ws_path) {
-    jws <- rjd3workspace::jws_open(file = ws_path)
+retrieve_td <- function(jws) {
     ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
-    ws_name <- ws_path |> basename() |> tools::file_path_sans_ext()
     sap <- ws[["processing"]][[1L]]
 
     td <- data.frame(

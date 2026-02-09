@@ -51,9 +51,9 @@ flowchart LR
     %% Objects
     WS["WS<br/>(JDemetra+<br/>workspace)"]
     DF_OUT["outliers_df<br/>(data.frame)"]
-    DF_CJO["cjo_df<br/>(data.frame)"]
+    DF_TD["td_df<br/>(data.frame)"]
     YAML_OUT["outliers YAML<br/>(outliers_&lt;ws_name&gt;.yaml)"]
-    YAML_CJO["CJO YAML<br/>(cjo_&lt;ws_name&gt;.yaml)"]
+    YAML_TD["TD YAML<br/>(td_&lt;ws_name&gt;.yaml)"]
     SERIES["Series<br/>(time series data)"]
 
     %% Outliers workflow
@@ -62,12 +62,12 @@ flowchart LR
     DF_OUT -->|"export_outliers()"| YAML_OUT
     YAML_OUT -->|"import_outliers()"| DF_OUT
 
-    %% CJO workflow
-    SERIES -->|"select_cjo()"| DF_CJO
-    WS -->|"retrieve_cjo()"| DF_CJO
-    DF_CJO -->|"export_cjo()"| YAML_CJO
-    YAML_CJO -->|"import_cjo()"| DF_CJO
-    DF_CJO -->|"assign_cjo()"| WS
+    %% TD workflow
+    SERIES -->|"select_td()"| DF_TD
+    WS -->|"retrieve_td()"| DF_TD
+    DF_TD -->|"export_td()"| YAML_TD
+    YAML_TD -->|"import_td()"| DF_TD
+    DF_TD -->|"assign_td()"| WS
 
     %% Styles
     classDef ws fill:#e6f2ff,stroke:#4a7ebb,stroke-width:1px;
@@ -76,8 +76,8 @@ flowchart LR
     classDef series fill:#f5e6ff,stroke:#7a3db8,stroke-width:1px;
 
     class WS ws
-    class DF_OUT,DF_CJO df
-    class YAML_OUT,YAML_CJO yaml
+    class DF_OUT,DF_TD df
+    class YAML_OUT,YAML_TD yaml
     class SERIES series
 ```
 
@@ -157,9 +157,9 @@ flowchart LR
     %% Objects
     WS["WS<br/>(JDemetra+<br/>workspace)"]
     DF_OUT["outliers_df<br/>(data.frame)"]
-    DF_CJO["cjo_df<br/>(data.frame)"]
+    DF_TD["td_df<br/>(data.frame)"]
     YAML_OUT["outliers YAML<br/>(outliers_&lt;ws_name&gt;.yaml)"]
-    YAML_CJO["CJO YAML<br/>(cjo_&lt;ws_name&gt;.yaml)"]
+    YAML_TD["TD YAML<br/>(td_&lt;ws_name&gt;.yaml)"]
     SERIES["Series<br/>(time series data)"]
 
     %% Outliers workflow
@@ -168,12 +168,12 @@ flowchart LR
     DF_OUT -->|"export_outliers()"| YAML_OUT
     YAML_OUT -->|"import_outliers()"| DF_OUT
 
-    %% CJO workflow
-    SERIES -->|"select_cjo()"| DF_CJO
-    WS -->|"retrieve_cjo()"| DF_CJO
-    DF_CJO -->|"export_cjo()"| YAML_CJO
-    YAML_CJO -->|"import_cjo()"| DF_CJO
-    DF_CJO -->|"assign_cjo()"| WS
+    %% TD workflow
+    SERIES -->|"select_td()"| DF_TD
+    WS -->|"retrieve_td()"| DF_TD
+    DF_TD -->|"export_td()"| YAML_TD
+    YAML_TD -->|"import_td()"| DF_TD
+    DF_TD -->|"assign_td()"| WS
 
     %% Styles
     classDef ws fill:#e6f2ff,stroke:#4a7ebb,stroke-width:1px;
@@ -182,8 +182,8 @@ flowchart LR
     classDef series fill:#f5e6ff,stroke:#7a3db8,stroke-width:1px;
 
     class WS ws
-    class DF_OUT,DF_CJO df
-    class YAML_OUT,YAML_CJO yaml
+    class DF_OUT,DF_TD df
+    class YAML_OUT,YAML_TD yaml
     class SERIES series
 ```
 

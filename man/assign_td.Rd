@@ -4,23 +4,21 @@
 \alias{assign_td}
 \title{Assign CJO regressors to a JDemetra+ workspace}
 \usage{
-assign_td(td, ws_path)
+assign_td(td, jws)
 }
 \arguments{
 \item{td}{[\link[base]{data.frame}] A data.frame with at least two columns:
 \itemize{
 \item \code{series}: names of the series in the workspace.
-\item \code{regs}: the standard INSEE CJO set (\code{REG1}, \code{REG2}, …, \code{REG6}, with or without \verb{_LY}).
-}
+\item \code{regs}: the standard INSEE CJO set (\code{REG1}, \code{REG2}, …, \code{REG6}, with or
+without \verb{_LY}) (created by \link{retrieve_td} or \link{import_td}).
+}}
 
-Typically this table is produced by \code{\link[=retrieve_td]{retrieve_td()}}.}
-
-\item{ws_path}{[\link[base]{character}] Path to a JDemetra+ workspace file
-(usually with extension \code{.xml}).}
+\item{jws}{A Java Workspace object, as returned by \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}} or
+\code{\link[rjd3workspace:jws_new]{rjd3workspace::jws_new()}}.}
 }
 \value{
-Invisibly returns \code{NULL}. The workspace file at \code{ws_path} is updated
-on disk with the new CJO regressors.
+The object \code{jws} updated with new td regressors.
 }
 \description{
 This function updates a JDemetra+ workspace (\code{.xml}) by assigning
@@ -33,16 +31,7 @@ The function modifies the \code{domainSpec} of each series by setting
 (\code{REG1} … \code{REG6}, optionally with \code{LY} for leap year).
 }
 \details{
-For each series in the workspace:
-\itemize{
-\item the function looks up its assigned \code{regs} in the \code{td} table,
-\item translates the label (\code{REG1}, \code{REG2}, …) into the corresponding
-user-defined regressors (e.g. \code{r.REG1_Semaine}, \code{r.REG5_Lundi}, …),
-\item updates the \code{domainSpec} with \code{set_tradingdays(option = "UserDefined", ...)},
-\item saves the modified workspace.
-}
-
-The file is overwritten in place (\code{replace = TRUE}).
+This function only modify the first SA-Processing.
 }
 \examples{
 \dontrun{

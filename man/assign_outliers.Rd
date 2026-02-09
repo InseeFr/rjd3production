@@ -10,10 +10,9 @@ assign_outliers(jws, outliers)
 \item{jws}{A Java Workspace object, as returned by \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}} or
 \code{\link[rjd3workspace:jws_new]{rjd3workspace::jws_new()}}.}
 
-\item{outliers}{[\link[base]{list}] A named list where each element corresponds
-to a series in the workspace.
-Each element should be a character vector of outlier specifications
-(e.g. \code{"AO (2020-03)"}, \code{"LS (2008-09)"}).}
+\item{outliers}{[\link[base]{list}] A named list where each element
+corresponds to a series in the workspace (created by \link{retrieve_outliers} or
+\link{import_outliers}).}
 }
 \value{
 The object \code{jws} updated with new prespecified outliers.
@@ -22,20 +21,9 @@ The object \code{jws} updated with new prespecified outliers.
 This function updates a JDemetra+ workspace (\code{.xml}) by inserting
 pre-specified outliers into the \code{domainSpec} of each seasonal adjustment
 model (SAI).
-Typically, the list of outliers is created with \code{\link[=retrieve_outliers]{retrieve_outliers()}} and
-stored/exported with \code{\link[=export_outliers]{export_outliers()}}.
 }
 \details{
-For each series in the workspace:
-\itemize{
-\item The function looks up the corresponding entry in the \code{outliers} list.
-\item If outliers are specified, they are split into \strong{type} (\code{AO}, \code{LS}, \code{TC}, …)
-and \strong{date} (e.g. \code{"2020-03"}) using regex patterns.
-\item These outliers are then added into the \code{domainSpec} of the model using
-\code{\link[rjd3toolkit:add_outlier]{rjd3toolkit::add_outlier()}}.
-}
-
-The modified workspace is saved \strong{in place} (argument \code{replace = TRUE}).
+This function only modify the first SA-Processing.
 }
 \examples{
 \dontrun{

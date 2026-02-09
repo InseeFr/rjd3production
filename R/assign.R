@@ -11,25 +11,15 @@ complete_context <- function(context = NULL) {
 #' This function updates a JDemetra+ workspace (`.xml`) by inserting
 #' pre-specified outliers into the `domainSpec` of each seasonal adjustment
 #' model (SAI).
-#' Typically, the list of outliers is created with [retrieve_outliers()] and
-#' stored/exported with [export_outliers()].
 #'
-#' @param outliers [\link[base]{list}] A named list where each element corresponds
-#' to a series in the workspace.
-#' Each element should be a character vector of outlier specifications
-#' (e.g. `"AO (2020-03)"`, `"LS (2008-09)"`).
+#' @param outliers [\link[base]{list}] A named list where each element
+#' corresponds to a series in the workspace (created by [retrieve_outliers] or
+#' [import_outliers]).
 #' @param jws A Java Workspace object, as returned by [jws_open()] or
 #' [jws_new()].
 #'
 #' @details
-#' For each series in the workspace:
-#' - The function looks up the corresponding entry in the `outliers` list.
-#' - If outliers are specified, they are split into **type** (`AO`, `LS`, `TC`, …)
-#'   and **date** (e.g. `"2020-03"`) using regex patterns.
-#' - These outliers are then added into the `domainSpec` of the model using
-#'   [add_outlier()].
-#'
-#' The modified workspace is saved **in place** (argument `replace = TRUE`).
+#' This function only modify the first SA-Processing.
 #'
 #' @returns The object `jws` updated with new prespecified outliers.
 #'
@@ -46,13 +36,14 @@ complete_context <- function(context = NULL) {
 #' assign_outliers(outliers = outs, ws_path = "workspace.xml")
 #' }
 #'
-#' @importFrom rjd3workspace jws_open jws_sap sap_sai_count jsap_sai sai_name read_sai set_specification set_domain_specification set_name
+#' @importFrom rjd3workspace jws_open jws_sap sap_sai_count jsap_sai sai_name
+#' @importFrom rjd3workspace read_sai set_name
+#' @importFrom rjd3workspace set_specification set_domain_specification
 #' @importFrom rjd3toolkit add_outlier
 #' @importFrom tools file_path_sans_ext
 #'
 #' @export
 assign_outliers <- function(jws, outliers) {
-    jws <- rjd3workspace::jws_open(file = ws_path)
     jsap <- rjd3workspace::jws_sap(jws, 1L)
 
     for (id_sai in seq_len(rjd3workspace::sap_sai_count(jsap))) {
@@ -130,26 +121,15 @@ assign_outliers <- function(jws, outliers) {
 #'
 #' @param td [\link[base]{data.frame}] A data.frame with at least two columns:
 #' - `series`: names of the series in the workspace.
-#' - `regs`: the standard INSEE CJO set (`REG1`, `REG2`, …, `REG6`, with or without `_LY`).
-#'
-#' Typically this table is produced by [retrieve_td()].
-#'
-#' @param ws_path [\link[base]{character}] Path to a JDemetra+ workspace file
-#' (usually with extension `.xml`).
+#' - `regs`: the standard INSEE CJO set (`REG1`, `REG2`, …, `REG6`, with or
+#' without `_LY`) (created by [retrieve_td] or [import_td]).
+#' @param jws A Java Workspace object, as returned by [jws_open()] or
+#' [jws_new()].
 #'
 #' @details
-#' For each series in the workspace:
-#' - the function looks up its assigned `regs` in the `td` table,
-#' - translates the label (`REG1`, `REG2`, …) into the corresponding
-#'   user-defined regressors (e.g. `r.REG1_Semaine`, `r.REG5_Lundi`, …),
-#' - updates the `domainSpec` with `set_tradingdays(option = "UserDefined", ...)`,
-#' - saves the modified workspace.
+#' This function only modify the first SA-Processing.
 #'
-#' The file is overwritten in place (`replace = TRUE`).
-#'
-#' @return
-#' Invisibly returns `NULL`. The workspace file at `ws_path` is updated
-#' on disk with the new CJO regressors.
+#' @returns The object `jws` updated with new td regressors.
 #'
 #' @examples
 #' \dontrun{
@@ -158,17 +138,15 @@ assign_outliers <- function(jws, outliers) {
 #' assign_td(td = td_table, ws_path = "workspace.xml")
 #' }
 #'
-#' @importFrom rjd3workspace jws_open jws_sap sap_sai_count jsap_sai sai_name sap_sai_count read_sai set_specification set_domain_specification set_name save_workspace
+#' @importFrom rjd3workspace jws_open jws_sap sap_sai_count jsap_sai sai_name
+#' @importFrom rjd3workspace sap_sai_count read_sai set_name save_workspace
+#' @importFrom rjd3workspace set_specification set_domain_specification
 #' @importFrom tools file_path_sans_ext
 #'
 #' @export
-assign_td <- function(td, ws_path) {
+assign_td <- function(td, jws) {
     td <- as.data.frame(td)
-
     var_names <- get_named_variables(create_insee_context())
-
-    jws <- rjd3workspace::jws_open(file = ws_path)
-    ws_name <- tools::file_path_sans_ext(basename(ws_path))
     jsap <- rjd3workspace::jws_sap(jws, 1L)
 
     for (id_sai in seq_len(rjd3workspace::sap_sai_count(jsap))) {
@@ -228,11 +206,8 @@ assign_td <- function(td, ws_path) {
 
     context <- complete_context(rjd3workspace::get_context(jws))
     rjd3workspace::set_context(jws = jws, modelling_context = context)
-    rjd3workspace::save_workspace(
-        jws = jws,
-        file = ws_path,
-        replace = TRUE
-    )
+
+    return(jws)
 }
 
 # Fonction d'ajout des regresseurs td Insee à un WS

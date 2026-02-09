@@ -11,7 +11,7 @@ export_outliers(x, ws_name, path = NULL, verbose = TRUE)
 
 import_outliers(ws_name, path = NULL, verbose = TRUE)
 
-retrieve_outliers(ws_path, verbose = TRUE)
+retrieve_outliers(jws, verbose = TRUE)
 }
 \arguments{
 \item{x}{\link{list} A list of outliers, as returned by
@@ -27,8 +27,8 @@ or read from. If missing, defaults to
 \item{verbose}{[\link[base]{logical}] Whether to print informative
 messages (default: \code{TRUE}).}
 
-\item{ws_path}{[\link[base]{character}] Path to a JDemetra+ workspace file
-(usually with extension \code{.xml}).}
+\item{jws}{A Java Workspace object, as returned by \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}} or
+\code{\link[rjd3workspace:jws_new]{rjd3workspace::jws_new()}}.}
 }
 \value{
 \itemize{
