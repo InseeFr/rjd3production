@@ -3,9 +3,8 @@
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
 <url><loc>/news/index.html</loc></url>
-<url><loc>/reference/assign_cjo.html</loc></url>
 <url><loc>/reference/assign_outliers.html</loc></url>
-<url><loc>/reference/cjo_tools.html</loc></url>
+<url><loc>/reference/assign_td.html</loc></url>
 <url><loc>/reference/compare.html</loc></url>
 <url><loc>/reference/create_specs_set.html</loc></url>
 <url><loc>/reference/diagnostics_selection.html</loc></url>
@@ -20,5 +19,6 @@
 <url><loc>/reference/run_app.html</loc></url>
 <url><loc>/reference/select_regs.html</loc></url>
 <url><loc>/reference/set_minimum_span.html</loc></url>
+<url><loc>/reference/td_tools.html</loc></url>
 </urlset>
 

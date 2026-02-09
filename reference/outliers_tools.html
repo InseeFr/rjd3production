@@ -64,7 +64,7 @@ during seasonal adjustment workflows.</p>
 <span></span>
 <span><span class="fu">import_outliers</span><span class="op">(</span><span class="va">ws_name</span>, path <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">retrieve_outliers</span><span class="op">(</span><span class="va">ws_path</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">retrieve_outliers</span><span class="op">(</span><span class="va">jws</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -92,9 +92,9 @@ or read from. If missing, defaults to
 messages (default: <code>TRUE</code>).</p></dd>
 
 
-<dt id="arg-ws-path">ws_path<a class="anchor" aria-label="anchor" href="#arg-ws-path"></a></dt>
-<dd><p>[<a href="https://rdrr.io/r/base/character.html" class="external-link">character</a>] Path to a JDemetra+ workspace file
-(usually with extension <code>.xml</code>).</p></dd>
+<dt id="arg-jws">jws<a class="anchor" aria-label="anchor" href="#arg-jws"></a></dt>
+<dd><p>A Java Workspace object, as returned by <code><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_open.html" class="external-link">rjd3workspace::jws_open()</a></code> or
+<code><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_new.html" class="external-link">rjd3workspace::jws_new()</a></code>.</p></dd>
 
 </dl></div>
     <div id="value">
