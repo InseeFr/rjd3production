@@ -73,8 +73,10 @@ library("rjd3workspace")
 file <- system.file("workspaces", "workspace_test.xml", package = "rjd3workspace")
 jws <- jws_open(file)
 
+my_dir <- tempdir()
+
 outliers <- retrieve_outliers(jws, point = TRUE, domain = FALSE, estimation = FALSE)
-export_outliers(outliers, ws_name = "workspace1")
-imported <- import_outliers(ws_name = "workspace1")
+export_outliers(outliers, ws_name = "workspace1", path = my_dir)
+imported <- import_outliers(ws_name = "workspace1", path = my_dir)
 
 }
