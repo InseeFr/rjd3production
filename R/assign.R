@@ -28,13 +28,11 @@ complete_context <- function(context = NULL) {
 #' - [export_outliers()] / [import_outliers()] to manage YAML files of outliers.
 #'
 #' @examples
-#' \dontrun{
 #' # Retrieve outliers from an existing workspace
 #' outs <- retrieve_outliers("workspace.xml")
 #'
 #' # Reapply them to another workspace
 #' assign_outliers(outliers = outs, ws_path = "workspace.xml")
-#' }
 #'
 #' @importFrom rjd3workspace jws_open jws_sap sap_sai_count jsap_sai sai_name
 #' @importFrom rjd3workspace read_sai set_name

@@ -11,7 +11,13 @@ export_outliers(x, ws_name, path = NULL, verbose = TRUE)
 
 import_outliers(ws_name, path = NULL, verbose = TRUE)
 
-retrieve_outliers(jws, verbose = TRUE)
+retrieve_outliers(
+  jws,
+  domain = TRUE,
+  estimation = FALSE,
+  point = FALSE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{\link{list} A list of outliers, as returned by
@@ -29,6 +35,15 @@ messages (default: \code{TRUE}).}
 
 \item{jws}{A Java Workspace object, as returned by \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}} or
 \code{\link[rjd3workspace:jws_new]{rjd3workspace::jws_new()}}.}
+
+\item{domain}{Boolean indicating if the outliers should be extracted from the
+domain specification.}
+
+\item{estimation}{Boolean indicating if the outliers should be extracted from the
+estimation specification.}
+
+\item{point}{Boolean indicating if the outliers should be extracted from the
+point specification.}
 }
 \value{
 \itemize{
@@ -53,18 +68,13 @@ They are useful for archiving and reusing regression outliers detected
 during seasonal adjustment workflows.
 }
 \examples{
-\dontrun{
-# Example workflow:
-ws_file <- "path/to/workspace.xml"
+library("rjd3workspace")
+# Load a Workspace
+file <- system.file("workspaces", "workspace_test.xml", package = "rjd3workspace")
+jws <- jws_open(file)
 
-# 1. Retrieve outliers from a workspace
-outliers <- retrieve_outliers(ws_file)
-
-# 2. Export them to a YAML file
+outliers <- retrieve_outliers(jws, point = TRUE, domain = FALSE, estimation = FALSE)
 export_outliers(outliers, ws_name = "workspace1")
-
-# 3. Import them back later
-imported <- import_outliers(x = NULL, ws_name = "workspace1")
-}
+imported <- import_outliers(ws_name = "workspace1")
 
 }

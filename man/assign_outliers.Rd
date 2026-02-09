@@ -26,13 +26,11 @@ model (SAI).
 This function only modify the first SA-Processing.
 }
 \examples{
-\dontrun{
 # Retrieve outliers from an existing workspace
 outs <- retrieve_outliers("workspace.xml")
 
 # Reapply them to another workspace
 assign_outliers(outliers = outs, ws_path = "workspace.xml")
-}
 
 }
 \seealso{

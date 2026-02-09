@@ -43,6 +43,12 @@ get_named_variables <- function(context = NULL) {
 #' @param path [\link[base]{character}] Path to a YAML file to write to
 #' or read from. If missing, defaults to
 #' `"regression/outliers_<ws_name>.yaml"`.
+#' @param domain Boolean indicating if the outliers should be extracted from the
+#' domain specification.
+#' @param estimation Boolean indicating if the outliers should be extracted from the
+#' estimation specification.
+#' @param point Boolean indicating if the outliers should be extracted from the
+#' point specification.
 #' @param verbose [\link[base]{logical}] Whether to print informative
 #' messages (default: `TRUE`).
 #'
@@ -55,26 +61,31 @@ get_named_variables <- function(context = NULL) {
 #' - `import_outliers()` returns a list of outliers read from YAML.
 #'
 #' @examples
-#' \dontrun{
-#' # Example workflow:
-#' ws_file <- "path/to/workspace.xml"
+#' library("rjd3workspace")
+#' # Load a Workspace
+#' file <- system.file("workspaces", "workspace_test.xml", package = "rjd3workspace")
+#' jws <- jws_open(file)
 #'
-#' # 1. Retrieve outliers from a workspace
-#' outliers <- retrieve_outliers(ws_file)
-#'
-#' # 2. Export them to a YAML file
+#' outliers <- retrieve_outliers(jws, point = TRUE, domain = FALSE, estimation = FALSE)
 #' export_outliers(outliers, ws_name = "workspace1")
-#'
-#' # 3. Import them back later
-#' imported <- import_outliers(x = NULL, ws_name = "workspace1")
-#' }
+#' imported <- import_outliers(ws_name = "workspace1")
 #'
 #' @importFrom rjd3workspace jws_open read_workspace
 #' @importFrom tools file_path_sans_ext
 #' @name outliers_tools
 #' @export
-retrieve_outliers <- function(jws, verbose = TRUE) {
-    ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
+retrieve_outliers <- function(jws, domain = TRUE, estimation = FALSE,
+                              point = FALSE, verbose = TRUE) {
+
+    if (domain + point + estimation != 1L) {
+        stop("You have to choose one specification.")
+    }
+
+    if (point) {
+        ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    } else {
+        ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
+    }
 
     sap <- ws[["processing"]][[1L]]
     ps_outliers <- data.frame(
@@ -99,7 +110,14 @@ retrieve_outliers <- function(jws, verbose = TRUE) {
         }
 
         sai <- sap[[id_sai]]
-        regression_section <- sai[["domainSpec"]][["regarima"]][["regression"]]
+
+        if (domain) {
+            regression_section <- sai[["domainSpec"]][["regarima"]][["regression"]]
+        } else if (estimation) {
+            regression_section <- sai[["estimationSpec"]][["regarima"]][["regression"]]
+        } else if (point) {
+            regression_section <- sai[["pointSpec"]][["regarima"]][["regression"]]
+        }
 
         outliers <- regression_section[["outliers"]] |> unique()
 
