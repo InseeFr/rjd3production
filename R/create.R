@@ -137,40 +137,57 @@ create_insee_regressors_sets <- function(
     )
 
     n <- colnames(regs_td)
+    id_REG1 <- startsWith(n, prefix = "REG1")
+    id_REG2 <- startsWith(n, prefix = "REG2")
+    id_REG3 <- startsWith(n, prefix = "REG3")
+    id_REG5 <- startsWith(n, prefix = "REG5")
+    id_REG6 <- startsWith(n, prefix = "REG6")
+    id_LY <- startsWith(n, prefix = "LY")
 
-    REG1 <- regs_td[, startsWith(n, prefix = "REG1"), drop = FALSE]
+    REG1 <- regs_td[, id_REG1, drop = FALSE]
     attr(REG1, "class") <- c("mts", "ts", "matrix", "array")
 
-    LY <- regs_td[, startsWith(n, prefix = "LY"), drop = FALSE]
+    LY <- regs_td[, id_LY, drop = FALSE]
     attr(LY, "class") <- c("mts", "ts", "matrix", "array")
+
+    REG2 <- regs_td[, id_REG2]
+    colnames(REG2) <- substr(colnames(REG2), 6, 50)
+
+    REG3 <- regs_td[, id_REG3]
+    colnames(REG3) <- substr(colnames(REG3), 6, 50)
+
+    REG5 <- regs_td[, id_REG5]
+    colnames(REG5) <- substr(colnames(REG5), 6, 50)
+
+    REG6 <- regs_td[, id_REG6]
+    colnames(REG6) <- substr(colnames(REG6), 6, 50)
+
+    REG1_LY <- regs_td[, id_REG1 | id_LY]
+
+    REG2_LY <- regs_td[, id_REG2 | id_LY]
+    colnames(REG2_LY)[-1] <- substr(colnames(REG2_LY)[-1], 6, 50)
+
+    REG3_LY <- regs_td[, id_REG3 | id_LY]
+    colnames(REG3_LY)[-1] <- substr(colnames(REG3_LY)[-1], 6, 50)
+
+    REG5_LY <- regs_td[, id_REG5 | id_LY]
+    colnames(REG5_LY)[-1] <- substr(colnames(REG5_LY)[-1], 6, 50)
+
+    REG6_LY <- regs_td[, id_REG6 | id_LY]
+    colnames(REG6_LY)[-1] <- substr(colnames(REG6_LY)[-1], 6, 50)
 
     sets <- list(
         REG1 = REG1,
-        REG2 = regs_td[, startsWith(n, prefix = "REG2")],
-        REG3 = regs_td[, startsWith(n, prefix = "REG3")],
-        REG5 = regs_td[, startsWith(n, prefix = "REG5")],
-        REG6 = regs_td[, startsWith(n, prefix = "REG6")],
+        REG2 = REG2,
+        REG3 = REG3,
+        REG5 = REG5,
+        REG6 = REG6,
         LY = LY,
-        REG1_LY = regs_td[,
-            startsWith(n, prefix = "REG1") |
-                startsWith(n, prefix = "LY")
-        ],
-        REG2_LY = regs_td[,
-            startsWith(n, prefix = "REG2") |
-                startsWith(n, prefix = "LY")
-        ],
-        REG3_LY = regs_td[,
-            startsWith(n, prefix = "REG3") |
-                startsWith(n, prefix = "LY")
-        ],
-        REG5_LY = regs_td[,
-            startsWith(n, prefix = "REG5") |
-                startsWith(n, prefix = "LY")
-        ],
-        REG6_LY = regs_td[,
-            startsWith(n, prefix = "REG6") |
-                startsWith(n, prefix = "LY")
-        ]
+        REG1_LY = REG1_LY,
+        REG2_LY = REG2_LY,
+        REG3_LY = REG3_LY,
+        REG5_LY = REG5_LY,
+        REG6_LY = REG6_LY
     )
 
     return(sets)

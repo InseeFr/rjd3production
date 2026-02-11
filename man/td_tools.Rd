@@ -11,7 +11,13 @@ export_td(x, ws_name, path = NULL, verbose = TRUE)
 
 import_td(ws_name, path = NULL, verbose = TRUE)
 
-retrieve_td(jws)
+retrieve_td(
+  jws,
+  domain = TRUE,
+  estimation = FALSE,
+  point = FALSE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{[\link[base]{list} | \link[base]{data.frame}] An object containing
@@ -37,7 +43,6 @@ messages (default: \code{TRUE}).}
 \item \code{series}: series names,
 \item \code{regs}: CJO regressor specification (\code{REG1}, \code{REG2}, …, \code{REG6},
 with or without \verb{_LY}),
-\item \code{series_span}: currently empty but reserved for series span.
 }
 \item \code{export_td()} invisibly returns the path of the YAML file written.
 \item \code{import_td()} returns a list or data structure read from YAML.

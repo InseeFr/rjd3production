@@ -153,6 +153,56 @@ retrieve_outliers <- function(jws, domain = TRUE, estimation = FALSE,
     return(ps_outliers)
 }
 
+extract_td <- function(spec) {
+
+    regression_section <- spec[["regarima"]][["regression"]]
+
+    regressors_td <- regression_section[["td"]]
+    if (regressors_td[["td"]] != "TD_NONE"){
+        return(regressors_td[["td"]])
+    } else if (regressors_td[["w"]] != 0L) {
+        return("STOCK_TD")
+    }
+
+    regressors_ud <- regression_section[["td"]][["users"]]
+    if (is.null(regressors_ud) || length(regressors_ud) == 0) {
+        return("No_TD")
+    }
+
+    if (any(grepl(pattern = "REG1", x = regressors_ud, ignore.case = TRUE))) {
+        regs_td <- "REG1"
+    } else if (
+        any(grepl(pattern = "REG5", x = regressors_ud, ignore.case = TRUE))
+    ) {
+        regs_td <- "REG5"
+    } else if (
+        any(grepl(pattern = "REG2", x = regressors_ud, ignore.case = TRUE))
+    ) {
+        regs_td <- "REG2"
+    } else if (
+        any(grepl(pattern = "REG3", x = regressors_ud, ignore.case = TRUE))
+    ) {
+        regs_td <- "REG3"
+    } else if (
+        any(grepl(pattern = "REG6", x = regressors_ud, ignore.case = TRUE))
+    ) {
+        regs_td <- "REG6"
+    }
+    if (
+        any(
+            grepl(
+                pattern = "LeapYear",
+                x = regressors_ud,
+                ignore.case = TRUE
+            ) |
+            grepl(pattern = "LY", x = regressors_ud, ignore.case = TRUE)
+        )
+    ) {
+        regs_td <- paste0(regs_td, "_LY")
+    }
+    return(regs_td)
+}
+
 #' @title Manage working-day regressors (CJO) from JDemetra+ workspaces
 #'
 #' @description
@@ -177,13 +227,13 @@ retrieve_outliers <- function(jws, domain = TRUE, estimation = FALSE,
 #' `"regression/td_<ws_name>.yaml"`.
 #' @param verbose [\link[base]{logical}] Whether to print informative
 #' messages (default: `TRUE`).
+#' @inheritParams retrieve_outliers
 #'
 #' @return
 #' - `retrieve_td()` returns a [data.frame] with columns:
 #'   - `series`: series names,
 #'   - `regs`: CJO regressor specification (`REG1`, `REG2`, …, `REG6`,
 #'     with or without `_LY`),
-#'   - `series_span`: currently empty but reserved for series span.
 #' - `export_td()` invisibly returns the path of the YAML file written.
 #' - `import_td()` returns a list or data structure read from YAML.
 #'
@@ -205,14 +255,23 @@ retrieve_outliers <- function(jws, domain = TRUE, estimation = FALSE,
 #' @importFrom tools file_path_sans_ext
 #' @name td_tools
 #' @export
-retrieve_td <- function(jws) {
-    ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
-    sap <- ws[["processing"]][[1L]]
+retrieve_td <- function(jws, domain = TRUE, estimation = FALSE,
+                        point = FALSE, verbose = TRUE) {
 
+    if (domain + point + estimation != 1L) {
+        stop("You have to choose one specification.")
+    }
+
+    if (point) {
+        ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    } else {
+        ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
+    }
+
+    sap <- ws[["processing"]][[1L]]
     td <- data.frame(
         series = names(sap),
         regs = character(length(sap)),
-        series_span = character(length(sap)),
         stringsAsFactors = FALSE
     )
 
@@ -229,42 +288,16 @@ retrieve_td <- function(jws) {
         ))
 
         sai <- sap[[id_sai]]
-        regression_section <- sai[["domainSpec"]][["regarima"]][["regression"]]
-        regressors <- regression_section[["td"]][["users"]]
 
-        regs_td <- "No_TD"
-        if (any(grepl(pattern = "REG1", x = regressors, ignore.case = TRUE))) {
-            regs_td <- "REG1"
-        } else if (
-            any(grepl(pattern = "REG5", x = regressors, ignore.case = TRUE))
-        ) {
-            regs_td <- "REG5"
-        } else if (
-            any(grepl(pattern = "REG2", x = regressors, ignore.case = TRUE))
-        ) {
-            regs_td <- "REG2"
-        } else if (
-            any(grepl(pattern = "REG3", x = regressors, ignore.case = TRUE))
-        ) {
-            regs_td <- "REG3"
-        } else if (
-            any(grepl(pattern = "REG6", x = regressors, ignore.case = TRUE))
-        ) {
-            regs_td <- "REG6"
+        if (domain) {
+            spec <- sai[["domainSpec"]]
+        } else if (estimation) {
+            spec <- sai[["estimationSpec"]]
+        } else if (point) {
+            spec <- sai[["pointSpec"]]
         }
-        if (
-            any(
-                grepl(
-                    pattern = "LeapYear",
-                    x = regressors,
-                    ignore.case = TRUE
-                ) |
-                    grepl(pattern = "LY", x = regressors, ignore.case = TRUE)
-            )
-        ) {
-            regs_td <- paste0(regs_td, "_LY")
-        }
-        td[id_sai, "regs"] <- regs_td
+
+        td[id_sai, "regs"] <- extract_td(spec)
     }
 
     return(td)
