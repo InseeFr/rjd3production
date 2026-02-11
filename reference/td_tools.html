@@ -64,7 +64,13 @@ applied in seasonal adjustment workflows.</p>
 <span></span>
 <span><span class="fu">import_td</span><span class="op">(</span><span class="va">ws_name</span>, path <span class="op">=</span> <span class="cn">NULL</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">retrieve_td</span><span class="op">(</span><span class="va">jws</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">retrieve_td</span><span class="op">(</span></span>
+<span>  <span class="va">jws</span>,</span>
+<span>  domain <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  estimation <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  point <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -103,7 +109,6 @@ messages (default: <code>TRUE</code>).</p></dd>
 <ul><li><p><code>retrieve_td()</code> returns a <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> with columns:</p><ul><li><p><code>series</code>: series names,</p></li>
 <li><p><code>regs</code>: CJO regressor specification (<code>REG1</code>, <code>REG2</code>, …, <code>REG6</code>,
 with or without <code>_LY</code>),</p></li>
-<li><p><code>series_span</code>: currently empty but reserved for series span.</p></li>
 </ul></li>
 <li><p><code>export_td()</code> invisibly returns the path of the YAML file written.</p></li>
 <li><p><code>import_td()</code> returns a list or data structure read from YAML.</p></li>
