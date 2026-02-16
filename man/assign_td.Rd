@@ -2,7 +2,7 @@
 % Please edit documentation in R/assign.R
 \name{assign_td}
 \alias{assign_td}
-\title{Assign CJO regressors to a JDemetra+ workspace}
+\title{Assign TD regressors to a JDemetra+ workspace}
 \usage{
 assign_td(td, jws)
 }
@@ -10,7 +10,7 @@ assign_td(td, jws)
 \item{td}{[\link[base]{data.frame}] A data.frame with at least two columns:
 \itemize{
 \item \code{series}: names of the series in the workspace.
-\item \code{regs}: the standard INSEE CJO set (\code{REG1}, \code{REG2}, …, \code{REG6}, with or
+\item \code{regs}: the standard INSEE TD set (\code{REG1}, \code{REG2}, …, \code{REG6}, with or
 without \verb{_LY}) (created by \link{retrieve_td} or \link{import_td}).
 }}
 
@@ -22,7 +22,7 @@ The object \code{jws} updated with new td regressors.
 }
 \description{
 This function updates a JDemetra+ workspace (\code{.xml}) by assigning
-user-defined trading day regressors (CJO) to each seasonal adjustment model
+user-defined trading day regressors (TD) to each seasonal adjustment model
 (SAI), based on an external classification (typically created with
 \code{\link[=retrieve_td]{retrieve_td()}}).
 
@@ -35,7 +35,7 @@ This function only modify the first SA-Processing.
 }
 \examples{
 \dontrun{
-# Load a workspace and apply INSEE CJO sets
+# Load a workspace and apply INSEE TD sets
 td_table <- retrieve_td("workspace.xml")
 assign_td(td = td_table, ws_path = "workspace.xml")
 }

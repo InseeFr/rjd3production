@@ -26,7 +26,7 @@ create_specs_set(
 \item{span_start}{\link{character} Estimation start date (format "YYYY-MM-DD").}
 }
 \value{
-A list of named X13 specifications (CJO and variants).
+A list of named X13 specifications (TD and variants).
 }
 \description{
 Builds a set of X13 specifications from a start date,

@@ -105,11 +105,11 @@ assign_outliers <- function(jws, outliers) {
     return(jws)
 }
 
-#' @title Assign CJO regressors to a JDemetra+ workspace
+#' @title Assign TD regressors to a JDemetra+ workspace
 #'
 #' @description
 #' This function updates a JDemetra+ workspace (`.xml`) by assigning
-#' user-defined trading day regressors (CJO) to each seasonal adjustment model
+#' user-defined trading day regressors (TD) to each seasonal adjustment model
 #' (SAI), based on an external classification (typically created with
 #' [retrieve_td()]).
 #'
@@ -119,7 +119,7 @@ assign_outliers <- function(jws, outliers) {
 #'
 #' @param td [\link[base]{data.frame}] A data.frame with at least two columns:
 #' - `series`: names of the series in the workspace.
-#' - `regs`: the standard INSEE CJO set (`REG1`, `REG2`, …, `REG6`, with or
+#' - `regs`: the standard INSEE TD set (`REG1`, `REG2`, …, `REG6`, with or
 #' without `_LY`) (created by [retrieve_td] or [import_td]).
 #' @param jws A Java Workspace object, as returned by [jws_open()] or
 #' [jws_new()].
@@ -131,7 +131,7 @@ assign_outliers <- function(jws, outliers) {
 #'
 #' @examples
 #' \dontrun{
-#' # Load a workspace and apply INSEE CJO sets
+#' # Load a workspace and apply INSEE TD sets
 #' td_table <- retrieve_td("workspace.xml")
 #' assign_td(td = td_table, ws_path = "workspace.xml")
 #' }

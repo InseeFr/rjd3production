@@ -203,15 +203,15 @@ extract_td <- function(spec) {
     return(regs_td)
 }
 
-#' @title Manage working-day regressors (CJO) from JDemetra+ workspaces
+#' @title Manage working-day regressors (TD) from JDemetra+ workspaces
 #'
 #' @description
 #' These functions allow extracting, exporting, and importing the
-#' *calendrier jours ouvrés* (CJO) regressors used in JDemetra+ workspaces:
+#' *calendrier jours ouvrés* (TD) regressors used in JDemetra+ workspaces:
 #'
-#' - [retrieve_td()] extracts the CJO specification from a `.xml` workspace.
-#' - [export_td()] saves extracted CJO information into a YAML file.
-#' - [import_td()] loads CJO information back from a YAML file.
+#' - [retrieve_td()] extracts the TD specification from a `.xml` workspace.
+#' - [export_td()] saves extracted TD information into a YAML file.
+#' - [import_td()] loads TD information back from a YAML file.
 #'
 #' They are useful for documenting and reusing the regression settings
 #' applied in seasonal adjustment workflows.
@@ -219,7 +219,7 @@ extract_td <- function(spec) {
 #' @param jws A Java Workspace object, as returned by [jws_open()] or
 #' [jws_new()].
 #' @param x [\link[base]{list} | \link[base]{data.frame}] An object containing
-#' the CJO information, typically the output of [retrieve_td()].
+#' the TD information, typically the output of [retrieve_td()].
 #' @param ws_name [\link[base]{character}] The name of the workspace,
 #' used to build default YAML filenames.
 #' @param path [\link[base]{character}] Path to a YAML file to write to
@@ -232,7 +232,7 @@ extract_td <- function(spec) {
 #' @return
 #' - `retrieve_td()` returns a [data.frame] with columns:
 #'   - `series`: series names,
-#'   - `regs`: CJO regressor specification (`REG1`, `REG2`, …, `REG6`,
+#'   - `regs`: TD regressor specification (`REG1`, `REG2`, …, `REG6`,
 #'     with or without `_LY`),
 #' - `export_td()` invisibly returns the path of the YAML file written.
 #' - `import_td()` returns a list or data structure read from YAML.
@@ -241,7 +241,7 @@ extract_td <- function(spec) {
 #' \dontrun{
 #' ws_file <- "path/to/workspace.xml"
 #'
-#' # 1. Retrieve CJO specification
+#' # 1. Retrieve TD specification
 #' td <- retrieve_td(ws_file)
 #'
 #' # 2. Export to YAML

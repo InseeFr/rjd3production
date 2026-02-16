@@ -23,7 +23,7 @@ built](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgd
 
 ### Présentation
 
-**{rjd3production}** aide les producteurs de données CVS CJO à mettre en
+**{rjd3production}** aide les producteurs de données CVS TD à mettre en
 place des chaînes de production.
 
 Il permet notamment de :
@@ -131,7 +131,7 @@ remotes::install_github("TanguyBarthelemy/rjd3production")
 
 ### Overview
 
-**{rjd3production}** helps producers of CVS CJO data to set up
+**{rjd3production}** helps producers of CVS TD data to set up
 production lines.
 
 In particular, it enables you to:

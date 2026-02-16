@@ -5,7 +5,7 @@
 \alias{export_td}
 \alias{import_td}
 \alias{retrieve_td}
-\title{Manage working-day regressors (CJO) from JDemetra+ workspaces}
+\title{Manage working-day regressors (TD) from JDemetra+ workspaces}
 \usage{
 export_td(x, ws_name, path = NULL, verbose = TRUE)
 
@@ -21,7 +21,7 @@ retrieve_td(
 }
 \arguments{
 \item{x}{[\link[base]{list} | \link[base]{data.frame}] An object containing
-the CJO information, typically the output of \code{\link[=retrieve_td]{retrieve_td()}}.}
+the TD information, typically the output of \code{\link[=retrieve_td]{retrieve_td()}}.}
 
 \item{ws_name}{[\link[base]{character}] The name of the workspace,
 used to build default YAML filenames.}
@@ -41,7 +41,7 @@ messages (default: \code{TRUE}).}
 \item \code{retrieve_td()} returns a \link{data.frame} with columns:
 \itemize{
 \item \code{series}: series names,
-\item \code{regs}: CJO regressor specification (\code{REG1}, \code{REG2}, …, \code{REG6},
+\item \code{regs}: TD regressor specification (\code{REG1}, \code{REG2}, …, \code{REG6},
 with or without \verb{_LY}),
 }
 \item \code{export_td()} invisibly returns the path of the YAML file written.
@@ -50,11 +50,11 @@ with or without \verb{_LY}),
 }
 \description{
 These functions allow extracting, exporting, and importing the
-\emph{calendrier jours ouvrés} (CJO) regressors used in JDemetra+ workspaces:
+\emph{calendrier jours ouvrés} (TD) regressors used in JDemetra+ workspaces:
 \itemize{
-\item \code{\link[=retrieve_td]{retrieve_td()}} extracts the CJO specification from a \code{.xml} workspace.
-\item \code{\link[=export_td]{export_td()}} saves extracted CJO information into a YAML file.
-\item \code{\link[=import_td]{import_td()}} loads CJO information back from a YAML file.
+\item \code{\link[=retrieve_td]{retrieve_td()}} extracts the TD specification from a \code{.xml} workspace.
+\item \code{\link[=export_td]{export_td()}} saves extracted TD information into a YAML file.
+\item \code{\link[=import_td]{import_td()}} loads TD information back from a YAML file.
 }
 
 They are useful for documenting and reusing the regression settings
@@ -64,7 +64,7 @@ applied in seasonal adjustment workflows.
 \dontrun{
 ws_file <- "path/to/workspace.xml"
 
-# 1. Retrieve CJO specification
+# 1. Retrieve TD specification
 td <- retrieve_td(ws_file)
 
 # 2. Export to YAML

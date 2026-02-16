@@ -231,7 +231,7 @@ create_insee_context <- function(
 #' - `type`: vector of outlier types (e.g. "AO", "LS", "TC")
 #' - `date`: vector of corresponding dates
 #'
-#' @return A list of named X13 specifications (CJO and variants).
+#' @return A list of named X13 specifications (TD and variants).
 #'
 #' @examples
 #' my_context <- create_insee_context()
