@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![CRAN
-status](https://www.r-pkg.org/badges/version/rjd3production)](https://CRAN.R-project.org/package=rjd3production)
+<!-- [![CRAN
+status](https://www.r-pkg.org/badges/version/rjd3production)](https://CRAN.R-project.org/package=rjd3production)-->
 
 [![R-CMD-check](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml)
 [![lint](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml/badge.svg)](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml)
@@ -23,27 +23,33 @@ built](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgd
 
 ### Présentation
 
-**{rjd3production}** aide les producteurs de données cvs-cjo à mettre en
-place des chaînes de production.
+**{rjd3production}**  permet de construire facilement une chaîne de production de séries cvs-cjo.
+
+<!-- add link to document de travail-->
 
 Il permet notamment de :
 
 - Créer des calendriers français et régresseurs de calendrier
   compatibles JDemetra+
 
-- Identifier des SAI par leur nom
+- Identifier des SA-Item par leur nom (objets contenant toutes les informations relatives à une série dans un Workspace)
 
-- Selectionner les jeux de calendrier pour une ou plusieurs séries
+- Sélectionner le meilleur jeux de regresseurs de calendrier pour une ou plusieurs séries
 
-- Manipuler les régresseurs de calendrier et les outliers d’un Workspace
+- Manipuler les régresseurs de calendrier et les outliers d’un workspace
   selon la dynamique suivante:
 
   - Les fonctions `import_XXX()` et `export_XXX()` permettent de
     convertir les data.frame contenant les outliers et régresseurs de
     calendrier en fichiers et inversement
-  - Les fonctions `retrieve_XXX()` et `assign_XXX()` permettent
-    d’extraire (resp. d’assigner) les outliers et régresseurs de
+    
+  - Les fonctions `retrieve_XXX()`permettent
+    d’extraire les outliers et régresseurs de
     calendrier d’un workspace
+    
+  - Les fonctions `assign_XXX()` permettent
+    d’affecter les outliers et régresseurs de
+    calendrier dans un workspace
 
 ``` mermaid
 
@@ -86,14 +92,13 @@ flowchart LR
 **{rjd3production}** s’appuie sur le paquetage
 [**{rJava}**](https://CRAN.R-project.org/package=rJava)
 
-L’exécution des paquets rjd3 nécessite **Java 17 ou plus**. La manière
+L’exécution des paquets rjd3 nécessite **Java 17 ou supérieur**. La manière
 de mettre en place une telle configuration dans R est expliquée
 [ici](https://jdemetra-new-documentation.netlify.app/#Rconfig)
 
 ### Latest release
 
-Pour obtenir la version stable actuelle (à partir de la dernière
-version) :
+Pour obtenir la dernière version stable :
 
 - Depuis GitHub :
 
@@ -131,25 +136,22 @@ remotes::install_github("TanguyBarthelemy/rjd3production")
 
 ### Overview
 
-**{rjd3production}** helps producers of CVS TD data to set up
-production lines.
+**{rjd3production}** helps you quickly build production processes for seasonally adjusted (SA) series.
+
+<!-- add link to document de travail-->
 
 In particular, it enables you to:
 
-- Create JDemetra+-compatible French calendars and calendar regressors
+- Create French calendars and calendar regressors compatible with JDemetra+
 
-- Identify SAIs by name
+- Identify SA-Items by name (object containing all the information on a given series)
 
-- Select calendar sets for one or more series
+- Select the best calendar set for one or more series
 
-- Manipulate Workspace calendar regressors and outliers according to the
-  following dynamics:
+- Manipulate calendar regressors and outliers according to the following dynamics:
 
-  - The `import_XXX()` and `export_XXX()` functions convert data.frames
-    containing calendar outliers and regressors into files, and vice
-    versa.
-  - The `retrieve_XXX()` and `assign_XXX()` functions extract (resp.
-    assign) calendar outliers and regressors from a workspace.
+- Use the import_XXX() and export_XXX() functions to convert data frames containing calendar outliers and regressors into files, and vice versa.
+  The retrieve_XXX() and assign_XXX() functions extract (resp. assign) calendar outliers and regressors from (resp. to) a workspace.
 
 ``` mermaid
 
@@ -189,7 +191,7 @@ flowchart LR
 
 ### Installation
 
-To get the current stable version (from the latest release):
+To get the latest stable version:
 
 - From GitHub:
 
