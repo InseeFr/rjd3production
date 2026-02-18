@@ -23,7 +23,7 @@ built](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgd
 
 ### Présentation
 
-**{rjd3production}** aide les producteurs de données CVS TD à mettre en
+**{rjd3production}** aide les producteurs de données cvs-cjo à mettre en
 place des chaînes de production.
 
 Il permet notamment de :
