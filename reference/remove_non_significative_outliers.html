@@ -3,7 +3,7 @@
 regression outliers whose p-values are above a given threshold.
 Both the estimation specification and the domain specification are
 updated accordingly, and the workspace file is saved in place.
-Typical use case: after automatic model estimation, outliers with
+Typical use case: after estimation with user pre-specified outliers, outliers with
 weak statistical significance (e.g. p &amp;gt; 0.3) are dropped to
 simplify the regression specification."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -53,7 +53,7 @@ simplify the regression specification."><!-- mathjax --><script src="https://cdn
 regression outliers whose p-values are above a given threshold.
 Both the estimation specification and the domain specification are
 updated accordingly, and the workspace file is saved in place.</p>
-<p>Typical use case: after automatic model estimation, outliers with
+<p>Typical use case: after estimation with user pre-specified outliers, outliers with
 weak statistical significance (e.g. <code>p &gt; 0.3</code>) are dropped to
 simplify the regression specification.</p>
     </div>
@@ -99,12 +99,12 @@ in place</strong> (saved at the same location as <code>ws_path</code>).</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The function:</p><ul><li><p>iterates over all seasonal adjustment models (SAI) in the workspace,</p></li>
-<li><p>identifies regression outliers in the <code>regarima</code> specification,</p></li>
+    <p>The function:</p><ul><li><p>iterates over all the series (SA-Items) in the workspace,</p></li>
+<li><p>identifies outliers in the <code>regarima</code> specification,</p></li>
 <li><p>checks their p-values in the pre-processing regression summary,</p></li>
 <li><p>removes those with p-values above the threshold from both
 <code>estimationSpec</code> and, if present, <code>domainSpec</code>,</p></li>
-<li><p>re-saves the workspace file.</p></li>
+<li><p>saves the workspace file.</p></li>
 </ul></div>
 
     <div id="ref-examples">

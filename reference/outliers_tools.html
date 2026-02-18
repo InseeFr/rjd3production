@@ -3,10 +3,10 @@
 detected in a JDemetra+ workspace:
 retrieve_outliers() extracts outliers from a .xml workspace.
 export_outliers() saves extracted outliers into a YAML file.
-import_outliers() loads outliers back from a YAML file.
+import_outliers() loads outliers back to a .xml workspace from a YAML file.
 
 
-They are useful for archiving and reusing regression outliers detected
+They are useful for archiving and reusing outliers detected
 during seasonal adjustment workflows."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -54,8 +54,8 @@ during seasonal adjustment workflows."><!-- mathjax --><script src="https://cdnj
     <p>These functions allow extracting, exporting and importing outliers
 detected in a JDemetra+ workspace:</p><ul><li><p><code>retrieve_outliers()</code> extracts outliers from a <code>.xml</code> workspace.</p></li>
 <li><p><code>export_outliers()</code> saves extracted outliers into a YAML file.</p></li>
-<li><p><code>import_outliers()</code> loads outliers back from a YAML file.</p></li>
-</ul><p>They are useful for archiving and reusing regression outliers detected
+<li><p><code>import_outliers()</code> loads outliers back to a <code>.xml</code> workspace from a YAML file.</p></li>
+</ul><p>They are useful for archiving and reusing outliers detected
 during seasonal adjustment workflows.</p>
     </div>
 
@@ -123,10 +123,10 @@ point specification.</p></dd>
 
 <ul><li><p><code>retrieve_outliers()</code> returns a named list where each element
 corresponds to a series in the workspace and contains the names
-of detected outliers.</p></li>
+of existing (detected or pre-specified) outliers.</p></li>
 <li><p><code>export_outliers()</code> invisibly returns the path of the YAML file
 written.</p></li>
-<li><p><code>import_outliers()</code> returns a list of outliers read from YAML.</p></li>
+<li><p><code>import_outliers()</code> returns a list of outliers read from a YAML file.</p></li>
 </ul></div>
 
     <div id="ref-examples">
@@ -145,9 +145,9 @@ written.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Série RF1011, 4/5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Série RF1012, 5/5</span>
 <span class="r-in"><span><span class="fu">export_outliers</span><span class="op">(</span><span class="va">outliers</span>, ws_name <span class="op">=</span> <span class="st">"workspace1"</span>, path <span class="op">=</span> <span class="va">my_dir</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The outliers will be written at  /tmp/RtmpAYr6Zb/outliers_workspace1.yaml </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The outliers will be written at  /tmp/RtmpZmdYNB/outliers_workspace1.yaml </span>
 <span class="r-in"><span><span class="va">imported</span> <span class="op">&lt;-</span> <span class="fu">import_outliers</span><span class="op">(</span>ws_name <span class="op">=</span> <span class="st">"workspace1"</span>, path <span class="op">=</span> <span class="va">my_dir</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The outliers will be read at  /tmp/RtmpAYr6Zb/outliers_workspace1.yaml </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The outliers will be read at  /tmp/RtmpZmdYNB/outliers_workspace1.yaml </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
