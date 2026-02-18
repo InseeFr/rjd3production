@@ -29,7 +29,7 @@ built](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgd
 
 Il permet notamment de :
 
-- Créer des calendriers français et régresseurs de calendrier
+- Créer des calendriers français et des régresseurs de calendrier
   compatibles JDemetra+
 
 - Identifier des SA-Item par leur nom (objets contenant toutes les informations relatives à une série dans un Workspace)
