@@ -150,8 +150,9 @@ In particular, it enables you to:
 
 - Manipulate calendar regressors and outliers according to the following dynamics:
 
-- Use the import_XXX() and export_XXX() functions to convert data frames containing calendar outliers and regressors into files, and vice versa.
-  The retrieve_XXX() and assign_XXX() functions extract (resp. assign) calendar outliers and regressors from (resp. to) a workspace.
+- Use the import_XXX() and export_XXX() functions to convert data frames containing calendar outliers and regressors into files, and vice versa
+  
+- The retrieve_XXX() and assign_XXX() functions extract (resp. assign) calendar outliers and regressors from (resp. to) a workspace.
 
 ``` mermaid
 
