@@ -144,7 +144,7 @@ In particular, it enables you to:
 
 - Create French calendars and calendar regressors compatible with JDemetra+
 
-- Identify SA-Items by name (object containing all the information on a given series)
+- Identify SA-Items by name (object containing all the information on a given series in a workspace)
 
 - Select the best calendar set for one or more series
 
