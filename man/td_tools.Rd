@@ -5,7 +5,7 @@
 \alias{export_td}
 \alias{import_td}
 \alias{retrieve_td}
-\title{Manage working-day regressors (TD) from JDemetra+ workspaces}
+\title{Manage trading-day regressors (TD) from JDemetra+ workspaces}
 \usage{
 export_td(x, ws_name, path = NULL, verbose = TRUE)
 
@@ -24,7 +24,7 @@ retrieve_td(
 the TD information, typically the output of \code{\link[=retrieve_td]{retrieve_td()}}.}
 
 \item{ws_name}{[\link[base]{character}] The name of the workspace,
-used to build default YAML filenames.}
+used to build default YAML file names.}
 
 \item{path}{[\link[base]{character}] Path to a YAML file to write to
 or read from. If missing, defaults to
@@ -49,8 +49,8 @@ with or without \verb{_LY}),
 }
 }
 \description{
-These functions allow extracting, exporting, and importing the
-\emph{calendrier jours ouvrés} (TD) regressors used in JDemetra+ workspaces:
+These functions allow to extract, export and import the
+calendar (TD) regressors used in JDemetra+ workspaces:
 \itemize{
 \item \code{\link[=retrieve_td]{retrieve_td()}} extracts the TD specification from a \code{.xml} workspace.
 \item \code{\link[=export_td]{export_td()}} saves extracted TD information into a YAML file.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/compare.R
 \name{get_series}
 \alias{get_series}
-\title{Extract all series from a SAI}
+\title{Extract all series from a SA-Item}
 \usage{
 get_series(jsai)
 }

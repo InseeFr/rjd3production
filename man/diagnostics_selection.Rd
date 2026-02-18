@@ -7,7 +7,7 @@
 \alias{all_diagnostics}
 \alias{verif_LY}
 \alias{select_reg_one_series}
-\title{Diagnostics and Regression Selection for X13 Models}
+\title{Diagnostics Extraction on Calendar Correction with different sets of regressors}
 \usage{
 get_LY_info(smod, verbose = TRUE)
 
@@ -22,9 +22,9 @@ select_reg_one_series(series, name = "", specs_set = NULL, context = NULL, ...)
 \arguments{
 \item{smod}{\link{list} Result of \code{\link[=summary]{summary()}} applied to an X13 model.}
 
-\item{series}{[\link[stats]{ts} or numeric] Time series to analyze.}
+\item{series}{[\link[stats]{ts} or numeric] Time series to analyse.}
 
-\item{spec}{\link{list} An X13 specification (from \code{\link[rjd3x13:x13_spec]{rjd3x13::x13_spec()}}).}
+\item{spec}{\link{list} A X13 specification (from \code{\link[rjd3x13:x13_spec]{rjd3x13::x13_spec()}}).}
 
 \item{context}{\link{list} Modelling context with regressors and calendars
 (from \code{\link[rjd3toolkit:modelling_context]{rjd3toolkit::modelling_context()}}).}
@@ -56,9 +56,9 @@ the generation of X13 specifications. Possible arguments include:
 }
 }
 \description{
-These functions provide tools to extract diagnostics from X13 models,
-evaluate sets of specifications, and select the most appropriate
-regression set (with or without leap-year effect).
+These functions allow to extract diagnostics from X13-Arima models with different sets of calendar regressors
+in order to evaluate different specifications and select the most appropriate
+calendar regressors set (with or without leap-year effect) to correct a given series.
 }
 \details{
 \itemize{
@@ -66,7 +66,7 @@ regression set (with or without leap-year effect).
 \item \code{one_diagnostic()} applies one X13 specification to a series and computes diagnostics.
 \item \code{all_diagnostics()} evaluates all specifications in a set and summarizes diagnostics.
 \item \code{verif_LY()} checks whether the leap-year effect should be kept or removed.
-\item \code{select_reg_one_series()} selects the best regression set for a single series.
+\item \code{select_reg_one_series()} selects the best calendar regressors set for a single series.
 }
 }
 \examples{

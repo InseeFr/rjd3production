@@ -2,7 +2,7 @@
 % Please edit documentation in R/select.R
 \name{select_regs}
 \alias{select_regs}
-\title{Select Regressors for One or Multiple Series}
+\title{Select Calendar Regressors for One or Multiple Series}
 \usage{
 select_regs(series, ...)
 }

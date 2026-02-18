@@ -1,7 +1,7 @@
-#' @title Variables named in workspace
+#' @title Retrieve all the auxiliary variables from a workspace
 #'
 #' @description
-#' List all the variables in a modelling context.
+#' Lists all the variables in a modelling context.
 #'
 #' @param context a modelling context
 #'
@@ -29,9 +29,9 @@ get_named_variables <- function(context = NULL) {
 #'
 #' - [retrieve_outliers()] extracts outliers from a `.xml` workspace.
 #' - [export_outliers()] saves extracted outliers into a YAML file.
-#' - [import_outliers()] loads outliers back from a YAML file.
+#' - [import_outliers()] loads outliers back to a `.xml` workspace from a YAML file.
 #'
-#' They are useful for archiving and reusing regression outliers detected
+#' They are useful for archiving and reusing outliers detected
 #' during seasonal adjustment workflows.
 #'
 #' @param jws A Java Workspace object, as returned by [jws_open()] or
@@ -55,10 +55,10 @@ get_named_variables <- function(context = NULL) {
 #' @return
 #' - `retrieve_outliers()` returns a named list where each element
 #'   corresponds to a series in the workspace and contains the names
-#'   of detected outliers.
+#'   of existing (detected or pre-specified) outliers.
 #' - `export_outliers()` invisibly returns the path of the YAML file
 #'   written.
-#' - `import_outliers()` returns a list of outliers read from YAML.
+#' - `import_outliers()` returns a list of outliers read from a YAML file.
 #'
 #' @examples
 #' library("rjd3workspace")
@@ -203,11 +203,11 @@ extract_td <- function(spec) {
     return(regs_td)
 }
 
-#' @title Manage working-day regressors (TD) from JDemetra+ workspaces
+#' @title Manage trading-day regressors (TD) from JDemetra+ workspaces
 #'
 #' @description
-#' These functions allow extracting, exporting, and importing the
-#' *calendrier jours ouvrés* (TD) regressors used in JDemetra+ workspaces:
+#' These functions allow to extract, export and import the
+#' calendar (TD) regressors used in JDemetra+ workspaces:
 #'
 #' - [retrieve_td()] extracts the TD specification from a `.xml` workspace.
 #' - [export_td()] saves extracted TD information into a YAML file.
@@ -221,7 +221,7 @@ extract_td <- function(spec) {
 #' @param x [\link[base]{list} | \link[base]{data.frame}] An object containing
 #' the TD information, typically the output of [retrieve_td()].
 #' @param ws_name [\link[base]{character}] The name of the workspace,
-#' used to build default YAML filenames.
+#' used to build default YAML file names.
 #' @param path [\link[base]{character}] Path to a YAML file to write to
 #' or read from. If missing, defaults to
 #' `"regression/td_<ws_name>.yaml"`.

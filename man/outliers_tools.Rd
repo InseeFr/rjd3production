@@ -49,10 +49,10 @@ point specification.}
 \itemize{
 \item \code{retrieve_outliers()} returns a named list where each element
 corresponds to a series in the workspace and contains the names
-of detected outliers.
+of existing (detected or pre-specified) outliers.
 \item \code{export_outliers()} invisibly returns the path of the YAML file
 written.
-\item \code{import_outliers()} returns a list of outliers read from YAML.
+\item \code{import_outliers()} returns a list of outliers read from a YAML file.
 }
 }
 \description{
@@ -61,10 +61,10 @@ detected in a JDemetra+ workspace:
 \itemize{
 \item \code{\link[=retrieve_outliers]{retrieve_outliers()}} extracts outliers from a \code{.xml} workspace.
 \item \code{\link[=export_outliers]{export_outliers()}} saves extracted outliers into a YAML file.
-\item \code{\link[=import_outliers]{import_outliers()}} loads outliers back from a YAML file.
+\item \code{\link[=import_outliers]{import_outliers()}} loads outliers back to a \code{.xml} workspace from a YAML file.
 }
 
-They are useful for archiving and reusing regression outliers detected
+They are useful for archiving and reusing outliers detected
 during seasonal adjustment workflows.
 }
 \examples{

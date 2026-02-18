@@ -9,19 +9,18 @@ complete_context <- function(context = NULL) {
 #'
 #' @description
 #' This function updates a JDemetra+ workspace (`.xml`) by inserting
-#' pre-specified outliers into the `domainSpec` of each seasonal adjustment
-#' model (SAI).
+#' pre-specified outliers into the `domainSpec` of each series (SA-Item).
 #'
 #' @param outliers [\link[base]{list}] A named list where each element
-#' corresponds to a series in the workspace (created by [retrieve_outliers] or
-#' [import_outliers]).
+#' corresponds to a series in the workspace created with [retrieve_outliers] or
+#' [import_outliers].
 #' @param jws A Java Workspace object, as returned by [jws_open()] or
 #' [jws_new()].
 #'
 #' @details
-#' This function only modify the first SA-Processing.
+#' This function only modifies the first SA-Processing.
 #'
-#' @returns The object `jws` updated with new prespecified outliers.
+#' @returns The object `jws` updated with new pre-specified outliers.
 #'
 #' @seealso
 #' - [retrieve_outliers()] to extract outliers from an existing workspace.
@@ -105,27 +104,27 @@ assign_outliers <- function(jws, outliers) {
     return(jws)
 }
 
-#' @title Assign TD regressors to a JDemetra+ workspace
+#' @title Assign calendar (TD) regressors to a JDemetra+ workspace
 #'
 #' @description
 #' This function updates a JDemetra+ workspace (`.xml`) by assigning
-#' user-defined trading day regressors (TD) to each seasonal adjustment model
-#' (SAI), based on an external classification (typically created with
-#' [retrieve_td()]).
+#' user-defined trading day regressors (TD) to each series
+#' (SA-Item), based on an external correspondence table, which can be created with
+#' [retrieve_td()].
 #'
-#' The function modifies the `domainSpec` of each series by setting
+#' This function modifies the `domainSpec` of each series by setting
 #' `tradingdays` to `"UserDefined"` with the appropriate regressors
 #' (`REG1` … `REG6`, optionally with `LY` for leap year).
 #'
 #' @param td [\link[base]{data.frame}] A data.frame with at least two columns:
-#' - `series`: names of the series in the workspace.
-#' - `regs`: the standard INSEE TD set (`REG1`, `REG2`, …, `REG6`, with or
+#' - `series`: name of the series in the workspace.
+#' - `regs`: standard INSEE TD set (`REG1`, `REG2`, …, `REG6`, with or
 #' without `_LY`) (created by [retrieve_td] or [import_td]).
 #' @param jws A Java Workspace object, as returned by [jws_open()] or
 #' [jws_new()].
 #'
 #' @details
-#' This function only modify the first SA-Processing.
+#' This function only modifies the first SA-Processing.
 #'
 #' @returns The object `jws` updated with new td regressors.
 #'

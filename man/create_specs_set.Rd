@@ -30,7 +30,7 @@ A list of named X13 specifications (TD and variants).
 }
 \description{
 Builds a set of X13 specifications from a start date,
-a context (explanatory variables) and possibly outliers.
+a modelling context (explanatory variables) and outliers (optional).
 }
 \examples{
 my_context <- create_insee_context()

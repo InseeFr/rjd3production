@@ -2,7 +2,7 @@
 % Please edit documentation in R/retrieve.R
 \name{get_named_variables}
 \alias{get_named_variables}
-\title{Variables named in workspace}
+\title{Retrieve all the auxiliary variables from a workspace}
 \usage{
 get_named_variables(context = NULL)
 }
@@ -13,5 +13,5 @@ get_named_variables(context = NULL)
 a list with all the groups and named variables
 }
 \description{
-List all the variables in a modelling context.
+Lists all the variables in a modelling context.
 }

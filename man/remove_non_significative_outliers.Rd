@@ -35,19 +35,19 @@ regression outliers whose p-values are above a given threshold.
 Both the estimation specification and the domain specification are
 updated accordingly, and the workspace file is saved in place.
 
-Typical use case: after automatic model estimation, outliers with
+Typical use case: after estimation with user pre-specified outliers, outliers with
 weak statistical significance (e.g. \code{p > 0.3}) are dropped to
 simplify the regression specification.
 }
 \details{
 The function:
 \itemize{
-\item iterates over all seasonal adjustment models (SAI) in the workspace,
-\item identifies regression outliers in the \code{regarima} specification,
+\item iterates over all the series (SA-Items) in the workspace,
+\item identifies outliers in the \code{regarima} specification,
 \item checks their p-values in the pre-processing regression summary,
 \item removes those with p-values above the threshold from both
 \code{estimationSpec} and, if present, \code{domainSpec},
-\item re-saves the workspace file.
+\item saves the workspace file.
 }
 }
 \examples{

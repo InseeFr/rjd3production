@@ -1,4 +1,4 @@
-#' @title Extract all series from a SAI
+#' @title Extract all series from a SA-Item
 #'
 #' @description
 #' Extracts all available time series (pre-adjustment, decomposition, and final)
@@ -33,7 +33,7 @@
 get_series <- function(jsai) {
     res <- rjd3workspace::read_sai(jsai)$results
     if (is.null(res)) {
-        stop("Please compute your WS.")
+        stop("Please compute your workspace")
     }
     output <- NULL
     all_series <- c(res$preadjust, res$decomposition, res$final)
@@ -53,7 +53,7 @@ get_series <- function(jsai) {
     return(cbind(SAI = rjd3workspace::sai_name(jsai), output))
 }
 
-#' @title Retrieve a SAI by its name
+#' @title Retrieve a SA-Item by its name
 #'
 #' @description
 #' Searches a workspace for a seasonal adjustment item (SAI) whose name matches

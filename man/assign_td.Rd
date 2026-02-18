@@ -2,15 +2,15 @@
 % Please edit documentation in R/assign.R
 \name{assign_td}
 \alias{assign_td}
-\title{Assign TD regressors to a JDemetra+ workspace}
+\title{Assign calendar (TD) regressors to a JDemetra+ workspace}
 \usage{
 assign_td(td, jws)
 }
 \arguments{
 \item{td}{[\link[base]{data.frame}] A data.frame with at least two columns:
 \itemize{
-\item \code{series}: names of the series in the workspace.
-\item \code{regs}: the standard INSEE TD set (\code{REG1}, \code{REG2}, …, \code{REG6}, with or
+\item \code{series}: name of the series in the workspace.
+\item \code{regs}: standard INSEE TD set (\code{REG1}, \code{REG2}, …, \code{REG6}, with or
 without \verb{_LY}) (created by \link{retrieve_td} or \link{import_td}).
 }}
 
@@ -22,16 +22,16 @@ The object \code{jws} updated with new td regressors.
 }
 \description{
 This function updates a JDemetra+ workspace (\code{.xml}) by assigning
-user-defined trading day regressors (TD) to each seasonal adjustment model
-(SAI), based on an external classification (typically created with
-\code{\link[=retrieve_td]{retrieve_td()}}).
+user-defined trading day regressors (TD) to each series
+(SA-Item), based on an external correspondence table, which can be created with
+\code{\link[=retrieve_td]{retrieve_td()}}.
 
-The function modifies the \code{domainSpec} of each series by setting
+This function modifies the \code{domainSpec} of each series by setting
 \code{tradingdays} to \code{"UserDefined"} with the appropriate regressors
 (\code{REG1} … \code{REG6}, optionally with \code{LY} for leap year).
 }
 \details{
-This function only modify the first SA-Processing.
+This function only modifies the first SA-Processing.
 }
 \examples{
 \dontrun{

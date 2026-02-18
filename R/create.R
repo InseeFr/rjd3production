@@ -1,11 +1,11 @@
 #' @title INSEE Regressors and Modelling Context
 #'
 #' @description
-#' These functions allow constructing the standard regressors and context
+#' These functions allow to construct the standard regressors and modelling context
 #' used by INSEE for seasonal adjustment:
 #'
 #' - [create_french_calendar()] creates the French national calendar.
-#' - [create_insee_regressors()] generates working day regressors and leap-year effect (LY).
+#' - [create_insee_regressors()] generates trading day regressors and leap-year effect (LY).
 #' - [create_insee_regressors_sets()] organizes these regressors into standard sets (REG1, REG2, …, REG6, with or without LY).
 #' - [create_insee_context()] combines the regressors and calendar into a `modelling_context` object
 #'   that can be used directly with `rjd3toolkit`.
@@ -221,7 +221,7 @@ create_insee_context <- function(
 #'
 #' @description
 #' Builds a set of X13 specifications from a start date,
-#' a context (explanatory variables) and possibly outliers.
+#' a modelling context (explanatory variables) and outliers (optional).
 #'
 #' @param spec_0 Basic specification
 #' @param span_start [character] Estimation start date (format "YYYY-MM-DD").

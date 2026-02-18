@@ -11,19 +11,18 @@ assign_outliers(jws, outliers)
 \code{\link[rjd3workspace:jws_new]{rjd3workspace::jws_new()}}.}
 
 \item{outliers}{[\link[base]{list}] A named list where each element
-corresponds to a series in the workspace (created by \link{retrieve_outliers} or
-\link{import_outliers}).}
+corresponds to a series in the workspace created with \link{retrieve_outliers} or
+\link{import_outliers}.}
 }
 \value{
-The object \code{jws} updated with new prespecified outliers.
+The object \code{jws} updated with new pre-specified outliers.
 }
 \description{
 This function updates a JDemetra+ workspace (\code{.xml}) by inserting
-pre-specified outliers into the \code{domainSpec} of each seasonal adjustment
-model (SAI).
+pre-specified outliers into the \code{domainSpec} of each series (SA-Item).
 }
 \details{
-This function only modify the first SA-Processing.
+This function only modifies the first SA-Processing.
 }
 \examples{
 # Retrieve outliers from an existing workspace

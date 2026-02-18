@@ -6,7 +6,7 @@
 #' Both the estimation specification and the domain specification are
 #' updated accordingly, and the workspace file is saved in place.
 #'
-#' Typical use case: after automatic model estimation, outliers with
+#' Typical use case: after estimation with user pre-specified outliers, outliers with
 #' weak statistical significance (e.g. `p > 0.3`) are dropped to
 #' simplify the regression specification.
 #'
@@ -22,12 +22,12 @@
 #'
 #' @details
 #' The function:
-#' - iterates over all seasonal adjustment models (SAI) in the workspace,
-#' - identifies regression outliers in the `regarima` specification,
+#' - iterates over all the series (SA-Items) in the workspace,
+#' - identifies outliers in the `regarima` specification,
 #' - checks their p-values in the pre-processing regression summary,
 #' - removes those with p-values above the threshold from both
 #'   `estimationSpec` and, if present, `domainSpec`,
-#' - re-saves the workspace file.
+#' - saves the workspace file.
 #'
 #' @return
 #' The function invisibly returns `NULL`, but it **modifies the workspace file

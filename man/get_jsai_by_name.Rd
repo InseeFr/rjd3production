@@ -2,7 +2,7 @@
 % Please edit documentation in R/compare.R
 \name{get_jsai_by_name}
 \alias{get_jsai_by_name}
-\title{Retrieve a SAI by its name}
+\title{Retrieve a SA-Item by its name}
 \usage{
 get_jsai_by_name(jws, series_name)
 }

@@ -1,20 +1,20 @@
-#' @title Diagnostics and Regression Selection for X13 Models
+#' @title Diagnostics Extraction on Calendar Correction with different sets of regressors
 #'
 #' @description
-#' These functions provide tools to extract diagnostics from X13 models,
-#' evaluate sets of specifications, and select the most appropriate
-#' regression set (with or without leap-year effect).
+#' These functions allow to extract diagnostics from X13-Arima models with different sets of calendar regressors
+#' in order to evaluate different specifications and select the most appropriate
+#' calendar regressors set (with or without leap-year effect) to correct a given series.
 #'
 #' @details
 #' - `get_LY_info()` extracts coefficient and p-value of the leap-year (LY) effect.
 #' - `one_diagnostic()` applies one X13 specification to a series and computes diagnostics.
 #' - `all_diagnostics()` evaluates all specifications in a set and summarizes diagnostics.
 #' - `verif_LY()` checks whether the leap-year effect should be kept or removed.
-#' - `select_reg_one_series()` selects the best regression set for a single series.
+#' - `select_reg_one_series()` selects the best calendar regressors set for a single series.
 #'
 #' @param smod [list] Result of [summary()] applied to an X13 model.
-#' @param series [\link[stats]{ts} or numeric] Time series to analyze.
-#' @param spec [list] An X13 specification (from [rjd3x13::x13_spec()]).
+#' @param series [\link[stats]{ts} or numeric] Time series to analyse.
+#' @param spec [list] A X13 specification (from [rjd3x13::x13_spec()]).
 #' @param context [list] Modelling context with regressors and calendars
 #'   (from [rjd3toolkit::modelling_context()]).
 #' @param jeu [character] Name of the tested regression set.
@@ -231,7 +231,7 @@ select_reg_one_series <- function(
     return(verif_LY(jeu = best_regs[1, "regs"], diags = diags))
 }
 
-#' @title Select Regressors for One or Multiple Series
+#' @title Select Calendar Regressors for One or Multiple Series
 #'
 #' @description
 #' Applies the X13 regression selection procedure to one or more time series.
