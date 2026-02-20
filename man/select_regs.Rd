@@ -4,11 +4,14 @@
 \alias{select_regs}
 \title{Select Calendar Regressors for One or Multiple Series}
 \usage{
-select_regs(series, ...)
+select_regs(series, context = NULL, ...)
 }
 \arguments{
 \item{series}{[\link[stats]{ts} or mts or matrix or \link[base]{data.frame}] A univariate time series (\code{ts}) or a
 multivariate series (columns as separate series).}
+
+\item{context}{\link{list} Modeling context created by
+\code{\link[rjd3toolkit:modelling_context]{rjd3toolkit::modelling_context()}}.}
 
 \item{...}{Additional arguments passed to \code{\link[=create_specs_set]{create_specs_set()}} controlling
 the generation of X13 specifications. Possible arguments include:
@@ -36,5 +39,10 @@ select_regs(AirPassengers)
 
 # Multiple series
 select_regs(Seatbelts[, -8])
+
+# Restrict regressors sets
+my_context <- create_insee_context()
+my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
+select_regs(Seatbelts[, -8], context = my_context)
 
 }

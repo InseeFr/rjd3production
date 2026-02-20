@@ -227,7 +227,7 @@ extract_td <- function(spec) {
 #' `"regression/td_<ws_name>.yaml"`.
 #' @param verbose [\link[base]{logical}] Whether to print informative
 #' messages (default: `TRUE`).
-#' @inheritParams retrieve_outliers
+#' @inheritParams outliers_tools
 #'
 #' @return
 #' - `retrieve_td()` returns a [data.frame] with columns:

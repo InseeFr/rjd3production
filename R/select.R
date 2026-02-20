@@ -240,6 +240,8 @@ select_reg_one_series <- function(
 #'
 #' @param series [\link[stats]{ts} or mts or matrix or \link[base]{data.frame}] A univariate time series (`ts`) or a
 #'   multivariate series (columns as separate series).
+#' @param context [list] Modeling context created by
+#' [rjd3toolkit::modelling_context()].
 #' @inheritParams diagnostics_selection
 #'
 #' @return A data.frame with two columns:
@@ -255,9 +257,16 @@ select_reg_one_series <- function(
 #' # Multiple series
 #' select_regs(Seatbelts[, -8])
 #'
+#' # Restrict regressors sets
+#' my_context <- create_insee_context()
+#' my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
+#' select_regs(Seatbelts[, -8], context = my_context)
+#'
 #' @export
-select_regs <- function(series, ...) {
-    context <- create_insee_context(s = series)
+select_regs <- function(series, context = NULL, ...) {
+    if (is.null(context)) {
+        context <- create_insee_context(s = series)
+    }
     specs_set <- create_specs_set(context = context, ...)
 
     if (is.null(ncol(series))) {

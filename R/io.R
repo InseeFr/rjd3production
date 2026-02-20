@@ -77,7 +77,7 @@ import_outliers <- function(ws_name, path = NULL, verbose = TRUE) {
 }
 
 #' @importFrom yaml write_yaml
-#' @name td_tools
+#' @rdname td_tools
 #' @export
 export_td <- function(x, ws_name, path = NULL, verbose = TRUE) {
     if (dir.exists(path)) {
@@ -102,7 +102,7 @@ export_td <- function(x, ws_name, path = NULL, verbose = TRUE) {
 }
 
 #' @importFrom yaml read_yaml
-#' @name td_tools
+#' @rdname td_tools
 #' @export
 import_td <- function(ws_name, path = NULL, verbose = TRUE) {
     if (dir.exists(path)) {
