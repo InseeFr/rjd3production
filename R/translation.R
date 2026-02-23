@@ -151,3 +151,43 @@ rev_set_x11 <- function(x) {
     return(code)
 }
 
+rev_set_transform <- function(x) {
+    nom_args <- names(x$regarima$transform)
+    value_args <- x$regarima$transform
+
+    nom_args[nom_args == "fn"] <- "fun"
+
+    value_args[nom_args == "fun"] <- switch(
+        value_args[nom_args == "fun"][[1L]],
+        LEVEL = "NONE",
+        value_args[nom_args == "fun"][[1L]]
+    )
+    code <- paste0(
+        "rjd3toolkit::set_transform(\n\t",
+        paste(nom_args, "=", keep_format(value_args), collapse = ",\n\t"),
+        "\n)"
+    )
+    return(code)
+}
+
+rev_set_easter <- function(x) {
+    args <- x$regarima$regression$easter
+    args$enabled <- toupper(args$type) != "UNUSED"
+    if (args$type == "JULIAN") {
+        args$julian <- TRUE
+    }
+
+    args$type <- NULL
+
+    if (!is.null(args$coefficient)) {
+        args$coef <- args$coefficient$value
+        args$coef.type <- args$coefficient$type
+    }
+    args$coefficient <- NULL
+    code <- paste0(
+        "rjd3toolkit::set_easter(\n\t",
+        paste(names(args), "=", keep_format(args), collapse = ",\n\t"),
+        "\n)"
+    )
+    return(code)
+}

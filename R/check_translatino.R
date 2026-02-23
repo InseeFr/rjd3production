@@ -1,5 +1,5 @@
 
-spec1 <- rjd3x13::x13_spec()
+spec1 <- rjd3x13::x13_spec(name = "RSA3")
 spec2 <- spec1 |>
     rjd3toolkit::add_outlier(
         type = c("AO", "LS", "TC", "SO"),
@@ -23,7 +23,7 @@ spec2 <- spec1 |>
     )
 
 
-
+# rev_set_x11
 # for (k in 1:100) {
 #     val_mode <- sample(c(NA, "Undefined", "Additive", "Multiplicative", "LogAdditive", "PseudoAdditive"), size = 1)
 #     val_filter <- sample(c(NA, "Msr", "Stable", "X11Default", "S3X1", "S3X3", "S3X5", "S3X9", "S3X15"), size = 1)
@@ -74,10 +74,7 @@ spec2 <- spec1 |>
 # }
 
 
-# rev_add_outliers(spec2) |> cat()
-
-# rev_set_x11(spec1) |> cat()
-
+# rev_add_ramp
 spec2 <- spec1 |>
     rjd3toolkit::add_ramp(
         start = c("2020-01-01", "2018-10-01", "2010-02-01"),
@@ -100,11 +97,63 @@ spec2 <- spec1 |>
         name = c("LS1TB", "LS2TB")
     )
 
-spec3 <- spec1 |>
-    rjd3toolkit::add_ramp(
-        start = c("2020-01-01", "2018-10-01", "2010-02-01", "2021-11-01", "2022-03-01", "2012-01-01", "2024-12-01", "2013-05-01", "2023-08-01"),
-        end = c("2020-02-01", "2019-10-01", "2010-05-01", "2022-01-01", "2022-05-01", "2015-01-01", "2025-12-01", "2014-05-01", "2023-12-01"),
-        name = c("rp.2020-01-01 - 2020-02-01", "rp.2018-10-01 - 2019-10-01", "rp.2010-02-01 - 2010-05-01", "AO1TB", "AO2TB", "rp.2012-01-01 - 2015-01-01", "rp.2024-12-01 - 2025-12-01", "LS1TB", "LS2TB"),
-        coef = c(0, 0, 0, 0, 0, 0.58, 0.71, 0.92, 0.23)
-    )
-waldo::compare(spec3, spec2)
+#rev_set_transform
+
+# for (k in 1:100) {
+#     val_fun <- sample(c(NA, "None", "Auto", "Log"), size = 1)
+#     val_adjust <- sample(c(NA, "None", "LeapYear", "LengthOfPeriod"), size = 1)
+#     val_out <- sample(c(NA, TRUE, FALSE), size = 1)
+#     val_aicdiff <- rnorm(n = 1)
+#
+#     spec2 <- spec1 |>
+#         rjd3toolkit::set_transform(
+#             fun = val_fun,
+#             adjust = val_adjust,
+#             outliers = val_out,
+#             aicdiff = val_aicdiff
+#         )
+#     spec3 <- eval(
+#         expr = parse(text = paste0(
+#             "rjd3x13::x13_spec() |>\n",
+#             rev_set_transform(spec2)
+#         )),
+#         envir = .GlobalEnv
+#     )
+#     waldo::compare(
+#         spec2,
+#         spec3
+#     ) |> print()
+# }
+
+
+#rev_set_easter
+
+# for (k in 1:100) {
+#     val_julian <- sample(c(NA, TRUE, FALSE), size = 1)
+#     val_duration <- sample(1:20, size = 1)
+#     val_test <- sample(c("Add", "Remove", "None"), size = 1)
+#     val_coef <- rnorm(n = 1)
+#     val_coef.type <- sample(c(NA, "Estimated", "Fixed"), size = 1)
+#     val_enabled <- sample(c(NA, TRUE, FALSE), size = 1)
+#
+#     spec2 <- rjd3x13::x13_spec("RSA3") |>
+#         rjd3toolkit::set_easter(
+#             enabled = val_enabled,
+#             julian = val_julian,
+#             duration = val_duration,
+#             test = val_test,
+#             coef = val_coef,
+#             coef.type = val_coef.type
+#         )
+#     spec3 <- eval(
+#         expr = parse(text = paste0(
+#             "rjd3x13::x13_spec(\"RSA3\") |>\n",
+#             rev_set_easter(spec2)
+#         )),
+#         envir = .GlobalEnv
+#     )
+#     waldo::compare(
+#         spec2,
+#         spec3
+#     ) |> print()
+# }
