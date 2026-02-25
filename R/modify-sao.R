@@ -42,13 +42,13 @@ make_ws_crunchable <- function (jws, verbose = TRUE) {
     nb_sap <- rjd3workspace::ws_sap_count(jws)
     for (id_sap in seq_len(nb_sap)) {
         if (verbose) {
-            cat("SAP n°", id_sap, "\n", sep = "")
+            cat("SAP n\ub0", id_sap, "\n", sep = "")
         }
         jsap <- rjd3workspace::jws_sap(jws, id_sap)
         nb_sai <- rjd3workspace::sap_sai_count(jsap)
         for (id_sai in seq_len(nb_sai)) {
             if (verbose) {
-                cat("SAI n°", id_sai, "\n", sep = "")
+                cat("SAI n\ub0", id_sai, "\n", sep = "")
             }
             jsai <- rjd3workspace::jsap_sai(jsap, id_sai)
             name <- tail(unlist(strsplit(rjd3workspace::sai_name(jsai),
