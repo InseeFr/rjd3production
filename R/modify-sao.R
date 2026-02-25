@@ -24,6 +24,7 @@
 #' @importFrom rjd3workspace sai_name
 #' @importFrom rjd3workspace get_ts
 #' @importFrom rjd3workspace set_ts
+#' @importFrom rjd3providers txt_series
 #'
 #' @export
 #'
