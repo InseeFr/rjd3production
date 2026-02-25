@@ -25,11 +25,13 @@ pre-specified outliers into the \code{domainSpec} of each series (SA-Item).
 This function only modifies the first SA-Processing.
 }
 \examples{
+\dontrun{
 # Retrieve outliers from an existing workspace
 outs <- retrieve_outliers("workspace.xml")
 
 # Reapply them to another workspace
 assign_outliers(outliers = outs, ws_path = "workspace.xml")
+}
 
 }
 \seealso{
