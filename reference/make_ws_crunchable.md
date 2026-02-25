@@ -33,17 +33,23 @@ data.
 ## Examples
 
 ``` r
+library("rjd3workspace")
+library("rjd3x13")
+#> 
+#> Attaching package: ‘rjd3x13’
+#> The following object is masked from ‘package:grDevices’:
+#> 
+#>     x11
+
 jws <- jws_new()
-#> Error in jws_new(): could not find function "jws_new"
 jsap <- jws_sap_new(jws, "sap1")
-#> Error in jws_sap_new(jws, "sap1"): could not find function "jws_sap_new"
 add_sa_item(
     jsap = jsap,
     name = "series_3",
     x = AirPassengers,
-    spec = rjd3x13::x13_spec("RSA3")
+    spec = x13_spec("RSA3")
 )
-#> Error in add_sa_item(jsap = jsap, name = "series_3", x = AirPassengers,     spec = rjd3x13::x13_spec("RSA3")): could not find function "add_sa_item"
 jws <- make_ws_crunchable(jws)
-#> Error: object 'jws' not found
+#> SAP n°1
+#> SAI n°1
 ```
