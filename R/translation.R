@@ -6,7 +6,7 @@ keep_format <- function(x) {
     return(output)
 }
 
-rev_add_outliers <- function(x) {
+rev_add_outlier <- function(x) {
     if (is.null(x$regarima$regression$outliers)) {
         return(NULL)
     }
@@ -191,3 +191,19 @@ rev_set_easter <- function(x) {
     )
     return(code)
 }
+
+rev_spec <- function(x) {
+    code <- c(
+        rev_add_outlier(x),
+        rev_add_ramp(x),
+        rev_set_x11(x),
+        rev_set_transform(x),
+        rev_set_easter(x)
+    ) |>
+        paste(collapse = " |>\n") |>
+        paste("rjd3x13::x13_spec() |>\n", ... = _) |>
+        gsub(pattern = "\n", replacement = "\n\t")
+
+    return(code)
+}
+
