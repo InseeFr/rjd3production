@@ -29,13 +29,16 @@
 #' @export
 #'
 #' @examples
+#' library("rjd3workspace")
+#' library("rjd3x13")
+#'
 #' jws <- jws_new()
 #' jsap <- jws_sap_new(jws, "sap1")
 #' add_sa_item(
 #'     jsap = jsap,
 #'     name = "series_3",
 #'     x = AirPassengers,
-#'     spec = rjd3x13::x13_spec("RSA3")
+#'     spec = x13_spec("RSA3")
 #' )
 #' jws <- make_ws_crunchable(jws)
 #'
