@@ -102,7 +102,7 @@ outliers <- retrieve_outliers(jws, point = TRUE, domain = FALSE, estimation = FA
 #> Série RF1011, 4/5
 #> Série RF1012, 5/5
 export_outliers(outliers, ws_name = "workspace1", path = my_dir)
-#> The outliers will be written at  /tmp/RtmpjvysKe/outliers_workspace1.yaml 
+#> The outliers will be written at  /tmp/RtmpzM0hG2/outliers_workspace1.yaml 
 imported <- import_outliers(ws_name = "workspace1", path = my_dir)
-#> The outliers will be read at  /tmp/RtmpjvysKe/outliers_workspace1.yaml 
+#> The outliers will be read at  /tmp/RtmpzM0hG2/outliers_workspace1.yaml 
 ```
