@@ -204,6 +204,17 @@ rev_set_basic <- function(x) {
     return(code)
 }
 
+rev_set_estimate <- function(x) {
+    args <- c(x$regarima$estimate, x$regarima$estimate$span)
+    args$span <- NULL
+    code <- paste0(
+        "rjd3toolkit::set_estimate(\n\t",
+        paste(names(args), "=", keep_format(args), collapse = ",\n\t"),
+        "\n)"
+    )
+    return(code)
+}
+
 rev_spec <- function(x) {
     code <- c(
         rev_add_outlier(x),
@@ -211,7 +222,8 @@ rev_spec <- function(x) {
         rev_set_x11(x),
         rev_set_transform(x),
         rev_set_easter(x),
-        rev_set_basic(x)
+        rev_set_basic(x),
+        rev_set_estimate(x)
     ) |>
         paste(collapse = " |>\n") |>
         paste("rjd3x13::x13_spec() |>\n", ... = _) |>
