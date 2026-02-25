@@ -77,9 +77,8 @@
 <div class="page-header"><h1 id="rjd3production">{rjd3production}<a class="anchor" aria-label="anchor" href="#rjd3production"></a>
 </h1></div>
 <!-- badges: start -->
-<!-- [![CRAN
-status](https://www.r-pkg.org/badges/version/rjd3production)](https://CRAN.R-project.org/package=rjd3production)-->
 
+<p><a href="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml" class="external-link"><img src="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml/badge.svg" alt="lint"></a></p>
 <p><a href="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgdown.yaml/badge.svg" alt="GH Pages built"></a> <!-- badges: end --></p>
 <div class="section level2" align="center">
 <h2 id="id_-readme-en-français---readme-in-english">
@@ -90,19 +89,17 @@ status](https://www.r-pkg.org/badges/version/rjd3production)](https://CRAN.R-pro
 <div class="section level3">
 <h3 id="présentation">Présentation<a class="anchor" aria-label="anchor" href="#pr%C3%A9sentation"></a>
 </h3>
-<p><strong>{rjd3production}</strong> permet de construire facilement une chaîne de production de séries cvs-cjo.</p>
-<!-- add link to document de travail-->
+<p><strong>{rjd3production}</strong> aide les producteurs de données CVS TD à mettre en place des chaînes de production.</p>
 <p>Il permet notamment de :</p>
 <ul>
-<li><p>Créer des calendriers français et des régresseurs de calendrier compatibles JDemetra+</p></li>
-<li><p>Identifier des SA-Item par leur nom (objets contenant toutes les informations relatives à une série dans un Workspace)</p></li>
-<li><p>Sélectionner le meilleur jeux de regresseurs de calendrier pour une ou plusieurs séries</p></li>
+<li><p>Créer des calendriers français et régresseurs de calendrier compatibles JDemetra+</p></li>
+<li><p>Identifier des SAI par leur nom</p></li>
+<li><p>Selectionner les jeux de calendrier pour une ou plusieurs séries</p></li>
 <li>
-<p>Manipuler les régresseurs de calendrier et les outliers d’un workspace selon la dynamique suivante:</p>
+<p>Manipuler les régresseurs de calendrier et les outliers d’un Workspace selon la dynamique suivante:</p>
 <ul>
-<li><p>Les fonctions <code>import_XXX()</code> et <code>export_XXX()</code> permettent de convertir les data.frame contenant les outliers et régresseurs de calendrier en fichiers et inversement</p></li>
-<li><p>Les fonctions <code>retrieve_XXX()</code>permettent d’extraire les outliers et régresseurs de calendrier d’un workspace</p></li>
-<li><p>Les fonctions <code>assign_XXX()</code> permettent d’affecter les outliers et régresseurs de calendrier dans un workspace</p></li>
+<li>Les fonctions <code>import_XXX()</code> et <code>export_XXX()</code> permettent de convertir les data.frame contenant les outliers et régresseurs de calendrier en fichiers et inversement</li>
+<li>Les fonctions <code>retrieve_XXX()</code> et <code>assign_XXX()</code> permettent d’extraire (resp. d’assigner) les outliers et régresseurs de calendrier d’un workspace</li>
 </ul>
 </li>
 </ul>
@@ -144,11 +141,11 @@ flowchart LR
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p><strong>{rjd3production}</strong> s’appuie sur le paquetage <a href="https://CRAN.R-project.org/package=rJava" class="external-link"><strong>{rJava}</strong></a></p>
-<p>L’exécution des paquets rjd3 nécessite <strong>Java 17 ou supérieur</strong>. La manière de mettre en place une telle configuration dans R est expliquée <a href="https://jdemetra-new-documentation.netlify.app/#Rconfig" class="external-link">ici</a></p>
+<p>L’exécution des paquets rjd3 nécessite <strong>Java 17 ou plus</strong>. La manière de mettre en place une telle configuration dans R est expliquée <a href="https://jdemetra-new-documentation.netlify.app/#Rconfig" class="external-link">ici</a></p>
 <div class="section level3">
 <h3 id="latest-release">Latest release<a class="anchor" aria-label="anchor" href="#latest-release"></a>
 </h3>
-<p>Pour obtenir la dernière version stable :</p>
+<p>Pour obtenir la version stable actuelle (à partir de la dernière version) :</p>
 <ul>
 <li>Depuis GitHub :</li>
 </ul>
@@ -177,16 +174,19 @@ flowchart LR
 <div class="section level3">
 <h3 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h3>
-<p><strong>{rjd3production}</strong> helps you quickly build production processes for seasonally adjusted (SA) series.</p>
-<!-- add link to document de travail-->
+<p><strong>{rjd3production}</strong> helps producers of CVS TD data to set up production lines.</p>
 <p>In particular, it enables you to:</p>
 <ul>
-<li><p>Create French calendars and calendar regressors compatible with JDemetra+</p></li>
-<li><p>Identify SA-Items by name (object containing all the information on a given series in a workspace)</p></li>
-<li><p>Select the best calendar set for one or more series</p></li>
-<li><p>Manipulate calendar regressors and outliers according to the following dynamics:</p></li>
-<li><p>Use the import_XXX() and export_XXX() functions to convert data frames containing calendar outliers and regressors into files, and vice versa</p></li>
-<li><p>The retrieve_XXX() and assign_XXX() functions extract (resp. assign) calendar outliers and regressors from (resp. to) a workspace.</p></li>
+<li><p>Create JDemetra+-compatible French calendars and calendar regressors</p></li>
+<li><p>Identify SAIs by name</p></li>
+<li><p>Select calendar sets for one or more series</p></li>
+<li>
+<p>Manipulate Workspace calendar regressors and outliers according to the following dynamics:</p>
+<ul>
+<li>The <code>import_XXX()</code> and <code>export_XXX()</code> functions convert data.frames containing calendar outliers and regressors into files, and vice versa.</li>
+<li>The <code>retrieve_XXX()</code> and <code>assign_XXX()</code> functions extract (resp. assign) calendar outliers and regressors from a workspace.</li>
+</ul>
+</li>
 </ul>
 <pre class="mermaid"><code>
 flowchart LR
@@ -225,7 +225,7 @@ flowchart LR
 <div class="section level3">
 <h3 id="installation-1">Installation<a class="anchor" aria-label="anchor" href="#installation-1"></a>
 </h3>
-<p>To get the latest stable version:</p>
+<p>To get the current stable version (from the latest release):</p>
 <ul>
 <li>From GitHub:</li>
 </ul>
@@ -281,8 +281,7 @@ flowchart LR
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml" class="external-link"><img src="https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml/badge.svg" alt="lint"></a></li>
+<li><a href="https://CRAN.R-project.org/package=rjd3production" class="external-link"><img src="https://www.r-pkg.org/badges/version/rjd3production" alt="CRAN status"></a></li>
 </ul>
 </div>
 
