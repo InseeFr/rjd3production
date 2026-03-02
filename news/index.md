@@ -8,7 +8,7 @@ The format is based on [Keep a
 Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [Unreleased](https://github.com/TanguyBarthelemy/rjd3production/compare/v1.0.0...HEAD)
+### [Unreleased](https://github.com/InseeFr/rjd3production/compare/v1.0.0...HEAD)
 
 #### Added
 
@@ -31,7 +31,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Bug in select regressors solved
 
-### [1.0.0](https://github.com/TanguyBarthelemy/rjd3production/releases/tag/v1.0.0) - 2025-08-29
+### [1.0.0](https://github.com/InseeFr/rjd3production/releases/tag/v1.0.0) - 2025-08-29
 
 #### Added
 
