@@ -8,11 +8,11 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/rjd3production)](https://CRAN.R-project.org/package=rjd3production)
 
-[![R-CMD-check](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/R-CMD-check.yaml)
-[![lint](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml/badge.svg)](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/lint.yaml)
+[![R-CMD-check](https://github.com/InseeFr/rjd3production/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/InseeFr/rjd3production/actions/workflows/R-CMD-check.yaml)
+[![lint](https://github.com/InseeFr/rjd3production/actions/workflows/lint.yaml/badge.svg)](https://github.com/InseeFr/rjd3production/actions/workflows/lint.yaml)
 
 [![GH Pages
-built](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/TanguyBarthelemy/rjd3production/actions/workflows/pkgdown.yaml)
+built](https://github.com/InseeFr/rjd3production/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/InseeFr/rjd3production/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
 <div align="center">

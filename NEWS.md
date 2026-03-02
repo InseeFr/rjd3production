@@ -34,5 +34,5 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * New function to choose calendar regressors adapted to series
 * New function to create calendar regressors, french calendar, specification with regressors
 
-[Unreleased]: https://github.com/TanguyBarthelemy/rjd3production/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/TanguyBarthelemy/rjd3production/releases/tag/v1.0.0
+[Unreleased]: https://github.com/InseeFr/rjd3production/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/InseeFr/rjd3production/releases/tag/v1.0.0
