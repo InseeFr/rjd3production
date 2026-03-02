@@ -260,103 +260,174 @@ spec2 <- spec1 |>
 
 #rev_set_estimate
 
+# for (k in 1:100) {
+#     val_type <- sample(c(NA, "All", "From", "To", "Between", "Last", "First", "Excluding"), size = 1)
+#     val_n0 <- sample(0:20, size = 1)
+#     val_n1 <- sample(0:20, size = 1)
+#     val_tol <- abs(rnorm(1, sd = 0.001))
+#     val_exact.ml <- sample(c(NA, TRUE, FALSE), size = 1)
+#     val_unit.root.limit <- sample(c(NA, TRUE, FALSE), size = 1)
+#     val_d0 <- as.Date(sample(20000, size = 1))
+#     val_d1 <- as.Date(val_d0 + sample(20000, size = 1))
+#
+#     val_d0 <- as.character(val_d0)
+#     val_d1 <- as.character(val_d1)
+#
+#     if (is.na(val_type)) {
+#         spec2 <- rjd3x13::x13_spec("RSA3") |>
+#             rjd3toolkit::set_estimate(
+#                 type = val_type,
+#                 d0 = val_d0,
+#                 d1 = val_d1,
+#                 n0 = val_n0,
+#                 n1 = val_n1,
+#                 tol = val_tol,
+#                 exact.ml = val_exact.ml,
+#                 unit.root.limit = val_unit.root.limit
+#             )
+#     } else if (val_type == "All") {
+#         spec2 <- rjd3x13::x13_spec("RSA3") |>
+#             rjd3toolkit::set_estimate(
+#                 type = val_type,
+#                 tol = val_tol,
+#                 exact.ml = val_exact.ml,
+#                 unit.root.limit = val_unit.root.limit
+#             )
+#     } else if (val_type == "From") {
+#         spec2 <- rjd3x13::x13_spec("RSA3") |>
+#             rjd3toolkit::set_estimate(
+#                 type = val_type,
+#                 d0 = val_d0,
+#                 tol = val_tol,
+#                 exact.ml = val_exact.ml,
+#                 unit.root.limit = val_unit.root.limit
+#             )
+#     } else if (val_type == "To") {
+#         spec2 <- rjd3x13::x13_spec("RSA3") |>
+#             rjd3toolkit::set_estimate(
+#                 type = val_type,
+#                 d1 = val_d1,
+#                 tol = val_tol,
+#                 exact.ml = val_exact.ml,
+#                 unit.root.limit = val_unit.root.limit
+#             )
+#     } else if (val_type == "Between") {
+#         spec2 <- rjd3x13::x13_spec("RSA3") |>
+#             rjd3toolkit::set_estimate(
+#                 type = val_type,
+#                 d0 = val_d0,
+#                 d1 = val_d1,
+#                 tol = val_tol,
+#                 exact.ml = val_exact.ml,
+#                 unit.root.limit = val_unit.root.limit
+#             )
+#     } else if (val_type == "Last") {
+#         spec2 <- rjd3x13::x13_spec("RSA3") |>
+#             rjd3toolkit::set_estimate(
+#                 type = val_type,
+#                 n1 = val_n1,
+#                 tol = val_tol,
+#                 exact.ml = val_exact.ml,
+#                 unit.root.limit = val_unit.root.limit
+#             )
+#     } else if (val_type == "First") {
+#         spec2 <- rjd3x13::x13_spec("RSA3") |>
+#             rjd3toolkit::set_estimate(
+#                 type = val_type,
+#                 n0 = val_n0,
+#                 tol = val_tol,
+#                 exact.ml = val_exact.ml,
+#                 unit.root.limit = val_unit.root.limit
+#             )
+#     } else if (val_type == "Excluding") {
+#         spec2 <- rjd3x13::x13_spec("RSA3") |>
+#             rjd3toolkit::set_estimate(
+#                 type = val_type,
+#                 n0 = val_n0,
+#                 n1 = val_n1,
+#                 tol = val_tol,
+#                 exact.ml = val_exact.ml,
+#                 unit.root.limit = val_unit.root.limit
+#             )
+#     } else {
+#         stop("weried")
+#     }
+#
+#     spec3 <- eval(
+#         expr = parse(text = paste0(
+#             "rjd3x13::x13_spec(\"RSA3\") |>\n",
+#             rev_set_estimate(spec2)
+#         )),
+#         envir = .GlobalEnv
+#     )
+#     waldo::compare(
+#         spec2,
+#         spec3
+#     ) |> print()
+# }
+
+
+# rev_add_usrdefvar
 for (k in 1:100) {
-    val_type <- sample(c(NA, "All", "From", "To", "Between", "Last", "First", "Excluding"), size = 1)
-    val_n0 <- sample(0:20, size = 1)
-    val_n1 <- sample(0:20, size = 1)
-    val_tol <- abs(rnorm(1, sd = 0.001))
-    val_exact.ml <- sample(c(NA, TRUE, FALSE), size = 1)
-    val_unit.root.limit <- sample(c(NA, TRUE, FALSE), size = 1)
-    val_d0 <- as.Date(sample(20000, size = 1))
-    val_d1 <- as.Date(val_d0 + sample(20000, size = 1))
 
-    val_d0 <- as.character(val_d0)
-    val_d1 <- as.character(val_d1)
+    spec2 <- rjd3x13::x13_spec("RSA3")
+    nb_usrdefvar <- sample.int(10, size = 1)
 
-    if (is.na(val_type)) {
-        spec2 <- rjd3x13::x13_spec("RSA3") |>
-            rjd3toolkit::set_estimate(
-                type = val_type,
-                d0 = val_d0,
-                d1 = val_d1,
-                n0 = val_n0,
-                n1 = val_n1,
-                tol = val_tol,
-                exact.ml = val_exact.ml,
-                unit.root.limit = val_unit.root.limit
-            )
-    } else if (val_type == "All") {
-        spec2 <- rjd3x13::x13_spec("RSA3") |>
-            rjd3toolkit::set_estimate(
-                type = val_type,
-                tol = val_tol,
-                exact.ml = val_exact.ml,
-                unit.root.limit = val_unit.root.limit
-            )
-    } else if (val_type == "From") {
-        spec2 <- rjd3x13::x13_spec("RSA3") |>
-            rjd3toolkit::set_estimate(
-                type = val_type,
-                d0 = val_d0,
-                tol = val_tol,
-                exact.ml = val_exact.ml,
-                unit.root.limit = val_unit.root.limit
-            )
-    } else if (val_type == "To") {
-        spec2 <- rjd3x13::x13_spec("RSA3") |>
-            rjd3toolkit::set_estimate(
-                type = val_type,
-                d1 = val_d1,
-                tol = val_tol,
-                exact.ml = val_exact.ml,
-                unit.root.limit = val_unit.root.limit
-            )
-    } else if (val_type == "Between") {
-        spec2 <- rjd3x13::x13_spec("RSA3") |>
-            rjd3toolkit::set_estimate(
-                type = val_type,
-                d0 = val_d0,
-                d1 = val_d1,
-                tol = val_tol,
-                exact.ml = val_exact.ml,
-                unit.root.limit = val_unit.root.limit
-            )
-    } else if (val_type == "Last") {
-        spec2 <- rjd3x13::x13_spec("RSA3") |>
-            rjd3toolkit::set_estimate(
-                type = val_type,
-                n1 = val_n1,
-                tol = val_tol,
-                exact.ml = val_exact.ml,
-                unit.root.limit = val_unit.root.limit
-            )
-    } else if (val_type == "First") {
-        spec2 <- rjd3x13::x13_spec("RSA3") |>
-            rjd3toolkit::set_estimate(
-                type = val_type,
-                n0 = val_n0,
-                tol = val_tol,
-                exact.ml = val_exact.ml,
-                unit.root.limit = val_unit.root.limit
-            )
-    } else if (val_type == "Excluding") {
-        spec2 <- rjd3x13::x13_spec("RSA3") |>
-            rjd3toolkit::set_estimate(
-                type = val_type,
-                n0 = val_n0,
-                n1 = val_n1,
-                tol = val_tol,
-                exact.ml = val_exact.ml,
-                unit.root.limit = val_unit.root.limit
-            )
-    } else {
-        stop("weried")
+    for (j in seq_len(nb_usrdefvar)) {
+
+        val_group <- sample(c(0:9, letters), size = 3) |> paste0(collapse = "")
+        val_name <- sample(c(0:9, letters), size = 4) |> paste0(collapse = "")
+        val_label <- sample(c(0:9, letters), size = 5) |> paste0(collapse = "")
+        val_lag <- sample(0:20, size = 1)
+        val_coef <- rnorm(1)
+        val_regeffect <- c("Undefined", "Trend", "Seasonal", "Irregular", "Series",
+                           "SeasonallyAdjusted")
+        with_coef <- sample(c(T, F), size = 1)
+        with_label <- sample(c(T, F), size = 1)
+
+        if (with_coef && with_label) {
+            spec2 <- spec2 |>
+                rjd3toolkit::add_usrdefvar(
+                    group = val_group,
+                    name = val_name,
+                    label = val_label,
+                    lag = val_lag,
+                    coef = val_coef,
+                    regeffect = val_regeffect
+                )
+        } else if (with_coef) {
+            spec2 <- spec2 |>
+                rjd3toolkit::add_usrdefvar(
+                    group = val_group,
+                    name = val_name,
+                    lag = val_lag,
+                    coef = val_coef,
+                    regeffect = val_regeffect
+                )
+        } else if (with_label) {
+            spec2 <- spec2 |>
+                rjd3toolkit::add_usrdefvar(
+                    group = val_group,
+                    name = val_name,
+                    label = val_label,
+                    lag = val_lag,
+                    regeffect = val_regeffect
+                )
+        } else {
+            spec2 <- spec2 |>
+                rjd3toolkit::add_usrdefvar(
+                    group = val_group,
+                    name = val_name,
+                    lag = val_lag,
+                    regeffect = val_regeffect
+                )
+        }
     }
 
     spec3 <- eval(
         expr = parse(text = paste0(
             "rjd3x13::x13_spec(\"RSA3\") |>\n",
-            rev_set_estimate(spec2)
+            rev_add_usrdefvar(spec2)
         )),
         envir = .GlobalEnv
     )

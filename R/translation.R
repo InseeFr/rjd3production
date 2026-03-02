@@ -1,8 +1,13 @@
 
 keep_format <- function(x) {
-    output <- x |>
-        lapply(constructive::construct) |>
-        lapply(base::`[[`, "code")
+    if (is.list(x)) {
+        output <- x |>
+            lapply(FUN = keep_format)
+    } else {
+        output <- x |>
+            constructive::construct() |>
+            base::`[[`("code")
+    }
     return(output)
 }
 
@@ -105,6 +110,38 @@ rev_add_ramp <- function(x) {
         ",\n\tcoef = ", ramp_coeff,
         "\n)"
     )
+    return(code)
+}
+
+rev_one_usrdefvar <- function(args) {
+    args$label <- args$name
+
+    group_name <- strsplit(x = args$id, split = ".", fixed = TRUE)[[1L]]
+    args$group <- group_name[1L]
+    args$name <- group_name[2L]
+    args$id <- NULL
+
+    if (!is.null(args$coef)) {
+        args$coef <- args$coef$value
+    }
+
+    code <- paste0(
+        "rjd3toolkit::add_usrdefvar(\n\t",
+        paste(names(args), "=", keep_format(args), collapse = ",\n\t"),
+        "\n)"
+    )
+    return(code)
+}
+
+rev_add_usrdefvar <- function(x) {
+    if (is.null(x$regarima$regression$users)) {
+        return(NULL)
+    }
+    code <- vapply(
+        x$regarima$regression$users,
+        FUN = rev_one_usrdefvar,
+        FUN.VALUE = character(1L)
+    ) |> paste0(collapse = " |>\n")
     return(code)
 }
 
@@ -219,6 +256,7 @@ rev_spec <- function(x) {
     code <- c(
         rev_add_outlier(x),
         rev_add_ramp(x),
+        rev_add_usrdefvar(x),
         rev_set_x11(x),
         rev_set_transform(x),
         rev_set_easter(x),
