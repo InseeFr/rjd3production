@@ -83,12 +83,12 @@ flowchart LR
 
 ## Installation
 
-**{rjd3production}** s’appuie sur le paquetage
-[**{rJava}**](https://CRAN.R-project.org/package=rJava)
+**{rjd3production}** s’appuie sur le package
+[**{rJava}**](https://cran.r-project.org/web/packages/rJava/index.html)
 
-L’exécution des paquets rjd3 nécessite **Java 17 ou plus**. La manière
+L’exécution des packages rjd3 nécessite **Java 17 ou plus**. La manière
 de mettre en place une telle configuration dans R est expliquée
-[ici](https://jdemetra-new-documentation.netlify.app/#Rconfig)
+[ici](https://jdemetra-new-documentation.netlify.app/#Rconfig).
 
 ### Latest release
 
