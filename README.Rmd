@@ -103,7 +103,7 @@ Pour obtenir la version stable actuelle (à partir de la dernière version) :
 
 ```{r, echo = TRUE, eval = FALSE}
 # install.packages("remotes")
-remotes::install_github("TanguyBarthelemy/rjd3production@*release")
+remotes::install_github("InseeFr/rjd3production@*release")
 ```
 
 - De [r-universe](https://TanguyBarthelemy.r-universe.dev/rjd3production) :
@@ -118,7 +118,7 @@ Vous pouvez installer la version de développement de **{rjd3production}** depui
 
 ```{r, echo = TRUE, eval = FALSE}
 # install.packages("remotes")
-remotes::install_github("TanguyBarthelemy/rjd3production")
+remotes::install_github("InseeFr/rjd3production")
 ```
 
 
@@ -192,7 +192,7 @@ To get the current stable version (from the latest release):
 
 ```{r, echo = TRUE, eval = FALSE}
 # install.packages("remotes")
-remotes::install_github("TanguyBarthelemy/rjd3production@*release")
+remotes::install_github("InseeFr/rjd3production@*release")
 ```
 
 - From [r-universe](https://TanguyBarthelemy.r-universe.dev/rjd3production):
@@ -207,7 +207,7 @@ You can install the development version of **{rjd3production}** from [GitHub](ht
 
 ```{r, echo = TRUE, eval = FALSE}
 # install.packages("remotes")
-remotes::install_github("TanguyBarthelemy/rjd3production")
+remotes::install_github("InseeFr/rjd3production")
 ```
 
 

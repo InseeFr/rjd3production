@@ -99,7 +99,7 @@ version) :
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("TanguyBarthelemy/rjd3production@*release")
+remotes::install_github("InseeFr/rjd3production@*release")
 ```
 
 - De
@@ -116,7 +116,7 @@ Vous pouvez installer la version de développement de
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("TanguyBarthelemy/rjd3production")
+remotes::install_github("InseeFr/rjd3production")
 ```
 
 <!-- ### Usage -->
@@ -195,7 +195,7 @@ To get the current stable version (from the latest release):
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("TanguyBarthelemy/rjd3production@*release")
+remotes::install_github("InseeFr/rjd3production@*release")
 ```
 
 - From
@@ -212,7 +212,7 @@ You can install the development version of **{rjd3production}** from
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("TanguyBarthelemy/rjd3production")
+remotes::install_github("InseeFr/rjd3production")
 ```
 
 <!-- ### Usage -->
