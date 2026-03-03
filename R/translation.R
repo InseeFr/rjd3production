@@ -325,6 +325,33 @@ rev_set_arima <- function(x) {
     return(code)
 }
 
+rev_set_benchmarking <- function(x) {
+    args <- x$benchmarking
+    if (!is.null(args$target)) {
+        args$target <- switch(
+            args$target,
+            TARGET_CALENDARADJUSTED = "CALENDARADJUSTED",
+            TARGET_ORIGINAL = "ORIGINAL",
+            NA
+        )
+    }
+    if (!is.null(args$bias)) {
+        args$bias <- switch(
+            args$bias,
+            BIAS_MULTIPLICATIVE = "MULTIPLICATIVE",
+            BIAS_ADDITIVE = "ADDITIVE",
+            BIAS_NONE = "NONE",
+            NA
+        )
+    }
+    code <- paste0(
+        "rjd3toolkit::set_benchmarking(\n\t",
+        paste(names(args), "=", keep_format(args), collapse = ",\n\t"),
+        "\n)"
+    )
+    return(code)
+}
+
 rev_spec <- function(x) {
     code <- c(
         rev_add_outlier(x),

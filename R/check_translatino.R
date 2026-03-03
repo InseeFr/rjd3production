@@ -485,39 +485,72 @@ spec2 <- spec1 |>
 
 
 # rev_set_arima
+# for (k in 1:100) {
+#     val_mean <- sample(c(NA, 0, -3:3), size = 1L)
+#     val_mean.type <- sample(c(NA, "Undefined", "Fixed", "Initial"), size = 1L)
+#
+#     val_p <- sample(c(NA, 0:5), size = 1L)
+#     val_d <- sample(c(NA, 0:5), size = 1L)
+#     val_q <- sample(c(NA, 0:5), size = 1L)
+#     val_bp <- sample(c(NA, 0:5), size = 1L)
+#     val_bd <- sample(c(NA, 0:5), size = 1L)
+#     val_bq <- sample(c(NA, 0:5), size = 1L)
+#
+#     val_coef <- rnorm(sum(val_p, val_q, val_bp, val_bq, na.rm = TRUE))
+#     val_coef.type <- sample(c(NA, "Undefined", "Fixed", "Initial"), size = 1L)
+#
+#
+#     spec2 <- rjd3x13::x13_spec("RSA3") |>
+#         rjd3toolkit::set_arima(
+#             mean = val_mean,
+#             mean.type = val_mean.type,
+#             p = val_p,
+#             d = val_d,
+#             q = val_q,
+#             bp = val_bp,
+#             bd = val_bd,
+#             bq = val_bq,
+#             coef = val_coef,
+#             coef.type = val_coef.type
+#         )
+#
+#     spec3 <- eval(
+#         expr = parse(text = paste0(
+#             "rjd3x13::x13_spec(\"RSA3\") |>\n",
+#             rev_set_arima(spec2)
+#         )),
+#         envir = .GlobalEnv
+#     )
+#     waldo::compare(
+#         spec2,
+#         spec3
+#     ) |> print()
+# }
+
+# rev_set_benchmarking
 for (k in 1:100) {
-    val_mean <- sample(c(NA, 0, -3:3), size = 1L)
-    val_mean.type <- sample(c(NA, "Undefined", "Fixed", "Initial"), size = 1L)
 
-    val_p <- sample(c(NA, 0:5), size = 1L)
-    val_d <- sample(c(NA, 0:5), size = 1L)
-    val_q <- sample(c(NA, 0:5), size = 1L)
-    val_bp <- sample(c(NA, 0:5), size = 1L)
-    val_bd <- sample(c(NA, 0:5), size = 1L)
-    val_bq <- sample(c(NA, 0:5), size = 1L)
-
-    val_coef <- rnorm(sum(val_p, val_q, val_bp, val_bq, na.rm = TRUE))
-    val_coef.type <- sample(c(NA, "Undefined", "Fixed", "Initial"), size = 1L)
-
+    val_enabled <- sample(c(TRUE, NA, FALSE), size = 1L)
+    val_target <- sample(c(NA, "CalendarAdjusted", "Original"), size = 1L)
+    val_rho <- sample(c(NA, runif(1)), size = 1L)
+    val_lambda <- sample(c(NA, runif(1)), size = 1L)
+    val_forecast <- sample(c(TRUE, NA, FALSE), size = 1L)
+    val_bias <- sample(c("None", "Additive", "Multiplicative"), size = 1L)
 
     spec2 <- rjd3x13::x13_spec("RSA3") |>
-        rjd3toolkit::set_arima(
-            mean = val_mean,
-            mean.type = val_mean.type,
-            p = val_p,
-            d = val_d,
-            q = val_q,
-            bp = val_bp,
-            bd = val_bd,
-            bq = val_bq,
-            coef = val_coef,
-            coef.type = val_coef.type
+        rjd3toolkit::set_benchmarking(
+            enabled = val_enabled,
+            target = val_target,
+            rho = val_rho,
+            lambda = val_lambda,
+            forecast = val_forecast,
+            bias = val_bias
         )
 
     spec3 <- eval(
         expr = parse(text = paste0(
             "rjd3x13::x13_spec(\"RSA3\") |>\n",
-            rev_set_arima(spec2)
+            rev_set_benchmarking(spec2)
         )),
         envir = .GlobalEnv
     )
