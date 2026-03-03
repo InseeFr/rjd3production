@@ -3,7 +3,7 @@
 This function updates a JDemetra+ workspace (`.xml`) by assigning
 user-defined trading day regressors (TD) to each series (SA-Item), based
 on an external correspondence table, which can be created with
-[`retrieve_td()`](https://tanguybarthelemy.github.io/rjd3production/reference/td_tools.md).
+[`retrieve_td()`](https://inseefr.github.io/rjd3production/reference/td_tools.md).
 
 This function modifies the `domainSpec` of each series by setting
 `tradingdays` to `"UserDefined"` with the appropriate regressors (`REG1`
@@ -26,9 +26,9 @@ assign_td(td, jws)
 
   - `regs`: standard INSEE TD set (`REG1`, `REG2`, …, `REG6`, with or
     without `_LY`) (created by
-    [retrieve_td](https://tanguybarthelemy.github.io/rjd3production/reference/td_tools.md)
+    [retrieve_td](https://inseefr.github.io/rjd3production/reference/td_tools.md)
     or
-    [import_td](https://tanguybarthelemy.github.io/rjd3production/reference/td_tools.md)).
+    [import_td](https://inseefr.github.io/rjd3production/reference/td_tools.md)).
 
 - jws:
 

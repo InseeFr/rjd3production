@@ -22,9 +22,9 @@ assign_outliers(jws, outliers)
 
   \[[list](https://rdrr.io/r/base/list.html)\] A named list where each
   element corresponds to a series in the workspace created with
-  [retrieve_outliers](https://tanguybarthelemy.github.io/rjd3production/reference/outliers_tools.md)
+  [retrieve_outliers](https://inseefr.github.io/rjd3production/reference/outliers_tools.md)
   or
-  [import_outliers](https://tanguybarthelemy.github.io/rjd3production/reference/outliers_tools.md).
+  [import_outliers](https://inseefr.github.io/rjd3production/reference/outliers_tools.md).
 
 ## Value
 
@@ -36,12 +36,12 @@ This function only modifies the first SA-Processing.
 
 ## See also
 
-- [`retrieve_outliers()`](https://tanguybarthelemy.github.io/rjd3production/reference/outliers_tools.md)
+- [`retrieve_outliers()`](https://inseefr.github.io/rjd3production/reference/outliers_tools.md)
   to extract outliers from an existing workspace.
 
-- [`export_outliers()`](https://tanguybarthelemy.github.io/rjd3production/reference/outliers_tools.md)
+- [`export_outliers()`](https://inseefr.github.io/rjd3production/reference/outliers_tools.md)
   /
-  [`import_outliers()`](https://tanguybarthelemy.github.io/rjd3production/reference/outliers_tools.md)
+  [`import_outliers()`](https://inseefr.github.io/rjd3production/reference/outliers_tools.md)
   to manage YAML files of outliers.
 
 ## Examples

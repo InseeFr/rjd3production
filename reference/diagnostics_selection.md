@@ -47,7 +47,7 @@ select_reg_one_series(series, name = "", specs_set = NULL, context = NULL, ...)
 
   \[[list](https://rdrr.io/r/base/list.html) or NULL\] List of X13
   specifications. If `NULL`, generated via
-  [`create_specs_set()`](https://tanguybarthelemy.github.io/rjd3production/reference/create_specs_set.md).
+  [`create_specs_set()`](https://inseefr.github.io/rjd3production/reference/create_specs_set.md).
 
 - jeu:
 
@@ -67,7 +67,7 @@ select_reg_one_series(series, name = "", specs_set = NULL, context = NULL, ...)
 - ...:
 
   Additional arguments passed to
-  [`create_specs_set()`](https://tanguybarthelemy.github.io/rjd3production/reference/create_specs_set.md)
+  [`create_specs_set()`](https://inseefr.github.io/rjd3production/reference/create_specs_set.md)
   controlling the generation of X13 specifications. Possible arguments
   include:
 
@@ -84,7 +84,7 @@ select_reg_one_series(series, name = "", specs_set = NULL, context = NULL, ...)
   ...
 
   :   Other arguments accepted by
-      [`create_specs_set()`](https://tanguybarthelemy.github.io/rjd3production/reference/create_specs_set.md).
+      [`create_specs_set()`](https://inseefr.github.io/rjd3production/reference/create_specs_set.md).
 
 ## Value
 

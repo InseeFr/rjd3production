@@ -28,7 +28,7 @@ select_regs(series, context = NULL, ...)
 - ...:
 
   Additional arguments passed to
-  [`create_specs_set()`](https://tanguybarthelemy.github.io/rjd3production/reference/create_specs_set.md)
+  [`create_specs_set()`](https://inseefr.github.io/rjd3production/reference/create_specs_set.md)
   controlling the generation of X13 specifications. Possible arguments
   include:
 
@@ -45,7 +45,7 @@ select_regs(series, context = NULL, ...)
   ...
 
   :   Other arguments accepted by
-      [`create_specs_set()`](https://tanguybarthelemy.github.io/rjd3production/reference/create_specs_set.md).
+      [`create_specs_set()`](https://inseefr.github.io/rjd3production/reference/create_specs_set.md).
 
 ## Value
 

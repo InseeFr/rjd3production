@@ -2,7 +2,7 @@
 
 Launches an interactive Shiny application to explore and compare
 seasonal adjustment results stored in a `data.frame` returned by
-[`compare()`](https://tanguybarthelemy.github.io/rjd3production/reference/compare.md).
+[`compare()`](https://inseefr.github.io/rjd3production/reference/compare.md).
 
 ## Usage
 
@@ -15,7 +15,7 @@ run_app(data, ...)
 - data:
 
   A `data.frame` returned by
-  [`compare()`](https://tanguybarthelemy.github.io/rjd3production/reference/compare.md),
+  [`compare()`](https://inseefr.github.io/rjd3production/reference/compare.md),
   containing the columns `ws`, `SAI`, `series`, `date`, and `value`.
 
 - ...:
