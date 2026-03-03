@@ -368,66 +368,112 @@ spec2 <- spec1 |>
 
 
 # rev_add_usrdefvar
+# for (k in 1:100) {
+#
+#     spec2 <- rjd3x13::x13_spec("RSA3")
+#     nb_usrdefvar <- sample.int(10, size = 1)
+#
+#     for (j in seq_len(nb_usrdefvar)) {
+#
+#         val_group <- sample(c(0:9, letters), size = 3) |> paste0(collapse = "")
+#         val_name <- sample(c(0:9, letters), size = 4) |> paste0(collapse = "")
+#         val_label <- sample(c(0:9, letters), size = 5) |> paste0(collapse = "")
+#         val_lag <- sample(0:20, size = 1)
+#         val_coef <- rnorm(1)
+#         val_regeffect <- c("Undefined", "Trend", "Seasonal", "Irregular", "Series",
+#                            "SeasonallyAdjusted")
+#         with_coef <- sample(c(T, F), size = 1)
+#         with_label <- sample(c(T, F), size = 1)
+#
+#         if (with_coef && with_label) {
+#             spec2 <- spec2 |>
+#                 rjd3toolkit::add_usrdefvar(
+#                     group = val_group,
+#                     name = val_name,
+#                     label = val_label,
+#                     lag = val_lag,
+#                     coef = val_coef,
+#                     regeffect = val_regeffect
+#                 )
+#         } else if (with_coef) {
+#             spec2 <- spec2 |>
+#                 rjd3toolkit::add_usrdefvar(
+#                     group = val_group,
+#                     name = val_name,
+#                     lag = val_lag,
+#                     coef = val_coef,
+#                     regeffect = val_regeffect
+#                 )
+#         } else if (with_label) {
+#             spec2 <- spec2 |>
+#                 rjd3toolkit::add_usrdefvar(
+#                     group = val_group,
+#                     name = val_name,
+#                     label = val_label,
+#                     lag = val_lag,
+#                     regeffect = val_regeffect
+#                 )
+#         } else {
+#             spec2 <- spec2 |>
+#                 rjd3toolkit::add_usrdefvar(
+#                     group = val_group,
+#                     name = val_name,
+#                     lag = val_lag,
+#                     regeffect = val_regeffect
+#                 )
+#         }
+#     }
+#
+#     spec3 <- eval(
+#         expr = parse(text = paste0(
+#             "rjd3x13::x13_spec(\"RSA3\") |>\n",
+#             rev_add_usrdefvar(spec2)
+#         )),
+#         envir = .GlobalEnv
+#     )
+#     waldo::compare(
+#         spec2,
+#         spec3
+#     ) |> print()
+# }
+
+
+# rev_set_automodel
 for (k in 1:100) {
 
-    spec2 <- rjd3x13::x13_spec("RSA3")
-    nb_usrdefvar <- sample.int(10, size = 1)
+    val_enabled <- sample(c(TRUE, NA, FALSE), size = 1L)
+    val_acceptdefault <- sample(c(TRUE, NA, FALSE), size = 1L)
+    val_cancel <- sample(c(NA, abs(rnorm(1))), size = 1L)
+    val_ub1 <- sample(c(NA, abs(rnorm(1))), size = 1L)
+    val_ub2 <- sample(c(NA, val_ub1 + abs(rnorm(1))), size = 1L)
+    val_reducecv <- sample(c(NA, abs(rnorm(1))), size = 1L)
+    val_ljungboxlimit <- sample(c(NA, abs(rnorm(1))), size = 1L)
+    val_tsig <- sample(c(NA, abs(rnorm(1))), size = 1L)
+    val_ubfinal <- sample(c(NA, abs(rnorm(1))), size = 1L)
+    val_checkmu <- sample(c(TRUE, NA, FALSE), size = 1L)
+    val_mixed <- sample(c(TRUE, NA, FALSE), size = 1L)
+    val_balanced <- sample(c(TRUE, NA, FALSE), size = 1L)
 
-    for (j in seq_len(nb_usrdefvar)) {
-
-        val_group <- sample(c(0:9, letters), size = 3) |> paste0(collapse = "")
-        val_name <- sample(c(0:9, letters), size = 4) |> paste0(collapse = "")
-        val_label <- sample(c(0:9, letters), size = 5) |> paste0(collapse = "")
-        val_lag <- sample(0:20, size = 1)
-        val_coef <- rnorm(1)
-        val_regeffect <- c("Undefined", "Trend", "Seasonal", "Irregular", "Series",
-                           "SeasonallyAdjusted")
-        with_coef <- sample(c(T, F), size = 1)
-        with_label <- sample(c(T, F), size = 1)
-
-        if (with_coef && with_label) {
-            spec2 <- spec2 |>
-                rjd3toolkit::add_usrdefvar(
-                    group = val_group,
-                    name = val_name,
-                    label = val_label,
-                    lag = val_lag,
-                    coef = val_coef,
-                    regeffect = val_regeffect
-                )
-        } else if (with_coef) {
-            spec2 <- spec2 |>
-                rjd3toolkit::add_usrdefvar(
-                    group = val_group,
-                    name = val_name,
-                    lag = val_lag,
-                    coef = val_coef,
-                    regeffect = val_regeffect
-                )
-        } else if (with_label) {
-            spec2 <- spec2 |>
-                rjd3toolkit::add_usrdefvar(
-                    group = val_group,
-                    name = val_name,
-                    label = val_label,
-                    lag = val_lag,
-                    regeffect = val_regeffect
-                )
-        } else {
-            spec2 <- spec2 |>
-                rjd3toolkit::add_usrdefvar(
-                    group = val_group,
-                    name = val_name,
-                    lag = val_lag,
-                    regeffect = val_regeffect
-                )
-        }
-    }
+    spec2 <- rjd3x13::x13_spec("RSA3") |>
+        rjd3toolkit::set_automodel(
+            enabled = val_enabled,
+            acceptdefault = val_acceptdefault,
+            cancel = val_cancel,
+            ub1 = val_ub1,
+            ub2 = val_ub2,
+            reducecv = val_reducecv,
+            ljungboxlimit = val_ljungboxlimit,
+            tsig = val_tsig,
+            ubfinal = val_ubfinal,
+            checkmu = val_checkmu,
+            mixed = val_mixed,
+            balanced = val_balanced
+        )
 
     spec3 <- eval(
         expr = parse(text = paste0(
             "rjd3x13::x13_spec(\"RSA3\") |>\n",
-            rev_add_usrdefvar(spec2)
+            rev_set_automodel(spec2)
         )),
         envir = .GlobalEnv
     )

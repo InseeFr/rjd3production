@@ -252,12 +252,30 @@ rev_set_estimate <- function(x) {
     return(code)
 }
 
+rev_set_automodel <- function(x) {
+    args <- x$regarima$automodel
+    args$acceptdefault <- args$acceptdef
+    args$acceptdef <- NULL
+    args$ljungboxlimit <- args$ljungbox
+    args$ljungbox <- NULL
+    args$reducecv <- args$predcv
+    args$predcv <- NULL
+    args$fct <- NULL
+    code <- paste0(
+        "rjd3toolkit::set_automodel(\n\t",
+        paste(names(args), "=", keep_format(args), collapse = ",\n\t"),
+        "\n)"
+    )
+    return(code)
+}
+
 rev_spec <- function(x) {
     code <- c(
         rev_add_outlier(x),
         rev_add_ramp(x),
         rev_add_usrdefvar(x),
         rev_set_x11(x),
+        rev_set_automodel(x),
         rev_set_transform(x),
         rev_set_easter(x),
         rev_set_basic(x),
