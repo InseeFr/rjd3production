@@ -439,41 +439,85 @@ spec2 <- spec1 |>
 
 
 # rev_set_automodel
-for (k in 1:100) {
+# for (k in 1:100) {
+#
+#     val_enabled <- sample(c(TRUE, NA, FALSE), size = 1L)
+#     val_acceptdefault <- sample(c(TRUE, NA, FALSE), size = 1L)
+#     val_cancel <- sample(c(NA, abs(rnorm(1))), size = 1L)
+#     val_ub1 <- sample(c(NA, abs(rnorm(1))), size = 1L)
+#     val_ub2 <- sample(c(NA, val_ub1 + abs(rnorm(1))), size = 1L)
+#     val_reducecv <- sample(c(NA, abs(rnorm(1))), size = 1L)
+#     val_ljungboxlimit <- sample(c(NA, abs(rnorm(1))), size = 1L)
+#     val_tsig <- sample(c(NA, abs(rnorm(1))), size = 1L)
+#     val_ubfinal <- sample(c(NA, abs(rnorm(1))), size = 1L)
+#     val_checkmu <- sample(c(TRUE, NA, FALSE), size = 1L)
+#     val_mixed <- sample(c(TRUE, NA, FALSE), size = 1L)
+#     val_balanced <- sample(c(TRUE, NA, FALSE), size = 1L)
+#
+#     spec2 <- rjd3x13::x13_spec("RSA3") |>
+#         rjd3toolkit::set_automodel(
+#             enabled = val_enabled,
+#             acceptdefault = val_acceptdefault,
+#             cancel = val_cancel,
+#             ub1 = val_ub1,
+#             ub2 = val_ub2,
+#             reducecv = val_reducecv,
+#             ljungboxlimit = val_ljungboxlimit,
+#             tsig = val_tsig,
+#             ubfinal = val_ubfinal,
+#             checkmu = val_checkmu,
+#             mixed = val_mixed,
+#             balanced = val_balanced
+#         )
+#
+#     spec3 <- eval(
+#         expr = parse(text = paste0(
+#             "rjd3x13::x13_spec(\"RSA3\") |>\n",
+#             rev_set_automodel(spec2)
+#         )),
+#         envir = .GlobalEnv
+#     )
+#     waldo::compare(
+#         spec2,
+#         spec3
+#     ) |> print()
+# }
 
-    val_enabled <- sample(c(TRUE, NA, FALSE), size = 1L)
-    val_acceptdefault <- sample(c(TRUE, NA, FALSE), size = 1L)
-    val_cancel <- sample(c(NA, abs(rnorm(1))), size = 1L)
-    val_ub1 <- sample(c(NA, abs(rnorm(1))), size = 1L)
-    val_ub2 <- sample(c(NA, val_ub1 + abs(rnorm(1))), size = 1L)
-    val_reducecv <- sample(c(NA, abs(rnorm(1))), size = 1L)
-    val_ljungboxlimit <- sample(c(NA, abs(rnorm(1))), size = 1L)
-    val_tsig <- sample(c(NA, abs(rnorm(1))), size = 1L)
-    val_ubfinal <- sample(c(NA, abs(rnorm(1))), size = 1L)
-    val_checkmu <- sample(c(TRUE, NA, FALSE), size = 1L)
-    val_mixed <- sample(c(TRUE, NA, FALSE), size = 1L)
-    val_balanced <- sample(c(TRUE, NA, FALSE), size = 1L)
+
+# rev_set_arima
+for (k in 1:100) {
+    val_mean <- sample(c(NA, 0, -3:3), size = 1L)
+    val_mean.type <- sample(c(NA, "Undefined", "Fixed", "Initial"), size = 1L)
+
+    val_p <- sample(c(NA, 0:5), size = 1L)
+    val_d <- sample(c(NA, 0:5), size = 1L)
+    val_q <- sample(c(NA, 0:5), size = 1L)
+    val_bp <- sample(c(NA, 0:5), size = 1L)
+    val_bd <- sample(c(NA, 0:5), size = 1L)
+    val_bq <- sample(c(NA, 0:5), size = 1L)
+
+    val_coef <- rnorm(sum(val_p, val_q, val_bp, val_bq, na.rm = TRUE))
+    val_coef.type <- sample(c(NA, "Undefined", "Fixed", "Initial"), size = 1L)
+
 
     spec2 <- rjd3x13::x13_spec("RSA3") |>
-        rjd3toolkit::set_automodel(
-            enabled = val_enabled,
-            acceptdefault = val_acceptdefault,
-            cancel = val_cancel,
-            ub1 = val_ub1,
-            ub2 = val_ub2,
-            reducecv = val_reducecv,
-            ljungboxlimit = val_ljungboxlimit,
-            tsig = val_tsig,
-            ubfinal = val_ubfinal,
-            checkmu = val_checkmu,
-            mixed = val_mixed,
-            balanced = val_balanced
+        rjd3toolkit::set_arima(
+            mean = val_mean,
+            mean.type = val_mean.type,
+            p = val_p,
+            d = val_d,
+            q = val_q,
+            bp = val_bp,
+            bd = val_bd,
+            bq = val_bq,
+            coef = val_coef,
+            coef.type = val_coef.type
         )
 
     spec3 <- eval(
         expr = parse(text = paste0(
             "rjd3x13::x13_spec(\"RSA3\") |>\n",
-            rev_set_automodel(spec2)
+            rev_set_arima(spec2)
         )),
         envir = .GlobalEnv
     )

@@ -2,7 +2,8 @@
 keep_format <- function(x) {
     if (is.list(x)) {
         output <- x |>
-            lapply(FUN = keep_format)
+            lapply(FUN = keep_format) |>
+            lapply(FUN = paste0, collapse = "\n")
     } else {
         output <- x |>
             constructive::construct() |>
@@ -269,6 +270,61 @@ rev_set_automodel <- function(x) {
     return(code)
 }
 
+rev_set_arima <- function(x) {
+    args <- c(x$regarima$arima, x$regarima$regression$mean)
+    args$mean <- args$value
+    args$value <- NULL
+    args$mean.type <- args$type
+    args$type <- NULL
+    if ("phi" %in% names(args) && is.null(args$phi)) {
+        args$p <- NULL
+    } else if (is.null(args$phi)) {
+        args$p <- 0
+    } else {
+        args$p <- ncol(args$phi)
+        args$coef <- c(args$coef, as.numeric(args$phi[1L, ]))
+        args$coef.type <- c(args$coef.type, as.character(args$phi[2L, ]))
+    }
+    if ("theta" %in% names(args) && is.null(args$theta)) {
+        args$q <- NULL
+    } else if (is.null(args$theta)) {
+        args$q <- 0
+    } else {
+        args$q <- ncol(args$theta)
+        args$coef <- c(args$coef, as.numeric(args$theta[1L, ]))
+        args$coef.type <- c(args$coef.type, as.character(args$theta[2L, ]))
+    }
+    if ("bphi" %in% names(args) && is.null(args$bphi)) {
+        args$bp <- NULL
+    } else if (is.null(args$bphi)) {
+        args$bp <- 0
+    } else {
+        args$bp <- ncol(args$bphi)
+        args$coef <- c(args$coef, as.numeric(args$bphi[1L, ]))
+        args$coef.type <- c(args$coef.type, as.character(args$bphi[2L, ]))
+    }
+    if ("btheta" %in% names(args) && is.null(args$btheta)) {
+        args$bq <- NULL
+    } else if (is.null(args$btheta)) {
+        args$bq <- 0
+    } else {
+        args$bq <- ncol(args$btheta)
+        args$coef <- c(args$coef, as.numeric(args$btheta[1L, ]))
+        args$coef.type <- c(args$coef.type, as.character(args$btheta[2L, ]))
+    }
+    args$phi <- NULL
+    args$theta <- NULL
+    args$bphi <- NULL
+    args$btheta <- NULL
+    args$period <- NULL
+    code <- paste0(
+        "rjd3toolkit::set_arima(\n\t",
+        paste(names(args), "=", keep_format(args), collapse = ",\n\t"),
+        "\n)"
+    )
+    return(code)
+}
+
 rev_spec <- function(x) {
     code <- c(
         rev_add_outlier(x),
@@ -276,6 +332,7 @@ rev_spec <- function(x) {
         rev_add_usrdefvar(x),
         rev_set_x11(x),
         rev_set_automodel(x),
+        rev_set_arima(x),
         rev_set_transform(x),
         rev_set_easter(x),
         rev_set_basic(x),
