@@ -352,6 +352,39 @@ rev_set_benchmarking <- function(x) {
     return(code)
 }
 
+rev_set_outlier <- function(x) {
+    args <- c(x$regarima$outlier, x$regarima$outlier$span)
+
+    args$outliers.type <- vapply(
+        X = args$outliers,
+        FUN = "[[",
+        FUN.VALUE = character(1L),
+        "type"
+    )
+    args$critical.value <- vapply(
+        X = args$outliers,
+        FUN = "[[",
+        FUN.VALUE = numeric(1L),
+        "va"
+    )
+
+    args$outliers <- NULL
+    args$span <- NULL
+    args$tc.rate <- args$monthlytcrate
+    args$monthlytcrate <- NULL
+    args$defva <- NULL
+    args$span.type <- args$type
+    args$type <- NULL
+    args
+
+    code <- paste0(
+        "rjd3toolkit::set_outlier(\n\t",
+        paste(names(args), "=", keep_format(args), collapse = ",\n\t"),
+        "\n)"
+    )
+    return(code)
+}
+
 rev_spec <- function(x) {
     code <- c(
         rev_add_outlier(x),
@@ -363,7 +396,9 @@ rev_spec <- function(x) {
         rev_set_transform(x),
         rev_set_easter(x),
         rev_set_basic(x),
-        rev_set_estimate(x)
+        rev_set_estimate(x),
+        rev_set_outlier(x),
+        rev_set_benchmarking(x)
     ) |>
         paste(collapse = " |>\n") |>
         paste("rjd3x13::x13_spec() |>\n", ... = _) |>
