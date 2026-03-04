@@ -137,16 +137,18 @@ test_that("rev_set_automodel works", {
 
 test_that("rev_set_arima works", {
     for (k in 1:100) {
-        spec_ref <- rjd3x13::x13_spec("RSA3") |>
-            random_set_arima()
+        suppressWarnings({
+            spec_ref <- rjd3x13::x13_spec("RSA3") |>
+                random_set_arima()
 
-        spec_test <- eval(
-            expr = parse(text = paste0(
-                "rjd3x13::x13_spec(\"RSA3\") |>\n",
-                rev_set_arima(spec_ref)
-            )),
-            envir = .GlobalEnv
-        )
+            spec_test <- eval(
+                expr = parse(text = paste0(
+                    "rjd3x13::x13_spec(\"RSA3\") |>\n",
+                    rev_set_arima(spec_ref)
+                )),
+                envir = .GlobalEnv
+            )
+        })
         testthat::expect_identical(spec_ref, spec_test)
     }
 })
@@ -203,13 +205,15 @@ test_that("rev_set_tradingdays works", {
 
 test_that("rev_spec works", {
     for (k in 1:100) {
-        spec_ref <- random_spec()
-        spec_test <- eval(
-            expr = parse(
-                text = rev_spec(spec_ref)
-            ),
-            envir = .GlobalEnv
-        )
+        suppressWarnings({
+            spec_ref <- random_spec()
+            spec_test <- eval(
+                expr = parse(
+                    text = rev_spec(spec_ref)
+                ),
+                envir = .GlobalEnv
+            )
+        })
         testthat::expect_identical(spec_ref, spec_test)
     }
 })
