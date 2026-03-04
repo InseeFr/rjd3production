@@ -24,13 +24,13 @@ rev_add_outlier <- function(x) {
         FUN.VALUE = character(1L),
         "code"
     )
-    args$dates <- vapply(
+    args$date <- vapply(
         X = outliers,
         FUN = "[[",
         FUN.VALUE = character(1L),
         "pos"
     )
-    args$names <- vapply(
+    args$name <- vapply(
         X = outliers,
         FUN = "[[",
         FUN.VALUE = character(1L),
@@ -393,6 +393,9 @@ rev_set_tradingdays <- function(x) {
     }
     args$tdcoefficients <- NULL
 
+    args$calendar.name <- args$holidays
+    args$holidays <- NULL
+
     args$automatic <- switch(
         args$auto,
         AUTO_NO = "UNUSED",
@@ -410,9 +413,10 @@ rev_set_tradingdays <- function(x) {
     args$lp <- NULL
 
     if (
-        args$option == "NONE" &&
-            (length(args$users) == 0L || is.null(args$users)) &&
-            is.null(args$coef)
+        args$option == "NONE"
+        && (length(args$users) == 0L || is.null(args$users))
+        && !nzchar(args$calendar.name)
+        && is.null(args$coef)
     ) {
         args$stocktd <- args$w
     }
@@ -422,9 +426,6 @@ rev_set_tradingdays <- function(x) {
     args$users <- NULL
     args$ptest1 <- NULL
     args$ptest2 <- NULL
-
-    args$calendar.name <- args$holidays
-    args$holidays <- NULL
 
     code <- paste0(
         "rjd3toolkit::set_tradingdays(\n\t",
