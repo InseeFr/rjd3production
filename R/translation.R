@@ -354,7 +354,6 @@ rev_set_benchmarking <- function(x) {
 
 rev_set_outlier <- function(x) {
     args <- c(x$regarima$outlier, x$regarima$outlier$span)
-
     args$outliers.type <- vapply(
         X = args$outliers,
         FUN = "[[",
@@ -367,7 +366,6 @@ rev_set_outlier <- function(x) {
         FUN.VALUE = numeric(1L),
         "va"
     )
-
     args$outliers <- NULL
     args$span <- NULL
     args$tc.rate <- args$monthlytcrate
@@ -375,10 +373,65 @@ rev_set_outlier <- function(x) {
     args$defva <- NULL
     args$span.type <- args$type
     args$type <- NULL
-    args
-
     code <- paste0(
         "rjd3toolkit::set_outlier(\n\t",
+        paste(names(args), "=", keep_format(args), collapse = ",\n\t"),
+        "\n)"
+    )
+    return(code)
+}
+
+rev_set_tradingdays <- function(x) {
+    args <- x$regarima$regression$td
+
+    if (!is.null(args$lpcoefficient)) {
+        args$leapyear.coef <- args$lpcoefficient$value
+        args$leapyear.coef.type <- args$lpcoefficient$type
+    }
+    args$lpcoefficient <- NULL
+
+    if (!is.null(args$tdcoefficients)) {
+        args$coef <- as.numeric(args$tdcoefficients[1L, ])
+        if (!all(is.na(args$coef)) && all(args$coef == 0)) {
+            args$coef <- NULL
+        }
+        args$coef.type <- as.character(args$tdcoefficients[2L, ])
+    }
+    args$tdcoefficients <- NULL
+
+    args$automatic <- switch(
+        args$auto,
+        AUTO_NO = "UNUSED",
+        gsub(x = args$auto, pattern = "AUTO_", replacement = "", fixed = TRUE)
+    )
+    args$auto <- NULL
+    args$option <- switch(
+        args$td,
+        TD7 = "TradingDays",
+        TD2 = "WorkingDays",
+        gsub(x = args$td, pattern = "TD_", replacement = "", fixed = TRUE)
+    )
+    args$td <- NULL
+    args$leapyear <- args$lp
+    args$lp <- NULL
+
+    if (args$option == "NONE"
+        && (length(args$users) == 0L || is.null(args$users))
+        && is.null(args$coef)) {
+        args$stocktd <- args$w
+    }
+    args$w <- NULL
+
+    args$uservariable <- args$users
+    args$users <- NULL
+    args$ptest1 <- NULL
+    args$ptest2 <- NULL
+
+    args$calendar.name <- args$holidays
+    args$holidays <- NULL
+
+    code <- paste0(
+        "rjd3toolkit::set_tradingdays(\n\t",
         paste(names(args), "=", keep_format(args), collapse = ",\n\t"),
         "\n)"
     )
@@ -398,6 +451,7 @@ rev_spec <- function(x) {
         rev_set_basic(x),
         rev_set_estimate(x),
         rev_set_outlier(x),
+        # rev_set_tradingdays(x),
         rev_set_benchmarking(x)
     ) |>
         paste(collapse = " |>\n") |>
