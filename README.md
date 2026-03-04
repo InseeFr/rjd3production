@@ -23,8 +23,8 @@ built](https://github.com/InseeFr/rjd3production/actions/workflows/pkgdown.yaml/
 
 ### Présentation
 
-**{rjd3production}** aide les producteurs de données CVS TD à mettre en
-place des chaînes de production.
+**{rjd3production}** aide les producteurs de données CVS-CJO à mettre en
+place des chaînes de production. 
 
 Il permet notamment de :
 
@@ -80,7 +80,7 @@ flowchart LR
     class YAML_OUT,YAML_TD yaml
     class SERIES series
 ```
-
+Pour plus de précisions sur la production de séries cvsj-cjo vous pouvez consulter [ces pages](https://saproductionwithjdemetraandr.netlify.app/)
 ## Installation
 
 **{rjd3production}** s’appuie sur le package
@@ -186,6 +186,7 @@ flowchart LR
     class YAML_OUT,YAML_TD yaml
     class SERIES series
 ```
+For more details on the production of Seasonally Adjusted series, please refer to [these pages](https://saproductionwithjdemetraandr.netlify.app/).
 
 ### Installation
 
