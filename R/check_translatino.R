@@ -1,4 +1,3 @@
-
 spec1 <- rjd3x13::x13_spec(name = "RSA3")
 spec2 <- spec1 |>
     rjd3toolkit::add_outlier(
@@ -24,54 +23,80 @@ spec2 <- spec1 |>
 
 
 # rev_set_x11
-# for (k in 1:100) {
-#     val_mode <- sample(c(NA_character_, "Undefined", "Additive", "Multiplicative", "LogAdditive", "PseudoAdditive"), size = 1)
-#     val_filter <- sample(c(NA_character_, "Msr", "Stable", "X11Default", "S3X1", "S3X3", "S3X5", "S3X9", "S3X15"), size = 1)
-#     val_calendar.sigma <- sample(c("None", "All", "Signif", "Select"), size = 1)
-#     val_sigma.vector <- sample(list(integer(0), 1, 2), size = 1)
-#
-#     if (length(val_sigma.vector[[1L]]) == 0) {
-#         spec2 <- spec1 |>
-#             rjd3x13::set_x11(
-#                 mode = val_mode,
-#                 seasonal.comp = sample(c(NA, TRUE, FALSE), size = 1),
-#                 seasonal.filter = val_filter,
-#                 henderson.filter = sample(c(0, 2 * 1:50 + 1), size = 1),
-#                 lsigma = runif(n = 1, 0.6, 3),
-#                 usigma = runif(n = 1, 3, 10),
-#                 bcasts = sample(0:30, size = 1),
-#                 fcasts = sample(0:30, size = 1),
-#                 calendar.sigma = val_calendar.sigma,
-#                 exclude.forecast = sample(c(NA, TRUE, FALSE), size = 1)
-#             )
-#     } else {
-#         spec2 <- spec1 |>
-#             rjd3x13::set_x11(
-#                 mode = val_mode,
-#                 seasonal.comp = sample(c(NA, TRUE, FALSE), size = 1),
-#                 seasonal.filter = val_filter,
-#                 henderson.filter = sample(c(0, 2 * 1:50 + 1), size = 1),
-#                 lsigma = runif(n = 1, 0.6, 3),
-#                 usigma = runif(n = 1, 3, 10),
-#                 bcasts = sample(0:30, size = 1),
-#                 fcasts = sample(0:30, size = 1),
-#                 calendar.sigma = val_calendar.sigma,
-#                 sigma.vector = val_sigma.vector[[1L]],
-#                 exclude.forecast = sample(c(NA, TRUE, FALSE), size = 1)
-#             )
-#     }
-#     spec3 <- eval(
-#         expr = parse(text = paste0(
-#             "rjd3x13::x13_spec() |>\n",
-#             rev_set_x11(spec2)
-#         )),
-#         envir = .GlobalEnv
-#     )
-#     waldo::compare(
-#         spec2,
-#         spec3
-#     ) |> print()
-# }
+for (k in 1:100) {
+    val_mode <- sample(
+        c(
+            NA_character_,
+            "Undefined",
+            "Additive",
+            "Multiplicative",
+            "LogAdditive",
+            "PseudoAdditive"
+        ),
+        size = 1
+    )
+    val_filter <- sample(
+        c(
+            NA_character_,
+            "Msr",
+            "Stable",
+            "X11Default",
+            "S3X1",
+            "S3X3",
+            "S3X5",
+            "S3X9",
+            "S3X15"
+        ),
+        size = 1
+    )
+    val_calendar.sigma <- sample(c("None", "All", "Signif", "Select"), size = 1)
+    val_sigma.vector <- sample(list(integer(0), 1, 2), size = 1)
+
+    if (length(val_sigma.vector[[1L]]) == 0) {
+        spec2 <- rjd3x13::x13_spec("RSA3") |>
+            rjd3x13::set_x11(
+                mode = val_mode,
+                seasonal.comp = sample(c(NA, TRUE, FALSE), size = 1),
+                seasonal.filter = val_filter,
+                henderson.filter = sample(c(0, 2 * 1:50 + 1), size = 1),
+                lsigma = runif(n = 1, 0.6, 3),
+                usigma = runif(n = 1, 3, 10),
+                bcasts = sample(0:30, size = 1),
+                fcasts = sample(0:30, size = 1),
+                calendar.sigma = val_calendar.sigma,
+                exclude.forecast = sample(c(NA, TRUE, FALSE), size = 1)
+            )
+    } else {
+        spec2 <- rjd3x13::x13_spec("RSA3") |>
+            rjd3x13::set_x11(
+                mode = val_mode,
+                seasonal.comp = sample(c(NA, TRUE, FALSE), size = 1),
+                seasonal.filter = val_filter,
+                henderson.filter = sample(c(0, 2 * 1:50 + 1), size = 1),
+                lsigma = runif(n = 1, 0.6, 3),
+                usigma = runif(n = 1, 3, 10),
+                bcasts = sample(0:30, size = 1),
+                fcasts = sample(0:30, size = 1),
+                calendar.sigma = val_calendar.sigma,
+                sigma.vector = val_sigma.vector[[1L]],
+                exclude.forecast = sample(c(NA, TRUE, FALSE), size = 1)
+            )
+    }
+    spec3 <- eval(
+        expr = parse(
+            text = paste0(
+                "rjd3x13::x13_spec(\"RSA3\") |>\n",
+                rev_set_x11(spec2)
+            )
+        ),
+        envir = .GlobalEnv
+    )
+    waldo::compare(
+        spec2,
+        spec3
+    ) |>
+        print()
+}
 
 
 # rev_add_ramp
@@ -125,7 +150,6 @@ spec2 <- spec1 |>
 #     ) |> print()
 # }
 
-
 #rev_set_easter
 
 # for (k in 1:100) {
@@ -157,7 +181,6 @@ spec2 <- spec1 |>
 #         spec3
 #     ) |> print()
 # }
-
 
 #rev_set_basic
 
@@ -366,7 +389,6 @@ spec2 <- spec1 |>
 #     ) |> print()
 # }
 
-
 # rev_add_usrdefvar
 # for (k in 1:100) {
 #
@@ -437,7 +459,6 @@ spec2 <- spec1 |>
 #     ) |> print()
 # }
 
-
 # rev_set_automodel
 # for (k in 1:100) {
 #
@@ -482,7 +503,6 @@ spec2 <- spec1 |>
 #         spec3
 #     ) |> print()
 # }
-
 
 # rev_set_arima
 # for (k in 1:100) {
@@ -701,21 +721,39 @@ spec2 <- spec1 |>
 #     ) |> print()
 # }
 
-
 # rev_set_tradingdays
 for (k in 1:100) {
-
-    val_option <- sample(c(NA_character_, "TradingDays", "WorkingDays", "TD2c", "TD3",
-                           "TD3c", "TD4", "None", "UserDefined"), size = 1L)
+    val_option <- sample(
+        c(
+            NA_character_,
+            "TradingDays",
+            "WorkingDays",
+            "TD2c",
+            "TD3",
+            "TD3c",
+            "TD4",
+            "None",
+            "UserDefined"
+        ),
+        size = 1L
+    )
     val_coef <- sample(list(NULL, NA_real_, runif(1)), size = 1L)[[1L]]
     val_stocktd <- NA_integer_
-    val_uservariable <- sample(list(NULL, NA_character_, sample(c(0:9, letters), size = 4) |> paste0(collapse = "")), size = 1)[[1L]]
+    val_uservariable <- sample(
+        list(
+            NULL,
+            NA_character_,
+            sample(c(0:9, letters), size = 4) |> paste0(collapse = "")
+        ),
+        size = 1
+    )[[1L]]
     if (is.na(val_option) || val_option == "None") {
         val_stocktd <- sample(0L:5L, size = 1L)
         val_coef <- NULL
         val_uservariable <- NULL
     } else if (!is.na(val_option) && val_option == "UserDefined") {
-        val_uservariable <- sample(c(0:9, letters), size = 4) |> paste0(collapse = "")
+        val_uservariable <- sample(c(0:9, letters), size = 4) |>
+            paste0(collapse = "")
     }
 
     val_test <- sample(c(NA_character_, "None", "Remove", "Add"), size = 1L)
@@ -727,13 +765,28 @@ for (k in 1:100) {
         val_test <- "None"
     }
 
-    val_calendar.name <- sample(c(NA_character_, sample(c(0:9, letters), size = 3) |> paste0(collapse = "")), size = 1)
+    val_calendar.name <- sample(
+        c(
+            NA_character_,
+            sample(c(0:9, letters), size = 3) |> paste0(collapse = "")
+        ),
+        size = 1
+    )
 
     val_coef.type <- sample(c(NA_character_, "Fixed", "Estimated"), size = 1L)
-    val_automatic <- sample(c(NA_character_, "Unused", "WaldTest", "Aic", "Bic"), size = 1L)
+    val_automatic <- sample(
+        c(NA_character_, "Unused", "WaldTest", "Aic", "Bic"),
+        size = 1L
+    )
     val_autoadjust <- sample(c(NA, TRUE, FALSE), size = 1L)
-    val_leapyear.coef.type <- sample(c(NA_character_, "Fixed", "Estimated"), size = 1L)
-    val_leapyear <- sample(c(NA_character_, "LeapYear", "LengthOfPeriod", "None"), size = 1L)
+    val_leapyear.coef.type <- sample(
+        c(NA_character_, "Fixed", "Estimated"),
+        size = 1L
+    )
+    val_leapyear <- sample(
+        c(NA_character_, "LeapYear", "LengthOfPeriod", "None"),
+        size = 1L
+    )
 
     spec2 <- rjd3x13::x13_spec("RSA3") |>
         rjd3toolkit::set_tradingdays(
@@ -751,16 +804,18 @@ for (k in 1:100) {
             leapyear.coef.type = val_leapyear.coef.type
         )
 
-
     spec3 <- eval(
-        expr = parse(text = paste0(
-            "rjd3x13::x13_spec(\"RSA3\") |>\n",
-            rev_set_tradingdays(spec2)
-        )),
+        expr = parse(
+            text = paste0(
+                "rjd3x13::x13_spec(\"RSA3\") |>\n",
+                rev_set_tradingdays(spec2)
+            )
+        ),
         envir = .GlobalEnv
     )
     waldo::compare(
         spec2,
         spec3
-    ) |> print()
+    ) |>
+        print()
 }
