@@ -53,6 +53,7 @@ random_span <- function() {
     return(out)
 }
 
+#' @importFrom rjd3toolkit add_outlier
 random_add_outlier <- function(x) {
     args <- list(x = x)
 
@@ -72,6 +73,7 @@ random_add_outlier <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3x13 set_x11
 random_set_x11 <- function(x) {
     args <- list(x = x)
 
@@ -108,6 +110,7 @@ random_set_x11 <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit set_transform
 random_set_transform <- function(x) {
     args <- list(x = x)
 
@@ -125,6 +128,7 @@ random_set_transform <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit set_easter
 random_set_easter <- function(x) {
     args <- list(x = x)
 
@@ -139,6 +143,7 @@ random_set_easter <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit set_tradingdays
 random_set_tradingdays <- function(x) {
     args <- list(x = x)
 
@@ -175,6 +180,7 @@ random_set_tradingdays <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit set_arima
 random_set_arima <- function(x) {
     args <- list(x = x)
 
@@ -193,6 +199,7 @@ random_set_arima <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit set_automodel
 random_set_automodel <- function(x) {
     args <- list(x = x)
 
@@ -213,6 +220,7 @@ random_set_automodel <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit set_benchmarking
 random_set_benchmarking <- function(x) {
     args <- list(x = x)
 
@@ -227,6 +235,7 @@ random_set_benchmarking <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit add_ramp
 random_add_ramp <- function(x) {
     args <- list(x = x)
 
@@ -248,6 +257,7 @@ random_add_ramp <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit set_basic
 random_set_basic <- function(x) {
     args <- list(x = x)
 
@@ -259,6 +269,7 @@ random_set_basic <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit set_estimate
 random_set_estimate <- function(x) {
     args <- list(x = x)
 
@@ -271,6 +282,7 @@ random_set_estimate <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit set_outlier
 random_set_outlier <- function(x) {
     args <- list(x = x)
 
@@ -295,6 +307,7 @@ random_set_outlier <- function(x) {
     return(output)
 }
 
+#' @importFrom rjd3toolkit add_usrdefvar
 random_add_usrdefvar <- function(x) {
     output <- x
 
@@ -318,3 +331,46 @@ random_add_usrdefvar <- function(x) {
 
     return(output)
 }
+
+#' @title Random JDemetra+ Specifications Generator
+#'
+#' @description
+#' `random_spec()` allows you to create a random specification based on a set
+#' of helper functions (auxiliary functions).
+#' These specifications are created from scratch.
+#'
+#' @details
+#' The objective is to enable:
+#'
+#' * examples
+#' * tests of other functions (notably for reverse engineering)
+#' * other tests and demonstrations
+#'
+#' @returns a JD+ Specification
+#'
+#' @examples
+#' spec <- random_spec()
+#'
+#' @name random-spec
+#' @export
+#' @importFrom rjd3x13 x13_spec
+#'
+random_spec <- function() {
+    output <- rjd3x13::x13_spec("RSA3") |>
+        random_add_outlier() |>
+        random_add_ramp() |>
+        random_add_usrdefvar() |>
+        random_set_x11() |>
+        random_set_automodel() |>
+        random_set_arima() |>
+        random_set_transform() |>
+        random_set_easter() |>
+        random_set_basic() |>
+        random_set_estimate() |>
+        random_set_outlier() |>
+        random_set_tradingdays() |>
+        random_set_benchmarking()
+
+    return(output)
+}
+

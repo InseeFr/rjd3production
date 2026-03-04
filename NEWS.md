@@ -11,6 +11,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 * Shiny app to compare WS with button to export table
+* New functions to reverse-engineer a specification
+* New functions to create random specifications
 
 
 ## [1.0.0] - 2025-08-29
