@@ -1,20 +1,20 @@
-#' @title Diagnostics and Regression Selection for X13 Models
+#' @title Diagnostics Extraction on Calendar Correction with different sets of regressors
 #'
 #' @description
-#' These functions provide tools to extract diagnostics from X13 models,
-#' evaluate sets of specifications, and select the most appropriate
-#' regression set (with or without leap-year effect).
+#' These functions allow to extract diagnostics from X13-Arima models with different sets of calendar regressors
+#' in order to evaluate different specifications and select the most appropriate
+#' calendar regressors set (with or without leap-year effect) to correct a given series.
 #'
 #' @details
 #' - `get_LY_info()` extracts coefficient and p-value of the leap-year (LY) effect.
 #' - `one_diagnostic()` applies one X13 specification to a series and computes diagnostics.
 #' - `all_diagnostics()` evaluates all specifications in a set and summarizes diagnostics.
 #' - `verif_LY()` checks whether the leap-year effect should be kept or removed.
-#' - `select_reg_one_series()` selects the best regression set for a single series.
+#' - `select_reg_one_series()` selects the best calendar regressors set for a single series.
 #'
 #' @param smod [list] Result of [summary()] applied to an X13 model.
-#' @param series [\link[stats]{ts} or numeric] Time series to analyze.
-#' @param spec [list] An X13 specification (from [rjd3x13::x13_spec()]).
+#' @param series [\link[stats]{ts} or numeric] Time series to analyse.
+#' @param spec [list] A X13 specification (from [rjd3x13::x13_spec()]).
 #' @param context [list] Modelling context with regressors and calendars
 #'   (from [rjd3toolkit::modelling_context()]).
 #' @param jeu [character] Name of the tested regression set.
@@ -73,17 +73,17 @@ NULL
 #' @rdname diagnostics_selection
 get_LY_info <- function(smod, verbose = TRUE) {
     reg_table <- smod$preprocessing$xregs
-    idx <- which(grepl(pattern = ".LY", x = rownames(reg_table), fixed = TRUE))
-    idx2 <- which(grepl(
+    idx <- grep(pattern = ".LY", x = rownames(reg_table), fixed = TRUE)
+    idx2 <- grep(
         pattern = "usertd",
         x = rownames(reg_table),
         fixed = TRUE
-    ))
-    if (length(idx) == 0L & length(idx2) == 0L) {
+    )
+    if (length(idx) == 0L && length(idx2) == 0L) {
         return(data.frame(LY_coeff = NA, LY_p_value = NA))
     } else if (length(idx) > 1L) {
         stop("Plusieurs variables portent le nom LY.")
-    } else if (length(idx) == 0L & length(idx2) == 1L) {
+    } else if (length(idx) == 0L && length(idx2) == 1L) {
         idx <- idx2
     }
     LY_coeff <- reg_table[idx, "Estimate"]
@@ -146,7 +146,7 @@ all_diagnostics <- function(series, specs_set, context) {
 
 #' @rdname diagnostics_selection
 verif_LY <- function(jeu, diags) {
-    if (!grepl(pattern = "LY", x = jeu)) {
+    if (!grepl(pattern = "LY", x = jeu, ignore.case = TRUE)) {
         return(jeu)
     }
     id_jeu <- which(diags$regs == jeu)
@@ -156,14 +156,19 @@ verif_LY <- function(jeu, diags) {
     mode <- diags[id_jeu, "mode"]
 
     if (jeu == "LY") {
-        jeu_sans_LY <- "Pas_CJO"
+        jeu_without_LY <- "No_TD"
     } else {
-        jeu_sans_LY <- gsub(pattern = "_LY", replacement = "", x = jeu)
+        jeu_without_LY <- gsub(
+            pattern = "_LY",
+            replacement = "",
+            x = jeu,
+            ignore.case = TRUE
+        )
     }
-    id_jeu_sans_LY <- which(diags$regs == jeu_sans_LY)
+    id_jeu_without_LY <- which(diags$regs == jeu_without_LY)
 
     # On reprend le choix avec et sans LY
-    diags_jeu <- diags[c(id_jeu, id_jeu_sans_LY), ]
+    diags_jeu <- diags[c(id_jeu, id_jeu_without_LY), ]
 
     if (diags_jeu$note[1] != diags_jeu$note[2]) {
         return(rownames(diags_jeu)[which.min(diags_jeu$note)])
@@ -181,7 +186,7 @@ verif_LY <- function(jeu, diags) {
 
     jeu_final <- ifelse(
         test = coef_incoherent | coef_non_signif,
-        yes = jeu_sans_LY,
+        yes = jeu_without_LY,
         no = jeu
     )
 
@@ -206,30 +211,27 @@ select_reg_one_series <- function(
     }
 
     diags <- all_diagnostics(series, specs_set = specs_set, context = context)
-    diags_wo_na <- diags |>
-        subset(!is.na(diags$note) & !is.na(diags$aicc))
+    diags_wo_na <- diags[!is.na(diags$note) & !is.na(diags$aicc), ]
 
     if (nrow(diags_wo_na) == 0) {
         stop(
             "Erreur lors du calcul de l'aicc et des p-value.
              Aucun jeu de regresseur n'a pu \u00eatre s\u00e9lectionn\u00e9. ",
-            ifelse(name == "", "", paste0("(S\u00e9rie ", name, ")"))
+            ifelse(nzchar(name), paste0("(S\u00e9rie ", name, ")"), "")
         )
     } else if (all(diags_wo_na$note == 0)) {
         warning(
             "Aucun jeu de regresseur n'est significatif. ",
-            ifelse(name == "", "", paste0("(S\u00e9rie ", name, ")"))
+            ifelse(nzchar(name), paste0("(S\u00e9rie ", name, ")"), "")
         )
     }
 
-    best_regs <- diags_wo_na |>
-        subset(diags_wo_na$note == min(diags_wo_na$note, na.rm = TRUE)) |>
-        subset(diags_wo_na$aicc == min(diags_wo_na$aicc, na.rm = TRUE))
+    best_regs <- diags_wo_na[order(diags_wo_na$note, diags_wo_na$aicc), ]
 
     return(verif_LY(jeu = best_regs[1, "regs"], diags = diags))
 }
 
-#' @title Select Regressors for One or Multiple Series
+#' @title Select Calendar Regressors for One or Multiple Series
 #'
 #' @description
 #' Applies the X13 regression selection procedure to one or more time series.
@@ -238,6 +240,8 @@ select_reg_one_series <- function(
 #'
 #' @param series [\link[stats]{ts} or mts or matrix or \link[base]{data.frame}] A univariate time series (`ts`) or a
 #'   multivariate series (columns as separate series).
+#' @param context [list] Modeling context created by
+#' [rjd3toolkit::modelling_context()].
 #' @inheritParams diagnostics_selection
 #'
 #' @return A data.frame with two columns:
@@ -253,9 +257,16 @@ select_reg_one_series <- function(
 #' # Multiple series
 #' select_regs(Seatbelts[, -8])
 #'
+#' # Restrict regressors sets
+#' my_context <- create_insee_context()
+#' my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
+#' select_regs(Seatbelts[, -8], context = my_context)
+#'
 #' @export
-select_regs <- function(series, ...) {
-    context <- create_insee_context(s = series)
+select_regs <- function(series, context = NULL, ...) {
+    if (is.null(context)) {
+        context <- create_insee_context(s = series)
+    }
     specs_set <- create_specs_set(context = context, ...)
 
     if (is.null(ncol(series))) {

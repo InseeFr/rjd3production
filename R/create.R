@@ -1,11 +1,11 @@
 #' @title INSEE Regressors and Modelling Context
 #'
 #' @description
-#' These functions allow constructing the standard regressors and context
+#' These functions allow to construct the standard regressors and modelling context
 #' used by INSEE for seasonal adjustment:
 #'
 #' - [create_french_calendar()] creates the French national calendar.
-#' - [create_insee_regressors()] generates working day regressors and leap-year effect (LY).
+#' - [create_insee_regressors()] generates trading day regressors and leap-year effect (LY).
 #' - [create_insee_regressors_sets()] organizes these regressors into standard sets (REG1, REG2, …, REG6, with or without LY).
 #' - [create_insee_context()] combines the regressors and calendar into a `modelling_context` object
 #'   that can be used directly with `rjd3toolkit`.
@@ -14,6 +14,7 @@
 #' @param frequency [integer] Series frequency (default `12L`).
 #' @param length [integer] Series length (default `492L`).
 #' @param s [\link[base]{numeric} or NULL] Optional argument for adjustment (passed to `rjd3toolkit`).
+#' @param cal a calendar of class `JD3_CALENDAR`.
 #'
 #' @return
 #' - `create_french_calendar()` returns a `national_calendar` object.
@@ -43,12 +44,10 @@ NULL
 
 
 #' @rdname insee_modelling
-#' @importFrom rjd3toolkit national_calendar
-#' @importFrom rjd3toolkit fixed_day
-#' @importFrom rjd3toolkit special_day
+#' @importFrom rjd3toolkit national_calendar fixed_day special_day
 #' @export
 create_french_calendar <- function() {
-    cal <- rjd3toolkit::national_calendar(
+    cal_FR <- rjd3toolkit::national_calendar(
         days = list(
             Bastille_day = rjd3toolkit::fixed_day(7, 14), # Bastille Day
             Victory_day = rjd3toolkit::fixed_day(
@@ -68,11 +67,10 @@ create_french_calendar <- function() {
         )
     )
 
-    return(cal)
+    return(cal_FR)
 }
 
-#' @importFrom rjd3toolkit calendar_td
-#' @importFrom rjd3toolkit lp_variable
+#' @importFrom rjd3toolkit calendar_td lp_variable
 #' @rdname insee_modelling
 #' @export
 create_insee_regressors <- function(
@@ -94,7 +92,7 @@ create_insee_regressors <- function(
         REG6 = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
     )
 
-    regs_cjo <- lapply(
+    regs_td <- lapply(
         X = groups,
         FUN = rjd3toolkit::calendar_td,
         calendar = cal,
@@ -104,9 +102,9 @@ create_insee_regressors <- function(
         s = s
     ) |>
         do.call(what = cbind)
-    cols <- colnames(regs_cjo) |>
+    cols <- colnames(regs_td) |>
         gsub(pattern = ".", replacement = "_", fixed = TRUE)
-    regs_cjo <- cbind(
+    regs_td <- cbind(
         LY = rjd3toolkit::lp_variable(
             frequency = frequency,
             start = start,
@@ -114,11 +112,11 @@ create_insee_regressors <- function(
             s = s,
             type = "LeapYear"
         ),
-        regs_cjo
+        regs_td
     )
-    colnames(regs_cjo)[-1] <- cols
+    colnames(regs_td)[-1] <- cols
 
-    return(regs_cjo)
+    return(regs_td)
 }
 
 #' @rdname insee_modelling
@@ -130,7 +128,7 @@ create_insee_regressors_sets <- function(
     s = NULL,
     cal = NULL
 ) {
-    regs_cjo <- create_insee_regressors(
+    regs_td <- create_insee_regressors(
         frequency = frequency,
         start = start,
         length = length,
@@ -138,41 +136,58 @@ create_insee_regressors_sets <- function(
         cal = cal
     )
 
-    n <- colnames(regs_cjo)
+    n <- colnames(regs_td)
+    id_REG1 <- startsWith(n, prefix = "REG1")
+    id_REG2 <- startsWith(n, prefix = "REG2")
+    id_REG3 <- startsWith(n, prefix = "REG3")
+    id_REG5 <- startsWith(n, prefix = "REG5")
+    id_REG6 <- startsWith(n, prefix = "REG6")
+    id_LY <- startsWith(n, prefix = "LY")
 
-    REG1 <- regs_cjo[, startsWith(n, prefix = "REG1"), drop = FALSE]
+    REG1 <- regs_td[, id_REG1, drop = FALSE]
     attr(REG1, "class") <- c("mts", "ts", "matrix", "array")
 
-    LY <- regs_cjo[, startsWith(n, prefix = "LY"), drop = FALSE]
+    LY <- regs_td[, id_LY, drop = FALSE]
     attr(LY, "class") <- c("mts", "ts", "matrix", "array")
+
+    REG2 <- regs_td[, id_REG2]
+    colnames(REG2) <- substr(colnames(REG2), 6, 50)
+
+    REG3 <- regs_td[, id_REG3]
+    colnames(REG3) <- substr(colnames(REG3), 6, 50)
+
+    REG5 <- regs_td[, id_REG5]
+    colnames(REG5) <- substr(colnames(REG5), 6, 50)
+
+    REG6 <- regs_td[, id_REG6]
+    colnames(REG6) <- substr(colnames(REG6), 6, 50)
+
+    REG1_LY <- regs_td[, id_REG1 | id_LY]
+
+    REG2_LY <- regs_td[, id_REG2 | id_LY]
+    colnames(REG2_LY)[-1] <- substr(colnames(REG2_LY)[-1], 6, 50)
+
+    REG3_LY <- regs_td[, id_REG3 | id_LY]
+    colnames(REG3_LY)[-1] <- substr(colnames(REG3_LY)[-1], 6, 50)
+
+    REG5_LY <- regs_td[, id_REG5 | id_LY]
+    colnames(REG5_LY)[-1] <- substr(colnames(REG5_LY)[-1], 6, 50)
+
+    REG6_LY <- regs_td[, id_REG6 | id_LY]
+    colnames(REG6_LY)[-1] <- substr(colnames(REG6_LY)[-1], 6, 50)
 
     sets <- list(
         REG1 = REG1,
-        REG2 = regs_cjo[, startsWith(n, prefix = "REG2")],
-        REG3 = regs_cjo[, startsWith(n, prefix = "REG3")],
-        REG5 = regs_cjo[, startsWith(n, prefix = "REG5")],
-        REG6 = regs_cjo[, startsWith(n, prefix = "REG6")],
+        REG2 = REG2,
+        REG3 = REG3,
+        REG5 = REG5,
+        REG6 = REG6,
         LY = LY,
-        REG1_LY = regs_cjo[,
-            startsWith(n, prefix = "REG1") |
-                startsWith(n, prefix = "LY")
-        ],
-        REG2_LY = regs_cjo[,
-            startsWith(n, prefix = "REG2") |
-                startsWith(n, prefix = "LY")
-        ],
-        REG3_LY = regs_cjo[,
-            startsWith(n, prefix = "REG3") |
-                startsWith(n, prefix = "LY")
-        ],
-        REG5_LY = regs_cjo[,
-            startsWith(n, prefix = "REG5") |
-                startsWith(n, prefix = "LY")
-        ],
-        REG6_LY = regs_cjo[,
-            startsWith(n, prefix = "REG6") |
-                startsWith(n, prefix = "LY")
-        ]
+        REG1_LY = REG1_LY,
+        REG2_LY = REG2_LY,
+        REG3_LY = REG3_LY,
+        REG5_LY = REG5_LY,
+        REG6_LY = REG6_LY
     )
 
     return(sets)
@@ -202,58 +217,57 @@ create_insee_context <- function(
 }
 
 
-#' @title Création d'un ensemble de spécifications X13
+#' @title Creating a set of X13 specifications
 #'
 #' @description
-#' Construit un jeu de spécifications X13 à partir d'une date de début,
-#' d'un contexte (variables explicatives) et éventuellement d'outliers.
+#' Builds a set of X13 specifications from a start date,
+#' a modelling context (explanatory variables) and outliers (optional).
 #'
-#' @param span_start [character] Date de début de l'estimation (format "YYYY-MM-DD").
-#' @param context [list] Contexte de modélisation créé par
-#'   [rjd3toolkit::modelling_context()].
-#' @param outliers [\link[base]{list} or NULL] Liste optionnelle avec les éléments :
-#'   \itemize{
-#'     \item `type` : vecteur de types d'outliers (ex. "AO", "LS", "TC")
-#'     \item `date` : vecteur de dates correspondantes
-#'   }
+#' @param spec_0 Basic specification
+#' @param span_start [character] Estimation start date (format "YYYY-MM-DD").
+#' @param context [list] Modeling context created by
+#' [rjd3toolkit::modelling_context()].
+#' @param outliers [\link[base]{list} or NULL] Optional list with elements :
+#' - `type`: vector of outlier types (e.g. "AO", "LS", "TC")
+#' - `date`: vector of corresponding dates
 #'
-#' @return Une liste de spécifications X13 nommées (CJO et variantes).
+#' @return A list of named X13 specifications (TD and variants).
 #'
 #' @examples
 #' my_context <- create_insee_context()
 #' create_specs_set(context = my_context)
 #'
 #' @importFrom rjd3x13 x13_spec
-#' @importFrom rjd3toolkit set_estimate
-#' @importFrom rjd3toolkit add_outlier
-#' @importFrom rjd3toolkit set_tradingdays
+#' @importFrom rjd3toolkit set_estimate add_outlier set_tradingdays
 #' @export
-create_specs_set <- function(context, outliers = NULL, span_start = NULL) {
-    all_vars <- context$variables
-    named_vars <- lapply(seq_along(all_vars), \(k) {
-        paste0(names(all_vars)[k], ".", names(all_vars[[k]]))
-    })
-    names(named_vars) <- names(all_vars)
-
-    spec_0 <- rjd3x13::x13_spec(name = "RSA3")
-
+create_specs_set <- function(
+    spec_0 = NULL,
+    context = NULL,
+    outliers = NULL,
+    span_start = NULL
+) {
+    if (is.null(context)) {
+        context <- create_insee_context()
+    }
+    var_names <- get_named_variables(context)
+    if (is.null(spec_0)) {
+        spec_0 <- rjd3x13::x13_spec(name = "RSA3")
+    }
     if (!is.null(span_start)) {
         spec_0 <- spec_0 |>
             rjd3toolkit::set_estimate(type = "From", d0 = span_start)
     }
-
     if (!is.null(outliers)) {
         spec_0 <- spec_0 |>
             rjd3toolkit::add_outlier(
                 type = outliers$type,
-                date = outliers$date |> as.character()
+                date = as.character(outliers$date)
             )
     }
-
     specs_set <- c(
-        list(Pas_CJO = spec_0),
+        list(No_TD = spec_0),
         lapply(
-            X = named_vars,
+            X = var_names,
             FUN = rjd3toolkit::set_tradingdays,
             x = spec_0,
             option = "UserDefined",
@@ -261,6 +275,5 @@ create_specs_set <- function(context, outliers = NULL, span_start = NULL) {
             calendar.name = NA
         )
     )
-
     return(specs_set)
 }

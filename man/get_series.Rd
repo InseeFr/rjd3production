@@ -2,7 +2,7 @@
 % Please edit documentation in R/compare.R
 \name{get_series}
 \alias{get_series}
-\title{Extract all series from a SAI}
+\title{Extract all series from a SA-Item}
 \usage{
 get_series(jsai)
 }
@@ -22,7 +22,7 @@ A \code{data.frame} with columns:
 }
 \description{
 Extracts all available time series (pre-adjustment, decomposition, and final)
-from a seasonal adjustment item (\code{jsai}) inside a Demetra+ workspace.
+from a seasonal adjustment item (\code{jsai}) inside a JDemetra+ workspace.
 }
 \examples{
 \dontrun{

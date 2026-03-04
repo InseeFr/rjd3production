@@ -1,8 +1,8 @@
-#' @title Extract all series from a SAI
+#' @title Extract all series from a SA-Item
 #'
 #' @description
 #' Extracts all available time series (pre-adjustment, decomposition, and final)
-#' from a seasonal adjustment item (`jsai`) inside a Demetra+ workspace.
+#' from a seasonal adjustment item (`jsai`) inside a JDemetra+ workspace.
 #'
 #' @param jsai A Java Seasonal Adjustment Item object, typically obtained via
 #'   [jsap_sai()] after opening and computing a workspace with [jws_open()]
@@ -27,12 +27,13 @@
 #' head(df)
 #' }
 #'
+#' @importFrom rjd3workspace read_sai sai_name
+#' @importFrom zoo as.Date
 #' @export
 get_series <- function(jsai) {
     res <- rjd3workspace::read_sai(jsai)$results
     if (is.null(res)) {
-        stop("Please compute your WS.")
-        return(invisible(NULL))
+        stop("Please compute your workspace")
     }
     output <- NULL
     all_series <- c(res$preadjust, res$decomposition, res$final)
@@ -52,13 +53,14 @@ get_series <- function(jsai) {
     return(cbind(SAI = rjd3workspace::sai_name(jsai), output))
 }
 
-#' @title Retrieve a SAI by its name
+#' @title Retrieve a SA-Item by its name
 #'
 #' @description
 #' Searches a workspace for a seasonal adjustment item (SAI) whose name matches
 #' the user-supplied string and returns the corresponding object.
 #'
-#' @param jws A Java Workspace object, as returned by [jws_open()].
+#' @param jws A Java Workspace object, as returned by [jws_open()] or
+#' [jws_new()].
 #' @param series_name [character] Name of the SAI to retrieve.
 #'
 #' @return A Java Seasonal Adjustment Item object (`jsai`).
@@ -73,6 +75,7 @@ get_series <- function(jsai) {
 #' df <- get_series(jsai)
 #' head(df)
 #' }
+#' @importFrom rjd3workspace jws_sap sap_sai_names jsap_sai
 #'
 #' @export
 get_jsai_by_name <- function(jws, series_name) {
@@ -91,7 +94,7 @@ get_jsai_by_name <- function(jws, series_name) {
 #' @title Compare series across workspaces
 #'
 #' @description
-#' Reads multiple Demetra+ workspaces and extracts comparable series
+#' Reads multiple JDemetra+ workspaces and extracts comparable series
 #' (by SAI and series type), returning them in a tidy format.
 #' This is particularly useful to compare results across different
 #' specifications (e.g. RSA3 vs RSA5).
@@ -114,14 +117,10 @@ get_jsai_by_name <- function(jws, series_name) {
 #'
 #' df <- compare(path1, path2, series_names = "series_1")
 #' head(df)
-#'
-#' # In a Shiny app, you can filter and plot:
-#' library(ggplot2)
-#' ggplot(df, aes(x = date, y = value, color = ws, linetype = series)) +
-#'   geom_line() +
-#'   geom_point()
 #' }
 #'
+#' @importFrom rjd3workspace jws_open jws_sap sap_sai_names jws_compute
+#' @importFrom tools file_path_sans_ext
 #' @export
 compare <- function(..., series_names) {
     ws_paths <- list(...) |>
@@ -166,16 +165,22 @@ compare <- function(..., series_names) {
 #'
 #' @examples
 #' \dontrun{
-#' df <- compare(c(path1, path2), series_names = "series_1")
+#' df <- compare(path1, path2)
 #' run_app(df)
 #' }
 #'
+#' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput checkboxInput br downloadButton h4 uiOutput reactive renderUI downloadHandler shinyApp
+#' @importFrom dygraphs dygraphOutput renderDygraph dygraph
+#' @importFrom tidyr pivot_wider
+#' @importFrom flextable flextable autofit htmltools_value
+#' @importFrom utils write.csv
+#'
 #' @export
 run_app <- function(data, ...) {
-    stopifnot(all(c("ws", "SAI", "series", "date", "value") %in% names(data)))
+    stopifnot(c("ws", "SAI", "series", "date", "value") %in% names(data))
 
     ui <- shiny::fluidPage(
-        shiny::titlePanel("Comparateur de séries"),
+        shiny::titlePanel("Comparateur de s\u00e9ries"),
         shiny::sidebarLayout(
             shiny::sidebarPanel(
                 shiny::selectInput(
@@ -186,7 +191,7 @@ run_app <- function(data, ...) {
                 ),
                 shiny::selectInput(
                     "serie",
-                    "Choisir une série :",
+                    "Choisir une s\u00e9rie :",
                     choices = unique(data$series),
                     selected = unique(data$series)[1]
                 ),
@@ -197,7 +202,7 @@ run_app <- function(data, ...) {
                 ),
                 shiny::checkboxInput(
                     "filter_by_serie",
-                    "Filtrer par série",
+                    "Filtrer par s\u00e9rie",
                     value = TRUE
                 ),
                 shiny::br(),
@@ -209,7 +214,7 @@ run_app <- function(data, ...) {
             shiny::mainPanel(
                 dygraphs::dygraphOutput("plot", height = "400px"),
                 shiny::br(),
-                shiny::h4("Tableau des données affichées"),
+                shiny::h4("Tableau des donn\u00e9es affich\u00e9es"),
                 shiny::uiOutput("table_ui") # l’objet HTML qui contiendra le flextable
             )
         )
@@ -244,7 +249,7 @@ run_app <- function(data, ...) {
         output$plot <- dygraphs::renderDygraph({
             dygraphs::dygraph(
                 data_wide(),
-                main = paste("SAI:", input$sai, "| Série:", input$serie)
+                main = paste("SAI:", input$sai, "| S\u00e9rie:", input$serie)
             )
         })
 

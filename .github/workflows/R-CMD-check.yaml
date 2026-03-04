@@ -68,7 +68,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: any::rcmdcheck, github::eddelbuettel/rprotobuf@0.4.23
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2

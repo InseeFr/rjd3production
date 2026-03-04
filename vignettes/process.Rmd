@@ -1,0 +1,19 @@
+---
+title: "Production processus"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Production processus}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library("rjd3production")
+```

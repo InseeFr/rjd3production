@@ -21,7 +21,7 @@ seasonal adjustment results stored in a \code{data.frame} returned by \code{\lin
 }
 \examples{
 \dontrun{
-df <- compare(c(path1, path2), series_names = "series_1")
+df <- compare(path1, path2)
 run_app(df)
 }
 

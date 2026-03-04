@@ -22,8 +22,6 @@
 ^appveyor\.yml$
 .travis.yml
 
-cran-comments.md
-
 ^\.DS_Store$
 
 ^revdep$
@@ -45,4 +43,8 @@ cran-comments.md
 
 ^man-roxygen$
 ^organisation.yml$
+cran-comments.md
 ^cran-comments\.md$
+
+^lychee\.toml$
+^\.lycheeignore$

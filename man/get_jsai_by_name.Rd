@@ -2,12 +2,13 @@
 % Please edit documentation in R/compare.R
 \name{get_jsai_by_name}
 \alias{get_jsai_by_name}
-\title{Retrieve a SAI by its name}
+\title{Retrieve a SA-Item by its name}
 \usage{
 get_jsai_by_name(jws, series_name)
 }
 \arguments{
-\item{jws}{A Java Workspace object, as returned by \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}}.}
+\item{jws}{A Java Workspace object, as returned by \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}} or
+\code{\link[rjd3workspace:jws_new]{rjd3workspace::jws_new()}}.}
 
 \item{series_name}{\link{character} Name of the SAI to retrieve.}
 }
@@ -28,5 +29,4 @@ jsai <- get_jsai_by_name(jws, "series_1")
 df <- get_series(jsai)
 head(df)
 }
-
 }
