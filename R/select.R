@@ -269,12 +269,14 @@ select_regs <- function(series, context = NULL, ...) {
     }
     specs_set <- create_specs_set(context = context, ...)
 
-    if (is.null(ncol(series))) {
-        return(select_reg_one_series(
-            series,
-            specs_set = specs_set,
-            context = context
-        ))
+    # Ne marche pas avec ABS
+    # if (!is.ts(series)) {
+    #     stop("Series must be (m)ts object.")
+    # }
+    if (is.ts(series) && !is.mts(series)) {
+        attr(series, "dim") <- c(length(series), 1L)
+        attr(series, "class") <- c("mts", "ts", "matrix", "array")
+        colnames(series) <- "my_series"
     }
 
     output <- sapply(X = seq_len(ncol(series)), FUN = function(k) {
@@ -326,5 +328,5 @@ select_regs <- function(series, context = NULL, ...) {
     })
 
     output <- cbind(series = colnames(series), reg_selected = output)
-    return(output)
+    return(as.data.frame(output))
 }
