@@ -13,7 +13,7 @@ jsap <- jws_sap_new(jws, name = "ABS")
 
 for (id_series in seq_len(ncol(ABS))) {
     # Outliers - domain
-    nb_out <- sample(10, size = 1)
+    nb_out <- sample.int(10, size = 1)
     out_date <- paste(
         sample(1983:2017, size = nb_out, replace = TRUE),
         sample(sprintf("%02d", 1:12), size = nb_out, replace = TRUE),
@@ -42,7 +42,7 @@ for (id_series in seq_len(ncol(ABS))) {
 
     if (td == "Stock") {
         dspec <- dspec |>
-            set_tradingdays(stocktd = sample(1:31, size = 1))
+            set_tradingdays(stocktd = sample.int(31, size = 1))
     } else if (td == "UserDefined") {
         set <- sample(names(context_FR$variables), size = 1)
         dspec <- dspec |>
@@ -71,7 +71,7 @@ for (id_series in seq_len(ncol(ABS))) {
     )
 
     # Outliers - estimation
-    nb_out <- sample(10, size = 1)
+    nb_out <- sample.int(10, size = 1)
     out_date <- paste(
         sample(1983:2017, size = nb_out, replace = TRUE),
         sample(sprintf("%02d", 1:12), size = nb_out, replace = TRUE),

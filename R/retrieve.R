@@ -97,7 +97,8 @@ retrieve_outliers <- function(
     ps_outliers <- data.frame(
         series = character(),
         type = character(),
-        date = character()
+        date = character(),
+        stringsAsFactors = FALSE
     )
 
     for (id_sai in seq_along(sap)) {

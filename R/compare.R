@@ -169,7 +169,9 @@ compare <- function(..., series_names) {
 #' run_app(df)
 #' }
 #'
-#' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput checkboxInput br downloadButton h4 uiOutput reactive renderUI downloadHandler shinyApp
+#' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput
+#' @importFrom shiny checkboxInput br downloadButton h4 uiOutput reactive
+#' @importFrom shiny renderUI downloadHandler shinyApp
 #' @importFrom dygraphs dygraphOutput renderDygraph dygraph
 #' @importFrom tidyr pivot_wider
 #' @importFrom flextable flextable autofit htmltools_value

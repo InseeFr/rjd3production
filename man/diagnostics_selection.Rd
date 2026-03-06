@@ -29,8 +29,8 @@ select_reg_one_series(series, name = "", specs_set = NULL, context = NULL, ...)
 \item{context}{\link{list} Modelling context with regressors and calendars
 (from \code{\link[rjd3toolkit:modelling_context]{rjd3toolkit::modelling_context()}}).}
 
-\item{specs_set}{[\link[base]{list} or NULL] List of X13 specifications. If \code{NULL},
-generated via \code{\link[=create_specs_set]{create_specs_set()}}.}
+\item{specs_set}{[\link[base]{list} or NULL] List of X13 specifications. If
+\code{NULL}, generated via \code{\link[=create_specs_set]{create_specs_set()}}.}
 
 \item{jeu}{\link{character} Name of the tested regression set.}
 
@@ -41,8 +41,10 @@ generated via \code{\link[=create_specs_set]{create_specs_set()}}.}
 \item{...}{Additional arguments passed to \code{\link[=create_specs_set]{create_specs_set()}} controlling
 the generation of X13 specifications. Possible arguments include:
 \describe{
-\item{outliers}{Optional list of outliers with elements \code{type} (vector of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
-\item{span_start}{Starting date of the estimation (character, format \code{"YYYY-MM-DD"}).}
+\item{outliers}{Optional list of outliers with elements \code{type} (vector
+of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
+\item{span_start}{Starting date of the estimation (character, format
+\code{"YYYY-MM-DD"}).}
 \item{...}{Other arguments accepted by \code{\link[=create_specs_set]{create_specs_set()}}.}
 }}
 }
@@ -56,17 +58,22 @@ the generation of X13 specifications. Possible arguments include:
 }
 }
 \description{
-These functions allow to extract diagnostics from X13-Arima models with different sets of calendar regressors
-in order to evaluate different specifications and select the most appropriate
-calendar regressors set (with or without leap-year effect) to correct a given series.
+These functions allow to extract diagnostics from X13-Arima models with
+different sets of calendar regressors in order to evaluate different
+specifications and select the most appropriate calendar regressors set (with
+or without leap-year effect) to correct a given series.
 }
 \details{
 \itemize{
-\item \code{get_LY_info()} extracts coefficient and p-value of the leap-year (LY) effect.
-\item \code{one_diagnostic()} applies one X13 specification to a series and computes diagnostics.
-\item \code{all_diagnostics()} evaluates all specifications in a set and summarizes diagnostics.
+\item \code{get_LY_info()} extracts coefficient and p-value of the leap-year (LY)
+effect.
+\item \code{one_diagnostic()} applies one X13 specification to a series and computes
+diagnostics.
+\item \code{all_diagnostics()} evaluates all specifications in a set and summarizes
+diagnostics.
 \item \code{verif_LY()} checks whether the leap-year effect should be kept or removed.
-\item \code{select_reg_one_series()} selects the best calendar regressors set for a single series.
+\item \code{select_reg_one_series()} selects the best calendar regressors set for a
+single series.
 }
 }
 \examples{

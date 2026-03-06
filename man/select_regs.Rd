@@ -16,8 +16,10 @@ multivariate series (columns as separate series).}
 \item{...}{Additional arguments passed to \code{\link[=create_specs_set]{create_specs_set()}} controlling
 the generation of X13 specifications. Possible arguments include:
 \describe{
-\item{outliers}{Optional list of outliers with elements \code{type} (vector of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
-\item{span_start}{Starting date of the estimation (character, format \code{"YYYY-MM-DD"}).}
+\item{outliers}{Optional list of outliers with elements \code{type} (vector
+of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
+\item{span_start}{Starting date of the estimation (character, format
+\code{"YYYY-MM-DD"}).}
 \item{...}{Other arguments accepted by \code{\link[=create_specs_set]{create_specs_set()}}.}
 }}
 }
