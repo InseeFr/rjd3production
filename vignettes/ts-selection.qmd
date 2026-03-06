@@ -71,6 +71,8 @@ For example, for the INSEE regressor sets, here is the structure of the correspo
 ```{r}
 #| echo: true
 #| eval: true
+#| label: "structure-of-context"
+
 
 str(create_insee_context(), max.level = 2L)
 ```
@@ -86,6 +88,7 @@ We then create our sets of regressors and create the modelling context:
 ```{r}
 #| echo: true
 #| eval: true
+#| label: "custom-td-creation"
 
 series_example <- ABS[, 1]
 my_regressors_sets <- list(
@@ -113,6 +116,7 @@ We can now use our context to select the calendar regressors:
 ```{r}
 #| echo: true
 #| eval: true
+#| label: "select-td-advanced"
 
 my_td_table <- select_regs(ABS[, 1:3], context = my_context)
 print(my_td_table)
