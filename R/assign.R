@@ -1,8 +1,30 @@
 date_pattern <- "\\d{4}-\\d{2}-\\d{2}"
 outliers_type_pattern <- "(AO|TC|LS|SO)"
 
-complete_context <- function(context = NULL) {
-    return(context)
+merge_lists <- function(list1, list2, verbose = TRUE) {
+    intersect_elts <- intersect(names(list1), names(list2))
+    if (length(intersect_elts) > 0L && verbose) {
+        message(intersect_elts, " are present in the 2 objects and it won't be merged.")
+    }
+    setdiff_elts <- setdiff(names(list2), names(list1))
+    if (length(setdiff_elts) > 0L && verbose) {
+        message(setdiff_elts, " are present in the second object and will be added to the first one.")
+    }
+    return(c(list1, list2[setdiff_elts]))
+}
+
+merge_contexts <- function(context1 = NULL, context2 = NULL, verbose = TRUE) {
+    if (is.null(context2)) {
+        return(context1)
+    } else if (is.null(context1)) {
+        return(context2)
+    }
+
+    new_context <- rjd3toolkit::modelling_context(
+        calendars = merge_lists(context1$calendars, context2$calendars, verbose),
+        variables = merge_lists(context1$variables, context2$variables, verbose)
+    )
+    return(new_context)
 }
 
 #' @title Assign outliers to a JDemetra+ workspace
