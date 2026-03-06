@@ -15,20 +15,30 @@ export_outliers <- function(x, ws_name, path = NULL, verbose = TRUE) {
     } else if (file.exists(path)) {
         path <- normalizePath(path)
         if (!tools::file_ext(path) %in% c("yml", "yaml")) {
-            file_name <- paste0(tools::file_path_sans_ext(basename(path)),
-                                ".yaml")
+            file_name <- paste0(
+                tools::file_path_sans_ext(basename(path)),
+                ".yaml"
+            )
             path <- file.path(dirname(path), file_name)
-            warning("Only .yml and .yaml files are accepted.",
-                    "The outliers will be written at", path)
+            warning(
+                "Only .yml and .yaml files are accepted.",
+                "The outliers will be written at",
+                path
+            )
         }
     } else if (nzchar(tools::file_ext(path))) {
         dir.create(dirname(path), showWarnings = FALSE)
         if (!tools::file_ext(path) %in% c("yml", "yaml")) {
-            file_name <- paste0(tools::file_path_sans_ext(basename(path)),
-                                ".yaml")
+            file_name <- paste0(
+                tools::file_path_sans_ext(basename(path)),
+                ".yaml"
+            )
             path <- file.path(dirname(path), file_name)
-            warning("Only .yml and .yaml files are accepted.",
-                    "The outliers will be written at", path)
+            warning(
+                "Only .yml and .yaml files are accepted.",
+                "The outliers will be written at",
+                path
+            )
         }
     } else {
         dir.create(path, showWarnings = FALSE)

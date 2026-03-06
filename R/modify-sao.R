@@ -1,4 +1,3 @@
-
 #' @title Make a workspace crunchable
 #'
 #' @description
@@ -42,7 +41,7 @@
 #' )
 #' jws <- make_ws_crunchable(jws)
 #'
-make_ws_crunchable <- function (jws, verbose = TRUE) {
+make_ws_crunchable <- function(jws, verbose = TRUE) {
     nb_sap <- rjd3workspace::ws_sap_count(jws)
     for (id_sap in seq_len(nb_sap)) {
         if (verbose) {
@@ -55,16 +54,20 @@ make_ws_crunchable <- function (jws, verbose = TRUE) {
                 cat("SAI n\ub0", id_sai, "\n", sep = "")
             }
             jsai <- rjd3workspace::jsap_sai(jsap, id_sai)
-            name <- tail(unlist(strsplit(rjd3workspace::sai_name(jsai),
-                                         split = "\n")), n = 1)
+            name <- tail(
+                unlist(strsplit(rjd3workspace::sai_name(jsai), split = "\n")),
+                n = 1
+            )
             data_sai <- date4ts::ts2df(rjd3workspace::get_ts(jsai)$data)
             colnames(data_sai) <- c("date", name)
             data_path <- tempfile(fileext = ".csv")
             TBox::write_data(data = data_sai, path = data_path)
-            ts_obj <- rjd3providers::txt_series(data_path, series = 1L,
-                                                delimiter = "SEMICOLON")
-            rjd3workspace::set_ts(jsap = jsap, idx = id_sai,
-                                  ts_obj)
+            ts_obj <- rjd3providers::txt_series(
+                data_path,
+                series = 1L,
+                delimiter = "SEMICOLON"
+            )
+            rjd3workspace::set_ts(jsap = jsap, idx = id_sai, ts_obj)
         }
     }
     return(jws)
@@ -112,7 +115,12 @@ create_ws_from_data <- function(x, spec = rjd3x13::x13_spec()) {
     jsap <- rjd3workspace::jws_sap_new(jws, "SAP1")
     for (k in seq_len(ncol(x))) {
         series <- x[, k]
-        rjd3workspace::add_sa_item(jsap, name = colnames(x)[k], x = series, spec = spec)
+        rjd3workspace::add_sa_item(
+            jsap,
+            name = colnames(x)[k],
+            x = series,
+            spec = spec
+        )
     }
     return(jws)
 }
