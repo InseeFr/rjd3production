@@ -1,76 +1,79 @@
-#' @importFrom yaml write_yaml
-#' @rdname outliers_tools
-#' @export
-export_outliers <- function(x, ws_name, path = NULL, verbose = TRUE) {
+prepare_path <- function(path = NULL, object = "outliers") {
     if (is.null(path)) {
-        file_name <- paste0("outliers_", ws_name, ".yaml")
-        path <- normalizePath(
-            file.path("regression", file_name),
-            mustWork = FALSE
+        if (!dir.exists("regression")) {
+            dir.create("regression", showWarnings = FALSE)
+        }
+        path <- tempfile(
+            pattern = object,
+            tmpdir = "regression",
+            fileext = ".yaml"
         )
-        dir.create("regression", showWarnings = FALSE)
+        warning("The path is missing.", "The table will be written at", path)
     } else if (dir.exists(path)) {
-        file_name <- paste0("outliers_", ws_name, ".yaml")
-        path <- normalizePath(file.path(path, file_name), mustWork = FALSE)
+        path <- tempfile(
+            pattern = "td_",
+            tmpdir = path,
+            fileext = ".yaml"
+        )
     } else if (file.exists(path)) {
         path <- normalizePath(path)
         if (!tools::file_ext(path) %in% c("yml", "yaml")) {
-            file_name <- paste0(tools::file_path_sans_ext(basename(path)),
-                                ".yaml")
-            path <- file.path(dirname(path), file_name)
+            new_file_name <- path |>
+                basename() |>
+                tools::file_path_sans_ext() |>
+                paste0(... = _, ".yaml")
+            path <- file.path(dirname(path), new_file_name)
             warning("Only .yml and .yaml files are accepted.",
-                    "The outliers will be written at", path)
+                    "The table will be written at", path)
         }
     } else if (nzchar(tools::file_ext(path))) {
-        dir.create(dirname(path), showWarnings = FALSE)
+        if (!dir.exists(dirname(path))) {
+            dir.create(dirname(path), showWarnings = FALSE, recursive = TRUE)
+        }
         if (!tools::file_ext(path) %in% c("yml", "yaml")) {
-            file_name <- paste0(tools::file_path_sans_ext(basename(path)),
-                                ".yaml")
-            path <- file.path(dirname(path), file_name)
+            new_file_name <- path |>
+                basename() |>
+                tools::file_path_sans_ext() |>
+                paste0(... = _, ".yaml")
+            path <- file.path(dirname(path), new_file_name)
             warning("Only .yml and .yaml files are accepted.",
-                    "The outliers will be written at", path)
+                    "The table will be written at", path)
         }
     } else {
-        dir.create(path, showWarnings = FALSE)
-        file_name <- paste0("outliers_", ws_name, ".yaml")
-        path <- normalizePath(
-            file.path(path, file_name),
-            mustWork = FALSE
+        dir.create(path, showWarnings = FALSE, recursive = TRUE)
+        path <- tempfile(
+            pattern = object,
+            tmpdir = path,
+            fileext = ".yaml"
         )
     }
+    return(path)
+}
+
+#' @importFrom yaml write_yaml
+#' @rdname outliers_tools
+#' @export
+export_outliers <- function(x, path = NULL, verbose = TRUE) {
+    path <- prepare_path(path, "outliers")
     if (verbose) {
-        cat("The outliers will be written at ", path, "\n")
+        cat("The outliers table will be written at ", path, "\n")
     }
-    yaml::write_yaml(
-        x = x,
-        file = path
-    )
+    yaml::write_yaml(x = x, file = path)
     return(invisible(path))
 }
 
 #' @importFrom yaml read_yaml
 #' @rdname outliers_tools
 #' @export
-import_outliers <- function(ws_name, path = NULL, verbose = TRUE) {
-    if (is.null(path)) {
-        file_name <- paste0("outliers_", ws_name, ".yaml")
-        path <- normalizePath(
-            file.path("regression", file_name),
-            mustWork = TRUE
-        )
-    } else if (dir.exists(path)) {
-        file_name <- paste0("outliers_", ws_name, ".yaml")
-        path <- normalizePath(file.path(path, file_name), mustWork = TRUE)
-    } else if (file.exists(path)) {
-        if (!tools::file_ext(path) %in% c("yml", "yaml")) {
-            stop("Only .yml and .yaml files are accepted.")
-        }
-        path <- normalizePath(path, mustWork = TRUE)
-    } else {
-        stop("The directory or file", path, "doesn't exist.")
+import_outliers <- function(path, verbose = TRUE) {
+    if (!file.exists(path)) {
+        stop("The file", path, "doesn't exist.")
+    }
+    if (!tools::file_ext(path) %in% c("yml", "yaml")) {
+        stop("Only .yml and .yaml files are accepted.")
     }
     if (verbose) {
-        cat("The outliers will be read at ", path, "\n")
+        cat("The outliers table will be read at ", path, "\n")
     }
     outliers <- as.data.frame(yaml::read_yaml(file = path))
     return(outliers)
@@ -79,48 +82,28 @@ import_outliers <- function(ws_name, path = NULL, verbose = TRUE) {
 #' @importFrom yaml write_yaml
 #' @rdname td_tools
 #' @export
-export_td <- function(x, ws_name, path = NULL, verbose = TRUE) {
-    if (dir.exists(path)) {
-        file_name <- paste0("td_", ws_name, ".yaml")
-        path <- normalizePath(file.path(path, file_name), mustWork = FALSE)
-    }
-    if (is.null(path)) {
-        file_name <- paste0("td_", ws_name, ".yaml")
-        path <- normalizePath(
-            file.path("regression", file_name),
-            mustWork = FALSE
-        )
-    }
+export_td <- function(x, path = NULL, verbose = TRUE) {
+    path <- prepare_path(path, "td")
     if (verbose) {
-        cat("The td will be written at ", path, "\n")
+        cat("The td table will be written at ", path, "\n")
     }
-    yaml::write_yaml(
-        x = x,
-        file = path
-    )
+    yaml::write_yaml(x = x, file = path)
     return(invisible(path))
 }
 
 #' @importFrom yaml read_yaml
 #' @rdname td_tools
 #' @export
-import_td <- function(ws_name, path = NULL, verbose = TRUE) {
-    if (dir.exists(path)) {
-        file_name <- paste0("td_", ws_name, ".yaml")
-        path <- normalizePath(file.path(path, file_name), mustWork = FALSE)
+import_td <- function(path, verbose = TRUE) {
+    if (!file.exists(path)) {
+        stop("The file", path, "doesn't exist.")
     }
-    if (is.null(path)) {
-        file_name <- paste0("td_", ws_name, ".yaml")
-        path <- normalizePath(
-            file.path("regression", file_name),
-            mustWork = FALSE
-        )
+    if (!tools::file_ext(path) %in% c("yml", "yaml")) {
+        stop("Only .yml and .yaml files are accepted.")
     }
     if (verbose) {
-        cat("The td will be read at ", path, "\n")
+        cat("The td table will be read at ", path, "\n")
     }
-    td <- yaml::read_yaml(
-        file = path
-    )
+    td <- as.data.frame(yaml::read_yaml(file = path))
     return(td)
 }
