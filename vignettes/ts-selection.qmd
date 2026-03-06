@@ -1,0 +1,121 @@
+---
+title: "Selection of calendar td regressors"
+vignette: >
+  %\VignetteIndexEntry{Selection of calendar td regressors}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+```{r}
+#| echo: true
+#| eval: true
+#| warning: false
+#| label: setup
+
+library("rjd3production")
+```
+
+### Selection de régresseurs
+
+Pour sélectionner un jeu de régresseur, on utilise la fonction `select_regs()` :
+
+```{r}
+#| echo: true
+#| eval: true
+#| label: "select-td"
+
+library("rjd3toolkit")
+td_table <- select_regs(ABS[, 1:3])
+print(td_table)
+```
+
+### Import / Export
+
+Une fois les régresseurs sélectionnés, il est possible d'exporter la table au format `.yaml` puis de les réimporter plus tard :
+
+```{r}
+#| echo: true
+#| eval: true
+#| label: "io-td"
+
+path_td <- tempfile(pattern = "td-table", fileext = ".yaml")
+export_td(td_table, path_td)
+td_table2 <- import_td(path = path_td)
+waldo::compare(td_table, td_table2)
+```
+
+### Assigation
+
+Enfin, pour affecter les régresseurs de calendrier à un workspace, on peut utiliser la fonction `assign_td()`:
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: "assign-td"
+
+library("rjd3workspace")
+my_ws <- jws_open("my_workspace")
+assign_td(td_table, my_ws)
+```
+
+### Sélection avancée
+
+Par défault, les régresseurs proposés sont les régresseurs utilisés à l'Insee (et dans le SSP). Pour utiliser des jeux de régresseurs personnalisés, il suffit de créer un modelling context](https://rjdverse.github.io/rjd3toolkit/reference/modelling_context.html) contenant autant de variables que de jeux de régresseurs que l'on veut et un jeu de régresseur par variable.
+
+Par exemple, pour les jeux de régresseurs Insee, voici la structure du modelling context correspondant:
+
+```{r}
+#| echo: true
+#| eval: true
+
+str(create_insee_context(), max.level = 2L)
+```
+
+Imaginons que je veuille uniquement tester 3 types de jeu :
+
+- un premier jeu de régresseur (`TD2_TB`) qui contient 2 régresseurs : jeudi, semaine (et week-end en contraste)
+- un second (`TD3_TB`) qui contient 3 régresseurs : jeudi, semaine (et week-end en contraste) et régresseur leap-year
+- un troisième (`TD6_TB`) qui différencie tous les jours de la semaine
+
+On créé alors nos jeux de régresseurs puis on créé le modelling context:
+
+```{r}
+#| echo: true
+#| eval: true
+
+series_example <- ABS[, 1]
+my_regressors_sets <- list(
+    TD2_TB = calendar_td(
+        s = series_example, 
+        groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
+    ), 
+    TD3_TB = cbind(
+        calendar_td(
+            s = series_example, 
+            groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
+        ), 
+        lp_variable(s = series_example)
+    ) |> `colnames<-`(c("group_1", "group_2", "ly")), 
+    TD6_TB = calendar_td(
+        s = series_example, 
+        groups = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
+    )
+)
+my_context <- modelling_context(variables = my_regressors_sets)
+```
+
+On peut maintenant utiliser notre context pour sélectionner les régresseurs de calendier:
+
+```{r}
+#| echo: true
+#| eval: true
+
+my_td_table <- select_regs(ABS[, 1:3], context = my_context)
+print(my_td_table)
+```
+
+
