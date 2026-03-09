@@ -9,4 +9,5 @@ NULL
 
 .onLoad <- function(libname, pkgname) {
     print("loaded")
+    rjd3toolkit::reload_dictionaries()
 }
