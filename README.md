@@ -24,7 +24,7 @@ built](https://github.com/InseeFr/rjd3production/actions/workflows/pkgdown.yaml/
 ### Présentation
 
 **{rjd3production}** aide les producteurs de données CVS-CJO à mettre en
-place des chaînes de production. 
+place des chaînes de production.
 
 Il permet notamment de :
 
@@ -41,6 +41,7 @@ Il permet notamment de :
   - Les fonctions `import_XXX()` et `export_XXX()` permettent de
     convertir les data.frame contenant les outliers et régresseurs de
     calendrier en fichiers et inversement
+
   - Les fonctions `retrieve_XXX()` et `assign_XXX()` permettent
     d’extraire (resp. d’assigner) les outliers et régresseurs de
     calendrier d’un workspace
@@ -80,7 +81,11 @@ flowchart LR
     class YAML_OUT,YAML_TD yaml
     class SERIES series
 ```
-Pour plus de précisions sur la production de séries cvsj-cjo vous pouvez consulter [ces pages](https://saproductionwithjdemetraandr.netlify.app/)
+
+Pour plus de précisions sur la production de séries CVS-CJO vous pouvez
+consulter [ces
+pages](https://saproductionwithjdemetraandr.netlify.app/).
+
 ## Installation
 
 **{rjd3production}** s’appuie sur le package
@@ -186,7 +191,10 @@ flowchart LR
     class YAML_OUT,YAML_TD yaml
     class SERIES series
 ```
-For more details on the production of Seasonally Adjusted series, please refer to [these pages](https://saproductionwithjdemetraandr.netlify.app/).
+
+For more details on the production of Seasonally Adjusted series, please
+refer to [these
+pages](https://saproductionwithjdemetraandr.netlify.app/).
 
 ### Installation
 

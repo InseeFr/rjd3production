@@ -1,25 +1,32 @@
 #' @title INSEE Regressors and Modelling Context
 #'
 #' @description
-#' These functions allow to construct the standard regressors and modelling context
-#' used by INSEE for seasonal adjustment:
+#' These functions allow to construct the standard regressors and modelling
+#' context used by INSEE for seasonal adjustment:
 #'
 #' - [create_french_calendar()] creates the French national calendar.
-#' - [create_insee_regressors()] generates trading day regressors and leap-year effect (LY).
-#' - [create_insee_regressors_sets()] organizes these regressors into standard sets (REG1, REG2, …, REG6, with or without LY).
-#' - [create_insee_context()] combines the regressors and calendar into a `modelling_context` object
+#' - [create_insee_regressors()] generates trading day regressors and leap-year
+#' effect (LY).
+#' - [create_insee_regressors_sets()] organizes these regressors into standard
+#' sets (REG1, REG2, …, REG6, with or without LY).
+#' - [create_insee_context()] combines the regressors and calendar into a
+#' `modelling_context` object
 #'   that can be used directly with `rjd3toolkit`.
 #'
-#' @param start [\link[base]{integer} vector] Start period in the format `c(year, month)` (default `c(1990, 1)`).
+#' @param start [\link[base]{integer} vector] Start period in the format
+#' `c(year, month)` (default `c(1990, 1)`).
 #' @param frequency [integer] Series frequency (default `12L`).
 #' @param length [integer] Series length (default `492L`).
-#' @param s [\link[base]{numeric} or NULL] Optional argument for adjustment (passed to `rjd3toolkit`).
+#' @param s [\link[base]{numeric} or NULL] Optional argument for adjustment
+#' (passed to `rjd3toolkit`).
 #' @param cal a calendar of class `JD3_CALENDAR`.
 #'
 #' @return
 #' - `create_french_calendar()` returns a `national_calendar` object.
-#' - `create_insee_regressors()` returns a matrix of regressors (working days + LY).
-#' - `create_insee_regressors_sets()` returns a list of regressor sets (`REG1`, `REG2`, …, `REG6`, with or without LY).
+#' - `create_insee_regressors()` returns a matrix of regressors (working days
+#' + LY).
+#' - `create_insee_regressors_sets()` returns a list of regressor sets (`REG1`,
+#' `REG2`, …, `REG6`, with or without LY).
 #' - `create_insee_context()` returns a `modelling_context` object.
 #'
 #' @examples

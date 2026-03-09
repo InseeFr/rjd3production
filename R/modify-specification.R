@@ -39,7 +39,9 @@
 #' remove_non_significative_outliers("workspace.xml", threshold = 0.3)
 #' }
 #'
-#' @importFrom rjd3workspace jws_open jws_compute jws_sap sap_sai_count jsap_sai read_sai sai_name set_specification set_domain_specification set_name save_workspace
+#' @importFrom rjd3workspace jws_open jws_compute jws_sap sap_sai_count jsap_sai
+#' @importFrom rjd3workspace read_sai sai_name set_specification
+#' @importFrom rjd3workspace set_domain_specification set_name save_workspace
 #' @importFrom rjd3toolkit remove_outlier
 #' @importFrom tools file_path_sans_ext
 #' @export
