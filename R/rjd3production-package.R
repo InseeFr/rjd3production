@@ -18,6 +18,8 @@ NULL
     # if (! requireNamespace("rjd3tramoseats", quietly = TRUE)) stop("Loading rjd3 libraries failed")
     # if (! requireNamespace("rjd3x13", quietly = TRUE)) stop("Loading rjd3 libraries failed")
 
+    library("rjd3toolkit")
+
     print("ici")
     path_jar <- system.file("java", package = "rjd3toolkit")
     rJava::.jaddClassPath(path_jar)
