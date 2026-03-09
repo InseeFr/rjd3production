@@ -36,17 +36,28 @@ library("rjd3production")
 
 ### Présentation
 
-**{rjd3production}** aide les producteurs de données CVS TD à mettre en place des chaînes de production.
+**{rjd3production}** aide les producteurs de données CVS-CJO à mettre en
+place des chaînes de production. 
 
 Il permet notamment de :
 
-- Créer des calendriers français et régresseurs de calendrier compatibles JDemetra+
-- Identifier des SAI par leur nom
-- Selectionner les jeux de calendrier pour une ou plusieurs séries
-- Manipuler les régresseurs de calendrier et les outliers d'un Workspace selon la dynamique suivante:
+- Créer des calendriers français et régresseurs de calendrier
+  compatibles JDemetra+
 
-    * Les fonctions `import_XXX()` et `export_XXX()` permettent de convertir les data.frame contenant les outliers et régresseurs de calendrier en fichiers et inversement
-    * Les fonctions `retrieve_XXX()` et `assign_XXX()` permettent d'extraire (resp. d'assigner) les outliers et régresseurs de calendrier d'un workspace
+- Identifier des SAI par leur nom
+
+- Selectionner les jeux de calendrier pour une ou plusieurs séries
+
+- Manipuler les régresseurs de calendrier et les outliers d’un Workspace
+  selon la dynamique suivante:
+
+    - Les fonctions `import_XXX()` et `export_XXX()` permettent de
+    convertir les data.frame contenant les outliers et régresseurs de
+    calendrier en fichiers et inversement
+    
+    - Les fonctions `retrieve_XXX()` et `assign_XXX()` permettent
+    d’extraire (resp. d’assigner) les outliers et régresseurs de
+    calendrier d’un workspace
 
 
 ```mermaid
@@ -86,6 +97,7 @@ flowchart LR
 
 ```
 
+Pour plus de précisions sur la production de séries CVS-CJO vous pouvez consulter [ces pages](https://saproductionwithjdemetraandr.netlify.app/).
 
 ## Installation
 
@@ -182,6 +194,7 @@ flowchart LR
 
 ```
 
+For more details on the production of Seasonally Adjusted series, please refer to [these pages](https://saproductionwithjdemetraandr.netlify.app/).
 
 ### Installation
 
