@@ -18,7 +18,7 @@ code.
 \description{
 This family of functions reconstructs executable R code from a X13
 specification object.
-the generated code uses only the packages {rjd3toolkit} and {rjd3x13}.
+the generated code uses only the packages \{rjd3toolkit\} and \{rjd3x13\}.
 
 The main entry point is \code{rev_spec()}, which aggregates all reverse-generating
 helpers.

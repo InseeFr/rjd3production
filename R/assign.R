@@ -161,15 +161,16 @@ assign_outliers <- function(jws, outliers) {
 #' @importFrom rjd3workspace jws_open jws_sap sap_sai_count jsap_sai sai_name
 #' @importFrom rjd3workspace sap_sai_count read_sai set_name save_workspace
 #' @importFrom rjd3workspace set_specification set_domain_specification
+#' @importFrom rjd3workspace get_context
 #' @importFrom tools file_path_sans_ext
 #'
 #' @export
 assign_td <- function(td, jws) {
     if (nrow(td) == 0L) {
-        return(invisble(jws))
+        return(invisible(jws))
     }
 
-    context <- get_context(jws)
+    context <- rjd3workspace::get_context(jws)
     var_names <- get_named_variables(context)
     if (!all(td$regs %in% c("No_TD", names(var_names)))) {
         stop(

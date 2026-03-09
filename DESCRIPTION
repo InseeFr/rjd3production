@@ -26,6 +26,8 @@ Imports:
     date4ts
 Remotes: 
     github::rjdverse/rjd3workspace@develop
+Suggest:
+    waldo
 License: EUPL
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
