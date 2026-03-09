@@ -1,26 +1,3 @@
-#' @title Retrieve all the auxiliary variables from a workspace
-#'
-#' @description
-#' Lists all the variables in a modelling context.
-#'
-#' @param context a modelling context
-#'
-#' @returns a list with all the groups and named variables
-#' @export
-#'
-get_named_variables <- function(context = NULL) {
-    if (is.null(context)) {
-        message("Without context, the output is NULL.")
-        return(invisible(NULL))
-    }
-    all_vars <- context$variables
-    named_vars <- lapply(seq_along(all_vars), function(k) {
-        paste0(names(all_vars)[k], ".", names(all_vars[[k]]))
-    })
-    names(named_vars) <- names(all_vars)
-    return(named_vars)
-}
-
 #' @title Manage outliers from JDemetra+ workspaces
 #'
 #' @description
