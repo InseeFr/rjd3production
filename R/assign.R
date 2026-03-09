@@ -1,6 +1,3 @@
-date_pattern <- "\\d{4}-\\d{2}-\\d{2}"
-outliers_type_pattern <- "(AO|TC|LS|SO)"
-
 merge_lists <- function(list1, list2, verbose = TRUE) {
     intersect_elts <- intersect(names(list1), names(list2))
     if (length(intersect_elts) > 0L && verbose) {
@@ -43,16 +40,18 @@ merge_contexts <- function(context1 = NULL, context2 = NULL, verbose = TRUE) {
 #' This function updates a JDemetra+ workspace (`.xml`) by inserting
 #' pre-specified outliers into the `domainSpec` of each series (SA-Item).
 #'
-#' @param outliers [\link[base]{list}] A named list where each element
-#' corresponds to a series in the workspace created with [retrieve_outliers] or
-#' [import_outliers].
+#' @param outliers [\link[base]{data.frame}] A data.frame with three columns:
+#' - `series`: name of the series in the workspace.
+#' - `type`: type of outlier (AO, LS, TC or SO) - character
+#' - `date`: date of the outlier (in `YYYY-MM-DD` format) - character
+#' (created with [retrieve_outliers] or [import_outliers]).
 #' @param jws A Java Workspace object, as returned by [jws_open()] or
 #' [jws_new()].
 #'
 #' @details
 #' This function only modifies the first SA-Processing.
 #'
-#' @returns The object `jws` updated with new pre-specified outliers.
+#' @returns Invisibly, the object `jws` updated with new pre-specified outliers.
 #'
 #' @seealso
 #' - [retrieve_outliers()] to extract outliers from an existing workspace.
@@ -91,51 +90,41 @@ assign_outliers <- function(jws, outliers) {
         ))
 
         # Outliers
-        outliers_series <- outliers[[series_name]]
+        outliers_series <- outliers[outliers$series == "RF1011", , drop = FALSE]
 
-        # Création de la spec
-        sai <- rjd3workspace::read_sai(jsai)
-        new_estimationSpec <- estimationSpec <- sai$estimationSpec
-        new_domainSpec <- domainSpec <- sai$domainSpec
+        if (nrow(outliers_series) > 0) {
 
-        if (!is.null(outliers_series) && length(outliers_series) > 0L) {
+            # Création de la spec
+            sai <- rjd3workspace::read_sai(jsai)
+            new_estimationSpec <- estimationSpec <- sai$estimationSpec
+            new_domainSpec <- domainSpec <- sai$domainSpec
+
             new_domainSpec <- domainSpec |>
                 rjd3toolkit::add_outlier(
-                    type = outliers_type_pattern |>
-                        gregexpr(text = outliers_series) |>
-                        regmatches(x = outliers_series) |>
-                        do.call(what = c),
-                    date = date_pattern |>
-                        gregexpr(text = outliers_series) |>
-                        regmatches(x = outliers_series) |>
-                        do.call(what = c)
+                    type = outliers_series$type,
+                    date = outliers_series$date
                 )
             new_estimationSpec <- estimationSpec |>
                 rjd3toolkit::add_outlier(
-                    type = outliers_type_pattern |>
-                        gregexpr(text = outliers_series) |>
-                        regmatches(x = outliers_series) |>
-                        do.call(what = c),
-                    date = date_pattern |>
-                        gregexpr(text = outliers_series) |>
-                        regmatches(x = outliers_series) |>
-                        do.call(what = c)
+                    type = outliers_series$type,
+                    date = outliers_series$date
                 )
+
+            rjd3workspace::set_specification(
+                jsap = jsap,
+                idx = id_sai,
+                spec = new_estimationSpec
+            )
+            rjd3workspace::set_domain_specification(
+                jsap = jsap,
+                idx = id_sai,
+                spec = new_domainSpec
+            )
+            rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
         }
 
-        rjd3workspace::set_specification(
-            jsap = jsap,
-            idx = id_sai,
-            spec = new_estimationSpec
-        )
-        rjd3workspace::set_domain_specification(
-            jsap = jsap,
-            idx = id_sai,
-            spec = new_domainSpec
-        )
-        rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
     }
-    return(jws)
+    return(invisible(jws))
 }
 
 #' @title Assign calendar (TD) regressors to a JDemetra+ workspace
@@ -150,17 +139,17 @@ assign_outliers <- function(jws, outliers) {
 #' `tradingdays` to `"UserDefined"` with the appropriate regressors
 #' (`REG1` … `REG6`, optionally with `LY` for leap year).
 #'
-#' @param td [\link[base]{data.frame}] A data.frame with at least two columns:
+#' @param td [\link[base]{data.frame}] A data.frame with two columns:
 #' - `series`: name of the series in the workspace.
-#' - `regs`: standard INSEE TD set (`REG1`, `REG2`, …, `REG6`, with or
-#' without `_LY`) (created by [retrieve_td] or [import_td]).
+#' - `regs`: anem of the regressor set to apply
+#' (created by [retrieve_td] or [import_td]).
 #' @param jws A Java Workspace object, as returned by [jws_open()] or
 #' [jws_new()].
 #'
 #' @details
 #' This function only modifies the first SA-Processing.
 #'
-#' @returns The object `jws` updated with new td regressors.
+#' @returns Invisibly, the object `jws` updated with new td regressors.
 #'
 #' @examples
 #' \dontrun{
@@ -176,8 +165,20 @@ assign_outliers <- function(jws, outliers) {
 #'
 #' @export
 assign_td <- function(td, jws) {
-    td <- as.data.frame(td)
-    var_names <- get_named_variables(create_insee_context())
+    if (nrow(td) == 0L) {
+        return(invisble(jws))
+    }
+
+    context <- get_context(jws)
+    var_names <- get_named_variables(context)
+    if (!all(td$regs %in% c("No_TD", names(var_names)))) {
+        stop(
+            setdiff(td$regs, c("No_TD", names(var_names))),
+            " variables are not present in the WS.",
+            " Please use the function `merge_contexts()` ",
+            "to update your modelling context."
+        )
+    }
     jsap <- rjd3workspace::jws_sap(jws, 1L)
 
     for (id_sai in seq_len(rjd3workspace::sap_sai_count(jsap))) {
@@ -192,54 +193,38 @@ assign_td <- function(td, jws) {
             rjd3workspace::sap_sai_count(jsap),
             "\n"
         ))
-        jeu_regresseur <- td[
-            which(td[["series"]] == series_name),
-            "reg_selected"
-        ]
-        all_regs <- c(
-            paste0("REG", rep(c(1:3, 5:6), each = 2), c("", "_LY")),
-            "LY"
-        )
-        if (jeu_regresseur %in% all_regs) {
-            td_variables <- var_names[[jeu_regresseur]]
-        } else if (nzchar(jeu_regresseur)) {
-            stop("Weird TD selection...", jeu_regresseur)
-        } else {
-            td_variables <- NULL
+        chosen_set <- td[td$series == series_name, "regs"]
+        if (length(chosen_set) == 1L && chosen_set != "No_TD") {
+            td_variables <- var_names[[chosen_set]]
+
+            sai <- rjd3workspace::read_sai(jsai)
+            new_estimationSpec <- estimationSpec <- sai$estimationSpec
+            new_domainSpec <- domainSpec <- sai$domainSpec
+            new_domainSpec <- domainSpec |>
+                set_tradingdays(
+                    option = "UserDefined",
+                    uservariable = td_variables,
+                    test = "None"
+                )
+            new_estimationSpec <- estimationSpec |>
+                set_tradingdays(
+                    option = "UserDefined",
+                    uservariable = td_variables,
+                    test = "None"
+                )
+            rjd3workspace::set_specification(
+                jsap = jsap,
+                idx = id_sai,
+                spec = new_estimationSpec
+            )
+            rjd3workspace::set_domain_specification(
+                jsap = jsap,
+                idx = id_sai,
+                spec = new_domainSpec
+            )
+            rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
         }
-        sai <- rjd3workspace::read_sai(jsai)
-        new_estimationSpec <- estimationSpec <- sai$estimationSpec
-        new_domainSpec <- domainSpec <- sai$domainSpec
-        new_domainSpec <- domainSpec |>
-            set_tradingdays(
-                option = "UserDefined",
-                uservariable = td_variables,
-                test = "None"
-            )
-        new_estimationSpec <- estimationSpec |>
-            set_tradingdays(
-                option = "UserDefined",
-                uservariable = td_variables,
-                test = "None"
-            )
-        rjd3workspace::set_specification(
-            jsap = jsap,
-            idx = id_sai,
-            spec = new_estimationSpec
-        )
-        rjd3workspace::set_domain_specification(
-            jsap = jsap,
-            idx = id_sai,
-            spec = new_domainSpec
-        )
-        rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
     }
 
-    context <- complete_context(rjd3workspace::get_context(jws))
-    rjd3workspace::set_context(jws = jws, modelling_context = context)
-
-    return(jws)
+    return(invisible(jws))
 }
-
-# Fonction d'ajout des regresseurs td Insee à un WS
-add_insee_regressor <- function() {}

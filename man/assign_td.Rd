@@ -7,18 +7,18 @@
 assign_td(td, jws)
 }
 \arguments{
-\item{td}{[\link[base]{data.frame}] A data.frame with at least two columns:
+\item{td}{[\link[base]{data.frame}] A data.frame with two columns:
 \itemize{
 \item \code{series}: name of the series in the workspace.
-\item \code{regs}: standard INSEE TD set (\code{REG1}, \code{REG2}, …, \code{REG6}, with or
-without \verb{_LY}) (created by \link{retrieve_td} or \link{import_td}).
+\item \code{regs}: anem of the regressor set to apply
+(created by \link{retrieve_td} or \link{import_td}).
 }}
 
 \item{jws}{A Java Workspace object, as returned by \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}} or
 \code{\link[rjd3workspace:jws_new]{rjd3workspace::jws_new()}}.}
 }
 \value{
-The object \code{jws} updated with new td regressors.
+Invisibly, the object \code{jws} updated with new td regressors.
 }
 \description{
 This function updates a JDemetra+ workspace (\code{.xml}) by assigning

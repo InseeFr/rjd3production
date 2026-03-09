@@ -7,9 +7,9 @@
 \alias{retrieve_td}
 \title{Manage trading-day regressors (TD) from JDemetra+ workspaces}
 \usage{
-export_td(x, ws_name, path = NULL, verbose = TRUE)
+export_td(x, path = NULL, verbose = TRUE)
 
-import_td(ws_name, path = NULL, verbose = TRUE)
+import_td(path, verbose = TRUE)
 
 retrieve_td(
   jws,
@@ -22,9 +22,6 @@ retrieve_td(
 \arguments{
 \item{x}{[\link[base]{list} | \link[base]{data.frame}] An object containing
 the TD information, typically the output of \code{\link[=retrieve_td]{retrieve_td()}}.}
-
-\item{ws_name}{[\link[base]{character}] The name of the workspace,
-used to build default YAML file names.}
 
 \item{path}{[\link[base]{character}] Path to a YAML file to write to
 or read from. If missing, defaults to
@@ -44,14 +41,16 @@ estimation specification.}
 
 \item{point}{Boolean indicating if the outliers should be extracted from the
 point specification.}
+
+\item{ws_name}{[\link[base]{character}] The name of the workspace,
+used to build default YAML file names.}
 }
 \value{
 \itemize{
 \item \code{retrieve_td()} returns a \link{data.frame} with columns:
 \itemize{
 \item \code{series}: series names,
-\item \code{regs}: TD regressor specification (\code{REG1}, \code{REG2}, …, \code{REG6},
-with or without \verb{_LY}),
+\item \code{regs}: TD regressor sets,
 }
 \item \code{export_td()} invisibly returns the path of the YAML file written.
 \item \code{import_td()} returns a list or data structure read from YAML.

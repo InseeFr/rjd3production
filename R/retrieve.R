@@ -219,8 +219,7 @@ extract_td <- function(spec) {
 #' @return
 #' - `retrieve_td()` returns a [data.frame] with columns:
 #'   - `series`: series names,
-#'   - `regs`: TD regressor specification (`REG1`, `REG2`, …, `REG6`,
-#'     with or without `_LY`),
+#'   - `regs`: TD regressor sets,
 #' - `export_td()` invisibly returns the path of the YAML file written.
 #' - `import_td()` returns a list or data structure read from YAML.
 #'
