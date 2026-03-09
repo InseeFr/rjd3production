@@ -12,7 +12,6 @@ NULL
 .onLoad <- function(libname, pkgname) {
     print("loaded")
 
-    # rJava::.jinit()
 
     # if (! requireNamespace('rjd3toolkit', quietly = TRUE)) stop("Loading rjd3 libraries failed")
     # if (! requireNamespace("rjd3tramoseats", quietly = TRUE)) stop("Loading rjd3 libraries failed")
@@ -20,6 +19,7 @@ NULL
 
     library("rjd3toolkit")
 
+    rJava::.jinit()
     print("ici")
     path_jar <- system.file("java", package = "rjd3toolkit")
     rJava::.jaddClassPath(path_jar)
