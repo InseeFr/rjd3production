@@ -1,96 +1,3 @@
-#' @title Extract all series from a SA-Item
-#'
-#' @description
-#' Extracts all available time series (pre-adjustment, decomposition, and final)
-#' from a seasonal adjustment item (`jsai`) inside a JDemetra+ workspace.
-#'
-#' @param jsai A Java Seasonal Adjustment Item object, typically obtained via
-#'   [jsap_sai()] after opening and computing a workspace with [jws_open()]
-#'   and [jws_compute()].
-#'
-#' @return A `data.frame` with columns:
-#' - `SAI`: name of the SAI,
-#' - `series`: the type of series (e.g. `"y"`, `"sa"`, `"trend"`),
-#' - `date`: observation dates,
-#' - `value`: numeric values of the series.
-#'
-#' @examples
-#' \dontrun{
-#' library("rjd3workspace")
-#' path <- file.path(tempdir(), "workspace_RSA3.xml")
-#' jws <- jws_open(path)
-#' jws_compute(jws)
-#' jsap <- jws_sap(jws, 1L)
-#' jsai <- jsap_sai(jsap, 1L)
-#'
-#' df <- get_series(jsai)
-#' head(df)
-#' }
-#'
-#' @importFrom rjd3workspace read_sai sai_name
-#' @importFrom zoo as.Date
-#' @export
-get_series <- function(jsai) {
-    res <- rjd3workspace::read_sai(jsai)$results
-    if (is.null(res)) {
-        stop("Please compute your workspace")
-    }
-    output <- NULL
-    all_series <- c(res$preadjust, res$decomposition, res$final)
-    for (s in names(all_series)) {
-        series <- all_series[[s]]
-        if (!is.null(series)) {
-            output <- rbind(
-                output,
-                data.frame(
-                    series = s,
-                    date = series |> time() |> zoo::as.Date(),
-                    value = as.numeric(series)
-                )
-            )
-        }
-    }
-    return(cbind(SAI = rjd3workspace::sai_name(jsai), output))
-}
-
-#' @title Retrieve a SA-Item by its name
-#'
-#' @description
-#' Searches a workspace for a seasonal adjustment item (SAI) whose name matches
-#' the user-supplied string and returns the corresponding object.
-#'
-#' @param jws A Java Workspace object, as returned by [jws_open()] or
-#' [jws_new()].
-#' @param series_name [character] Name of the SAI to retrieve.
-#'
-#' @return A Java Seasonal Adjustment Item object (`jsai`).
-#'
-#' @examples
-#' \dontrun{
-#' path <- file.path(tempdir(), "workspace_RSA3.xml")
-#' jws <- jws_open(path)
-#' jws_compute(jws)
-#'
-#' jsai <- get_jsai_by_name(jws, "series_1")
-#' df <- get_series(jsai)
-#' head(df)
-#' }
-#' @importFrom rjd3workspace jws_sap sap_sai_names jsap_sai
-#'
-#' @export
-get_jsai_by_name <- function(jws, series_name) {
-    jsap <- rjd3workspace::jws_sap(jws, idx = 1L)
-    sai_names <- rjd3workspace::sap_sai_names(jsap)
-    id <- which(sai_names == series_name)
-    if (length(id) == 0) {
-        stop("No SAI are named after ", series_name)
-    }
-    if (length(id) > 1) {
-        stop("More than one SAI is named after ", series_name)
-    }
-    return(rjd3workspace::jsap_sai(jsap, idx = id))
-}
-
 #' @title Compare series across workspaces
 #'
 #' @description
@@ -169,7 +76,9 @@ compare <- function(..., series_names) {
 #' run_app(df)
 #' }
 #'
-#' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput checkboxInput br downloadButton h4 uiOutput reactive renderUI downloadHandler shinyApp
+#' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput
+#' @importFrom shiny checkboxInput br downloadButton h4 uiOutput reactive
+#' @importFrom shiny renderUI downloadHandler shinyApp
 #' @importFrom dygraphs dygraphOutput renderDygraph dygraph
 #' @importFrom tidyr pivot_wider
 #' @importFrom flextable flextable autofit htmltools_value

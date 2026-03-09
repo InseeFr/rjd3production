@@ -1,16 +1,21 @@
 #' @title Diagnostics Extraction on Calendar Correction with different sets of regressors
 #'
 #' @description
-#' These functions allow to extract diagnostics from X13-Arima models with different sets of calendar regressors
-#' in order to evaluate different specifications and select the most appropriate
-#' calendar regressors set (with or without leap-year effect) to correct a given series.
+#' These functions allow to extract diagnostics from X13-Arima models with
+#' different sets of calendar regressors in order to evaluate different
+#' specifications and select the most appropriate calendar regressors set (with
+#'  or without leap-year effect) to correct a given series.
 #'
 #' @details
-#' - `get_LY_info()` extracts coefficient and p-value of the leap-year (LY) effect.
-#' - `one_diagnostic()` applies one X13 specification to a series and computes diagnostics.
-#' - `all_diagnostics()` evaluates all specifications in a set and summarizes diagnostics.
+#' - `get_LY_info()` extracts coefficient and p-value of the leap-year (LY)
+#' effect.
+#' - `one_diagnostic()` applies one X13 specification to a series and computes
+#' diagnostics.
+#' - `all_diagnostics()` evaluates all specifications in a set and summarizes
+#' diagnostics.
 #' - `verif_LY()` checks whether the leap-year effect should be kept or removed.
-#' - `select_reg_one_series()` selects the best calendar regressors set for a single series.
+#' - `select_reg_one_series()` selects the best calendar regressors set for a
+#' single series.
 #'
 #' @param smod [list] Result of [summary()] applied to an X13 model.
 #' @param series [\link[stats]{ts} or numeric] Time series to analyse.
@@ -20,13 +25,15 @@
 #' @param jeu [character] Name of the tested regression set.
 #' @param diags [data.frame] Diagnostics table produced by [all_diagnostics()].
 #' @param name [character] Name of the series (for messages).
-#' @param specs_set [\link[base]{list} or NULL] List of X13 specifications. If `NULL`,
-#'   generated via [create_specs_set()].
+#' @param specs_set [\link[base]{list} or NULL] List of X13 specifications. If
+#'   `NULL`, generated via [create_specs_set()].
 #' @param ... Additional arguments passed to [create_specs_set()] controlling
 #'   the generation of X13 specifications. Possible arguments include:
 #'   \describe{
-#'     \item{outliers}{Optional list of outliers with elements `type` (vector of types, e.g., "AO", "LS", "TC") and `date` (vector of dates).}
-#'     \item{span_start}{Starting date of the estimation (character, format `"YYYY-MM-DD"`).}
+#'     \item{outliers}{Optional list of outliers with elements `type` (vector
+#'     of types, e.g., "AO", "LS", "TC") and `date` (vector of dates).}
+#'     \item{span_start}{Starting date of the estimation (character, format
+#'     `"YYYY-MM-DD"`).}
 #'     \item{...}{Other arguments accepted by [create_specs_set()].}
 #'   }
 #'

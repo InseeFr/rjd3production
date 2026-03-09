@@ -1,26 +1,3 @@
-#' @title Retrieve all the auxiliary variables from a workspace
-#'
-#' @description
-#' Lists all the variables in a modelling context.
-#'
-#' @param context a modelling context
-#'
-#' @returns a list with all the groups and named variables
-#' @export
-#'
-get_named_variables <- function(context = NULL) {
-    if (is.null(context)) {
-        message("Without context, the output is NULL.")
-        return(invisible(NULL))
-    }
-    all_vars <- context$variables
-    named_vars <- lapply(seq_along(all_vars), function(k) {
-        paste0(names(all_vars)[k], ".", names(all_vars[[k]]))
-    })
-    names(named_vars) <- names(all_vars)
-    return(named_vars)
-}
-
 #' @title Manage outliers from JDemetra+ workspaces
 #'
 #' @description
@@ -76,9 +53,13 @@ get_named_variables <- function(context = NULL) {
 #' @importFrom tools file_path_sans_ext
 #' @name outliers_tools
 #' @export
-retrieve_outliers <- function(jws, domain = TRUE, estimation = FALSE,
-                              point = FALSE, verbose = TRUE) {
-
+retrieve_outliers <- function(
+    jws,
+    domain = TRUE,
+    estimation = FALSE,
+    point = FALSE,
+    verbose = TRUE
+) {
     if (domain + point + estimation != 1L) {
         stop("You have to choose one specification.")
     }
@@ -93,7 +74,8 @@ retrieve_outliers <- function(jws, domain = TRUE, estimation = FALSE,
     ps_outliers <- data.frame(
         series = character(),
         type = character(),
-        date = character()
+        date = character(),
+        stringsAsFactors = FALSE
     )
 
     for (id_sai in seq_along(sap)) {
@@ -114,11 +96,17 @@ retrieve_outliers <- function(jws, domain = TRUE, estimation = FALSE,
         sai <- sap[[id_sai]]
 
         if (domain) {
-            regression_section <- sai[["domainSpec"]][["regarima"]][["regression"]]
+            regression_section <- sai[["domainSpec"]][["regarima"]][[
+                "regression"
+            ]]
         } else if (estimation) {
-            regression_section <- sai[["estimationSpec"]][["regarima"]][["regression"]]
+            regression_section <- sai[["estimationSpec"]][["regarima"]][[
+                "regression"
+            ]]
         } else if (point) {
-            regression_section <- sai[["pointSpec"]][["regarima"]][["regression"]]
+            regression_section <- sai[["pointSpec"]][["regarima"]][[
+                "regression"
+            ]]
         }
 
         outliers <- regression_section[["outliers"]] |> unique()
@@ -154,11 +142,10 @@ retrieve_outliers <- function(jws, domain = TRUE, estimation = FALSE,
 }
 
 extract_td <- function(spec) {
-
     regression_section <- spec[["regarima"]][["regression"]]
 
     regressors_td <- regression_section[["td"]]
-    if (regressors_td[["td"]] != "TD_NONE"){
+    if (regressors_td[["td"]] != "TD_NONE") {
         return(regressors_td[["td"]])
     } else if (regressors_td[["w"]] != 0L) {
         return("STOCK_TD")
@@ -195,7 +182,7 @@ extract_td <- function(spec) {
                 x = regressors_ud,
                 ignore.case = TRUE
             ) |
-            grepl(pattern = "LY", x = regressors_ud, ignore.case = TRUE)
+                grepl(pattern = "LY", x = regressors_ud, ignore.case = TRUE)
         )
     ) {
         regs_td <- paste0(regs_td, "_LY")
@@ -255,9 +242,13 @@ extract_td <- function(spec) {
 #' @importFrom tools file_path_sans_ext
 #' @name td_tools
 #' @export
-retrieve_td <- function(jws, domain = TRUE, estimation = FALSE,
-                        point = FALSE, verbose = TRUE) {
-
+retrieve_td <- function(
+    jws,
+    domain = TRUE,
+    estimation = FALSE,
+    point = FALSE,
+    verbose = TRUE
+) {
     if (domain + point + estimation != 1L) {
         stop("You have to choose one specification.")
     }
