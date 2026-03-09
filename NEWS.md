@@ -13,6 +13,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * New function to create a ws from datasets and a default specification
 * New function to make a ws crunchable
 * Shiny app to compare WS with button to export table
+* New functions to reverse-engineer a specification
+* New functions to create random specifications
 * New WS example and code to generate it
 
 ### Changed

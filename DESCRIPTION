@@ -20,6 +20,7 @@ Imports:
     yaml, 
     zoo,
     shiny, 
+    constructive,
     usethis, 
     TBox, 
     date4ts
@@ -30,7 +31,9 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Suggests: 
+    testthat (>= 3.0.0), 
     knitr,
     rmarkdown
+Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://inseefr.github.io/rjd3production/
