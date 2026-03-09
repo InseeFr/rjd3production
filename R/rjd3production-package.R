@@ -12,5 +12,12 @@ NULL
     if (! requireNamespace('rjd3toolkit', quietly = TRUE)) stop("Loading rjd3 libraries failed")
     if (! requireNamespace("rjd3tramoseats", quietly = TRUE)) stop("Loading rjd3 libraries failed")
     if (! requireNamespace("rjd3x13", quietly = TRUE)) stop("Loading rjd3 libraries failed")
+
+    print("ici")
+    path_jar <- system.file("java", package = "rjd3toolkit")
+    .jaddClassPath(path_jar)
+
+    print("là")
+
     rjd3toolkit::reload_dictionaries()
 }
