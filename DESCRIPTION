@@ -7,6 +7,7 @@ Description: You can use this package as a toolbox to prepare and make in produc
 Depends:
     R (>= 4.1.0)
 Imports:
+    rJava, 
     rjd3toolkit,
     rjd3x13,
     rjd3workspace,
