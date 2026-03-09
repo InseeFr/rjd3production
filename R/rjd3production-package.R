@@ -4,7 +4,7 @@
 ## usethis namespace: start
 #' @import rjd3toolkit
 #' @importFrom rjd3workspace read_sai
-#' @importFrom rJava .jinit
+#' @importFrom rJava .jinit .jaddClassPath
 ## usethis namespace: end
 NULL
 
@@ -19,7 +19,7 @@ NULL
 
     print("ici")
     path_jar <- system.file("java", package = "rjd3toolkit")
-    .jaddClassPath(path_jar)
+    rJava::.jaddClassPath(path_jar)
 
     print("là")
 
