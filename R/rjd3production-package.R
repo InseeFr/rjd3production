@@ -12,7 +12,7 @@ NULL
 .onLoad <- function(libname, pkgname) {
     print("loaded")
 
-    rJava::.jinit()
+    # rJava::.jinit()
 
     # if (! requireNamespace('rjd3toolkit', quietly = TRUE)) stop("Loading rjd3 libraries failed")
     # if (! requireNamespace("rjd3tramoseats", quietly = TRUE)) stop("Loading rjd3 libraries failed")
