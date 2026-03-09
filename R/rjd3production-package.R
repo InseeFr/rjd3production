@@ -3,6 +3,7 @@
 
 ## usethis namespace: start
 #' @import rjd3toolkit
+#' @import rJava
 #' @importFrom rjd3workspace read_sai
 #' @importFrom rJava .jinit .jaddClassPath
 ## usethis namespace: end
