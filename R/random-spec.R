@@ -3,7 +3,7 @@ random_flag <- function() {
 }
 
 random_name <- function(n = n) {
-    nom <- paste0(
+    nom <- paste(
         sample(x = c(0:9, letters), size = n, replace = TRUE),
         collapse = ""
     )
@@ -240,7 +240,7 @@ random_add_ramp <- function(x) {
     args <- list(x = x)
 
     n <- sample.int(15L, size = 1L)
-    args$start <-sample.int(18000, size = n)
+    args$start <- sample.int(18000, size = n)
     args$end <- args$start + sample.int(2000, size = n)
     args$start <- as.character(as.Date(args$start))
     args$end <- as.character(as.Date(args$end))
@@ -373,4 +373,3 @@ random_spec <- function() {
 
     return(output)
 }
-

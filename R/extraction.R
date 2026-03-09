@@ -118,4 +118,3 @@ get_named_variables <- function(context = NULL) {
     names(named_vars) <- names(all_vars)
     return(named_vars)
 }
-

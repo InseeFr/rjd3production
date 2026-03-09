@@ -64,7 +64,7 @@ remove_non_significative_outliers <- function(
     jsap <- rjd3workspace::jws_sap(jws, 1L)
     nb_sai <- rjd3workspace::sap_sai_count(jsap)
 
-    outliers_table <- data.frame(series = character(), name = character())
+    outliers_table <- data.frame(series = character(), name = character(), stringsAsFactors = FALSE)
 
     for (id_sai in seq_len(nb_sai)) {
         cat("\U1F4CC SAI n\UB0", id_sai, "\n")
