@@ -10,12 +10,16 @@ assign_outliers(jws, outliers)
 \item{jws}{A Java Workspace object, as returned by \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}} or
 \code{\link[rjd3workspace:jws_new]{rjd3workspace::jws_new()}}.}
 
-\item{outliers}{[\link[base]{list}] A named list where each element
-corresponds to a series in the workspace created with \link{retrieve_outliers} or
-\link{import_outliers}.}
+\item{outliers}{[\link[base]{data.frame}] A data.frame with three columns:
+\itemize{
+\item \code{series}: name of the series in the workspace.
+\item \code{type}: type of outlier (AO, LS, TC or SO) - character
+\item \code{date}: date of the outlier (in \code{YYYY-MM-DD} format) - character
+(created with \link{retrieve_outliers} or \link{import_outliers}).
+}}
 }
 \value{
-The object \code{jws} updated with new pre-specified outliers.
+Invisibly, the object \code{jws} updated with new pre-specified outliers.
 }
 \description{
 This function updates a JDemetra+ workspace (\code{.xml}) by inserting

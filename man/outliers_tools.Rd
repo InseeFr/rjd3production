@@ -7,9 +7,9 @@
 \alias{retrieve_outliers}
 \title{Manage outliers from JDemetra+ workspaces}
 \usage{
-export_outliers(x, ws_name, path = NULL, verbose = TRUE)
+export_outliers(x, path = NULL, verbose = TRUE)
 
-import_outliers(ws_name, path = NULL, verbose = TRUE)
+import_outliers(path, verbose = TRUE)
 
 retrieve_outliers(
   jws,
@@ -22,9 +22,6 @@ retrieve_outliers(
 \arguments{
 \item{x}{\link{list} A list of outliers, as returned by
 \code{\link[=retrieve_outliers]{retrieve_outliers()}}.}
-
-\item{ws_name}{[\link[base]{character}] The name of the workspace,
-used to build default YAML filenames.}
 
 \item{path}{[\link[base]{character}] Path to a YAML file to write to
 or read from. If missing, defaults to
@@ -44,6 +41,9 @@ estimation specification.}
 
 \item{point}{Boolean indicating if the outliers should be extracted from the
 point specification.}
+
+\item{ws_name}{[\link[base]{character}] The name of the workspace,
+used to build default YAML filenames.}
 }
 \value{
 \itemize{
