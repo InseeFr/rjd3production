@@ -14,7 +14,7 @@
 #' - `all_diagnostics()` evaluates all specifications in a set and summarizes
 #' diagnostics.
 #' - `verif_LY()` checks whether the leap-year effect should be kept or removed.
-#' - `select_reg_one_series()` selects the best calendar regressors set for a
+#' - `select_td_one_series()` selects the best calendar regressors set for a
 #' single series.
 #'
 #' @param smod [list] Result of [summary()] applied to an X13 model.
@@ -42,7 +42,7 @@
 #' - `one_diagnostic()` : A data.frame with diagnostics for one specification.
 #' - `all_diagnostics()` : A data.frame with diagnostics for all specifications.
 #' - `verif_LY()` : Name of the chosen regression set (possibly without LY).
-#' - `select_reg_one_series()` : Name of the selected regression set.
+#' - `select_td_one_series()` : Name of the selected regression set.
 #'
 #' @examples
 #' # Create a modelling context
@@ -71,7 +71,7 @@
 #' rjd3production:::verif_LY("REG6_LY", diags)
 #'
 #' # Select regressions for one series
-#' rjd3production:::select_reg_one_series(series = AirPassengers, context = my_context)
+#' rjd3production:::select_td_one_series(series = AirPassengers, context = my_context)
 #'
 #' @name diagnostics_selection
 #' @keywords internal
@@ -203,7 +203,7 @@ verif_LY <- function(jeu, diags) {
 #' @rdname diagnostics_selection
 #' @importFrom stats time
 #' @importFrom utils tail
-select_reg_one_series <- function(
+select_td_one_series <- function(
     series,
     name = "",
     specs_set = NULL,
@@ -259,18 +259,18 @@ select_reg_one_series <- function(
 #'
 #' @examples
 #' # Single series
-#' select_regs(AirPassengers)
+#' select_td(AirPassengers)
 #'
 #' # Multiple series
-#' select_regs(Seatbelts[, -8])
+#' select_td(Seatbelts[, -8])
 #'
 #' # Restrict regressors sets
 #' my_context <- create_insee_context()
 #' my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
-#' select_regs(Seatbelts[, -8], context = my_context)
+#' select_td(Seatbelts[, -8], context = my_context)
 #'
 #' @export
-select_regs <- function(series, context = NULL, ...) {
+select_td <- function(series, context = NULL, ...) {
     if (is.null(context)) {
         context <- create_insee_context(s = series)
     }
@@ -325,7 +325,7 @@ select_regs <- function(series, context = NULL, ...) {
             ),
             "\n"
         )
-        return(select_reg_one_series(
+        return(select_td_one_series(
             series = series[, k],
             name = series_name,
             specs_set = specs_set,
