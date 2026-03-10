@@ -24,6 +24,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * The `assign_XXX` and `retrieve_XXX` functions are using `jws` instead of the `ws_path`.
 * `select_regs` takes a new argument `context` to define the different regressors sets to use.
 * `export_XXX` and `import_XXX` functions don't support anymore `ws_name` argument.
+* `export_XXX` functions are using `td` or `outliers` to replace `x`.
 
 ### Fixed
 
