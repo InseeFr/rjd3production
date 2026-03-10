@@ -31,7 +31,7 @@
 #' @importFrom zoo as.Date
 #' @export
 get_series <- function(jsai) {
-    res <- rjd3workspace::read_sai(jsai)$results
+    res <- (rjd3workspace::read_sai(jsai))$results
     if (is.null(res)) {
         stop("Please compute your workspace")
     }
@@ -59,8 +59,7 @@ get_series <- function(jsai) {
 #' Searches a workspace for a seasonal adjustment item (SAI) whose name matches
 #' the user-supplied string and returns the corresponding object.
 #'
-#' @param jws A Java Workspace object, as returned by [jws_open()] or
-#' [jws_new()].
+#' @inheritParams make_ws_crunchable
 #' @param series_name [character] Name of the SAI to retrieve.
 #'
 #' @return A Java Seasonal Adjustment Item object (`jsai`).
