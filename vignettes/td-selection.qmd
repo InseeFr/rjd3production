@@ -93,18 +93,18 @@ We then create our sets of regressors and create the modelling context:
 series_example <- ABS[, 1]
 my_regressors_sets <- list(
     TD2_TB = calendar_td(
-        s = series_example, 
+        s = series_example,
         groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
-    ), 
+    ),
     TD3_TB = cbind(
         calendar_td(
-            s = series_example, 
+            s = series_example,
             groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
-        ), 
+        ),
         lp_variable(s = series_example)
-    ) |> `colnames<-`(c("group_1", "group_2", "ly")), 
+    ) |> `colnames<-`(c("group_1", "group_2", "ly")),
     TD6_TB = calendar_td(
-        s = series_example, 
+        s = series_example,
         groups = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
     )
 )

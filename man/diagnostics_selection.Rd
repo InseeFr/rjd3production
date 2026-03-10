@@ -6,7 +6,7 @@
 \alias{one_diagnostic}
 \alias{all_diagnostics}
 \alias{verif_LY}
-\alias{select_reg_one_series}
+\alias{select_td_one_series}
 \title{Diagnostics Extraction on Calendar Correction with different sets of regressors}
 \usage{
 get_LY_info(smod, verbose = TRUE)
@@ -17,7 +17,7 @@ all_diagnostics(series, specs_set, context)
 
 verif_LY(jeu, diags)
 
-select_reg_one_series(series, name = "", specs_set = NULL, context = NULL, ...)
+select_td_one_series(series, name = "", specs_set = NULL, context = NULL, ...)
 }
 \arguments{
 \item{smod}{\link{list} Result of \code{\link[=summary]{summary()}} applied to an X13 model.}
@@ -54,7 +54,7 @@ of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
 \item \code{one_diagnostic()} : A data.frame with diagnostics for one specification.
 \item \code{all_diagnostics()} : A data.frame with diagnostics for all specifications.
 \item \code{verif_LY()} : Name of the chosen regression set (possibly without LY).
-\item \code{select_reg_one_series()} : Name of the selected regression set.
+\item \code{select_td_one_series()} : Name of the selected regression set.
 }
 }
 \description{
@@ -72,7 +72,7 @@ diagnostics.
 \item \code{all_diagnostics()} evaluates all specifications in a set and summarizes
 diagnostics.
 \item \code{verif_LY()} checks whether the leap-year effect should be kept or removed.
-\item \code{select_reg_one_series()} selects the best calendar regressors set for a
+\item \code{select_td_one_series()} selects the best calendar regressors set for a
 single series.
 }
 }
@@ -103,7 +103,7 @@ diags <- rjd3production:::all_diagnostics(
 rjd3production:::verif_LY("REG6_LY", diags)
 
 # Select regressions for one series
-rjd3production:::select_reg_one_series(series = AirPassengers, context = my_context)
+rjd3production:::select_td_one_series(series = AirPassengers, context = my_context)
 
 }
 \keyword{internal}

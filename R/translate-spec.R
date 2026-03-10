@@ -129,7 +129,7 @@ rev_add_usrdefvar <- function(x) {
         FUN = rev_one_usrdefvar,
         FUN.VALUE = character(1L)
     ) |>
-        paste0(collapse = " |>\n")
+        paste(collapse = " |>\n")
     return(code)
 }
 
@@ -165,7 +165,8 @@ rev_set_x11 <- function(x) {
     args$seasonal.filter <- gsub(
         pattern = "FILTER_",
         replacement = "",
-        args$seasonal.filter
+        x = args$seasonal.filter,
+        fixed = TRUE
     )
     args$bias <- switch(
         args$bias,
@@ -498,7 +499,7 @@ rev_spec <- function(x) {
     ) |>
         paste(collapse = " |>\n") |>
         paste("rjd3x13::x13_spec() |>\n", ... = _) |>
-        gsub(pattern = "\n", replacement = "\n\t")
+        gsub(pattern = "\n", replacement = "\n\t", fixed = TRUE)
 
     return(code)
 }
