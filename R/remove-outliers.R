@@ -47,9 +47,9 @@ remove_non_significative_outliers <- function(ws_path, threshold = 0.3) {
 
     for (id_sai in seq_len(nb_sai)) {
         cat("📌 SAI n°", id_sai, "\n")
-        jsai <- rjd3workspace::.jsap_sai(jsap, id_sai)
-        sai <- rjd3workspace::.jsai_read(jsai)
-        series_name <- rjd3workspace::.jsa_name(jsai)
+        jsai <- rjd3workspace::jsap_sai(jsap, id_sai)
+        sai <- rjd3workspace::read_sai(jsai)
+        series_name <- rjd3workspace::sai_name(jsai)
 
         new_estimationSpec <- estimationSpec <- sai$estimationSpec
         new_domainSpec <- domainSpec <- sai$domainSpec
