@@ -78,7 +78,14 @@
 NULL
 
 #' @rdname diagnostics_selection
-get_LY_info <- function(smod, verbose = TRUE) {
+get_LY_info <- function(mod, verbose = TRUE) {
+    ud_var <- mod$result_spec$regarima$regression$td$users
+    if (length(ud_var) == 0L
+        || !any(grepl(pattern = ".LY", x = ud_var, fixed = TRUE))) {
+        return(data.frame(LY_coeff = NA, LY_p_value = NA))
+    }
+
+    smod <- summary(mod)
     reg_table <- smod$preprocessing$xregs
     idx <- grep(pattern = ".LY", x = rownames(reg_table), fixed = TRUE)
     idx2 <- grep(
@@ -86,9 +93,7 @@ get_LY_info <- function(smod, verbose = TRUE) {
         x = rownames(reg_table),
         fixed = TRUE
     )
-    if (length(idx) == 0L && length(idx2) == 0L) {
-        return(data.frame(LY_coeff = NA, LY_p_value = NA))
-    } else if (length(idx) > 1L) {
+    if (length(idx) > 1L) {
         stop("Plusieurs variables portent le nom LY.")
     } else if (length(idx) == 0L && length(idx2) == 1L) {
         idx <- idx2
@@ -109,19 +114,21 @@ one_diagnostic <- function(series, spec, context) {
         userdefined = c("diagnostics.td-sa-all", "diagnostics.td-i-all")
     )
 
+    # Si res_td < 0.05 -> il y a des tradings days residuals
     res_td <- sapply(
         X = mod$user_defined,
         FUN = `[[`,
         "pvalue"
     )
 
+    # Plus la note est élevé, moins bine c'est.
     note <- sum((res_td < 0.05) * 2L:1L)
     aicc <- mod$result$preprocessing$estimation$likelihood$aicc
     mode <- c("Additive", "Multiplicative")[
         mod$result$preprocessing$description$log + 1L
     ]
 
-    LY_info <- get_LY_info(summary(mod))
+    LY_info <- get_LY_info(mod)
 
     diag <- cbind(
         data.frame(note = note, aicc = aicc, mode = mode),
@@ -217,6 +224,14 @@ select_td_one_series <- function(
         specs_set <- create_specs_set(context = context, ...)
     }
 
+    if ("No_TD" %in% names(specs_set)) {
+        diag_no_td <- one_diagnostic(series = series, spec = specs_set$No_TD, context = context)
+        # Note de 0 = note parfaite
+        if (diag_no_td$note == 0) {
+            return("No_TD")
+        }
+    }
+
     diags <- all_diagnostics(series, specs_set = specs_set, context = context)
     diags_wo_na <- diags[!is.na(diags$note) & !is.na(diags$aicc), ]
 
@@ -224,11 +239,6 @@ select_td_one_series <- function(
         stop(
             "Erreur lors du calcul de l'aicc et des p-value.
              Aucun jeu de regresseur n'a pu \u00eatre s\u00e9lectionn\u00e9. ",
-            ifelse(nzchar(name), paste0("(S\u00e9rie ", name, ")"), "")
-        )
-    } else if (all(diags_wo_na$note == 0)) {
-        warning(
-            "Aucun jeu de regresseur n'est significatif. ",
             ifelse(nzchar(name), paste0("(S\u00e9rie ", name, ")"), "")
         )
     }

@@ -9,7 +9,7 @@
 \alias{select_td_one_series}
 \title{Diagnostics Extraction on Calendar Correction with different sets of regressors}
 \usage{
-get_LY_info(smod, verbose = TRUE)
+get_LY_info(mod, verbose = TRUE)
 
 one_diagnostic(series, spec, context)
 
@@ -20,8 +20,6 @@ verif_LY(jeu, diags)
 select_td_one_series(series, name = "", specs_set = NULL, context = NULL, ...)
 }
 \arguments{
-\item{smod}{\link{list} Result of \code{\link[=summary]{summary()}} applied to an X13 model.}
-
 \item{series}{[\link[stats]{ts} or numeric] Time series to analyse.}
 
 \item{spec}{\link{list} A X13 specification (from \code{\link[rjd3x13:x13_spec]{rjd3x13::x13_spec()}}).}
@@ -47,6 +45,8 @@ of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
 \code{"YYYY-MM-DD"}).}
 \item{...}{Other arguments accepted by \code{\link[=create_specs_set]{create_specs_set()}}.}
 }}
+
+\item{smod}{\link{list} Result of \code{\link[=summary]{summary()}} applied to an X13 model.}
 }
 \value{
 \itemize{
