@@ -1,3 +1,5 @@
+#' @importFrom tools file_path_sans_ext
+#' @importFrom tools file_ext
 prepare_path <- function(path = NULL, object = "outliers") {
     if (is.null(path)) {
         if (!dir.exists("regression")) {
@@ -51,19 +53,22 @@ prepare_path <- function(path = NULL, object = "outliers") {
 }
 
 #' @importFrom yaml write_yaml
-#' @rdname outliers_tools
+#' @family regression tools
+#' @rdname regression_tools
 #' @export
-export_outliers <- function(x, path = NULL, verbose = TRUE) {
+export_outliers <- function(outliers, path = NULL, verbose = TRUE) {
     path <- prepare_path(path, "outliers")
     if (verbose) {
         cat("The outliers table will be written at ", path, "\n")
     }
-    yaml::write_yaml(x = x, file = path)
+    yaml::write_yaml(x = outliers, file = path)
     return(invisible(path))
 }
 
 #' @importFrom yaml read_yaml
-#' @rdname outliers_tools
+#' @importFrom tools file_ext
+#' @family regression tools
+#' @rdname regression_tools
 #' @export
 import_outliers <- function(path, verbose = TRUE) {
     if (!file.exists(path)) {
@@ -80,19 +85,22 @@ import_outliers <- function(path, verbose = TRUE) {
 }
 
 #' @importFrom yaml write_yaml
-#' @rdname td_tools
+#' @family regression tools
+#' @rdname regression_tools
 #' @export
-export_td <- function(x, path = NULL, verbose = TRUE) {
+export_td <- function(td, path = NULL, verbose = TRUE) {
     path <- prepare_path(path, "td")
     if (verbose) {
         cat("The td table will be written at ", path, "\n")
     }
-    yaml::write_yaml(x = x, file = path)
+    yaml::write_yaml(x = td, file = path)
     return(invisible(path))
 }
 
 #' @importFrom yaml read_yaml
-#' @rdname td_tools
+#' @importFrom tools file_ext
+#' @family regression tools
+#' @rdname regression_tools
 #' @export
 import_td <- function(path, verbose = TRUE) {
     if (!file.exists(path)) {

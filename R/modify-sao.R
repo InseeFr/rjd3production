@@ -3,8 +3,9 @@
 #' @description
 #' Complete and replace the ts metadata of a WS to make it crunchable
 #'
-#' @param jws The java representation of the workspace
-#' @param verbose Boolean. Print additional informations.
+#' @param jws A Java Workspace object, as returned by
+#' [rjd3workspace::jws_open()] or [rjd3workspace::jws_new()].
+#' @param verbose Boolean. Print additional informations. Default is `TRUE`.
 #'
 #' @details
 #' New metadata are added from temporary files created on the heap. Thus, this
@@ -106,9 +107,7 @@ make_ws_crunchable <- function(jws, verbose = TRUE) {
 #' # Create workspace
 #' ws <- create_ws_from_data(x)
 #'
-#' @importFrom rjd3workspace jws_new
-#' @importFrom rjd3workspace add_sa_item
-#' @importFrom rjd3workspace jws_sap_new
+#' @importFrom rjd3workspace jws_new add_sa_item jws_sap_new
 #' @export
 create_ws_from_data <- function(x, spec = rjd3x13::x13_spec()) {
     jws <- rjd3workspace::jws_new()

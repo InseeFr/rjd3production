@@ -22,6 +22,7 @@
 #'
 #' @details
 #' The function:
+#'
 #' - iterates over all the series (SA-Items) in the workspace,
 #' - identifies outliers in the `regarima` specification,
 #' - checks their p-values in the pre-processing regression summary,
@@ -150,8 +151,7 @@ remove_non_significative_outliers <- function(
 #' model_span = estimation_span
 #' series_span = basic_span
 #'
-#' @importFrom rjd3toolkit set_basic
-#' @importFrom rjd3toolkit set_estimate
+#' @importFrom rjd3toolkit set_basic set_estimate
 #'
 #' @export
 #'

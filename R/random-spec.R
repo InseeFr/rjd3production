@@ -14,6 +14,7 @@ random_choice <- function(x) {
     sample(x = x, size = 1)
 }
 
+#' @importFrom stats runif
 random_numeric_or_null <- function() {
     random_choice(list(NULL, NA_real_, stats::runif(1)))[[1]]
 }
@@ -54,7 +55,7 @@ random_span <- function() {
 }
 
 #' @importFrom rjd3toolkit add_outlier
-#' @importFrom stats rnorm runif
+#' @importFrom stats rnorm
 random_add_outlier <- function(x) {
     args <- list(x = x)
 
@@ -75,6 +76,7 @@ random_add_outlier <- function(x) {
 }
 
 #' @importFrom rjd3x13 set_x11
+#' @importFrom stats runif
 random_set_x11 <- function(x) {
     args <- list(x = x)
 
@@ -145,6 +147,7 @@ random_set_easter <- function(x) {
 }
 
 #' @importFrom rjd3toolkit set_tradingdays
+#' @importFrom stats runif
 random_set_tradingdays <- function(x) {
     args <- list(x = x)
 
@@ -182,6 +185,7 @@ random_set_tradingdays <- function(x) {
 }
 
 #' @importFrom rjd3toolkit set_arima
+#' @importFrom stats rnorm
 random_set_arima <- function(x) {
     args <- list(x = x)
 
@@ -201,6 +205,7 @@ random_set_arima <- function(x) {
 }
 
 #' @importFrom rjd3toolkit set_automodel
+#' @importFrom stats rnorm
 random_set_automodel <- function(x) {
     args <- list(x = x)
 
@@ -237,6 +242,7 @@ random_set_benchmarking <- function(x) {
 }
 
 #' @importFrom rjd3toolkit add_ramp
+#' @importFrom stats rnorm
 random_add_ramp <- function(x) {
     args <- list(x = x)
 
@@ -270,6 +276,7 @@ random_set_basic <- function(x) {
     return(output)
 }
 
+#' @importFrom stats runif
 #' @importFrom rjd3toolkit set_estimate
 random_set_estimate <- function(x) {
     args <- list(x = x)
@@ -283,6 +290,7 @@ random_set_estimate <- function(x) {
     return(output)
 }
 
+#' @importFrom stats rnorm
 #' @importFrom rjd3toolkit set_outlier
 random_set_outlier <- function(x) {
     args <- list(x = x)
@@ -309,6 +317,7 @@ random_set_outlier <- function(x) {
 }
 
 #' @importFrom rjd3toolkit add_usrdefvar
+#' @importFrom stats rnorm
 random_add_usrdefvar <- function(x) {
     output <- x
 

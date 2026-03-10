@@ -16,6 +16,7 @@ merge_lists <- function(list1, list2, verbose = TRUE) {
     return(c(list1, list2[setdiff_elts]))
 }
 
+#' @importFrom rjd3toolkit modelling_context
 merge_contexts <- function(context1 = NULL, context2 = NULL, verbose = TRUE) {
     if (is.null(context2)) {
         return(context1)
@@ -34,44 +35,11 @@ merge_contexts <- function(context1 = NULL, context2 = NULL, verbose = TRUE) {
     return(new_context)
 }
 
-#' @title Assign outliers to a JDemetra+ workspace
-#'
-#' @description
-#' This function updates a JDemetra+ workspace (`.xml`) by inserting
-#' pre-specified outliers into the `domainSpec` of each series (SA-Item).
-#'
-#' @param outliers [\link[base]{data.frame}] A data.frame with three columns:
-#' - `series`: name of the series in the workspace.
-#' - `type`: type of outlier (AO, LS, TC or SO) - character
-#' - `date`: date of the outlier (in `YYYY-MM-DD` format) - character
-#' (created with [retrieve_outliers] or [import_outliers]).
-#' @param jws A Java Workspace object, as returned by [jws_open()] or
-#' [jws_new()].
-#'
-#' @details
-#' This function only modifies the first SA-Processing.
-#'
-#' @returns Invisibly, the object `jws` updated with new pre-specified outliers.
-#'
-#' @seealso
-#' - [retrieve_outliers()] to extract outliers from an existing workspace.
-#' - [export_outliers()] / [import_outliers()] to manage YAML files of outliers.
-#'
-#' @examples
-#' \dontrun{
-#' # Retrieve outliers from an existing workspace
-#' outs <- retrieve_outliers("workspace.xml")
-#'
-#' # Reapply them to another workspace
-#' assign_outliers(outliers = outs, ws_path = "workspace.xml")
-#' }
-#'
-#' @importFrom rjd3workspace jws_open jws_sap sap_sai_count jsap_sai sai_name
-#' @importFrom rjd3workspace read_sai set_name
-#' @importFrom rjd3workspace set_specification set_domain_specification
+#' @importFrom rjd3workspace jws_sap sap_sai_count jsap_sai sai_name read_sai
+#' @importFrom rjd3workspace set_specification set_domain_specification set_name
 #' @importFrom rjd3toolkit add_outlier
-#' @importFrom tools file_path_sans_ext
-#'
+#' @family regression tools
+#' @rdname regression_tools
 #' @export
 assign_outliers <- function(jws, outliers) {
     jsap <- rjd3workspace::jws_sap(jws, 1L)
@@ -127,43 +95,12 @@ assign_outliers <- function(jws, outliers) {
     return(invisible(jws))
 }
 
-#' @title Assign calendar (TD) regressors to a JDemetra+ workspace
-#'
-#' @description
-#' This function updates a JDemetra+ workspace (`.xml`) by assigning
-#' user-defined trading day regressors (TD) to each series
-#' (SA-Item), based on an external correspondence table, which can be created with
-#' [retrieve_td()].
-#'
-#' This function modifies the `domainSpec` of each series by setting
-#' `tradingdays` to `"UserDefined"` with the appropriate regressors
-#' (`REG1` … `REG6`, optionally with `LY` for leap year).
-#'
-#' @param td [\link[base]{data.frame}] A data.frame with two columns:
-#' - `series`: name of the series in the workspace.
-#' - `regs`: anem of the regressor set to apply
-#' (created by [retrieve_td] or [import_td]).
-#' @param jws A Java Workspace object, as returned by [jws_open()] or
-#' [jws_new()].
-#'
-#' @details
-#' This function only modifies the first SA-Processing.
-#'
-#' @returns Invisibly, the object `jws` updated with new td regressors.
-#'
-#' @examples
-#' \dontrun{
-#' # Load a workspace and apply INSEE TD sets
-#' td_table <- retrieve_td("workspace.xml")
-#' assign_td(td = td_table, ws_path = "workspace.xml")
-#' }
-#'
-#' @importFrom rjd3workspace jws_open jws_sap sap_sai_count jsap_sai sai_name
-#' @importFrom rjd3workspace sap_sai_count read_sai set_name save_workspace
-#' @importFrom rjd3workspace set_specification set_domain_specification
+#' @importFrom rjd3workspace jws_sap sap_sai_count jsap_sai sai_name read_sai
+#' @importFrom rjd3workspace set_specification set_domain_specification set_name
 #' @importFrom rjd3workspace get_context
-#' @importFrom tools file_path_sans_ext
-#'
+#' @importFrom rjd3toolkit set_tradingdays
+#' @family regression tools
+#' @rdname regression_tools
 #' @export
 assign_td <- function(td, jws) {
     if (nrow(td) == 0L) {
@@ -202,13 +139,13 @@ assign_td <- function(td, jws) {
             new_estimationSpec <- estimationSpec <- sai$estimationSpec
             new_domainSpec <- domainSpec <- sai$domainSpec
             new_domainSpec <- domainSpec |>
-                set_tradingdays(
+                rjd3toolkit::set_tradingdays(
                     option = "UserDefined",
                     uservariable = td_variables,
                     test = "None"
                 )
             new_estimationSpec <- estimationSpec |>
-                set_tradingdays(
+                rjd3toolkit::set_tradingdays(
                     option = "UserDefined",
                     uservariable = td_variables,
                     test = "None"
