@@ -8,7 +8,7 @@ prepare_path <- function(path = NULL, object = "outliers") {
             tmpdir = "regression",
             fileext = ".yaml"
         )
-        warning("The path is missing.", "The table will be written at", path)
+        warning("The path is missing.", "The table will be written at ", path)
     } else if (dir.exists(path)) {
         path <- tempfile(
             pattern = "td_",
@@ -24,7 +24,7 @@ prepare_path <- function(path = NULL, object = "outliers") {
                 paste0(... = _, ".yaml")
             path <- file.path(dirname(path), new_file_name)
             warning("Only .yml and .yaml files are accepted.",
-                    "The table will be written at", path)
+                    "The table will be written at ", path)
         }
     } else if (nzchar(tools::file_ext(path))) {
         if (!dir.exists(dirname(path))) {
@@ -37,7 +37,7 @@ prepare_path <- function(path = NULL, object = "outliers") {
                 paste0(... = _, ".yaml")
             path <- file.path(dirname(path), new_file_name)
             warning("Only .yml and .yaml files are accepted.",
-                    "The table will be written at", path)
+                    "The table will be written at ", path)
         }
     } else {
         dir.create(path, showWarnings = FALSE, recursive = TRUE)

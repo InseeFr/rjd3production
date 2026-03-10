@@ -41,9 +41,6 @@ estimation specification.}
 
 \item{point}{Boolean indicating if the outliers should be extracted from the
 point specification.}
-
-\item{ws_name}{[\link[base]{character}] The name of the workspace,
-used to build default YAML file names.}
 }
 \value{
 \itemize{
@@ -69,17 +66,14 @@ They are useful for documenting and reusing the regression settings
 applied in seasonal adjustment workflows.
 }
 \examples{
-\dontrun{
-ws_file <- "path/to/workspace.xml"
+library("rjd3workspace")
+# Load a Workspace
+file <- system.file("workspaces", "workspace_test.xml", package = "rjd3workspace")
+jws <- jws_open(file)
+td_table <- retrieve_td(jws, domain = FALSE, point = TRUE)
 
-# 1. Retrieve TD specification
-td <- retrieve_td(ws_file)
-
-# 2. Export to YAML
-export_td(td, ws_name = "workspace1")
-
-# 3. Import back from YAML
-imported <- import_td(x = NULL, ws_name = "workspace1")
-}
+path_td <- tempfile(pattern = "td-table", fileext = ".yaml")
+export_td(td_table, path_td)
+td_table_imported <- import_td(path = path_td)
 
 }

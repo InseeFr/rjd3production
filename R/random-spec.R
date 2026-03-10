@@ -15,7 +15,7 @@ random_choice <- function(x) {
 }
 
 random_numeric_or_null <- function() {
-    random_choice(list(NULL, NA_real_, runif(1)))[[1]]
+    random_choice(list(NULL, NA_real_, stats::runif(1)))[[1]]
 }
 
 random_span <- function() {
@@ -54,13 +54,14 @@ random_span <- function() {
 }
 
 #' @importFrom rjd3toolkit add_outlier
+#' @importFrom stats rnorm runif
 random_add_outlier <- function(x) {
     args <- list(x = x)
 
     n <- sample.int(15L, size = 1L)
     args$type <- sample(c("AO", "LS", "TC", "SO"), size = n, replace = TRUE)
     args$date <- as.character(as.Date(sample.int(20000, size = n)))
-    args$coef <- sample(c(rep(0.0, n), rnorm(n)), size = n)
+    args$coef <- sample(c(rep(0.0, n), stats::rnorm(n)), size = n)
     args$name <- sample(
         x = c(
             paste0(args$type, " (", args$date, ")"),
@@ -98,8 +99,8 @@ random_set_x11 <- function(x) {
         "S3X15"
     ))
     args$henderson.filter <- random_choice(c(0, 2 * (1:25) + 1))
-    args$lsigma <- runif(n = 1, 0.6, 3)
-    args$usigma <- runif(n = 1, 3, 10)
+    args$lsigma <- stats::runif(n = 1, 0.6, 3)
+    args$usigma <- stats::runif(n = 1, 3, 10)
     args$bcasts <- random_choice(0:30)
     args$fcasts <- random_choice(0:30)
     args$calendar.sigma <- random_choice(c("None", "All", "Signif", "Select"))
@@ -153,8 +154,8 @@ random_set_tradingdays <- function(x) {
         "None", "UserDefined"
     ))
 
-    args$coef <- random_choice(list(NULL, NA_real_, runif(1)))[[1]]
-    args$leapyear.coef <- random_choice(list(NULL, NA_real_, runif(1)))[[1]]
+    args$coef <- random_choice(list(NULL, NA_real_, stats::runif(1)))[[1]]
+    args$leapyear.coef <- random_choice(list(NULL, NA_real_, stats::runif(1)))[[1]]
     args$test <- random_choice(c(NA_character_, "None", "Remove", "Add"))
 
     if (is.na(args$option) || args$option == "None") {
@@ -192,7 +193,7 @@ random_set_arima <- function(x) {
     args$bp <- random_choice(c(NA, 0:2))
     args$bd <- random_choice(c(NA, 0:2))
     args$bq <- random_choice(c(NA, 0:2))
-    args$coef <- random_choice(list(NULL, rnorm(sum(args$p, args$q, args$bp, args$bq, na.rm = TRUE))))[[1L]]
+    args$coef <- random_choice(list(NULL, stats::rnorm(sum(args$p, args$q, args$bp, args$bq, na.rm = TRUE))))[[1L]]
     args$coef.type <- random_choice(c(NA_character_, "Undefined", "Fixed", "Initial"))
 
     output <- do.call(rjd3toolkit::set_arima, args)
@@ -205,13 +206,13 @@ random_set_automodel <- function(x) {
 
     args$enabled <- random_flag()
     args$acceptdefault <- random_flag()
-    args$cancel <- random_choice(c(NA, abs(rnorm(1))))
-    args$ub1 <- random_choice(c(NA, abs(rnorm(1))))
-    args$ub2 <- random_choice(c(NA, abs(rnorm(1))))
-    args$reducecv <- random_choice(c(NA, abs(rnorm(1))))
-    args$ljungboxlimit <- random_choice(c(NA, abs(rnorm(1))))
-    args$tsig <- random_choice(c(NA, abs(rnorm(1))))
-    args$ubfinal <- random_choice(c(NA, abs(rnorm(1))))
+    args$cancel <- random_choice(c(NA, abs(stats::rnorm(1))))
+    args$ub1 <- random_choice(c(NA, abs(stats::rnorm(1))))
+    args$ub2 <- random_choice(c(NA, abs(stats::rnorm(1))))
+    args$reducecv <- random_choice(c(NA, abs(stats::rnorm(1))))
+    args$ljungboxlimit <- random_choice(c(NA, abs(stats::rnorm(1))))
+    args$tsig <- random_choice(c(NA, abs(stats::rnorm(1))))
+    args$ubfinal <- random_choice(c(NA, abs(stats::rnorm(1))))
     args$checkmu <- random_flag()
     args$mixed <- random_flag()
     args$balanced <- random_flag()
@@ -244,7 +245,7 @@ random_add_ramp <- function(x) {
     args$end <- args$start + sample.int(2000, size = n)
     args$start <- as.character(as.Date(args$start))
     args$end <- as.character(as.Date(args$end))
-    args$coef <- sample(c(rep(0.0, n), rnorm(n)), size = n)
+    args$coef <- sample(c(rep(0.0, n), stats::rnorm(n)), size = n)
     args$name <- sample(
         x = c(
             paste0(args$type, " (", args$date, ")"),
@@ -274,7 +275,7 @@ random_set_estimate <- function(x) {
     args <- list(x = x)
 
     args <- c(args, random_span())
-    args$tol <- random_choice(list(NULL, NA_real_, abs(runif(1))))[[1]]
+    args$tol <- random_choice(list(NULL, NA_real_, abs(stats::runif(1))))[[1]]
     args$exact.ml <- random_flag()
     args$unit.root.limit <- random_flag()
 
@@ -296,7 +297,7 @@ random_set_outlier <- function(x) {
                replace = FALSE)
     ))[[1L]]
     if (!anyNA(args$outliers.type)) {
-        args$critical.value <- random_choice(list(NA, NULL, abs(rnorm(length(args$outliers.type)))))[[1L]]
+        args$critical.value <- random_choice(list(NA, NULL, abs(stats::rnorm(length(args$outliers.type)))))[[1L]]
     }
     args$tc.rate <- random_choice(c(NA, abs(random_choice(seq(0.1, 1, length.out = 200)))))
     args$maxiter <- random_choice(c(NA, 1:60))
@@ -323,7 +324,7 @@ random_add_usrdefvar <- function(x) {
             "Irregular", "Series", "SeasonallyAdjusted"
         ))
 
-        args$coef <- random_choice(list(NULL, rnorm(1L)))[[1L]]
+        args$coef <- random_choice(list(NULL, stats::rnorm(1L)))[[1L]]
         args$label <- random_choice(list(NULL, NA, random_name(5L)))[[1L]]
 
         output <- do.call(rjd3toolkit::add_usrdefvar, args)

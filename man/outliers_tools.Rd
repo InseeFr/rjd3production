@@ -25,7 +25,7 @@ retrieve_outliers(
 
 \item{path}{[\link[base]{character}] Path to a YAML file to write to
 or read from. If missing, defaults to
-\code{"regression/outliers_<ws_name>.yaml"}.}
+\code{"regression/outliers_<random_name>.yaml"}.}
 
 \item{verbose}{[\link[base]{logical}] Whether to print informative
 messages (default: \code{TRUE}).}
@@ -41,9 +41,6 @@ estimation specification.}
 
 \item{point}{Boolean indicating if the outliers should be extracted from the
 point specification.}
-
-\item{ws_name}{[\link[base]{character}] The name of the workspace,
-used to build default YAML filenames.}
 }
 \value{
 \itemize{
@@ -72,11 +69,10 @@ library("rjd3workspace")
 # Load a Workspace
 file <- system.file("workspaces", "workspace_test.xml", package = "rjd3workspace")
 jws <- jws_open(file)
+outliers_table <- retrieve_outliers(jws, domain = FALSE, point = TRUE)
 
-my_dir <- tempdir()
-
-outliers <- retrieve_outliers(jws, point = TRUE, domain = FALSE, estimation = FALSE)
-export_outliers(outliers, ws_name = "workspace1", path = my_dir)
-imported <- import_outliers(ws_name = "workspace1", path = my_dir)
+path_outliers <- tempfile(pattern = "outliers-table", fileext = ".yaml")
+export_outliers(outliers_table, path_outliers)
+outliers_table_imported <- import_outliers(path = path_outliers)
 
 }

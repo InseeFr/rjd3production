@@ -270,6 +270,8 @@ select_td_one_series <- function(
 #' select_td(Seatbelts[, -8], context = my_context)
 #'
 #' @export
+#'
+#' @importFrom stats is.ts is.mts
 select_td <- function(series, context = NULL, ...) {
     if (is.null(context)) {
         context <- create_insee_context(s = series)
@@ -277,10 +279,10 @@ select_td <- function(series, context = NULL, ...) {
     specs_set <- create_specs_set(context = context, ...)
 
     # Ne marche pas avec ABS
-    # if (!is.ts(series)) {
+    # if (!stats::is.ts(series)) {
     #     stop("Series must be (m)ts object.")
     # }
-    if (is.ts(series) && !is.mts(series)) {
+    if (stats::is.ts(series) && !stats::is.mts(series)) {
         attr(series, "dim") <- c(length(series), 1L)
         attr(series, "class") <- c("mts", "ts", "matrix", "array")
         colnames(series) <- "my_series"
