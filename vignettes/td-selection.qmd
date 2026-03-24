@@ -21,7 +21,7 @@ library("rjd3production")
 
 ### Regressor selection
 
-To select a set of regressors, use the `select_regs()` function:
+To select a set of regressors, use the `select_td()` function:
 
 ```{r}
 #| echo: true
@@ -29,7 +29,7 @@ To select a set of regressors, use the `select_regs()` function:
 #| label: "select-td"
 
 library("rjd3toolkit")
-td_table <- select_regs(ABS[, 1:3])
+td_table <- select_td(ABS[, 1:3])
 print(td_table)
 ```
 
@@ -118,6 +118,6 @@ We can now use our context to select the calendar regressors:
 #| eval: true
 #| label: "select-td-advanced"
 
-my_td_table <- select_regs(ABS[, 1:3], context = my_context)
+my_td_table <- select_td(ABS[, 1:3], context = my_context)
 print(my_td_table)
 ```
