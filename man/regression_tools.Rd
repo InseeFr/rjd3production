@@ -163,7 +163,7 @@ export_outliers(outs, path_outs)
 outs2 <- import_outliers(path_outs)
 
 # Assign the outliers to a WS
-assign_outliers(outs2, jws)
+assign_outliers(jws = jws, outliers = outs2)
 
 
 ## Trading day workflow
@@ -179,7 +179,7 @@ export_td(td, path_td)
 td2 <- import_td(path_td)
 
 # Assign the td variables to a WS
-assign_td(td2, jws)
+#assign_td(jws = jws, td = td2)
 
 }
 \concept{regression tools}

@@ -359,6 +359,7 @@ random_add_usrdefvar <- function(x) {
 #' @returns a JD+ Specification
 #'
 #' @examples
+#' set.seed(1L)
 #' spec <- random_spec()
 #'
 #' @name random-spec

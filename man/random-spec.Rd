@@ -24,6 +24,7 @@ The objective is to enable:
 }
 }
 \examples{
+set.seed(1L)
 spec <- random_spec()
 
 }
