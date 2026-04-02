@@ -14,9 +14,18 @@ knitr:
 #| echo: true
 #| eval: true
 #| warning: false
-#| label: setup
+#| label: setup-rjd3production
 
 library("rjd3production")
+```
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| label: setup-rjd3workspace
+
+library("rjd3workspace")
 ```
 
 ### Regressor selection
