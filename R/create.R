@@ -1,4 +1,4 @@
-#' @title INSEE Regressors and Modelling Context
+#' @title French modelling context, calendar and trading days regressors.
 #'
 #' @description
 #' These functions allow to construct the standard regressors and modelling
