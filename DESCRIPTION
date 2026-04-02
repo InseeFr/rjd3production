@@ -25,7 +25,7 @@ Imports:
     TBox, 
     date4ts
 Remotes: 
-    github::rjdverse/rjd3workspace@develop
+    github::TanguyBarthelemy/rjd3workspace@develop
 Suggests: 
     testthat (>= 3.0.0), 
     knitr,

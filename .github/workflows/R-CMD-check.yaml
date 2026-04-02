@@ -68,7 +68,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck, github::eddelbuettel/rprotobuf@0.4.23
+          extra-packages: any::rcmdcheck
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
@@ -77,4 +77,4 @@ jobs:
           upload-results: true
           build_args: 'c("--no-manual", "--compact-vignettes=gs+qpdf")'
           args: 'c("--no-manual", "--as-cran", "--no-multiarch", "--run-donttest")'
-          error-on: '"warning"'
+          error-on: '"note"'

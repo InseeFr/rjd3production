@@ -6,7 +6,7 @@
 \alias{create_insee_regressors}
 \alias{create_insee_regressors_sets}
 \alias{create_insee_context}
-\title{INSEE Regressors and Modelling Context}
+\title{French modelling context, calendar and trading days regressors.}
 \usage{
 create_french_calendar()
 

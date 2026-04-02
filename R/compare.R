@@ -104,7 +104,9 @@ compare <- function(..., series_names) {
 #' head(df)
 #'
 #' # Launch the shiny app
-#' run_app(df)
+#' if (interactive()) {
+#'     run_app(df)
+#' }
 #'
 #' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput
 #' @importFrom shiny checkboxInput br downloadButton h4 uiOutput reactive

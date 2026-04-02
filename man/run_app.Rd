@@ -44,6 +44,8 @@ df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
 head(df)
 
 # Launch the shiny app
-run_app(df)
+if (interactive()) {
+    run_app(df)
+}
 
 }
