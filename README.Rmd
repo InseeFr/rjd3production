@@ -101,7 +101,7 @@ flowchart LR
 
 **{rjd3production}** s'appuie sur le package [**{rJava}**](https://cran.r-project.org/web/packages/rJava/index.html) 
 
-L'exécution des packages rjd3 nécessite **Java 17 ou plus**. La manière de mettre en place une telle configuration dans R est expliquée [ici](https://jdemetra-new-documentation.netlify.app/#Rconfig).
+L'exécution des packages rjd3 nécessite **Java 21 ou plus**. La manière de mettre en place une telle configuration dans R est expliquée [ici](https://jdemetra-new-documentation.netlify.app/#Rconfig).
 
 
 ### Latest release
