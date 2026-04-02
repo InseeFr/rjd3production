@@ -470,12 +470,12 @@ rev_set_tradingdays <- function(x) {
 #' `rev_spec()` returns a complete multi-line pipeline.
 #'
 #' @examples
-#' spec_init <- rjd3x13::x13_spec("RSA3") |>
-#'     rjd3toolkit::set_basic(type = "All")
 #'
+#' spec_init <- rjd3x13::x13_spec("RSA3") |>
+#'     rjd3toolkit::set_basic(type = "All") |>
+#'     rjd3toolkit::set_automodel(enabled = FALSE)
 #' code <- rev_spec(spec_init)
 #' cat(code)
-#'
 #' spec_rebuilt <- eval(parse(text = code))
 #'
 #' @name translate-spec

@@ -25,16 +25,19 @@ Extracts all available time series (pre-adjustment, decomposition, and final)
 from a seasonal adjustment item (\code{jsai}) inside a JDemetra+ workspace.
 }
 \examples{
-\dontrun{
+
+# Create temporarily Workspaces
+
+library("rjd3toolkit")
 library("rjd3workspace")
-path <- file.path(tempdir(), "workspace_RSA3.xml")
-jws <- jws_open(path)
+
+# Demo workspace
+jws <- create_ws_from_data(ABS)
 jws_compute(jws)
 jsap <- jws_sap(jws, 1L)
 jsai <- jsap_sai(jsap, 1L)
 
 df <- get_series(jsai)
 head(df)
-}
 
 }

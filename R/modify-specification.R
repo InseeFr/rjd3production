@@ -35,7 +35,11 @@
 #' in place** (saved at the same location as `ws_path`).
 #'
 #' @examples
-#' \dontrun{
+#'
+#' library("rjd3workspace")
+#' file <- system.file("workspaces", "workspace_test.xml",
+#'                     package = "rjd3workspace")
+#'
 #' # Remove non-significant outliers (p > 0.3) from a workspace
 #' remove_non_significative_outliers("workspace.xml", threshold = 0.3)
 #' }

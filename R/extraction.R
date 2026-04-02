@@ -15,17 +15,20 @@
 #' - `value`: numeric values of the series.
 #'
 #' @examples
-#' \dontrun{
+#'
+#' # Create temporarily Workspaces
+#'
+#' library("rjd3toolkit")
 #' library("rjd3workspace")
-#' path <- file.path(tempdir(), "workspace_RSA3.xml")
-#' jws <- jws_open(path)
+#'
+#' # Demo workspace
+#' jws <- create_ws_from_data(ABS)
 #' jws_compute(jws)
 #' jsap <- jws_sap(jws, 1L)
 #' jsai <- jsap_sai(jsap, 1L)
 #'
 #' df <- get_series(jsai)
 #' head(df)
-#' }
 #'
 #' @importFrom rjd3workspace read_sai sai_name
 #' @importFrom zoo as.Date
@@ -65,15 +68,21 @@ get_series <- function(jsai) {
 #' @return A Java Seasonal Adjustment Item object (`jsai`).
 #'
 #' @examples
-#' \dontrun{
-#' path <- file.path(tempdir(), "workspace_RSA3.xml")
-#' jws <- jws_open(path)
-#' jws_compute(jws)
 #'
-#' jsai <- get_jsai_by_name(jws, "series_1")
+#' # Create temporarily Workspaces
+#'
+#' library("rjd3toolkit")
+#' library("rjd3workspace")
+#'
+#' # Demo workspace
+#' jws <- create_ws_from_data(ABS)
+#' jws_compute(jws)
+#' jsap <- jws_sap(jws, 1L)
+#'
+#' jsai <- get_jsai_by_name(jws, "X0.2.09.10.M")
 #' df <- get_series(jsai)
 #' head(df)
-#' }
+#'
 #' @importFrom rjd3workspace jws_sap sap_sai_names jsap_sai
 #'
 #' @export

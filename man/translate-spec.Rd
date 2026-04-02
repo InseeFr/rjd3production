@@ -40,12 +40,12 @@ It is not optimal because it does not use
 the default values of the functions but clearly redefines all the parameters.
 }
 \examples{
-spec_init <- rjd3x13::x13_spec("RSA3") |>
-    rjd3toolkit::set_basic(type = "All")
 
+spec_init <- rjd3x13::x13_spec("RSA3") |>
+    rjd3toolkit::set_basic(type = "All") |>
+    rjd3toolkit::set_automodel(enabled = FALSE)
 code <- rev_spec(spec_init)
 cat(code)
-
 spec_rebuilt <- eval(parse(text = code))
 
 }

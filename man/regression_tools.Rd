@@ -145,7 +145,7 @@ the point, estimation or domainSpec, while the assignment step
 }
 
 \examples{
-library(rjd3workspace)
+library("rjd3workspace")
 file <- system.file("workspaces", "workspace_test.xml",
                     package = "rjd3workspace")
 jws <- jws_open(file)

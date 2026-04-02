@@ -90,7 +90,7 @@
 #' - `assign_XXX()` functions invisibly return the updated workspace `jws`.
 #'
 #' @examples
-#' library(rjd3workspace)
+#' library("rjd3workspace")
 #' file <- system.file("workspaces", "workspace_test.xml",
 #'                     package = "rjd3workspace")
 #' jws <- jws_open(file)

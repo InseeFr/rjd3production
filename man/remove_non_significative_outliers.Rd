@@ -50,10 +50,3 @@ The function:
 \item saves the workspace file.
 }
 }
-\examples{
-\dontrun{
-# Remove non-significant outliers (p > 0.3) from a workspace
-remove_non_significative_outliers("workspace.xml", threshold = 0.3)
-}
-
-}

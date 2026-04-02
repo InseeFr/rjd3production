@@ -28,13 +28,22 @@ This is particularly useful to compare results across different
 specifications (e.g. RSA3 vs RSA5).
 }
 \examples{
-\dontrun{
-# Two demo workspaces (RSA3 and RSA5)
-path1 <- file.path(tempdir(), "workspace_RSA3.xml")
-path2 <- file.path(tempdir(), "workspace_RSA5.xml")
 
-df <- compare(path1, path2, series_names = "series_1")
+library("rjd3toolkit")
+library("rjd3x13")
+library("rjd3workspace")
+
+# Two demo workspaces (RSA3 and RSA5)
+jws_rsa3 <- create_ws_from_data(ABS, x13_spec("rsa3"))
+jws_rsa5 <- create_ws_from_data(ABS, x13_spec("rsa5"))
+
+path_rsa3 <- tempfile(pattern = "ws-rsa3", fileext = ".xml")
+path_rsa5 <- tempfile(pattern = "ws-rsa5", fileext = ".xml")
+
+save_workspace(jws_rsa3, file = path_rsa3)
+save_workspace(jws_rsa5, file = path_rsa5)
+
+df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
 head(df)
-}
 
 }
