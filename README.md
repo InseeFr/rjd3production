@@ -82,10 +82,6 @@ flowchart LR
     class SERIES series
 ```
 
-Pour plus de précisions sur la production de séries CVS-CJO vous pouvez
-consulter [ces
-pages](https://saproductionwithjdemetraandr.netlify.app/).
-
 ## Installation
 
 **{rjd3production}** s’appuie sur le package
@@ -191,10 +187,6 @@ flowchart LR
     class YAML_OUT,YAML_TD yaml
     class SERIES series
 ```
-
-For more details on the production of Seasonally Adjusted series, please
-refer to [these
-pages](https://saproductionwithjdemetraandr.netlify.app/).
 
 ### Installation
 
