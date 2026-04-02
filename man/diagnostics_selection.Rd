@@ -20,6 +20,8 @@ verif_LY(jeu, diags)
 select_td_one_series(series, name = "", specs_set = NULL, context = NULL, ...)
 }
 \arguments{
+\item{mod}{\link{list} An X13 model.}
+
 \item{series}{[\link[stats]{ts} or numeric] Time series to analyse.}
 
 \item{spec}{\link{list} A X13 specification (from \code{\link[rjd3x13:x13_spec]{rjd3x13::x13_spec()}}).}
@@ -45,8 +47,6 @@ of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
 \code{"YYYY-MM-DD"}).}
 \item{...}{Other arguments accepted by \code{\link[=create_specs_set]{create_specs_set()}}.}
 }}
-
-\item{smod}{\link{list} Result of \code{\link[=summary]{summary()}} applied to an X13 model.}
 }
 \value{
 \itemize{

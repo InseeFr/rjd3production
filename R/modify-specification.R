@@ -42,7 +42,6 @@
 #'
 #' # Remove non-significant outliers (p > 0.3) from a workspace
 #' remove_non_significative_outliers("workspace.xml", threshold = 0.3)
-#' }
 #'
 #' @importFrom rjd3workspace jws_open jws_compute jws_sap sap_sai_count jsap_sai
 #' @importFrom rjd3workspace read_sai sai_name set_specification

@@ -17,7 +17,7 @@
 #' - `select_td_one_series()` selects the best calendar regressors set for a
 #' single series.
 #'
-#' @param smod [list] Result of [summary()] applied to an X13 model.
+#' @param mod [list] An X13 model.
 #' @param series [\link[stats]{ts} or numeric] Time series to analyse.
 #' @param spec [list] A X13 specification (from [rjd3x13::x13_spec()]).
 #' @param context [list] Modelling context with regressors and calendars
