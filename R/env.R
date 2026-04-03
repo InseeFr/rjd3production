@@ -58,8 +58,8 @@ exclusions: list(\"renv\", \"packrat\")
     file.create(file.path(path, ".Renviron"))
     file.create(file.path(path, ".Rprofile"))
 
-    old_path <- getwd()
-    setwd(path)
+    # old_path <- getwd()
+    # setwd(path)
 
     # usethis::use_description(
     #     fields = list(
@@ -69,7 +69,7 @@ exclusions: list(\"renv\", \"packrat\")
     #     check_name = FALSE
     # )
 
-    setwd(old_path)
+    # setwd(old_path)
 
     system(paste("git -C", normalizePath(path), "init"))
     # usethis::use_git(message = "Nouveau projet de désaisonnalisation !")

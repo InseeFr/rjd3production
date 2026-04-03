@@ -27,7 +27,7 @@ of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
 A data.frame with two columns:
 \describe{
 \item{series}{Name of the series (column name if \code{series} is multivariate).}
-\item{reg_selected}{Name of the selected regressor set.}
+\item{regs}{Name of the selected regressor set.}
 }
 }
 \description{

@@ -1,11 +1,12 @@
+#' @importFrom stats frequency time
 is_compatible <- function(series, reg) {
-    if (frequency(series) != frequency(reg)) {
+    if (stats::frequency(series) != stats::frequency(reg)) {
         warning("The series and the regressors doesn't have same frequency.")
         return(FALSE)
-    } else if (time(series)[1] < time(reg)[1]) {
+    } else if (stats::time(series)[1] < stats::time(reg)[1]) {
         warning("The regressors starts after the beginning of the series.")
         return(FALSE)
-    } else if (rev(time(series))[1] < rev(time(reg))[1]) {
+    } else if (rev(stats::time(series))[1] > rev(stats::time(reg))[1]) {
         warning("The regressors ends before the end of the series.")
         return(FALSE)
     }
@@ -121,7 +122,6 @@ get_LY_info <- function(mod, verbose = TRUE) {
 #' @importFrom rjd3x13 x13
 #' @rdname diagnostics_selection
 one_diagnostic <- function(series, spec, context) {
-
     if (length(spec$regarima$regression$td$users) > 0L) {
         condition <- spec$regarima$regression$td$users |>
             strsplit(split = ".", fixed = TRUE) |>
@@ -250,7 +250,11 @@ select_td_one_series <- function(
     }
 
     if ("No_TD" %in% names(specs_set)) {
-        diag_no_td <- one_diagnostic(series = series, spec = specs_set$No_TD, context = context)
+        diag_no_td <- one_diagnostic(
+            series = series,
+            spec = specs_set$No_TD,
+            context = context
+        )
         # Note de 0 = note parfaite
         if (diag_no_td$note == 0) {
             return("No_TD")

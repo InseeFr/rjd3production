@@ -18,4 +18,5 @@ Lists all the variables in a modelling context.
 \examples{
 context_FR <- create_insee_context()
 get_named_variables(context_FR)
+
 }

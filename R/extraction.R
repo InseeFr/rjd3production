@@ -107,10 +107,10 @@ get_jsai_by_name <- function(jws, series_name) {
 #' @param context a modelling context
 #'
 #' @returns a list with all the groups and named variables
+#'
 #' @examples
 #' context_FR <- create_insee_context()
 #' get_named_variables(context_FR)
-#' @importFrom rjd3workspace jws_sap sap_sai_names jsap_sai
 #'
 #' @export
 #'

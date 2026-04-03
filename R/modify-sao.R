@@ -108,6 +108,7 @@ make_ws_crunchable <- function(jws, verbose = TRUE) {
 #' ws <- create_ws_from_data(x)
 #'
 #' @importFrom rjd3workspace jws_new add_sa_item jws_sap_new
+#' @importFrom rjd3x13 x13_spec
 #' @export
 create_ws_from_data <- function(x, spec = rjd3x13::x13_spec()) {
     jws <- rjd3workspace::jws_new()
