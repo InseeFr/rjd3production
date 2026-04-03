@@ -36,15 +36,17 @@ If multiple series are provided as columns of a matrix or data.frame, each serie
 is processed separately. The function returns the selected set of regressors for each series.
 }
 \examples{
+library("rjd3toolkit")
+
 # Single series
-select_td(AirPassengers)
+select_td(ABS[, 1])
 
 # Multiple series
-select_td(Seatbelts[, -8])
+select_td(ABS)
 
 # Restrict regressors sets
-my_context <- create_insee_context()
+my_context <- create_insee_context(s = ABS)
 my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
-select_td(Seatbelts[, -8], context = my_context)
+select_td(ABS, context = my_context)
 
 }

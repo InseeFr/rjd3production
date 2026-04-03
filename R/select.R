@@ -60,33 +60,35 @@ is_compatible <- function(series, reg) {
 #' - `select_td_one_series()` : Name of the selected regression set.
 #'
 #' @examples
+#' library("rjd3toolkit")
+#'
 #' # Create a modelling context
-#' my_context <- create_insee_context(s = AirPassengers)
+#' my_context <- create_insee_context(s = ABS)
 #'
 #' # Generate specification sets
 #' my_set <- create_specs_set(context = my_context)
 #'
 #' # Extract LY info
-#' mod <- rjd3x13::x13(AirPassengers, spec = "RSA3")
+#' mod <- rjd3x13::x13(ABS[, 1], spec = "RSA3")
 #' rjd3production:::get_LY_info(summary(mod))
 #'
 #' # Compute diagnostics for one spec
 #' spec <- my_set[[8L]]
-#' rjd3production:::one_diagnostic(series = AirPassengers, spec, context = my_context)
+#' rjd3production:::one_diagnostic(series = ABS[, 1], spec, context = my_context)
 #'
 #' # Compute diagnostics for all specs
-#' rjd3production:::all_diagnostics(series = AirPassengers, specs_set = my_set, context = my_context)
+#' rjd3production:::all_diagnostics(series = ABS[, 1], specs_set = my_set, context = my_context)
 #'
 #' # Check whether LY should be removed
 #' diags <- rjd3production:::all_diagnostics(
-#'     series = AirPassengers,
+#'     series = ABS[, 1],
 #'     specs_set = my_set,
 #'     context = my_context
 #' )
 #' rjd3production:::verif_LY("REG6_LY", diags)
 #'
 #' # Select regressions for one series
-#' rjd3production:::select_td_one_series(series = AirPassengers, context = my_context)
+#' rjd3production:::select_td_one_series(series = ABS[, 1], context = my_context)
 #'
 #' @name diagnostics_selection
 #' @keywords internal
@@ -297,16 +299,18 @@ select_td_one_series <- function(
 #' }
 #'
 #' @examples
+#' library("rjd3toolkit")
+#'
 #' # Single series
-#' select_td(AirPassengers)
+#' select_td(ABS[, 1])
 #'
 #' # Multiple series
-#' select_td(Seatbelts[, -8])
+#' select_td(ABS)
 #'
 #' # Restrict regressors sets
-#' my_context <- create_insee_context()
+#' my_context <- create_insee_context(s = ABS)
 #' my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
-#' select_td(Seatbelts[, -8], context = my_context)
+#' select_td(ABS, context = my_context)
 #'
 #' @export
 #'

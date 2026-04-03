@@ -15,7 +15,7 @@
 \usage{
 assign_outliers(jws, outliers)
 
-assign_td(td, jws)
+assign_td(jws, td)
 
 export_outliers(outliers, path = NULL, verbose = TRUE)
 

@@ -31,13 +31,14 @@
 #' @examples
 #' library("rjd3workspace")
 #' library("rjd3x13")
+#' library("rjd3toolkit")
 #'
 #' jws <- jws_new()
 #' jsap <- jws_sap_new(jws, "sap1")
 #' add_sa_item(
 #'     jsap = jsap,
 #'     name = "series_3",
-#'     x = AirPassengers,
+#'     x = ABS[, 1],
 #'     spec = x13_spec("RSA3")
 #' )
 #' jws <- make_ws_crunchable(jws)
@@ -96,16 +97,10 @@ make_ws_crunchable <- function(jws, verbose = TRUE) {
 #' one SA-Item per column of `x`.
 #'
 #' @examples
-#' data(AirPassengers)
-#'
-#' # Create a multivariate time series
-#' x <- cbind(
-#'   series1 = AirPassengers,
-#'   series2 = log(AirPassengers)
-#' )
+#' library("rjd3toolkit")
 #'
 #' # Create workspace
-#' ws <- create_ws_from_data(x)
+#' ws <- create_ws_from_data(ABS)
 #'
 #' @importFrom rjd3workspace jws_new add_sa_item jws_sap_new
 #' @importFrom rjd3x13 x13_spec
