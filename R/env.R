@@ -43,12 +43,6 @@ exclusions: list(\"renv\", \"packrat\")
 ",
         con = file.path(path, ".lintr")
     )
-    usethis::use_description(
-        fields = list(
-            Imports = "rjd3toolkit, rjd3x13, rjd3providers, rjd3workspace, rjd3production",
-            Suggests = "devtools, usethis, remotes, cyclocomp, lintr, rmarkdown"
-        )
-    )
 
     dir.create(file.path(path, "data"))
     dir.create(file.path(path, "Workspaces"))
@@ -66,8 +60,19 @@ exclusions: list(\"renv\", \"packrat\")
 
     old_path <- getwd()
     setwd(path)
-    usethis::use_git(message = "Nouveau projet de désaisonnalisation !")
+
+    # usethis::use_description(
+    #     fields = list(
+    #         Imports = "rjd3toolkit, rjd3x13, rjd3providers, rjd3workspace, rjd3production",
+    #         Suggests = "devtools, usethis, remotes, cyclocomp, lintr, rmarkdown"
+    #     ),
+    #     check_name = FALSE
+    # )
+
     setwd(old_path)
+
+    system(paste("git -C", normalizePath(path), "init"))
+    # usethis::use_git(message = "Nouveau projet de désaisonnalisation !")
 
     return(invisible(path))
 }
