@@ -1,3 +1,15 @@
+regroup_ts <- function(x) {
+    if (is.ts(x)) {
+        return(list(x))
+    }
+    if (is.list(x)) {
+        output <- lapply(x, FUN = regroup_ts) |>
+            do.call(what = c)
+        return(output)
+    }
+    return(NULL)
+}
+
 #' @title Extract all series from a SA-Item
 #'
 #' @description
@@ -32,14 +44,27 @@
 #'
 #' @importFrom rjd3workspace read_sai sai_name
 #' @importFrom zoo as.Date
+#'
+#' @rdname get_series
 #' @export
-get_series <- function(jsai) {
-    res <- (rjd3workspace::read_sai(jsai))$results
-    if (is.null(res)) {
+get_series <- function(x, ...) {
+    UseMethod("get_series", x)
+}
+
+#' @rdname get_series
+#' @exportS3Method get_series JD3_TRAMOSEATS_RSLTS
+#' @method get_series JD3_TRAMOSEATS_RSLTS
+#' @export
+get_series.JD3_TRAMOSEATS_RSLTS <- function(x, name) {
+    if (is.null(x)) {
         stop("Please compute your workspace")
     }
     output <- NULL
-    all_series <- c(res$preadjust, res$decomposition, res$final)
+    all_series <- regroup_ts(list(
+        stochastics = x$decomposition$stochastics,
+        final = x$final[-1]
+    ))
+
     for (s in names(all_series)) {
         series <- all_series[[s]]
         if (!is.null(series)) {
@@ -53,7 +78,45 @@ get_series <- function(jsai) {
             )
         }
     }
-    return(cbind(SAI = rjd3workspace::sai_name(jsai), output))
+    return(cbind(SAI = name, output))
+}
+
+#' @rdname get_series
+#' @exportS3Method get_series JD3_X13_RSLTS
+#' @method get_series JD3_X13_RSLTS
+#' @export
+get_series.JD3_X13_RSLTS <- function(x, name) {
+    if (is.null(x)) {
+        stop("Please compute your workspace")
+    }
+    output <- NULL
+    all_series <- c(x$preadjust, x$decomposition, x$final)
+    for (s in names(all_series)) {
+        series <- all_series[[s]]
+        if (!is.null(series)) {
+            output <- rbind(
+                output,
+                data.frame(
+                    series = s,
+                    date = series |> time() |> zoo::as.Date(),
+                    value = as.numeric(series)
+                )
+            )
+        }
+    }
+    return(cbind(SAI = name, output))
+}
+
+#' @rdname get_series
+#' @exportS3Method get_series jobjRef
+#' @method get_series jobjRef
+#' @export
+get_series.jobjRef <- function(x) {
+    output <- get_series(
+        x = (rjd3workspace::read_sai(x))$results,
+        name = rjd3workspace::sai_name(x)
+    )
+    return(output)
 }
 
 #' @title Retrieve a SA-Item by its name

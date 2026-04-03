@@ -2,9 +2,18 @@
 % Please edit documentation in R/extraction.R
 \name{get_series}
 \alias{get_series}
+\alias{get_series.JD3_TRAMOSEATS_RSLTS}
+\alias{get_series.JD3_X13_RSLTS}
+\alias{get_series.jobjRef}
 \title{Extract all series from a SA-Item}
 \usage{
-get_series(jsai)
+get_series(x, ...)
+
+\method{get_series}{JD3_TRAMOSEATS_RSLTS}(x, name)
+
+\method{get_series}{JD3_X13_RSLTS}(x, name)
+
+\method{get_series}{jobjRef}(x)
 }
 \arguments{
 \item{jsai}{A Java Seasonal Adjustment Item object, typically obtained via
