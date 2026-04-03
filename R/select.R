@@ -289,7 +289,7 @@ select_td_one_series <- function(
 #' @return A data.frame with two columns:
 #' \describe{
 #'   \item{series}{Name of the series (column name if `series` is multivariate).}
-#'   \item{reg_selected}{Name of the selected regressor set.}
+#'   \item{regs}{Name of the selected regressor set.}
 #' }
 #'
 #' @examples
@@ -371,6 +371,6 @@ select_td <- function(series, context = NULL, ...) {
         ))
     })
 
-    output <- cbind(series = colnames(series), reg_selected = output)
+    output <- cbind(series = colnames(series), regs = output)
     return(as.data.frame(output))
 }
