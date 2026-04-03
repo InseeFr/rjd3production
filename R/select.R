@@ -1,3 +1,17 @@
+is_compatible <- function(series, reg) {
+    if (frequency(series) != frequency(reg)) {
+        warning("The series and the regressors doesn't have same frequency.")
+        return(FALSE)
+    } else if (time(series)[1] < time(reg)[1]) {
+        warning("The regressors starts after the beginning of the series.")
+        return(FALSE)
+    } else if (rev(time(series))[1] < rev(time(reg))[1]) {
+        warning("The regressors ends before the end of the series.")
+        return(FALSE)
+    }
+    return(TRUE)
+}
+
 #' @title Diagnostics Extraction on Calendar Correction with different sets of regressors
 #'
 #' @description
@@ -107,6 +121,17 @@ get_LY_info <- function(mod, verbose = TRUE) {
 #' @importFrom rjd3x13 x13
 #' @rdname diagnostics_selection
 one_diagnostic <- function(series, spec, context) {
+
+    if (length(spec$regarima$regression$td$users) > 0L) {
+        condition <- spec$regarima$regression$td$users |>
+            strsplit(split = ".", fixed = TRUE) |>
+            lapply(FUN = \(.x) context$variables[[.x[1L]]][[.x[2L]]]) |>
+            vapply(FUN = is_compatible, FUN.VALUE = logical(1L), series = series)
+        if (!all(condition)) {
+            stop("One of the regressors doesn't have the good properties.")
+        }
+    }
+
     mod <- rjd3x13::x13(
         ts = series,
         spec = spec,
