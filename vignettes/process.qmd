@@ -12,8 +12,7 @@ knitr:
 
 ```{r}
 #| label: setup
-# library("rjd3production")
-devtools::load_all("C:/Users/UTZK0M/Documents/Projets R/Projets MTS/Packages/rjduniverse/v3/rjd3production")
+library("rjd3production")
 ```
 
 Le package {rjd3production} est utile pour mettre en place une chaîne de production de séries désaisonnalisées.
@@ -28,6 +27,16 @@ Avant de créer notre chaîne de production, il faut créer notre environnement 
 - un fichier DESCRIPTION pour gérer les dépendances de notre projet
 - un fichier `.lintr` pour faire l'analyse statique du code (bonnes pratiques de formattage)
 - un fichier README.md pour expliquer notre projet
+
+```{r}
+#| eval: true
+#| echo: true
+#| warning: false
+#| label: init-project
+
+path_project <- tempfile(pattern = "my_sa_project")
+init_env(path = path_project)
+```
 
 Dans cette vignette, nous allons créer une chaîne de production à partir du jeu de données ABS du package {rjd3toolkit}.
 Le jeu de données se trouve aussi sous la forme du fichier `ABS.csv` sous `{r} system.file("extdata", "ABS.csv", package = "rjd3providers")` dans le package {rjd3providers}.
@@ -147,6 +156,6 @@ Enfin, nous pouvons sauvegarder notre workspace !
 #| echo: true
 #| label: save-workspace
 
-path_ws <- tempfile(pattern = "ws", fileext = ".xml")
+path_ws <- file.path(path_project, "Workspaces", "workspace_travail", "my_ws.xml")
 save_workspace(jws, path_ws, replace = TRUE)
 ```
