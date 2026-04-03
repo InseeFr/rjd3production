@@ -58,18 +58,16 @@ exclusions: list(\"renv\", \"packrat\")
     file.create(file.path(path, ".Renviron"))
     file.create(file.path(path, ".Rprofile"))
 
-    # old_path <- getwd()
-    # setwd(path)
-
-    # usethis::use_description(
-    #     fields = list(
-    #         Imports = "rjd3toolkit, rjd3x13, rjd3providers, rjd3workspace, rjd3production",
-    #         Suggests = "devtools, usethis, remotes, cyclocomp, lintr, rmarkdown"
-    #     ),
-    #     check_name = FALSE
-    # )
-
-    # setwd(old_path)
+    old_path <- getwd()
+    setwd(path)
+    usethis::use_description(
+        fields = list(
+            Imports = "rjd3toolkit, rjd3x13, rjd3providers, rjd3workspace, rjd3production",
+            Suggests = "devtools, usethis, remotes, cyclocomp, lintr, rmarkdown"
+        ),
+        check_name = FALSE
+    )
+    setwd(old_path)
 
     system(paste("git -C", normalizePath(path), "init"))
     # usethis::use_git(message = "Nouveau projet de désaisonnalisation !")
