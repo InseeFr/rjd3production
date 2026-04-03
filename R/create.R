@@ -99,6 +99,10 @@ create_insee_regressors <- function(
         REG6 = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
     )
 
+    if (!missing(s) && !is.null(ncol(s)) && ncol(s) > 1L) {
+        s <- s[, 1L]
+    }
+
     regs_td <- lapply(
         X = groups,
         FUN = rjd3toolkit::calendar_td,

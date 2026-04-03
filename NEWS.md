@@ -16,6 +16,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * New functions to reverse-engineer a specification
 * New functions to create random specifications
 * New WS example and code to generate it
+* `init_env()` fill the .lintr, DESCRIPTION and README files 
+* `init_env()` add Git structure
 
 ### Changed
 
@@ -30,6 +32,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 * Bug in select regressors solved (when no TD is significative)
+* If s has multiple columns, the first one will be taken into account in `create_insee_regressors()`
 
 
 ## [1.0.0] - 2025-08-29

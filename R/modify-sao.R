@@ -123,3 +123,46 @@ create_ws_from_data <- function(x, spec = rjd3x13::x13_spec()) {
     }
     return(jws)
 }
+
+#' @export
+#' @importFrom rjd3workspace jws_sap sap_sai_count jsap_sai sai_name set_ts
+#' @importFrom rjd3providers txt_data
+#' @importFrom tools file_ext
+add_raw_data_path <- function(jws, path, ...) {
+    jsap <- rjd3workspace::jws_sap(jws, 1L)
+    nb_sai <- rjd3workspace::sap_sai_count(jsap)
+
+    if (tools::file_ext(path) == "csv") {
+        my_data <- rjd3providers::txt_data(path, ...)
+    } else if (tools::file_ext(path) == "xlsx") {
+        stop("Not implemened yet.", call. = FALSE)
+    } else {
+        stop("The data file must be a .csv or an .xlsx file.", call. = FALSE)
+    }
+
+    for (id_sai in seq_len(nb_sai)) {
+        jsai <- rjd3workspace::jsap_sai(jsap, id_sai)
+        series_name <- rjd3workspace::sai_name(jsai)
+        pos <- which(series_name == names(my_data$series))
+        if (length(pos) == 1L) {
+            rjd3workspace::set_ts(jsap, id_sai, my_data$series[[pos]])
+        } else if (length(pos) == 0L) {
+            warning(
+                "There are no columns called ",
+                series_name,
+                " in ",
+                basename(path),
+                call. = FALSE
+            )
+        } else if (length(pos) > 1L) {
+            warning(
+                "Columns ",
+                toString(pos),
+                " have the same name : ",
+                series_name,
+                call. = FALSE
+            )
+        }
+    }
+    return(invisible(jws))
+}
