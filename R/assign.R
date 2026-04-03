@@ -102,7 +102,7 @@ assign_outliers <- function(jws, outliers) {
 #' @family regression tools
 #' @rdname regression_tools
 #' @export
-assign_td <- function(td, jws) {
+assign_td <- function(jws, td) {
     if (nrow(td) == 0L) {
         return(invisible(jws))
     }
