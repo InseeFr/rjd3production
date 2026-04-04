@@ -2,25 +2,21 @@
 
 Un petit document qui expliquent certains choix de développement faits.
 
-## Ordre des arguments
+## {devtag}
 
-Lorsqu'on écrit une fonction, il faut garantir que l'ordre est cohérent avec les autres fonctions du package. Je propose :
+On utilise le package {devtag} pour documenter les fonctions non exportées.
+Fonctionement :
 
-1) `path`
-2) `version_number`
-3) `gh_repo`
-4) `branch`
-5) `target`
-6) `verbose`
+- Les fonctions exportées portent le tag `@export`
+- Les fonctions internes portent le tag `@keywords internal`
+- Auparavant, les fonctions non exportées portaient le tag `@noRd` maintenant, on utilise le tag `@dev`
 
-## Documentation et `@inheritParams`
+Ce que ça va faire :
 
-Pour faire des économies de documentation, on recycle les documentations des arguments.
+- Ajouter une remarque au fichier DESCRIPTION sur l'utilisation de {devtag}
+- Ajouter une ligne au .Rbuildignore par fonction non exportée pour ne pas ajouter la doc lors du build
 
-Ainsi :
-
-- `set_latest_deps_version()` documente `path` et `verbose`
-- `change_remotes_field()` documente `target`
-- `get_latest_version()` documente `gh_repo`
-- `get_version_from_branch()` documente `branch`
-- `get_different_future_version()` documente `version_number`
+Quelques précautions à prendre (pour les fonctions non exportées) :
+- Ne pas utiliser le tag `@name` pour renommer la page de documentation
+- Ne pas utiliser le tag `@rdname` pour documenter plusieurs fonctions dans une même page
+- Ne pas créer de page de documentation sans fonctions (donc ni avec `NULL` ou `"une chaine de caractères"` comme référence)

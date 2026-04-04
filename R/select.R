@@ -90,7 +90,7 @@ is_compatible <- function(series, reg) {
 #' # Select regressions for one series
 #' rjd3production:::select_td_one_series(series = ABS[, 1], context = my_context)
 #'
-#' @dev
+#'@dev
 #'
 get_LY_info <- function(mod, verbose = TRUE) {
     ud_var <- mod$result_spec$regarima$regression$td$users
