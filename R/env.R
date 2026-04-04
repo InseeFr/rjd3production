@@ -1,5 +1,6 @@
 #' @importFrom usethis create_project use_readme_rmd use_git use_description
 #' @importFrom lintr use_lintr
+#' @export
 init_env <- function(path, open = FALSE) {
     if (dir.exists(path)) {
         stop("The project exist already.")
