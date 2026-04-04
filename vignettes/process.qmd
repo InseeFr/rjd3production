@@ -46,6 +46,7 @@ Avant de créer notre chaîne de production, il faut créer notre environnement 
 
 ```{r}
 #| echo: true
+#| eval: false
 #| warning: false
 #| label: init-project
 
@@ -160,6 +161,7 @@ Enfin, nous pouvons sauvegarder notre workspace !
 
 ```{r}
 #| echo: true
+#| eval: false
 #| label: save-workspace
 
 path_ws <- file.path(path_project, "Workspaces", "workspace_travail", "my_ws.xml")
