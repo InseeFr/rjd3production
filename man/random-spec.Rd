@@ -24,7 +24,8 @@ The objective is to enable:
 }
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 set.seed(1L)
 spec <- random_spec()
-
+\dontshow{\}) # examplesIf}
 }

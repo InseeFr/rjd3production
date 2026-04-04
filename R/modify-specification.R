@@ -34,7 +34,7 @@
 #' The function invisibly returns `NULL`, but it **modifies the workspace file
 #' in place** (saved at the same location as `ws_path`).
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'
 #' library("rjd3workspace")
 #' file <- system.file("workspaces", "workspace_test.xml",

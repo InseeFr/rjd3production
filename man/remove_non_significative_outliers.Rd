@@ -51,6 +51,7 @@ The function:
 }
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
 library("rjd3workspace")
 file <- system.file("workspaces", "workspace_test.xml",
@@ -58,5 +59,5 @@ file <- system.file("workspaces", "workspace_test.xml",
 
 # Remove non-significant outliers (p > 0.3) from a workspace
 remove_non_significative_outliers("workspace.xml", threshold = 0.3)
-
+\dontshow{\}) # examplesIf}
 }

@@ -28,6 +28,7 @@ This is particularly useful to compare results across different
 specifications (e.g. RSA3 vs RSA5).
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
 library("rjd3toolkit")
 library("rjd3x13")
@@ -45,5 +46,5 @@ save_workspace(jws_rsa5, file = path_rsa5)
 
 df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
 head(df)
-
+\dontshow{\}) # examplesIf}
 }

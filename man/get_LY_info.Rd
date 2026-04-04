@@ -64,6 +64,7 @@ single series.
 }
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 library("rjd3toolkit")
 
 # Create a modelling context
@@ -93,6 +94,6 @@ rjd3production:::verif_LY("REG6_LY", diags)
 
 # Select regressions for one series
 rjd3production:::select_td_one_series(series = ABS[, 1], context = my_context)
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}

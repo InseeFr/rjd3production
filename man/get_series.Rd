@@ -34,6 +34,7 @@ Extracts all available time series (pre-adjustment, decomposition, and final)
 from a seasonal adjustment item (\code{jsai}) inside a JDemetra+ workspace.
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
 # Create temporarily Workspaces
 
@@ -48,5 +49,5 @@ jsai <- jsap_sai(jsap, 1L)
 
 df <- get_series(jsai)
 head(df)
-
+\dontshow{\}) # examplesIf}
 }

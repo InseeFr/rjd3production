@@ -40,6 +40,7 @@ It is not optimal because it does not use
 the default values of the functions but clearly redefines all the parameters.
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
 spec_init <- rjd3x13::x13_spec("RSA3") |>
     rjd3toolkit::set_basic(type = "All") |>
@@ -47,5 +48,5 @@ spec_init <- rjd3x13::x13_spec("RSA3") |>
 code <- rev_spec(spec_init)
 cat(code)
 spec_rebuilt <- eval(parse(text = code))
-
+\dontshow{\}) # examplesIf}
 }

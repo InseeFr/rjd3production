@@ -145,6 +145,7 @@ the point, estimation or domainSpec, while the assignment step
 }
 
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 library("rjd3workspace")
 file <- system.file("workspaces", "workspace_test.xml",
                     package = "rjd3workspace")
@@ -180,6 +181,6 @@ td2 <- import_td(path_td)
 
 # Assign the td variables to a WS
 #assign_td(jws = jws, td = td2)
-
+\dontshow{\}) # examplesIf}
 }
 \concept{regression tools}

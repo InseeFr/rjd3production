@@ -358,7 +358,7 @@ random_add_usrdefvar <- function(x) {
 #'
 #' @returns a JD+ Specification
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' set.seed(1L)
 #' spec <- random_spec()
 #'

@@ -59,7 +59,7 @@ is_compatible <- function(series, reg) {
 #' - `verif_LY()` : Name of the chosen regression set (possibly without LY).
 #' - `select_td_one_series()` : Name of the selected regression set.
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' library("rjd3toolkit")
 #'
 #' # Create a modelling context
@@ -291,7 +291,7 @@ select_td_one_series <- function(
 #'   \item{regs}{Name of the selected regressor set.}
 #' }
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' library("rjd3toolkit")
 #'
 #' # Single series

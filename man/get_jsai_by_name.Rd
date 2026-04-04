@@ -20,6 +20,7 @@ Searches a workspace for a seasonal adjustment item (SAI) whose name matches
 the user-supplied string and returns the corresponding object.
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
 # Create temporarily Workspaces
 
@@ -34,5 +35,5 @@ jsap <- jws_sap(jws, 1L)
 jsai <- get_jsai_by_name(jws, "X0.2.09.10.M")
 df <- get_series(jsai)
 head(df)
-
+\dontshow{\}) # examplesIf}
 }
