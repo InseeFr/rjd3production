@@ -12,6 +12,22 @@ knitr:
 
 ```{r}
 #| label: setup
+#| eval: true
+#| echo: false
+
+cond_run_vignette <- rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    echo = TRUE,
+    eval = cond_run_vignette,
+    comment = "#>"
+)
+```
+
+
+```{r}
+#| label: setup-rjd3production
 library("rjd3production")
 ```
 
@@ -29,7 +45,6 @@ Avant de créer notre chaîne de production, il faut créer notre environnement 
 - un fichier README.md pour expliquer notre projet
 
 ```{r}
-#| eval: true
 #| echo: true
 #| warning: false
 #| label: init-project
@@ -42,7 +57,6 @@ Dans cette vignette, nous allons créer une chaîne de production à partir du j
 Le jeu de données se trouve aussi sous la forme du fichier `ABS.csv` sous `{r} system.file("extdata", "ABS.csv", package = "rjd3providers")` dans le package {rjd3providers}.
 
 ```{r}
-#| eval: true
 #| echo: true
 #| warning: false
 #| label: setup-rjd3toolkit
@@ -60,7 +74,6 @@ Dans le cas où nos séries sont sensibles aux effets de calendrier, on peut cor
 Pour cela, consulter la vignette `td-selection` au sujet de la manière de traiter ces effets et comment produire la table `td` contenant nos régresseurs de calendrier personnalisés selectionnés.
 
 ```{r}
-#| eval: true
 #| echo: true
 #| label: select-td
 
@@ -72,7 +85,6 @@ td <- select_td(my_data)
 Nous utiliserons le package {rjd3workspace} pour les fonctions de création et manipulation des workspaces.
 
 ```{r}
-#| eval: true
 #| echo: true
 #| warning: false
 #| label: setup-rjd3workspace
@@ -86,7 +98,6 @@ Si vous utilisez des variables externes, des régresseurs de calendrier ou un ca
 A l'Insee, nous utilisons la fonction `create_insee_context()` pour nous créer nos context:
 
 ```{r}
-#| eval: true
 #| echo: true
 #| label: create-context
 
@@ -96,7 +107,6 @@ my_context <- create_insee_context(s = my_data[, 1])
 Nous utiliserons le package {rjd3x13} pour créer les specs X13.
 
 ```{r}
-#| eval: true
 #| echo: true
 #| warning: false
 #| label: setup-rjd3x13
@@ -107,7 +117,6 @@ library("rjd3x13")
 - Créer un workspace à partir de 0
 
 ```{r}
-#| eval: true
 #| echo: true
 #| label: create-ws-from-0
 
@@ -121,7 +130,6 @@ add_sa_item(jsap = jsap, name = "Seconde série", x = my_data[, 2], spec = x13_s
 - Créer un workspace à partir d'un dataset
 
 ```{r}
-#| eval: true
 #| echo: true
 #| label: create-ws-from-data
 
@@ -132,7 +140,6 @@ set_context(jws, create_insee_context(start = c(2015L, 1L)))
 Si nous en avons, il faut assigner les régresseurs de calendrier à chaque série :
 
 ```{r}
-#| eval: true
 #| echo: true
 #| label: assign-td
 
@@ -142,7 +149,6 @@ assign_td(td = td, jws = jws)
 Il ne faut pas oublier de mettre à jour les metadonnées de notre workspace avec le chemin vers nos données brutes :
 
 ```{r}
-#| eval: true
 #| echo: true
 #| label: update-ts-metadata
 
@@ -152,7 +158,6 @@ add_raw_data_path(jws, path_ABS, delimiter = "COMMA")
 Enfin, nous pouvons sauvegarder notre workspace !
 
 ```{r}
-#| eval: true
 #| echo: true
 #| label: save-workspace
 
