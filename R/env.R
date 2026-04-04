@@ -1,10 +1,38 @@
+#' @title Initialize a seasonal adjustment project environment
+#'
+#' @description
+#' This function creates a complete project structure for a seasonal adjustment
+#' production workflow. It initializes an R project, sets up useful directories,
+#' configuration files, and development tools.
+#'
+#' The generated structure is designed for workflows based on the 'rjdverse'.
+#'
+#' @param path A character string. Path where the project will be created.
+#' @param open Boolean. Should the project be opened in RStudio after creation?
+#' Default is \code{FALSE}.
+#'
+#' @return The project path invisibly.
+#'
+#' @examples
+#' project_path <- tempfile(pattern = "my-project")
+#'
+#' # Create a new project
+#' init_env(path = project_path)
+#'
+#' @export
 #' @importFrom usethis create_project use_readme_rmd use_git use_description
 #' @importFrom lintr use_lintr
-#' @export
+#'
 init_env <- function(path, open = FALSE) {
     if (dir.exists(path)) {
         stop("The project exist already.")
     }
+
+    old_path <- getwd()
+    on.exit(expr = {
+        setwd(old_path)
+    })
+    setwd(path)
 
     dir.create(path, recursive = TRUE)
     usethis::create_project(rstudio = TRUE, path = path, open = open)
@@ -59,8 +87,6 @@ exclusions: list(\"renv\", \"packrat\")
     file.create(file.path(path, ".Renviron"))
     file.create(file.path(path, ".Rprofile"))
 
-    old_path <- getwd()
-    setwd(path)
     usethis::use_description(
         fields = list(
             Imports = "rjd3toolkit, rjd3x13, rjd3providers, rjd3workspace, rjd3production",
@@ -68,7 +94,6 @@ exclusions: list(\"renv\", \"packrat\")
         ),
         check_name = FALSE
     )
-    setwd(old_path)
 
     system(paste("git -C", normalizePath(path), "init"))
     # usethis::use_git(message = "Nouveau projet de d\U0E9saisonnalisation !")

@@ -121,6 +121,40 @@ create_ws_from_data <- function(x, spec = rjd3x13::x13_spec()) {
     return(jws)
 }
 
+#' @title Add raw data from a file to a JWS workspace
+#'
+#' @description
+#' This function completes the ts metadata (moniker) to make the workspace
+#' refreshable and crunchable.
+#'
+#' @inheritParams make_ws_crunchable
+#' @param path A character string. Path to the input data file. Must be a
+#'   \code{.csv} file (support for \code{.xlsx} is not yet implemented).
+#' @param ... Addional arguments passed to
+#'   \code{rjd3providers::txt_data()} (e.g., delimiter, date format, clean
+#'   missing argument...).
+#'
+#' @details
+#' Currently, only CSV files are supported. Each column of the input file is
+#' interpreted as a time series and matched against the series names in the
+#' workspace.
+#'
+#' The difference with the function [`make_ws_crunchable`] is that
+#' `add_raw_data_path()` will associate the workspace with a non temporary data
+#' path.
+#'
+#' @returns The modified \code{jws} object invisibly.
+#'
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#'
+#' library("rjd3workspace")
+#' library("rjd3x13")
+#' library("rjd3toolkit")
+#'
+#' path_ABS <- system.file("extdata", "ABS.csv", package = "rjd3providers")
+#' jws <- create_ws_from_data(my_data)
+#' add_raw_data_path(jws, path_ABS, delimiter = "COMMA")
+#'
 #' @export
 #' @importFrom rjd3workspace jws_sap sap_sai_count jsap_sai sai_name set_ts
 #' @importFrom rjd3providers txt_data
