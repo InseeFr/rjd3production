@@ -17,6 +17,7 @@
 #'
 #' @importFrom TBox write_data
 #' @importFrom date4ts ts2df
+#' @importFrom utils tail
 #' @importFrom rjd3workspace ws_sap_count
 #' @importFrom rjd3workspace jws_sap
 #' @importFrom rjd3workspace sap_sai_count

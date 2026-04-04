@@ -85,7 +85,7 @@ flowchart LR
 ## Installation
 
 **{rjd3production}** s’appuie sur le package
-[**{rJava}**](https://cran.r-project.org/web/packages/rJava/index.html)
+[**{rJava}**](https://CRAN.R-project.org/package=rJava)
 
 L’exécution des packages rjd3 nécessite **Java 21 ou plus**. La manière
 de mettre en place une telle configuration dans R est expliquée

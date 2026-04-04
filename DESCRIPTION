@@ -1,5 +1,5 @@
 Package: rjd3production
-Title: Prepare for production of seasonnal adjustment with JDemetra+
+Title: Prepare for Production of Seasonnal Adjustment with 'JDemetra+'
 Version: 1.0.0.9000
 Authors@R: 
     person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art"))
@@ -25,8 +25,6 @@ Imports:
     TBox, 
     date4ts, 
     lintr
-Remotes: 
-    github::TanguyBarthelemy/rjd3workspace@develop
 Suggests: 
     testthat (>= 3.0.0), 
     knitr,

@@ -1,3 +1,4 @@
+#' @importFrom stats is.ts
 regroup_ts <- function(x) {
     if (is.ts(x)) {
         return(list(x))
@@ -55,6 +56,7 @@ get_series <- function(x, ...) {
 #' @exportS3Method get_series JD3_TRAMOSEATS_RSLTS
 #' @method get_series JD3_TRAMOSEATS_RSLTS
 #' @export
+#' @importFrom stats time
 get_series.JD3_TRAMOSEATS_RSLTS <- function(x, name) {
     if (is.null(x)) {
         stop("Please compute your workspace")
@@ -85,6 +87,7 @@ get_series.JD3_TRAMOSEATS_RSLTS <- function(x, name) {
 #' @exportS3Method get_series JD3_X13_RSLTS
 #' @method get_series JD3_X13_RSLTS
 #' @export
+#' @importFrom stats time
 get_series.JD3_X13_RSLTS <- function(x, name) {
     if (is.null(x)) {
         stop("Please compute your workspace")

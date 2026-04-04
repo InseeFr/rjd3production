@@ -154,6 +154,7 @@ remove_non_significative_outliers <- function(
 #' model_span = estimation_span
 #' series_span = basic_span
 #'
+#' @importFrom zoo as.Date
 #' @importFrom rjd3toolkit set_basic set_estimate
 #'
 #' @export

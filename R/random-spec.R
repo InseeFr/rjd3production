@@ -28,8 +28,8 @@ random_span <- function() {
     ))
     val_n0 <- random_choice(0L:20L)
     val_n1 <- random_choice(0L:20L)
-    val_d0 <- as.Date(sample.int(15000L, size = 1L))
-    val_d1 <- as.Date(val_d0 + sample.int(5000L, size = 1L))
+    val_d0 <- base::as.Date(sample.int(15000L, size = 1L))
+    val_d1 <- base::as.Date(val_d0 + sample.int(5000L, size = 1L))
     if (is.na(out$type)) {
         out$d0 <- format(val_d0)
         out$d1 <- format(val_d1)

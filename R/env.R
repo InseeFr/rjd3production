@@ -14,14 +14,14 @@ init_env <- function(path, open = FALSE) {
         text = paste0(
             "# ",
             basename(path),
-            "\n\nChaîne de production de désaisonnalisation. \n\n Structure du projet :",
+            "\n\nCha\UEEne de production de d\U0E9saisonnalisation. \n\n Structure du projet :",
             paste(
-                "un dossier `data/` : nos données brutes",
+                "un dossier `data/` : nos donn\U0E9es brutes",
                 "un dossier `Workspaces/` : nos workspaces",
-                "un dossier `output/` : les séries, tableaux et graphiques en sortie",
-                "un dossier `specs/` : les spécifications propres au workspace (régresseurs de calendrier, outliers...)",
-                "un dossier `BQ/` : les bilans qualité et fichiers de décisions",
-                "un fichier DESCRIPTION pour gérer les dépendances de notre projet",
+                "un dossier `output/` : les s\U0E9ries, tableaux et graphiques en sortie",
+                "un dossier `specs/` : les sp\U0E9cifications propres au workspace (r\U0E9gresseurs de calendrier, outliers...)",
+                "un dossier `BQ/` : les bilans qualit\U0E9 et fichiers de d\U0E9cisions",
+                "un fichier DESCRIPTION pour g\U0E9rer les d\U0E9pendances de notre projet",
                 "un fichier `.lintr` pour faire l'analyse statique du code (bonnes pratiques de formattage)",
                 "un fichier README.md pour expliquer notre projet",
                 sep = "\n- "
@@ -71,7 +71,7 @@ exclusions: list(\"renv\", \"packrat\")
     setwd(old_path)
 
     system(paste("git -C", normalizePath(path), "init"))
-    # usethis::use_git(message = "Nouveau projet de désaisonnalisation !")
+    # usethis::use_git(message = "Nouveau projet de d\U0E9saisonnalisation !")
 
     return(invisible(path))
 }
