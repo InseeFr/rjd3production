@@ -54,3 +54,4 @@ cran-comments.md
 ^why\.md$
 ^why\.Rmd$
 
+^man/get_LY_info\.Rd$

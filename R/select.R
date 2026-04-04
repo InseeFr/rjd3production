@@ -38,7 +38,7 @@ is_compatible <- function(series, reg) {
 #' @param context [list] Modelling context with regressors and calendars
 #'   (from [rjd3toolkit::modelling_context()]).
 #' @param jeu [character] Name of the tested regression set.
-#' @param diags [data.frame] Diagnostics table produced by [all_diagnostics()].
+#' @param diags [data.frame] Diagnostics table produced by `all_diagnostics()`.
 #' @param name [character] Name of the series (for messages).
 #' @param specs_set [\link[base]{list} or NULL] List of X13 specifications. If
 #'   `NULL`, generated via [create_specs_set()].
@@ -90,11 +90,8 @@ is_compatible <- function(series, reg) {
 #' # Select regressions for one series
 #' rjd3production:::select_td_one_series(series = ABS[, 1], context = my_context)
 #'
-#' @name diagnostics_selection
-#' @keywords internal
-NULL
-
-#' @rdname diagnostics_selection
+#' @dev
+#'
 get_LY_info <- function(mod, verbose = TRUE) {
     ud_var <- mod$result_spec$regarima$regression$td$users
     if (length(ud_var) == 0L
@@ -122,7 +119,6 @@ get_LY_info <- function(mod, verbose = TRUE) {
 }
 
 #' @importFrom rjd3x13 x13
-#' @rdname diagnostics_selection
 one_diagnostic <- function(series, spec, context) {
     if (length(spec$regarima$regression$td$users) > 0L) {
         condition <- spec$regarima$regression$td$users |>
@@ -165,7 +161,6 @@ one_diagnostic <- function(series, spec, context) {
     return(diag)
 }
 
-#' @rdname diagnostics_selection
 all_diagnostics <- function(series, specs_set, context) {
     diags <- lapply(X = seq_along(specs_set), FUN = function(k) {
         spec <- specs_set[[k]]
@@ -185,7 +180,6 @@ all_diagnostics <- function(series, specs_set, context) {
     return(diags)
 }
 
-#' @rdname diagnostics_selection
 verif_LY <- function(jeu, diags) {
     if (!grepl(pattern = "LY", x = jeu, ignore.case = TRUE)) {
         return(jeu)
@@ -234,7 +228,6 @@ verif_LY <- function(jeu, diags) {
     return(jeu_final)
 }
 
-#' @rdname diagnostics_selection
 #' @importFrom stats time
 #' @importFrom utils tail
 select_td_one_series <- function(
@@ -290,7 +283,7 @@ select_td_one_series <- function(
 #'   multivariate series (columns as separate series).
 #' @param context [list] Modeling context created by
 #' [rjd3toolkit::modelling_context()].
-#' @inheritParams diagnostics_selection
+#' @inheritParams get_LY_info
 #'
 #' @return A data.frame with two columns:
 #' \describe{
