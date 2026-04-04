@@ -37,11 +37,16 @@
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'
 #' library("rjd3workspace")
-#' file <- system.file("workspaces", "workspace_test.xml",
-#'                     package = "rjd3workspace")
+#' library("rjd3x13")
+#' library("rjd3toolkit")
+#' new_spec <- x13_spec() |>
+#'     add_outlier(type = "LS", date = "1990-01-01")
+#' jws <- create_ws_from_data(x = ABS[, 1, drop = FALSE], spec = new_spec)
+#' path_ws <- tempfile(pattern = "ws", fileext = ".xml")
+#' save_workspace(jws, file = path_ws)
 #'
 #' # Remove non-significant outliers (p > 0.3) from a workspace
-#' remove_non_significative_outliers("workspace.xml", threshold = 0.3)
+#' remove_non_significative_outliers(path_ws, threshold = 0.3, domain = TRUE)
 #'
 #' @importFrom rjd3workspace jws_open jws_compute jws_sap sap_sai_count jsap_sai
 #' @importFrom rjd3workspace read_sai sai_name set_specification
@@ -85,7 +90,7 @@ remove_non_significative_outliers <- function(
             }),
             what = c
         )
-        xregs <- summary(sai)$preprocessing$xregs
+        xregs <- summary(sai$results)$preprocessing$xregs
         outliers_to_remove <- NULL
         for (id_out in seq_along(outliers)) {
             outlier <- outliers[[id_out]]
