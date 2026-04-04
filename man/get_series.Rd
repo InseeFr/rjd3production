@@ -9,11 +9,11 @@
 \usage{
 get_series(x, ...)
 
-\method{get_series}{JD3_TRAMOSEATS_RSLTS}(x, name)
+\method{get_series}{JD3_TRAMOSEATS_RSLTS}(x, name, ...)
 
-\method{get_series}{JD3_X13_RSLTS}(x, name)
+\method{get_series}{JD3_X13_RSLTS}(x, name, ...)
 
-\method{get_series}{jobjRef}(x)
+\method{get_series}{jobjRef}(x, ...)
 }
 \arguments{
 \item{jsai}{A Java Seasonal Adjustment Item object, typically obtained via

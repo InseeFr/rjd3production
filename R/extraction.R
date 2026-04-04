@@ -57,7 +57,7 @@ get_series <- function(x, ...) {
 #' @method get_series JD3_TRAMOSEATS_RSLTS
 #' @export
 #' @importFrom stats time
-get_series.JD3_TRAMOSEATS_RSLTS <- function(x, name) {
+get_series.JD3_TRAMOSEATS_RSLTS <- function(x, name, ...) {
     if (is.null(x)) {
         stop("Please compute your workspace")
     }
@@ -88,7 +88,7 @@ get_series.JD3_TRAMOSEATS_RSLTS <- function(x, name) {
 #' @method get_series JD3_X13_RSLTS
 #' @export
 #' @importFrom stats time
-get_series.JD3_X13_RSLTS <- function(x, name) {
+get_series.JD3_X13_RSLTS <- function(x, name, ...) {
     if (is.null(x)) {
         stop("Please compute your workspace")
     }
@@ -114,7 +114,7 @@ get_series.JD3_X13_RSLTS <- function(x, name) {
 #' @exportS3Method get_series jobjRef
 #' @method get_series jobjRef
 #' @export
-get_series.jobjRef <- function(x) {
+get_series.jobjRef <- function(x, ...) {
     output <- get_series(
         x = (rjd3workspace::read_sai(x))$results,
         name = rjd3workspace::sai_name(x)

@@ -4,7 +4,7 @@
 \name{rjd3production-package}
 \alias{rjd3production}
 \alias{rjd3production-package}
-\title{rjd3production: Prepare for production of seasonnal adjustment with JDemetra+}
+\title{rjd3production: Prepare for Production of Seasonnal Adjustment with 'JDemetra+'}
 \description{
 You can use this package as a toolbox to prepare and make in production your seasonnal series.
 }
