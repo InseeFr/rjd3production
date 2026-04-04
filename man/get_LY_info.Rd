@@ -96,4 +96,3 @@ rjd3production:::verif_LY("REG6_LY", diags)
 rjd3production:::select_td_one_series(series = ABS[, 1], context = my_context)
 \dontshow{\}) # examplesIf}
 }
-\keyword{internal}
