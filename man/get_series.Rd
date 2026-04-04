@@ -16,9 +16,11 @@ get_series(x, ...)
 \method{get_series}{jobjRef}(x, ...)
 }
 \arguments{
-\item{jsai}{A Java Seasonal Adjustment Item object, typically obtained via
-\code{\link[rjd3workspace:jws_sap]{rjd3workspace::jsap_sai()}} after opening and computing a workspace with \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}}
-and \code{\link[rjd3workspace:jws_compute]{rjd3workspace::jws_compute()}}.}
+\item{x}{The object to extract the series}
+
+\item{...}{Additional argument}
+
+\item{name}{Name of the SA object}
 }
 \value{
 A \code{data.frame} with columns:
@@ -32,6 +34,10 @@ A \code{data.frame} with columns:
 \description{
 Extracts all available time series (pre-adjustment, decomposition, and final)
 from a seasonal adjustment item (\code{jsai}) inside a JDemetra+ workspace.
+}
+\details{
+\code{x} can be a Java SAI object, typically obtained via \code{\link[rjd3workspace:jws_sap]{rjd3workspace::jsap_sai()}} after
+opening and computing a workspace with \code{\link[rjd3workspace:jws_open]{rjd3workspace::jws_open()}} and \code{\link[rjd3workspace:jws_compute]{rjd3workspace::jws_compute()}}.
 }
 \examples{
 \dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}

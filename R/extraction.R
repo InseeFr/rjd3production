@@ -17,9 +17,13 @@ regroup_ts <- function(x) {
 #' Extracts all available time series (pre-adjustment, decomposition, and final)
 #' from a seasonal adjustment item (`jsai`) inside a JDemetra+ workspace.
 #'
-#' @param jsai A Java Seasonal Adjustment Item object, typically obtained via
-#'   [jsap_sai()] after opening and computing a workspace with [jws_open()]
-#'   and [jws_compute()].
+#' @param x The object to extract the series
+#' @param name Name of the SA object
+#' @param ... Additional argument
+#'
+#' @details
+#' `x` can be a Java SAI object, typically obtained via [jsap_sai()] after
+#' opening and computing a workspace with [jws_open()] and [jws_compute()].
 #'
 #' @return A `data.frame` with columns:
 #' - `SAI`: name of the SAI,
