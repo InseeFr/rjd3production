@@ -24,8 +24,6 @@ Imports:
     usethis, 
     TBox, 
     date4ts
-Remotes: 
-    github::TanguyBarthelemy/rjd3workspace@develop
 Suggests: 
     testthat (>= 3.0.0), 
     knitr,

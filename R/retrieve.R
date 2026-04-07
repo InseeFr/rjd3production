@@ -13,11 +13,13 @@ retrieve_outliers <- function(
         stop("You have to choose one specification.")
     }
 
-    if (point) {
-        ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
-    } else {
-        ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
-    }
+    ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    # Waiting for #108
+    # if (point) {
+    #     ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    # } else {
+    #     ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
+    # }
 
     sap <- ws[["processing"]][[1L]]
     ps_outliers <- data.frame(
@@ -154,11 +156,13 @@ retrieve_td <- function(
         stop("You have to choose one specification.")
     }
 
-    if (point) {
-        ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
-    } else {
-        ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
-    }
+    ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    # Waiting for #108
+    # if (point) {
+    #     ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    # } else {
+    #     ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
+    # }
 
     sap <- ws[["processing"]][[1L]]
     td <- data.frame(
