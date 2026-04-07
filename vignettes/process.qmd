@@ -142,9 +142,9 @@ Si nous en avons, il faut assigner les régresseurs de calendrier à chaque sér
 
 ```{r}
 #| echo: true
-#| eval: false
 #| label: assign-td
 
+jws_compute(jws)
 assign_td(td = td, jws = jws)
 ```
 
