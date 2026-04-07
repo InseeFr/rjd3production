@@ -1,3 +1,18 @@
+#' @importFrom stats frequency time
+is_compatible <- function(series, reg) {
+    if (stats::frequency(series) != stats::frequency(reg)) {
+        warning("The series and the regressors doesn't have same frequency.")
+        return(FALSE)
+    } else if (stats::time(series)[1] < stats::time(reg)[1]) {
+        warning("The regressors starts after the beginning of the series.")
+        return(FALSE)
+    } else if (rev(stats::time(series))[1] > rev(stats::time(reg))[1]) {
+        warning("The regressors ends before the end of the series.")
+        return(FALSE)
+    }
+    return(TRUE)
+}
+
 #' @title Diagnostics Extraction on Calendar Correction with different sets of regressors
 #'
 #' @description
@@ -23,7 +38,7 @@
 #' @param context [list] Modelling context with regressors and calendars
 #'   (from [rjd3toolkit::modelling_context()]).
 #' @param jeu [character] Name of the tested regression set.
-#' @param diags [data.frame] Diagnostics table produced by [all_diagnostics()].
+#' @param diags [data.frame] Diagnostics table produced by `all_diagnostics()`.
 #' @param name [character] Name of the series (for messages).
 #' @param specs_set [\link[base]{list} or NULL] List of X13 specifications. If
 #'   `NULL`, generated via [create_specs_set()].
@@ -44,40 +59,39 @@
 #' - `verif_LY()` : Name of the chosen regression set (possibly without LY).
 #' - `select_td_one_series()` : Name of the selected regression set.
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' library("rjd3toolkit")
+#'
 #' # Create a modelling context
-#' my_context <- create_insee_context(s = AirPassengers)
+#' my_context <- create_insee_context(s = ABS)
 #'
 #' # Generate specification sets
 #' my_set <- create_specs_set(context = my_context)
 #'
 #' # Extract LY info
-#' mod <- rjd3x13::x13(AirPassengers, spec = "RSA3")
+#' mod <- rjd3x13::x13(ABS[, 1], spec = "RSA3")
 #' rjd3production:::get_LY_info(summary(mod))
 #'
 #' # Compute diagnostics for one spec
 #' spec <- my_set[[8L]]
-#' rjd3production:::one_diagnostic(series = AirPassengers, spec, context = my_context)
+#' rjd3production:::one_diagnostic(series = ABS[, 1], spec, context = my_context)
 #'
 #' # Compute diagnostics for all specs
-#' rjd3production:::all_diagnostics(series = AirPassengers, specs_set = my_set, context = my_context)
+#' rjd3production:::all_diagnostics(series = ABS[, 1], specs_set = my_set, context = my_context)
 #'
 #' # Check whether LY should be removed
 #' diags <- rjd3production:::all_diagnostics(
-#'     series = AirPassengers,
+#'     series = ABS[, 1],
 #'     specs_set = my_set,
 #'     context = my_context
 #' )
 #' rjd3production:::verif_LY("REG6_LY", diags)
 #'
 #' # Select regressions for one series
-#' rjd3production:::select_td_one_series(series = AirPassengers, context = my_context)
+#' rjd3production:::select_td_one_series(series = ABS[, 1], context = my_context)
 #'
-#' @name diagnostics_selection
-#' @keywords internal
-NULL
-
-#' @rdname diagnostics_selection
+#'@dev
+#'
 get_LY_info <- function(mod, verbose = TRUE) {
     ud_var <- mod$result_spec$regarima$regression$td$users
     if (length(ud_var) == 0L
@@ -105,8 +119,17 @@ get_LY_info <- function(mod, verbose = TRUE) {
 }
 
 #' @importFrom rjd3x13 x13
-#' @rdname diagnostics_selection
 one_diagnostic <- function(series, spec, context) {
+    if (length(spec$regarima$regression$td$users) > 0L) {
+        condition <- spec$regarima$regression$td$users |>
+            strsplit(split = ".", fixed = TRUE) |>
+            lapply(FUN = \(.x) context$variables[[.x[1L]]][[.x[2L]]]) |>
+            vapply(FUN = is_compatible, FUN.VALUE = logical(1L), series = series)
+        if (!all(condition)) {
+            stop("One of the regressors doesn't have the good properties.")
+        }
+    }
+
     mod <- rjd3x13::x13(
         ts = series,
         spec = spec,
@@ -138,7 +161,6 @@ one_diagnostic <- function(series, spec, context) {
     return(diag)
 }
 
-#' @rdname diagnostics_selection
 all_diagnostics <- function(series, specs_set, context) {
     diags <- lapply(X = seq_along(specs_set), FUN = function(k) {
         spec <- specs_set[[k]]
@@ -158,7 +180,6 @@ all_diagnostics <- function(series, specs_set, context) {
     return(diags)
 }
 
-#' @rdname diagnostics_selection
 verif_LY <- function(jeu, diags) {
     if (!grepl(pattern = "LY", x = jeu, ignore.case = TRUE)) {
         return(jeu)
@@ -207,7 +228,6 @@ verif_LY <- function(jeu, diags) {
     return(jeu_final)
 }
 
-#' @rdname diagnostics_selection
 #' @importFrom stats time
 #' @importFrom utils tail
 select_td_one_series <- function(
@@ -225,7 +245,11 @@ select_td_one_series <- function(
     }
 
     if ("No_TD" %in% names(specs_set)) {
-        diag_no_td <- one_diagnostic(series = series, spec = specs_set$No_TD, context = context)
+        diag_no_td <- one_diagnostic(
+            series = series,
+            spec = specs_set$No_TD,
+            context = context
+        )
         # Note de 0 = note parfaite
         if (diag_no_td$note == 0) {
             return("No_TD")
@@ -259,25 +283,27 @@ select_td_one_series <- function(
 #'   multivariate series (columns as separate series).
 #' @param context [list] Modeling context created by
 #' [rjd3toolkit::modelling_context()].
-#' @inheritParams diagnostics_selection
+#' @inheritParams get_LY_info
 #'
 #' @return A data.frame with two columns:
 #' \describe{
 #'   \item{series}{Name of the series (column name if `series` is multivariate).}
-#'   \item{reg_selected}{Name of the selected regressor set.}
+#'   \item{regs}{Name of the selected regressor set.}
 #' }
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' library("rjd3toolkit")
+#'
 #' # Single series
-#' select_td(AirPassengers)
+#' select_td(ABS[, 1])
 #'
 #' # Multiple series
-#' select_td(Seatbelts[, -8])
+#' select_td(ABS)
 #'
 #' # Restrict regressors sets
-#' my_context <- create_insee_context()
+#' my_context <- create_insee_context(s = ABS)
 #' my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
-#' select_td(Seatbelts[, -8], context = my_context)
+#' select_td(ABS, context = my_context)
 #'
 #' @export
 #'
@@ -346,6 +372,6 @@ select_td <- function(series, context = NULL, ...) {
         ))
     })
 
-    output <- cbind(series = colnames(series), reg_selected = output)
+    output <- cbind(series = colnames(series), regs = output)
     return(as.data.frame(output))
 }

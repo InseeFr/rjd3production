@@ -20,6 +20,7 @@ Launches an interactive Shiny application to explore and compare
 seasonal adjustment results stored in a \code{data.frame} returned by \code{\link[=compare]{compare()}}.
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
 # Create temporary Workspaces
 
@@ -47,5 +48,5 @@ head(df)
 if (interactive()) {
     run_app(df)
 }
-
+\dontshow{\}) # examplesIf}
 }

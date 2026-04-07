@@ -157,7 +157,11 @@ retrieve_td <- function(
     }
 
     ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+<<<<<<< HEAD
     # Waiting for #108
+=======
+    # Wainting for #108
+>>>>>>> b04ef3e480c6d437f53f15c3237214464080ef33
     # if (point) {
     #     ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
     # } else {

@@ -16,7 +16,7 @@
 #' - `date`: observation date,
 #' - `value`: numeric value.
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'
 #' library("rjd3toolkit")
 #' library("rjd3x13")
@@ -79,7 +79,7 @@ compare <- function(..., series_names) {
 #'
 #' @return Runs a Shiny app in the R session (no return value).
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'
 #' # Create temporary Workspaces
 #'

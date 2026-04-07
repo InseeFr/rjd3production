@@ -50,3 +50,8 @@ cran-comments.md
 ^\.lycheeignore$
 ^vignettes/\.quarto$
 ^vignettes/*_files$
+
+^why\.md$
+^why\.Rmd$
+
+^man/get_LY_info\.Rd$

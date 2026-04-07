@@ -89,7 +89,7 @@
 #'   of the YAML file written.
 #' - `assign_XXX()` functions invisibly return the updated workspace `jws`.
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' library("rjd3workspace")
 #' file <- system.file("workspaces", "workspace_test.xml",
 #'                     package = "rjd3workspace")

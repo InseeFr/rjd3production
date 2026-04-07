@@ -1,5 +1,5 @@
 Package: rjd3production
-Title: Prepare for production of seasonnal adjustment with JDemetra+
+Title: Prepare for Production of Seasonnal Adjustment with 'JDemetra+'
 Version: 1.0.0.9000
 Authors@R: 
     person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art"))
@@ -23,7 +23,8 @@ Imports:
     constructive,
     usethis, 
     TBox, 
-    date4ts
+    date4ts, 
+    lintr
 Suggests: 
     testthat (>= 3.0.0), 
     knitr,
@@ -32,8 +33,11 @@ Suggests:
     waldo
 License: EUPL
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
+Roxygen: list(markdown = TRUE, roclets = c("collate", "rd", "namespace", "devtag::dev_roclet"))
 RoxygenNote: 7.3.3
-VignetteBuilder: knitr, quarto
+VignetteBuilder: 
+    knitr, 
+    quarto
 Config/testthat/edition: 3
 URL: https://inseefr.github.io/rjd3production/
+Config/Needs/build: moodymudskipper/devtag

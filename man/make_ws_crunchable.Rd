@@ -25,17 +25,19 @@ over time, but rather for a short period of time for testing purposes, in
 particular when we are sent a workspace without the raw data.
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 library("rjd3workspace")
 library("rjd3x13")
+library("rjd3toolkit")
 
 jws <- jws_new()
 jsap <- jws_sap_new(jws, "sap1")
 add_sa_item(
     jsap = jsap,
     name = "series_3",
-    x = AirPassengers,
+    x = ABS[, 1],
     spec = x13_spec("RSA3")
 )
 jws <- make_ws_crunchable(jws)
-
+\dontshow{\}) # examplesIf}
 }

@@ -29,7 +29,7 @@
 #' `REG2`, …, `REG6`, with or without LY).
 #' - `create_insee_context()` returns a `modelling_context` object.
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' # 1. Create the French calendar
 #' cal <- create_french_calendar()
 #' cal
@@ -98,6 +98,10 @@ create_insee_regressors <- function(
         REG5 = c(1L, 2L, 3L, 4L, 5L, 0L, 0L),
         REG6 = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
     )
+
+    if (!missing(s) && !is.null(ncol(s)) && ncol(s) > 1L) {
+        s <- s[, 1L]
+    }
 
     regs_td <- lapply(
         X = groups,
@@ -240,7 +244,7 @@ create_insee_context <- function(
 #'
 #' @return A list of named X13 specifications (TD and variants).
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' my_context <- create_insee_context()
 #' create_specs_set(context = my_context)
 #'
