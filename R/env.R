@@ -16,7 +16,7 @@
 #' @examples
 #' project_path <- tempfile(pattern = "my-project")
 #'
-#' \donttest{
+#' \dontrun{
 #' # Create a new project
 #' init_env(path = project_path)
 #' }
