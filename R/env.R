@@ -16,8 +16,10 @@
 #' @examples
 #' project_path <- tempfile(pattern = "my-project")
 #'
+#' \donttest{
 #' # Create a new project
 #' init_env(path = project_path)
+#' }
 #'
 #' @export
 #' @importFrom usethis create_project use_readme_rmd use_git use_description

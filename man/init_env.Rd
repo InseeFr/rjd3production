@@ -25,7 +25,9 @@ The generated structure is designed for workflows based on the 'rjdverse'.
 \examples{
 project_path <- tempfile(pattern = "my-project")
 
+\donttest{
 # Create a new project
 init_env(path = project_path)
+}
 
 }
