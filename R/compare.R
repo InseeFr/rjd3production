@@ -22,6 +22,7 @@
 #' library("rjd3x13")
 #' library("rjd3workspace")
 #'
+#' \donttest{
 #' # Two demo workspaces (RSA3 and RSA5)
 #' jws_rsa3 <- create_ws_from_data(ABS, x13_spec("rsa3"))
 #' jws_rsa5 <- create_ws_from_data(ABS, x13_spec("rsa5"))
@@ -34,6 +35,7 @@
 #'
 #' df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
 #' head(df)
+#' }
 #'
 #' @importFrom rjd3workspace jws_open jws_sap sap_sai_names jws_compute
 #' @importFrom tools file_path_sans_ext
@@ -81,12 +83,11 @@ compare <- function(..., series_names) {
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'
-#' # Create temporary Workspaces
-#'
 #' library("rjd3toolkit")
 #' library("rjd3x13")
 #' library("rjd3workspace")
 #'
+#' \donttest{
 #' # Two demo workspaces (RSA3 and RSA5)
 #' jws_rsa3 <- create_ws_from_data(ABS, x13_spec("rsa3"))
 #' jws_rsa5 <- create_ws_from_data(ABS, x13_spec("rsa5"))
@@ -97,15 +98,14 @@ compare <- function(..., series_names) {
 #' save_workspace(jws_rsa3, file = path_rsa3)
 #' save_workspace(jws_rsa5, file = path_rsa5)
 #'
-#'
 #' # Compare the two workspace
-#'
 #' df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
 #' head(df)
 #'
 #' # Launch the shiny app
 #' if (interactive()) {
 #'     run_app(df)
+#' }
 #' }
 #'
 #' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput

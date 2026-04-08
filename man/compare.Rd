@@ -34,6 +34,7 @@ library("rjd3toolkit")
 library("rjd3x13")
 library("rjd3workspace")
 
+\donttest{
 # Two demo workspaces (RSA3 and RSA5)
 jws_rsa3 <- create_ws_from_data(ABS, x13_spec("rsa3"))
 jws_rsa5 <- create_ws_from_data(ABS, x13_spec("rsa5"))
@@ -46,5 +47,6 @@ save_workspace(jws_rsa5, file = path_rsa5)
 
 df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
 head(df)
+}
 \dontshow{\}) # examplesIf}
 }

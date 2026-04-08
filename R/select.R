@@ -294,6 +294,7 @@ select_td_one_series <- function(
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' library("rjd3toolkit")
 #'
+#' \donttest{
 #' # Single series
 #' select_td(ABS[, 1])
 #'
@@ -304,7 +305,7 @@ select_td_one_series <- function(
 #' my_context <- create_insee_context(s = ABS)
 #' my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
 #' select_td(ABS, context = my_context)
-#'
+#' }
 #' @export
 #'
 #' @importFrom stats is.ts is.mts

@@ -39,6 +39,7 @@ is processed separately. The function returns the selected set of regressors for
 \dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 library("rjd3toolkit")
 
+\donttest{
 # Single series
 select_td(ABS[, 1])
 
@@ -49,5 +50,6 @@ select_td(ABS)
 my_context <- create_insee_context(s = ABS)
 my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
 select_td(ABS, context = my_context)
+}
 \dontshow{\}) # examplesIf}
 }

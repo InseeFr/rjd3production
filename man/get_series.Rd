@@ -42,11 +42,10 @@ opening and computing a workspace with \code{\link[rjd3workspace:jws_open]{rjd3w
 \examples{
 \dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
-# Create temporarily Workspaces
-
 library("rjd3toolkit")
 library("rjd3workspace")
 
+\donttest{
 # Demo workspace
 jws <- create_ws_from_data(ABS)
 jws_compute(jws)
@@ -55,5 +54,6 @@ jsai <- jsap_sai(jsap, 1L)
 
 df <- get_series(jsai)
 head(df)
+}
 \dontshow{\}) # examplesIf}
 }

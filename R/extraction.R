@@ -33,11 +33,10 @@ regroup_ts <- function(x) {
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'
-#' # Create temporarily Workspaces
-#'
 #' library("rjd3toolkit")
 #' library("rjd3workspace")
 #'
+#' \donttest{
 #' # Demo workspace
 #' jws <- create_ws_from_data(ABS)
 #' jws_compute(jws)
@@ -46,6 +45,7 @@ regroup_ts <- function(x) {
 #'
 #' df <- get_series(jsai)
 #' head(df)
+#' }
 #'
 #' @importFrom rjd3workspace read_sai sai_name
 #' @importFrom zoo as.Date
@@ -139,11 +139,9 @@ get_series.jobjRef <- function(x, ...) {
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'
-#' # Create temporarily Workspaces
-#'
 #' library("rjd3toolkit")
 #' library("rjd3workspace")
-#'
+#' \donttest{
 #' # Demo workspace
 #' jws <- create_ws_from_data(ABS)
 #' jws_compute(jws)
@@ -152,6 +150,7 @@ get_series.jobjRef <- function(x, ...) {
 #' jsai <- get_jsai_by_name(jws, "X0.2.09.10.M")
 #' df <- get_series(jsai)
 #' head(df)
+#' }
 #'
 #' @importFrom rjd3workspace jws_sap sap_sai_names jsap_sai
 #'

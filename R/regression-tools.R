@@ -90,11 +90,13 @@
 #' - `assign_XXX()` functions invisibly return the updated workspace `jws`.
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#'
 #' library("rjd3workspace")
 #' file <- system.file("workspaces", "workspace_test.xml",
 #'                     package = "rjd3workspace")
 #' jws <- jws_open(file)
 #'
+#' \donttest{
 #' ## Outliers
 #'
 #' # Read all the outliers from a workspace
@@ -125,6 +127,7 @@
 #'
 #' # Assign the td variables to a WS
 #' #assign_td(jws = jws, td = td2)
+#' }
 #'
 #' @name regression_tools
 #' @family regression tools

@@ -22,12 +22,11 @@ seasonal adjustment results stored in a \code{data.frame} returned by \code{\lin
 \examples{
 \dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
-# Create temporary Workspaces
-
 library("rjd3toolkit")
 library("rjd3x13")
 library("rjd3workspace")
 
+\donttest{
 # Two demo workspaces (RSA3 and RSA5)
 jws_rsa3 <- create_ws_from_data(ABS, x13_spec("rsa3"))
 jws_rsa5 <- create_ws_from_data(ABS, x13_spec("rsa5"))
@@ -38,15 +37,14 @@ path_rsa5 <- tempfile(pattern = "ws-rsa5", fileext = ".xml")
 save_workspace(jws_rsa3, file = path_rsa3)
 save_workspace(jws_rsa5, file = path_rsa5)
 
-
 # Compare the two workspace
-
 df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
 head(df)
 
 # Launch the shiny app
 if (interactive()) {
     run_app(df)
+}
 }
 \dontshow{\}) # examplesIf}
 }
