@@ -148,11 +148,11 @@ the point, estimation or domainSpec, while the assignment step
 \dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
 library("rjd3workspace")
+\donttest{
 file <- system.file("workspaces", "workspace_test.xml",
                     package = "rjd3workspace")
 jws <- jws_open(file)
 
-\donttest{
 ## Outliers
 
 # Read all the outliers from a workspace

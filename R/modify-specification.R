@@ -39,6 +39,8 @@
 #' library("rjd3workspace")
 #' library("rjd3x13")
 #' library("rjd3toolkit")
+#'
+#' \donttest{
 #' new_spec <- x13_spec() |>
 #'     add_outlier(type = "LS", date = "1990-01-01")
 #' jws <- create_ws_from_data(x = ABS[, 1, drop = FALSE], spec = new_spec)
@@ -47,6 +49,7 @@
 #'
 #' # Remove non-significant outliers (p > 0.3) from a workspace
 #' remove_non_significative_outliers(path_ws, threshold = 0.3, domain = TRUE)
+#' }
 #'
 #' @importFrom rjd3workspace jws_open jws_compute jws_sap sap_sai_count jsap_sai
 #' @importFrom rjd3workspace read_sai sai_name set_specification

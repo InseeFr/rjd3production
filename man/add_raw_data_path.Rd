@@ -42,7 +42,9 @@ library("rjd3toolkit")
 
 my_data <- ABS
 path_ABS <- system.file("extdata", "ABS.csv", package = "rjd3providers")
+\donttest{
 jws <- create_ws_from_data(my_data)
 add_raw_data_path(jws, path_ABS, delimiter = "COMMA")
+}
 \dontshow{\}) # examplesIf}
 }

@@ -56,6 +56,8 @@ The function:
 library("rjd3workspace")
 library("rjd3x13")
 library("rjd3toolkit")
+
+\donttest{
 new_spec <- x13_spec() |>
     add_outlier(type = "LS", date = "1990-01-01")
 jws <- create_ws_from_data(x = ABS[, 1, drop = FALSE], spec = new_spec)
@@ -64,5 +66,6 @@ save_workspace(jws, file = path_ws)
 
 # Remove non-significant outliers (p > 0.3) from a workspace
 remove_non_significative_outliers(path_ws, threshold = 0.3, domain = TRUE)
+}
 \dontshow{\}) # examplesIf}
 }

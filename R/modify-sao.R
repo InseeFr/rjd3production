@@ -153,8 +153,10 @@ create_ws_from_data <- function(x, spec = rjd3x13::x13_spec()) {
 #'
 #' my_data <- ABS
 #' path_ABS <- system.file("extdata", "ABS.csv", package = "rjd3providers")
+#' \donttest{
 #' jws <- create_ws_from_data(my_data)
 #' add_raw_data_path(jws, path_ABS, delimiter = "COMMA")
+#' }
 #'
 #' @export
 #' @importFrom rjd3workspace jws_sap sap_sai_count jsap_sai sai_name set_ts
