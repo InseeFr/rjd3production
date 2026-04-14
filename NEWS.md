@@ -10,6 +10,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+* New argument `verbose` to display some information while computing
 * New function to create a ws from datasets and a default specification
 * New function to make a ws crunchable
 * Shiny app to compare WS with button to export table

@@ -9,6 +9,8 @@ get_LY_info(mod, verbose = TRUE)
 \arguments{
 \item{mod}{\link{list} An X13 model.}
 
+\item{verbose}{Boolean. Print additional informations. Default is \code{TRUE}.}
+
 \item{series}{[\link[stats]{ts} or numeric] Time series to analyse.}
 
 \item{spec}{\link{list} A X13 specification (from \code{\link[rjd3x13:x13_spec]{rjd3x13::x13_spec()}}).}

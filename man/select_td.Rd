@@ -4,7 +4,7 @@
 \alias{select_td}
 \title{Select Calendar Regressors for One or Multiple Series}
 \usage{
-select_td(series, context = NULL, ...)
+select_td(series, context = NULL, ..., verbose = TRUE)
 }
 \arguments{
 \item{series}{[\link[stats]{ts} or mts or matrix or \link[base]{data.frame}] A univariate time series (\code{ts}) or a
@@ -22,6 +22,8 @@ of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
 \code{"YYYY-MM-DD"}).}
 \item{...}{Other arguments accepted by \code{\link[=create_specs_set]{create_specs_set()}}.}
 }}
+
+\item{verbose}{Boolean. Print additional informations. Default is \code{TRUE}.}
 }
 \value{
 A data.frame with two columns:

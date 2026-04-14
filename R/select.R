@@ -51,6 +51,7 @@ is_compatible <- function(series, reg) {
 #'     `"YYYY-MM-DD"`).}
 #'     \item{...}{Other arguments accepted by [create_specs_set()].}
 #'   }
+#' @inheritParams make_ws_crunchable
 #'
 #' @returns
 #' - `get_LY_info()` : A data.frame with `LY_coeff` and `LY_p_value`.
@@ -121,7 +122,7 @@ get_LY_info <- function(mod, verbose = TRUE) {
 }
 
 #' @importFrom rjd3x13 x13
-one_diagnostic <- function(series, spec, context) {
+one_diagnostic <- function(series, spec, context, verbose = TRUE) {
     if (length(spec$regarima$regression$td$users) > 0L) {
         condition <- spec$regarima$regression$td$users |>
             strsplit(split = ".", fixed = TRUE) |>
@@ -157,7 +158,7 @@ one_diagnostic <- function(series, spec, context) {
         mod$result$preprocessing$description$log + 1L
     ]
 
-    LY_info <- get_LY_info(mod)
+    LY_info <- get_LY_info(mod, verbose = verbose)
 
     diag <- cbind(
         data.frame(note = note, aicc = aicc, mode = mode),
@@ -167,12 +168,21 @@ one_diagnostic <- function(series, spec, context) {
     return(diag)
 }
 
-all_diagnostics <- function(series, specs_set, context) {
+all_diagnostics <- function(series, specs_set, context, verbose = TRUE) {
     diags <- lapply(X = seq_along(specs_set), FUN = function(k) {
         spec <- specs_set[[k]]
-        cat("Computing spec", names(specs_set)[k], "...")
-        diag <- one_diagnostic(series = series, spec = spec, context = context)
-        cat("Done !\n")
+        if (verbose) {
+            cat("Computing spec", names(specs_set)[k], "...")
+        }
+        diag <- one_diagnostic(
+            series = series,
+            spec = spec,
+            context = context,
+            verbose = verbose
+        )
+        if (verbose) {
+            cat("Done !\n")
+        }
         return(diag)
     })
 
@@ -241,7 +251,8 @@ select_td_one_series <- function(
     name = "",
     specs_set = NULL,
     context = NULL,
-    ...
+    ...,
+    verbose = TRUE
 ) {
     if (is.null(context)) {
         context <- create_insee_context(s = series)
@@ -254,7 +265,8 @@ select_td_one_series <- function(
         diag_no_td <- one_diagnostic(
             series = series,
             spec = specs_set$No_TD,
-            context = context
+            context = context,
+            verbose = TRUE
         )
         # Note de 0 = note parfaite
         if (diag_no_td$note == 0L) {
@@ -262,7 +274,12 @@ select_td_one_series <- function(
         }
     }
 
-    diags <- all_diagnostics(series, specs_set = specs_set, context = context)
+    diags <- all_diagnostics(
+        series,
+        specs_set = specs_set,
+        context = context,
+        verbose = verbose
+    )
     diags_wo_na <- diags[!is.na(diags$note) & !is.na(diags$aicc), ]
 
     if (nrow(diags_wo_na) == 0L) {
@@ -315,7 +332,7 @@ select_td_one_series <- function(
 #' @export
 #'
 #' @importFrom stats is.ts is.mts
-select_td <- function(series, context = NULL, ...) {
+select_td <- function(series, context = NULL, ..., verbose = TRUE) {
     if (is.null(context)) {
         context <- create_insee_context(s = series)
     }
@@ -359,23 +376,27 @@ select_td <- function(series, context = NULL, ...) {
         #     }
         # }
 
-        cat(
-            paste0(
-                "\nS\u00e9rie ",
-                series_name,
-                " en cours... ",
-                k,
-                "/",
-                ncol(series)
-            ),
-            "\n"
-        )
+        if (verbose) {
+            cat(
+                paste0(
+                    "\nS\u00e9rie ",
+                    series_name,
+                    " en cours... ",
+                    k,
+                    "/",
+                    ncol(series)
+                ),
+                "\n"
+            )
+        }
+
         return(select_td_one_series(
             series = series[, k],
             name = series_name,
             specs_set = specs_set,
             context = context,
-            ...
+            ...,
+            verbose = verbose
         ))
     })
 

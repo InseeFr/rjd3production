@@ -173,15 +173,17 @@ retrieve_td <- function(
 
     for (id_sai in seq_along(sap)) {
         series_name <- names(sap)[id_sai]
-        cat(paste0(
-            "S\u00e9rie ",
-            series_name,
-            ", ",
-            id_sai,
-            "/",
-            length(sap),
-            "\n"
-        ))
+        if (verbose) {
+            cat(paste0(
+                "S\u00e9rie ",
+                series_name,
+                ", ",
+                id_sai,
+                "/",
+                length(sap),
+                "\n"
+            ))
+        }
 
         sai <- sap[[id_sai]]
 

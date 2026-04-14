@@ -28,6 +28,10 @@ date be removed?
 (Small crutch while waiting for the resolution of jdemetra/jdplus-main issue
 858.)}
 }
+\value{
+the modify specification (an \code{JD3_X13_SPEC} or \code{JD3_TRAMOSEATS_SPEC}
+object).
+}
 \description{
 Set span minimum to a value
 }

@@ -1,7 +1,7 @@
 ---
 title: "Selection of calendar td regressors"
 vignette: >
-%\VignetteIndexEntry{Selection of calendar td regressors}
+  %\VignetteIndexEntry{Selection of calendar td regressors}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
   knitr:

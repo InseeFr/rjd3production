@@ -8,7 +8,8 @@ remove_non_significative_outliers(
   ws_path,
   threshold = 0.3,
   domain = FALSE,
-  estimation = FALSE
+  estimation = FALSE,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ modified.}
 
 \item{estimation}{Boolean indicating if the estimation specification should
 be modified.}
+
+\item{verbose}{Boolean. Print additional informations. Default is \code{TRUE}.}
 }
 \value{
 The function invisibly returns \code{NULL}, but it \strong{modifies the workspace file

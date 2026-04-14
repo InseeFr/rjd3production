@@ -41,21 +41,23 @@ merge_contexts <- function(context1 = NULL, context2 = NULL, verbose = TRUE) {
 #' @family regression tools
 #' @rdname regression_tools
 #' @export
-assign_outliers <- function(jws, outliers) {
+assign_outliers <- function(jws, outliers, verbose = TRUE) {
     jsap <- rjd3workspace::jws_sap(jws, 1L)
 
     for (id_sai in seq_len(rjd3workspace::sap_sai_count(jsap))) {
         jsai <- rjd3workspace::jsap_sai(jsap, idx = id_sai)
         series_name <- rjd3workspace::sai_name(jsai)
-        cat(paste0(
-            "S\u00e9rie ",
-            series_name,
-            ", ",
-            id_sai,
-            "/",
-            rjd3workspace::sap_sai_count(jsap),
-            "\n"
-        ))
+        if (verbose) {
+            cat(paste0(
+                "S\u00e9rie ",
+                series_name,
+                ", ",
+                id_sai,
+                "/",
+                rjd3workspace::sap_sai_count(jsap),
+                "\n"
+            ))
+        }
 
         # Outliers
         outliers_series <- outliers[outliers$series == "RF1011", , drop = FALSE]
@@ -100,7 +102,7 @@ assign_outliers <- function(jws, outliers) {
 #' @family regression tools
 #' @rdname regression_tools
 #' @export
-assign_td <- function(jws, td) {
+assign_td <- function(jws, td, verbose = TRUE) {
     if (nrow(td) == 0L) {
         return(invisible(jws))
     }
@@ -120,15 +122,17 @@ assign_td <- function(jws, td) {
     for (id_sai in seq_len(rjd3workspace::sap_sai_count(jsap))) {
         jsai <- rjd3workspace::jsap_sai(jsap, idx = id_sai)
         series_name <- rjd3workspace::sai_name(jsai)
-        cat(paste0(
-            "S\u00e9rie ",
-            series_name,
-            ", ",
-            id_sai,
-            "/",
-            rjd3workspace::sap_sai_count(jsap),
-            "\n"
-        ))
+        if (verbose) {
+            cat(paste0(
+                "S\u00e9rie ",
+                series_name,
+                ", ",
+                id_sai,
+                "/",
+                rjd3workspace::sap_sai_count(jsap),
+                "\n"
+            ))
+        }
         chosen_set <- td[td$series == series_name, "regs"]
         if (length(chosen_set) == 1L && chosen_set != "No_TD") {
             td_variables <- var_names[[chosen_set]]
