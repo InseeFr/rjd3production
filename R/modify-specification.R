@@ -145,7 +145,7 @@ remove_non_significative_outliers <- function(
     )
 }
 
-#' Set span minimum to a value
+#' @title Set span minimum to a value
 #'
 #' @param spec Specification (object of class `JD3_X13_SPEC` or
 #' `JD3_TRAMOSEATS_SPEC`
@@ -165,7 +165,21 @@ remove_non_significative_outliers <- function(
 #' @importFrom zoo as.Date
 #' @importFrom rjd3toolkit set_basic set_estimate
 #'
+#' @returns the modify specification (an `JD3_X13_SPEC` or `JD3_TRAMOSEATS_SPEC`
+#'  object).
+#'
 #' @export
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#'
+#' library("rjd3toolkit")
+#' library("rjd3x13")
+#' library("rjd3workspace")
+#'
+#' \donttest{
+#' # Two demo workspaces (RSA3 and RSA5)
+#' spec <- x13_spec("rsa3")
+#' set_minimum_span(spec, "2012-01-01")
+#' }
 #'
 set_minimum_span <- function(
     spec,
