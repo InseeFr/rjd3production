@@ -52,7 +52,7 @@ is_compatible <- function(series, reg) {
 #'     \item{...}{Other arguments accepted by [create_specs_set()].}
 #'   }
 #'
-#' @return
+#' @returns
 #' - `get_LY_info()` : A data.frame with `LY_coeff` and `LY_p_value`.
 #' - `one_diagnostic()` : A data.frame with diagnostics for one specification.
 #' - `all_diagnostics()` : A data.frame with diagnostics for all specifications.
@@ -285,7 +285,7 @@ select_td_one_series <- function(
 #' [rjd3toolkit::modelling_context()].
 #' @inheritParams get_LY_info
 #'
-#' @return A data.frame with two columns:
+#' @returns A data.frame with two columns:
 #' \describe{
 #'   \item{series}{Name of the series (column name if `series` is multivariate).}
 #'   \item{regs}{Name of the selected regressor set.}

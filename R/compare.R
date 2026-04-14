@@ -9,7 +9,7 @@
 #' @param ... [character] Workspace file paths.
 #' @param series_names [character] Vector of SAI names to compare.
 #'
-#' @return A `data.frame` with columns:
+#' @returns A `data.frame` with columns:
 #' - `ws`: workspace name (derived from file basename),
 #' - `SAI`: SAI name,
 #' - `series`: type of series,
@@ -79,7 +79,7 @@ compare <- function(..., series_names) {
 #'   the columns `ws`, `SAI`, `series`, `date`, and `value`.
 #' @param ... Additional arguments passed to [shiny::shinyApp()].
 #'
-#' @return Runs a Shiny app in the R session (no return value).
+#' @returns Runs a Shiny app in the R session (no return value).
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'

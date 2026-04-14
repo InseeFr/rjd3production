@@ -21,7 +21,7 @@
 #' (passed to `rjd3toolkit`).
 #' @param cal a calendar of class `JD3_CALENDAR`.
 #'
-#' @return
+#' @returns
 #' - `create_french_calendar()` returns a `national_calendar` object.
 #' - `create_insee_regressors()` returns a matrix of regressors (working days
 #' + LY).
@@ -242,7 +242,7 @@ create_insee_context <- function(
 #' - `type`: vector of outlier types (e.g. "AO", "LS", "TC")
 #' - `date`: vector of corresponding dates
 #'
-#' @return A list of named X13 specifications (TD and variants).
+#' @returns A list of named X13 specifications (TD and variants).
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' my_context <- create_insee_context()

@@ -11,7 +11,7 @@
 #' @param open Boolean. Should the project be opened in RStudio after creation?
 #' Default is \code{FALSE}.
 #'
-#' @return The project path invisibly.
+#' @returns The project path invisibly.
 #'
 #' @examples
 #' project_path <- tempfile(pattern = "my-project")

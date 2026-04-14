@@ -25,7 +25,7 @@ regroup_ts <- function(x) {
 #' `x` can be a Java SAI object, typically obtained via [jsap_sai()] after
 #' opening and computing a workspace with [jws_open()] and [jws_compute()].
 #'
-#' @return A `data.frame` with columns:
+#' @returns A `data.frame` with columns:
 #' - `SAI`: name of the SAI,
 #' - `series`: the type of series (e.g. `"y"`, `"sa"`, `"trend"`),
 #' - `date`: observation dates,
@@ -135,7 +135,7 @@ get_series.jobjRef <- function(x, ...) {
 #' @inheritParams make_ws_crunchable
 #' @param series_name [character] Name of the SAI to retrieve.
 #'
-#' @return A Java Seasonal Adjustment Item object (`jsai`).
+#' @returns A Java Seasonal Adjustment Item object (`jsai`).
 #'
 #' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'

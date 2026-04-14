@@ -30,7 +30,7 @@
 #'   `estimationSpec` and, if present, `domainSpec`,
 #' - saves the workspace file.
 #'
-#' @return
+#' @returns
 #' The function invisibly returns `NULL`, but it **modifies the workspace file
 #' in place** (saved at the same location as `ws_path`).
 #'
