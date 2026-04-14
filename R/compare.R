@@ -128,13 +128,13 @@ run_app <- function(data, ...) {
                     "sai",
                     "Choisir un SAI :",
                     choices = unique(data$SAI),
-                    selected = unique(data$SAI)[1]
+                    selected = unique(data$SAI)[1L]
                 ),
                 shiny::selectInput(
                     "serie",
                     "Choisir une s\u00e9rie :",
                     choices = unique(data$series),
-                    selected = unique(data$series)[1]
+                    selected = unique(data$series)[1L]
                 ),
                 shiny::checkboxInput(
                     "filter_by_sai",

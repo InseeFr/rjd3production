@@ -3,10 +3,10 @@ is_compatible <- function(series, reg) {
     if (stats::frequency(series) != stats::frequency(reg)) {
         warning("The series and the regressors doesn't have same frequency.")
         return(FALSE)
-    } else if (stats::time(series)[1] < stats::time(reg)[1]) {
+    } else if (stats::time(series)[1L] < stats::time(reg)[1L]) {
         warning("The regressors starts after the beginning of the series.")
         return(FALSE)
-    } else if (rev(stats::time(series))[1] > rev(stats::time(reg))[1]) {
+    } else if (rev(stats::time(series))[1L] > rev(stats::time(reg))[1L]) {
         warning("The regressors ends before the end of the series.")
         return(FALSE)
     }
@@ -205,17 +205,17 @@ verif_LY <- function(jeu, diags) {
     # On reprend le choix avec et sans LY
     diags_jeu <- diags[c(id_jeu, id_jeu_without_LY), ]
 
-    if (diags_jeu$note[1] != diags_jeu$note[2]) {
+    if (diags_jeu$note[1L] != diags_jeu$note[2L]) {
         return(rownames(diags_jeu)[which.min(diags_jeu$note)])
     }
 
     if (mode == "Multiplicatif") {
-        LY_coeff <- 100 * LY_coeff
+        LY_coeff <- 100.0 * LY_coeff
     }
     LY_coeff <- round(LY_coeff)
 
     # On considere le coeff LY incoherent si negatif ou superieur à 12
-    coef_incoherent <- (LY_coeff <= 0) | (LY_coeff > 12)
+    coef_incoherent <- (LY_coeff <= 0.0) | (LY_coeff > 12.0)
     # Coeff non signif si pvalue > 10%
     coef_non_signif <- LY_p_value > 0.1
 
@@ -251,7 +251,7 @@ select_td_one_series <- function(
             context = context
         )
         # Note de 0 = note parfaite
-        if (diag_no_td$note == 0) {
+        if (diag_no_td$note == 0L) {
             return("No_TD")
         }
     }
@@ -259,7 +259,7 @@ select_td_one_series <- function(
     diags <- all_diagnostics(series, specs_set = specs_set, context = context)
     diags_wo_na <- diags[!is.na(diags$note) & !is.na(diags$aicc), ]
 
-    if (nrow(diags_wo_na) == 0) {
+    if (nrow(diags_wo_na) == 0L) {
         stop(
             "Erreur lors du calcul de l'aicc et des p-value.
              Aucun jeu de regresseur n'a pu \u00eatre s\u00e9lectionn\u00e9. ",
@@ -269,7 +269,7 @@ select_td_one_series <- function(
 
     best_regs <- diags_wo_na[order(diags_wo_na$note, diags_wo_na$aicc), ]
 
-    return(verif_LY(jeu = best_regs[1, "regs"], diags = diags))
+    return(verif_LY(jeu = best_regs[1L, "regs"], diags = diags))
 }
 
 #' @title Select Calendar Regressors for One or Multiple Series

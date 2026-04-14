@@ -60,7 +60,7 @@ assign_outliers <- function(jws, outliers) {
         # Outliers
         outliers_series <- outliers[outliers$series == "RF1011", , drop = FALSE]
 
-        if (nrow(outliers_series) > 0) {
+        if (nrow(outliers_series) > 0L) {
 
             # Création de la spec
             sai <- rjd3workspace::read_sai(jsai)

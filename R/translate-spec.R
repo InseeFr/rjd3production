@@ -273,7 +273,7 @@ rev_set_arima <- function(x) {
     if ("phi" %in% names(args) && is.null(args$phi)) {
         args$p <- NULL
     } else if (is.null(args$phi)) {
-        args$p <- 0
+        args$p <- 0L
     } else {
         args$p <- ncol(args$phi)
         args$coef <- c(args$coef, as.numeric(args$phi[1L, ]))
@@ -282,7 +282,7 @@ rev_set_arima <- function(x) {
     if ("theta" %in% names(args) && is.null(args$theta)) {
         args$q <- NULL
     } else if (is.null(args$theta)) {
-        args$q <- 0
+        args$q <- 0L
     } else {
         args$q <- ncol(args$theta)
         args$coef <- c(args$coef, as.numeric(args$theta[1L, ]))
@@ -291,7 +291,7 @@ rev_set_arima <- function(x) {
     if ("bphi" %in% names(args) && is.null(args$bphi)) {
         args$bp <- NULL
     } else if (is.null(args$bphi)) {
-        args$bp <- 0
+        args$bp <- 0L
     } else {
         args$bp <- ncol(args$bphi)
         args$coef <- c(args$coef, as.numeric(args$bphi[1L, ]))
@@ -300,7 +300,7 @@ rev_set_arima <- function(x) {
     if ("btheta" %in% names(args) && is.null(args$btheta)) {
         args$bq <- NULL
     } else if (is.null(args$btheta)) {
-        args$bq <- 0
+        args$bq <- 0L
     } else {
         args$bq <- ncol(args$btheta)
         args$coef <- c(args$coef, as.numeric(args$btheta[1L, ]))
@@ -386,7 +386,7 @@ rev_set_tradingdays <- function(x) {
 
     if (!is.null(args$tdcoefficients)) {
         args$coef <- as.numeric(args$tdcoefficients[1L, ])
-        if (!all(is.na(args$coef)) && all(args$coef == 0)) {
+        if (!all(is.na(args$coef)) && all(args$coef == 0L)) {
             args$coef <- NULL
         }
         args$coef.type <- as.character(args$tdcoefficients[2L, ])

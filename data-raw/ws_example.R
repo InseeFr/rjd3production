@@ -4,7 +4,7 @@ library("rjd3toolkit")
 library("rjd3x13")
 library("rjd3workspace")
 
-set.seed(2025)
+set.seed(2025L)
 
 context_FR <- create_insee_context()
 
@@ -13,10 +13,10 @@ jsap <- jws_sap_new(jws, name = "ABS")
 
 for (id_series in seq_len(ncol(ABS))) {
     # Outliers - domain
-    nb_out <- sample.int(10, size = 1)
+    nb_out <- sample.int(10L, size = 1L)
     out_date <- paste(
-        sample(1983:2017, size = nb_out, replace = TRUE),
-        sample(sprintf("%02d", 1:12), size = nb_out, replace = TRUE),
+        sample(1983L:2017L, size = nb_out, replace = TRUE),
+        sample(sprintf("%02d", seq_len(12L)), size = nb_out, replace = TRUE),
         "01",
         sep = "-"
     )
@@ -37,14 +37,14 @@ for (id_series in seq_len(ncol(ABS))) {
             "UserDefined",
             "Stock"
         ),
-        size = 1
+        size = 1L
     )
 
     if (td == "Stock") {
         dspec <- dspec |>
-            set_tradingdays(stocktd = sample.int(31, size = 1))
+            set_tradingdays(stocktd = sample.int(31L, size = 1L))
     } else if (td == "UserDefined") {
-        set <- sample(names(context_FR$variables), size = 1)
+        set <- sample(names(context_FR$variables), size = 1L)
         dspec <- dspec |>
             set_tradingdays(
                 option = "UserDefined",
@@ -71,10 +71,10 @@ for (id_series in seq_len(ncol(ABS))) {
     )
 
     # Outliers - estimation
-    nb_out <- sample.int(10, size = 1)
+    nb_out <- sample.int(10L, size = 1L)
     out_date <- paste(
-        sample(1983:2017, size = nb_out, replace = TRUE),
-        sample(sprintf("%02d", 1:12), size = nb_out, replace = TRUE),
+        sample(1983L:2017L, size = nb_out, replace = TRUE),
+        sample(sprintf("%02d", seq_len(12L)), size = nb_out, replace = TRUE),
         "01",
         sep = "-"
     )

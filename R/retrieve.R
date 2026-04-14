@@ -103,7 +103,7 @@ extract_td <- function(spec) {
     }
 
     regressors_ud <- regression_section[["td"]][["users"]]
-    if (is.null(regressors_ud) || length(regressors_ud) == 0) {
+    if (is.null(regressors_ud) || length(regressors_ud) == 0L) {
         return("No_TD")
     }
 

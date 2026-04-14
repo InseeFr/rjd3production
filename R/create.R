@@ -56,10 +56,10 @@ NULL
 create_french_calendar <- function() {
     cal_FR <- rjd3toolkit::national_calendar(
         days = list(
-            Bastille_day = rjd3toolkit::fixed_day(7, 14), # Bastille Day
+            Bastille_day = rjd3toolkit::fixed_day(7L, 14L), # Bastille Day
             Victory_day = rjd3toolkit::fixed_day(
-                5,
-                8,
+                5L,
+                8L,
                 validity = list(start = "1982-05-08")
             ), # Victoire 2nd guerre mondiale
             NEWYEAR = rjd3toolkit::special_day("NEWYEAR"), # Nouvelle année
@@ -125,7 +125,7 @@ create_insee_regressors <- function(
         ),
         regs_td
     )
-    colnames(regs_td)[-1] <- cols
+    colnames(regs_td)[-1L] <- cols
 
     return(regs_td)
 }
@@ -162,30 +162,30 @@ create_insee_regressors_sets <- function(
     attr(LY, "class") <- c("mts", "ts", "matrix", "array")
 
     REG2 <- regs_td[, id_REG2]
-    colnames(REG2) <- substr(colnames(REG2), 6, 50)
+    colnames(REG2) <- substr(colnames(REG2), 6L, 50L)
 
     REG3 <- regs_td[, id_REG3]
-    colnames(REG3) <- substr(colnames(REG3), 6, 50)
+    colnames(REG3) <- substr(colnames(REG3), 6L, 50L)
 
     REG5 <- regs_td[, id_REG5]
-    colnames(REG5) <- substr(colnames(REG5), 6, 50)
+    colnames(REG5) <- substr(colnames(REG5), 6L, 50L)
 
     REG6 <- regs_td[, id_REG6]
-    colnames(REG6) <- substr(colnames(REG6), 6, 50)
+    colnames(REG6) <- substr(colnames(REG6), 6L, 50L)
 
     REG1_LY <- regs_td[, id_REG1 | id_LY]
 
     REG2_LY <- regs_td[, id_REG2 | id_LY]
-    colnames(REG2_LY)[-1] <- substr(colnames(REG2_LY)[-1], 6, 50)
+    colnames(REG2_LY)[-1L] <- substr(colnames(REG2_LY)[-1L], 6L, 50L)
 
     REG3_LY <- regs_td[, id_REG3 | id_LY]
-    colnames(REG3_LY)[-1] <- substr(colnames(REG3_LY)[-1], 6, 50)
+    colnames(REG3_LY)[-1L] <- substr(colnames(REG3_LY)[-1L], 6L, 50L)
 
     REG5_LY <- regs_td[, id_REG5 | id_LY]
-    colnames(REG5_LY)[-1] <- substr(colnames(REG5_LY)[-1], 6, 50)
+    colnames(REG5_LY)[-1L] <- substr(colnames(REG5_LY)[-1L], 6L, 50L)
 
     REG6_LY <- regs_td[, id_REG6 | id_LY]
-    colnames(REG6_LY)[-1] <- substr(colnames(REG6_LY)[-1], 6, 50)
+    colnames(REG6_LY)[-1L] <- substr(colnames(REG6_LY)[-1L], 6L, 50L)
 
     sets <- list(
         REG1 = REG1,

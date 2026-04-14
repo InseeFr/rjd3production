@@ -7,7 +7,7 @@ test_that("rev_set_x11 works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_set_x11()
 
@@ -30,7 +30,7 @@ test_that("rev_add_ramp works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_add_ramp()
 
@@ -53,7 +53,7 @@ test_that("rev_set_transform works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_set_transform()
 
@@ -76,7 +76,7 @@ test_that("rev_set_easter works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_set_easter()
 
@@ -97,7 +97,7 @@ test_that("rev_set_basic works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_set_basic()
 
@@ -118,7 +118,7 @@ test_that("rev_set_estimate works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_set_estimate()
 
@@ -139,7 +139,7 @@ test_that("rev_add_usrdefvar works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_add_usrdefvar()
 
@@ -160,7 +160,7 @@ test_that("rev_set_automodel works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_set_automodel()
 
@@ -181,7 +181,7 @@ test_that("rev_set_arima works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         suppressWarnings({
             spec_ref <- rjd3x13::x13_spec("RSA3") |>
                 random_set_arima()
@@ -204,7 +204,7 @@ test_that("rev_set_benchmarking works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_set_benchmarking()
 
@@ -225,7 +225,7 @@ test_that("rev_set_outlier works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_set_outlier()
 
@@ -246,7 +246,7 @@ test_that("rev_set_tradingdays works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         spec_ref <- rjd3x13::x13_spec("RSA3") |>
             random_set_tradingdays()
 
@@ -269,7 +269,7 @@ test_that("rev_spec works", {
         condition = cond_skip_java,
         message = "Java version is not sufficient."
     )
-    for (k in 1:100) {
+    for (k in seq_len(100L)) {
         suppressWarnings({
             spec_ref <- random_spec()
             spec_test <- eval(

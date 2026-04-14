@@ -4,14 +4,14 @@ random_flag <- function() {
 
 random_name <- function(n = n) {
     nom <- paste(
-        sample(x = c(0:9, letters), size = n, replace = TRUE),
+        sample(x = c(0L:9L, letters), size = n, replace = TRUE),
         collapse = ""
     )
     return(nom)
 }
 
 random_choice <- function(x) {
-    sample(x = x, size = 1)
+    sample(x = x, size = 1L)
 }
 
 #' @importFrom stats runif
@@ -100,11 +100,11 @@ random_set_x11 <- function(x) {
         "S3X9",
         "S3X15"
     ))
-    args$henderson.filter <- random_choice(c(0, 2 * (1:25) + 1))
-    args$lsigma <- stats::runif(n = 1, 0.6, 3)
-    args$usigma <- stats::runif(n = 1, 3, 10)
-    args$bcasts <- random_choice(0:30)
-    args$fcasts <- random_choice(0:30)
+    args$henderson.filter <- random_choice(c(0L, 2L * seq_len(25L) + 1L))
+    args$lsigma <- stats::runif(n = 1L, 0.6, 3.0)
+    args$usigma <- stats::runif(n = 1L, 3.0, 10.0)
+    args$bcasts <- random_choice(0L:30L)
+    args$fcasts <- random_choice(0L:30L)
     args$calendar.sigma <- random_choice(c("None", "All", "Signif", "Select"))
     args$exclude.forecast <- random_flag()
     args$sigma.vector <- random_choice(list(NULL, 1L, 2L))[[1L]]
@@ -158,7 +158,7 @@ random_set_tradingdays <- function(x) {
     ))
 
     args$coef <- random_choice(list(NULL, NA_real_, stats::runif(1L)))[[1L]]
-    args$leapyear.coef <- random_choice(list(NULL, NA_real_, stats::runif(1L)))[[1]]
+    args$leapyear.coef <- random_choice(list(NULL, NA_real_, stats::runif(1L)))[[1L]]
     args$test <- random_choice(c(NA_character_, "None", "Remove", "Add"))
 
     if (is.na(args$option) || args$option == "None") {
@@ -301,7 +301,7 @@ random_set_outlier <- function(x) {
     args$outliers.type <- random_choice(list(
         NA,
         sample(c("AO", "LS", "TC", "SO"),
-               size = random_choice(1:4),
+               size = random_choice(seq_len(4L)),
                replace = FALSE)
     ))[[1L]]
     if (!anyNA(args$outliers.type)) {

@@ -68,7 +68,7 @@ get_series.JD3_TRAMOSEATS_RSLTS <- function(x, name, ...) {
     output <- NULL
     all_series <- regroup_ts(list(
         stochastics = x$decomposition$stochastics,
-        final = x$final[-1]
+        final = x$final[-1L]
     ))
 
     for (s in names(all_series)) {
@@ -159,10 +159,10 @@ get_jsai_by_name <- function(jws, series_name) {
     jsap <- rjd3workspace::jws_sap(jws, idx = 1L)
     sai_names <- rjd3workspace::sap_sai_names(jsap)
     id <- which(sai_names == series_name)
-    if (length(id) == 0) {
+    if (length(id) == 0L) {
         stop("No SAI are named after ", series_name)
     }
-    if (length(id) > 1) {
+    if (length(id) > 1L) {
         stop("More than one SAI is named after ", series_name)
     }
     return(rjd3workspace::jsap_sai(jsap, idx = id))
