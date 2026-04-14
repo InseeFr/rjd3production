@@ -8,11 +8,9 @@ linters: lintr::all_linters(
         object_length_linter = NULL,
         object_name_linter = NULL,
         commented_code_linter = NULL,
-        #one_call_pipe_linter = NULL,
         object_usage_linter = NULL,
         nonportable_path_linter = NULL,
         undesirable_function_linter = NULL,
-        #nested_pipe_linter = NULL,
         function_argument_linter = NULL,
         condition_call_linter = NULL,
         object_overwrite_linter = NULL

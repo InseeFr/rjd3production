@@ -1,10 +1,10 @@
 ---
 title: "Selection of calendar td regressors"
 vignette: >
-  %\VignetteIndexEntry{Selection of calendar td regressors}
+%\VignetteIndexEntry{Selection of calendar td regressors}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
-knitr:
+  knitr:
   opts_chunk:
     collapse: true
     comment: '#>'
@@ -101,23 +101,30 @@ We then create our sets of regressors and create the modelling context:
 #| label: "custom-td-creation"
 
 series_example <- ABS[, 1L]
-my_regressors_sets <- list(
-    TD2_TB = calendar_td(
+
+TD2_TB <- calendar_td(
+    s = series_example,
+    groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
+)
+
+TD3_TB <- cbind(
+    calendar_td(
         s = series_example,
         groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
     ),
-    TD3_TB = cbind(
-        calendar_td(
-            s = series_example,
-            groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
-        ),
-        `colnames<-`(lp_variable(s = series_example), 
-                     c("group_1", "group_2", "ly"))
-    ),
-    TD6_TB = calendar_td(
-        s = series_example,
-        groups = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
-    )
+    lp_variable(s = series_example)
+)
+colnames(TD3_TB) <- c("group_1", "group_2", "ly")
+
+TD6_TB <- calendar_td(
+    s = series_example,
+    groups = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
+)
+
+my_regressors_sets <- list(
+    TD2_TB = TD2_TB,
+    TD3_TB = TD3_TB,
+    TD6_TB = TD6_TB
 )
 my_context <- modelling_context(variables = my_regressors_sets)
 ```

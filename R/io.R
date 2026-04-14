@@ -2,15 +2,16 @@
 #' @importFrom tools file_ext
 prepare_path <- function(path = NULL, object = "outliers") {
     if (is.null(path)) {
-        if (!dir.exists("regression")) {
-            dir.create("regression", showWarnings = FALSE)
+        path_dir <- file.path(tempdir(), "regression")
+        if (!dir.exists(path_dir)) {
+            dir.create(path_dir, showWarnings = FALSE)
         }
         path <- tempfile(
             pattern = object,
-            tmpdir = "regression",
+            tmpdir = path_dir,
             fileext = ".yaml"
         )
-        warning("The path is missing.", "The table will be written at ", path)
+        warning("The path is missing. ", "The table will be written at ", path)
     } else if (dir.exists(path)) {
         path <- tempfile(
             pattern = "td_",
