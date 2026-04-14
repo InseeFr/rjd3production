@@ -111,8 +111,9 @@ my_regressors_sets <- list(
             s = series_example,
             groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
         ),
-        lp_variable(s = series_example)
-    ) |> `colnames<-`(c("group_1", "group_2", "ly")),
+        `colnames<-`(lp_variable(s = series_example), 
+                     c("group_1", "group_2", "ly"))
+    ),
     TD6_TB = calendar_td(
         s = series_example,
         groups = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)

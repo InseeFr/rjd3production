@@ -60,7 +60,7 @@ retrieve_outliers <- function(
             ]]
         }
 
-        outliers <- regression_section[["outliers"]] |> unique()
+        outliers <- unique(regression_section[["outliers"]])
 
         if (!is.null(outliers)) {
             type <- vapply(

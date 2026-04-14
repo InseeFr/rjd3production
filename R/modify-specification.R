@@ -76,7 +76,11 @@ remove_non_significative_outliers <- function(
     jsap <- rjd3workspace::jws_sap(jws, 1L)
     nb_sai <- rjd3workspace::sap_sai_count(jsap)
 
-    outliers_table <- data.frame(series = character(), name = character(), stringsAsFactors = FALSE)
+    outliers_table <- data.frame(
+        series = character(),
+        name = character(),
+        stringsAsFactors = FALSE
+    )
 
     for (id_sai in seq_len(nb_sai)) {
         cat("\U1F4CC SAI n\UB0", id_sai, "\n")
@@ -213,8 +217,7 @@ set_minimum_span <- function(
         if (!is.null(current_span) && as.Date(span) < as.Date(current_span)) {
             span <- current_span
         }
-        spec <- spec |>
-            rjd3toolkit::set_basic(type = "From", d0 = span)
+        spec <- rjd3toolkit::set_basic(x = spec, type = "From", d0 = span)
     }
     if (model_span) {
         span <- d0
@@ -226,8 +229,7 @@ set_minimum_span <- function(
         if (!is.null(current_span) && as.Date(span) < as.Date(current_span)) {
             span <- current_span
         }
-        spec <- spec |>
-            rjd3toolkit::set_estimate(type = "From", d0 = span)
+        spec <- rjd3toolkit::set_estimate(x = spec, type = "From", d0 = span)
     }
     return(spec)
 }

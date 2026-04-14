@@ -94,8 +94,10 @@ is_compatible <- function(series, reg) {
 #'
 get_LY_info <- function(mod, verbose = TRUE) {
     ud_var <- mod$result_spec$regarima$regression$td$users
-    if (length(ud_var) == 0L
-        || !any(grepl(pattern = ".LY", x = ud_var, fixed = TRUE))) {
+    if (
+        length(ud_var) == 0L ||
+            !any(grepl(pattern = ".LY", x = ud_var, fixed = TRUE))
+    ) {
         return(data.frame(LY_coeff = NA, LY_p_value = NA))
     }
 
@@ -124,7 +126,11 @@ one_diagnostic <- function(series, spec, context) {
         condition <- spec$regarima$regression$td$users |>
             strsplit(split = ".", fixed = TRUE) |>
             lapply(FUN = \(.x) context$variables[[.x[1L]]][[.x[2L]]]) |>
-            vapply(FUN = is_compatible, FUN.VALUE = logical(1L), series = series)
+            vapply(
+                FUN = is_compatible,
+                FUN.VALUE = logical(1L),
+                series = series
+            )
         if (!all(condition)) {
             stop("One of the regressors doesn't have the good properties.")
         }
@@ -170,7 +176,7 @@ all_diagnostics <- function(series, specs_set, context) {
         return(diag)
     })
 
-    diags <- diags |> do.call(what = rbind)
+    diags <- do.call(what = rbind, args = diags)
     diags <- cbind(
         regs = names(specs_set),
         diags

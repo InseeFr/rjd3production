@@ -41,26 +41,24 @@ for (id_series in seq_len(ncol(ABS))) {
     )
 
     if (td == "Stock") {
-        dspec <- dspec |>
-            set_tradingdays(stocktd = sample.int(31L, size = 1L))
+        dspec <- set_tradingdays(
+            x = dspec,
+            stocktd = sample.int(31L, size = 1L)
+        )
     } else if (td == "UserDefined") {
         set <- sample(names(context_FR$variables), size = 1L)
-        dspec <- dspec |>
-            set_tradingdays(
-                option = "UserDefined",
-                uservariable = paste0(
-                    set,
-                    ".",
-                    names(context_FR$variables[[set]])
-                ),
-                test = "None"
-            )
+        dspec <- set_tradingdays(
+            x = dspec,
+            option = "UserDefined",
+            uservariable = paste0(
+                set,
+                ".",
+                names(context_FR$variables[[set]])
+            ),
+            test = "None"
+        )
     } else {
-        dspec <- dspec |>
-            set_tradingdays(
-                option = td,
-                test = "None"
-            )
+        dspec <- set_tradingdays(x = dspec, option = td, test = "None")
     }
 
     add_sa_item(
@@ -80,8 +78,7 @@ for (id_series in seq_len(ncol(ABS))) {
     )
     out_type <- sample(c("AO", "TC", "LS"), size = nb_out, replace = TRUE)
 
-    espec <- dspec |>
-        add_outlier(type = out_type, date = out_date)
+    espec <- add_outlier(x = dspec, type = out_type, date = out_date)
     set_specification(jsap, idx = id_series, spec = espec)
 }
 

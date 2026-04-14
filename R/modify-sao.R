@@ -58,7 +58,11 @@ make_ws_crunchable <- function(jws, verbose = TRUE) {
             }
             jsai <- rjd3workspace::jsap_sai(jsap, id_sai)
             name <- tail(
-                unlist(strsplit(rjd3workspace::sai_name(jsai), split = "\n", fixed = TRUE)),
+                unlist(strsplit(
+                    rjd3workspace::sai_name(jsai),
+                    split = "\n",
+                    fixed = TRUE
+                )),
                 n = 1L
             )
             data_sai <- date4ts::ts2df(rjd3workspace::get_ts(jsai)$data)

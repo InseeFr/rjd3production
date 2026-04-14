@@ -265,8 +265,11 @@ create_specs_set <- function(
         spec_0 <- rjd3x13::x13_spec(name = "RSA3")
     }
     if (!is.null(span_start)) {
-        spec_0 <- spec_0 |>
-            rjd3toolkit::set_estimate(type = "From", d0 = span_start)
+        spec_0 <- rjd3toolkit::set_estimate(
+            x = spec_0,
+            type = "From",
+            d0 = span_start
+        )
     }
     if (!is.null(outliers)) {
         spec_0 <- spec_0 |>

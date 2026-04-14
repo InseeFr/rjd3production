@@ -61,22 +61,21 @@ assign_outliers <- function(jws, outliers) {
         outliers_series <- outliers[outliers$series == "RF1011", , drop = FALSE]
 
         if (nrow(outliers_series) > 0L) {
-
             # Création de la spec
             sai <- rjd3workspace::read_sai(jsai)
             new_estimationSpec <- estimationSpec <- sai$estimationSpec
             new_domainSpec <- domainSpec <- sai$domainSpec
 
-            new_domainSpec <- domainSpec |>
-                rjd3toolkit::add_outlier(
-                    type = outliers_series$type,
-                    date = outliers_series$date
-                )
-            new_estimationSpec <- estimationSpec |>
-                rjd3toolkit::add_outlier(
-                    type = outliers_series$type,
-                    date = outliers_series$date
-                )
+            new_domainSpec <- rjd3toolkit::add_outlier(
+                x = domainSpec,
+                type = outliers_series$type,
+                date = outliers_series$date
+            )
+            new_estimationSpec <- rjd3toolkit::add_outlier(
+                x = estimationSpec,
+                type = outliers_series$type,
+                date = outliers_series$date
+            )
 
             rjd3workspace::set_specification(
                 jsap = jsap,
@@ -90,7 +89,6 @@ assign_outliers <- function(jws, outliers) {
             )
             rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
         }
-
     }
     return(invisible(jws))
 }
@@ -138,18 +136,18 @@ assign_td <- function(jws, td) {
             sai <- rjd3workspace::read_sai(jsai)
             new_estimationSpec <- estimationSpec <- sai$estimationSpec
             new_domainSpec <- domainSpec <- sai$domainSpec
-            new_domainSpec <- domainSpec |>
-                rjd3toolkit::set_tradingdays(
-                    option = "UserDefined",
-                    uservariable = td_variables,
-                    test = "None"
-                )
-            new_estimationSpec <- estimationSpec |>
-                rjd3toolkit::set_tradingdays(
-                    option = "UserDefined",
-                    uservariable = td_variables,
-                    test = "None"
-                )
+            new_domainSpec <- rjd3toolkit::set_tradingdays(
+                x = domainSpec,
+                option = "UserDefined",
+                uservariable = td_variables,
+                test = "None"
+            )
+            new_estimationSpec <- rjd3toolkit::set_tradingdays(
+                x = estimationSpec,
+                option = "UserDefined",
+                uservariable = td_variables,
+                test = "None"
+            )
             rjd3workspace::set_specification(
                 jsap = jsap,
                 idx = id_sai,

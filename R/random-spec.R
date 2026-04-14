@@ -23,8 +23,14 @@ random_span <- function() {
     out <- list()
 
     out$type <- random_choice(c(
-        NA_character_, "All", "From", "To",
-        "Between", "Last", "First", "Excluding"
+        NA_character_,
+        "All",
+        "From",
+        "To",
+        "Between",
+        "Last",
+        "First",
+        "Excluding"
     ))
     val_n0 <- random_choice(0L:20L)
     val_n1 <- random_choice(0L:20L)
@@ -152,13 +158,23 @@ random_set_tradingdays <- function(x) {
     args <- list(x = x)
 
     args$option <- random_choice(c(
-        NA_character_, "TradingDays", "WorkingDays",
-        "TD2c", "TD3", "TD3c", "TD4",
-        "None", "UserDefined"
+        NA_character_,
+        "TradingDays",
+        "WorkingDays",
+        "TD2c",
+        "TD3",
+        "TD3c",
+        "TD4",
+        "None",
+        "UserDefined"
     ))
 
     args$coef <- random_choice(list(NULL, NA_real_, stats::runif(1L)))[[1L]]
-    args$leapyear.coef <- random_choice(list(NULL, NA_real_, stats::runif(1L)))[[1L]]
+    args$leapyear.coef <- random_choice(list(
+        NULL,
+        NA_real_,
+        stats::runif(1L)
+    ))[[1L]]
     args$test <- random_choice(c(NA_character_, "None", "Remove", "Add"))
 
     if (is.na(args$option) || args$option == "None") {
@@ -175,10 +191,25 @@ random_set_tradingdays <- function(x) {
 
     args$calendar.name <- random_choice(c(NA_character_, "calA", "calB"))
     args$coef.type <- random_choice(c(NA_character_, "Fixed", "Estimated"))
-    args$automatic <- random_choice(c(NA_character_, "Unused", "WaldTest", "Aic", "Bic"))
+    args$automatic <- random_choice(c(
+        NA_character_,
+        "Unused",
+        "WaldTest",
+        "Aic",
+        "Bic"
+    ))
     args$autoadjust <- random_flag()
-    args$leapyear <- random_choice(c(NA_character_, "LeapYear", "LengthOfPeriod", "None"))
-    args$leapyear.coef.type <- random_choice(c(NA_character_, "Fixed", "Estimated"))
+    args$leapyear <- random_choice(c(
+        NA_character_,
+        "LeapYear",
+        "LengthOfPeriod",
+        "None"
+    ))
+    args$leapyear.coef.type <- random_choice(c(
+        NA_character_,
+        "Fixed",
+        "Estimated"
+    ))
 
     output <- do.call(rjd3toolkit::set_tradingdays, args)
     return(output)
@@ -190,15 +221,28 @@ random_set_arima <- function(x) {
     args <- list(x = x)
 
     args$mean <- random_choice(c(NA_integer_, 0L, -2L:2L))
-    args$mean.type <- random_choice(c(NA_character_, "Undefined", "Fixed", "Initial"))
+    args$mean.type <- random_choice(c(
+        NA_character_,
+        "Undefined",
+        "Fixed",
+        "Initial"
+    ))
     args$p <- random_choice(c(NA_integer_, 0L:3L))
     args$d <- random_choice(c(NA_integer_, 0L:2L))
     args$q <- random_choice(c(NA_integer_, 0L:3L))
     args$bp <- random_choice(c(NA_integer_, 0L:2L))
     args$bd <- random_choice(c(NA_integer_, 0L:2L))
     args$bq <- random_choice(c(NA_integer_, 0L:2L))
-    args$coef <- random_choice(list(NULL, stats::rnorm(sum(args$p, args$q, args$bp, args$bq, na.rm = TRUE))))[[1L]]
-    args$coef.type <- random_choice(c(NA_character_, "Undefined", "Fixed", "Initial"))
+    args$coef <- random_choice(list(
+        NULL,
+        stats::rnorm(sum(args$p, args$q, args$bp, args$bq, na.rm = TRUE))
+    ))[[1L]]
+    args$coef.type <- random_choice(c(
+        NA_character_,
+        "Undefined",
+        "Fixed",
+        "Initial"
+    ))
 
     output <- do.call(rjd3toolkit::set_arima, args)
     return(output)
@@ -231,7 +275,11 @@ random_set_benchmarking <- function(x) {
     args <- list(x = x)
 
     args$enabled <- random_flag()
-    args$target <- random_choice(c(NA_character_, "CalendarAdjusted", "Original"))
+    args$target <- random_choice(c(
+        NA_character_,
+        "CalendarAdjusted",
+        "Original"
+    ))
     args$rho <- random_numeric_or_null()
     args$lambda <- random_numeric_or_null()
     args$forecast <- random_flag()
@@ -300,14 +348,23 @@ random_set_outlier <- function(x) {
     args$type <- NULL
     args$outliers.type <- random_choice(list(
         NA,
-        sample(c("AO", "LS", "TC", "SO"),
-               size = random_choice(seq_len(4L)),
-               replace = FALSE)
+        sample(
+            c("AO", "LS", "TC", "SO"),
+            size = random_choice(seq_len(4L)),
+            replace = FALSE
+        )
     ))[[1L]]
     if (!anyNA(args$outliers.type)) {
-        args$critical.value <- random_choice(list(NA, NULL, abs(stats::rnorm(length(args$outliers.type)))))[[1L]]
+        args$critical.value <- random_choice(list(
+            NA,
+            NULL,
+            abs(stats::rnorm(length(args$outliers.type)))
+        ))[[1L]]
     }
-    args$tc.rate <- random_choice(c(NA, abs(random_choice(seq(0.1, 1.0, length.out = 200L)))))
+    args$tc.rate <- random_choice(c(
+        NA,
+        abs(random_choice(seq(0.1, 1.0, length.out = 200L)))
+    ))
     args$maxiter <- random_choice(c(NA, 1L:60L))
     args$lsrun <- random_choice(c(NA, 0L:10L))
     args$method <- random_choice(c(NA_character_, "AddOne", "AddAll"))
@@ -329,8 +386,12 @@ random_add_usrdefvar <- function(x) {
         args$name <- random_name(4L)
         args$lag <- random_choice(0L:20L)
         args$regeffect <- random_choice(c(
-            "Undefined", "Trend", "Seasonal",
-            "Irregular", "Series", "SeasonallyAdjusted"
+            "Undefined",
+            "Trend",
+            "Seasonal",
+            "Irregular",
+            "Series",
+            "SeasonallyAdjusted"
         ))
 
         args$coef <- random_choice(list(NULL, stats::rnorm(1L)))[[1L]]

@@ -188,7 +188,7 @@ rev_set_x11 <- function(x) {
 rev_set_transform <- function(x) {
     args <- x$regarima$transform
 
-    args$fun <-  switch(
+    args$fun <- switch(
         args$fn,
         LEVEL = "NONE",
         args$fn
@@ -413,10 +413,10 @@ rev_set_tradingdays <- function(x) {
     args$lp <- NULL
 
     if (
-        args$option == "NONE"
-        && (length(args$users) == 0L || is.null(args$users))
-        && !nzchar(args$calendar.name)
-        && is.null(args$coef)
+        args$option == "NONE" &&
+            (length(args$users) == 0L || is.null(args$users)) &&
+            !nzchar(args$calendar.name) &&
+            is.null(args$coef)
     ) {
         args$stocktd <- args$w
     }
