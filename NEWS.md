@@ -8,6 +8,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-04-22
+
+
 ### Added
 
 * New argument `verbose` to display some information while computing
@@ -44,5 +47,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * New function to choose calendar regressors adapted to series
 * New function to create calendar regressors, french calendar, specification with regressors
 
-[Unreleased]: https://github.com/InseeFr/rjd3production/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/InseeFr/rjd3production/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/InseeFr/rjd3production/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/InseeFr/rjd3production/releases/tag/v1.0.0
