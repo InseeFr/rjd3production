@@ -167,3 +167,10 @@ Enfin, nous pouvons sauvegarder notre workspace !
 path_ws <- file.path(path_project, "Workspaces", "workspace_travail", "my_ws.xml")
 save_workspace(jws, path_ws, replace = TRUE)
 ```
+
+## Appel du cruncher
+
+Dans une chaîne de production en R, le cruncher est très important car il permet de :
+
+1. Mettre à jour les données brutes à partir du fichier de données
+2. Mettre à jour le modèle d'ajustement saisonnier (selon une politique de rafraichissement)

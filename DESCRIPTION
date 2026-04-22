@@ -3,11 +3,12 @@ Title: Prepare for Production of Seasonal Adjustment with 'JDemetra+'
 Version: 1.1.0
 Authors@R: 
     person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art"))
-Description: A comprehensive tool for setting up CVS-CJO data pipelines using 
+Description: A comprehensive tool for setting up seasonal data pipelines using 
   'JDemetra+' (version 3) and 'rjdverse'. This includes setting up a new working 
   environment, creating and selecting calendar regressors, managing 
-  specifications (CJO and outliers) at the workspace level, making a workspace 
-  crunchable, removing insignificant outliers, and comparing workspaces. 
+  specifications (trading-days regressors and outliers) at the workspace level, 
+  making a workspace usable by the 'cruncher', removing insignificant outliers, 
+  and comparing workspaces. 
 Depends:
     R (>= 4.2.0)
 Imports:

@@ -132,8 +132,8 @@ remotes::install_github("InseeFr/rjd3production")
 
 ### Overview
 
-**{rjd3production}** helps producers of CVS TD data to set up production
-lines.
+**{rjd3production}** helps producers of seasonal data to set up
+production lines.
 
 In particular, it enables you to:
 
