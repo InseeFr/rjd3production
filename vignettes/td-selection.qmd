@@ -4,32 +4,45 @@ vignette: >
   %\VignetteIndexEntry{Selection of calendar td regressors}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
-knitr:
+  knitr:
   opts_chunk:
     collapse: true
     comment: '#>'
 ---
 
 ```{r}
-#| echo: true
-#| eval: true
-#| warning: false
 #| label: setup
+#| eval: true
+#| echo: false
+
+cond_run_vignette <- rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    echo = TRUE,
+    eval = cond_run_vignette,
+    comment = "#>"
+)
+```
+
+```{r}
+#| echo: true
+#| warning: false
+#| label: setup-rjd3production
 
 library("rjd3production")
 ```
 
 ### Regressor selection
 
-To select a set of regressors, use the `select_regs()` function:
+To select a set of regressors, use the `select_td()` function:
 
 ```{r}
 #| echo: true
-#| eval: true
 #| label: "select-td"
 
 library("rjd3toolkit")
-td_table <- select_regs(ABS[, 1:3])
+td_table <- select_td(ABS[, seq_len(3L)])
 print(td_table)
 ```
 
@@ -39,7 +52,6 @@ Once the regressors have been selected, you can export the table in `.yaml` form
 
 ```{r}
 #| echo: true
-#| eval: true
 #| label: "io-td"
 
 path_td <- tempfile(pattern = "td-table", fileext = ".yaml")
@@ -70,7 +82,6 @@ For example, for the INSEE regressor sets, here is the structure of the correspo
 
 ```{r}
 #| echo: true
-#| eval: true
 #| label: "structure-of-context"
 
 
@@ -87,26 +98,33 @@ We then create our sets of regressors and create the modelling context:
 
 ```{r}
 #| echo: true
-#| eval: true
 #| label: "custom-td-creation"
 
-series_example <- ABS[, 1]
-my_regressors_sets <- list(
-    TD2_TB = calendar_td(
+series_example <- ABS[, 1L]
+
+TD2_TB <- calendar_td(
+    s = series_example,
+    groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
+)
+
+TD3_TB <- cbind(
+    calendar_td(
         s = series_example,
         groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
     ),
-    TD3_TB = cbind(
-        calendar_td(
-            s = series_example,
-            groups = c(1L, 1L, 1L, 2L, 1L, 0L, 0L)
-        ),
-        lp_variable(s = series_example)
-    ) |> `colnames<-`(c("group_1", "group_2", "ly")),
-    TD6_TB = calendar_td(
-        s = series_example,
-        groups = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
-    )
+    lp_variable(s = series_example)
+)
+colnames(TD3_TB) <- c("group_1", "group_2", "ly")
+
+TD6_TB <- calendar_td(
+    s = series_example,
+    groups = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
+)
+
+my_regressors_sets <- list(
+    TD2_TB = TD2_TB,
+    TD3_TB = TD3_TB,
+    TD6_TB = TD6_TB
 )
 my_context <- modelling_context(variables = my_regressors_sets)
 ```
@@ -115,9 +133,8 @@ We can now use our context to select the calendar regressors:
 
 ```{r}
 #| echo: true
-#| eval: true
 #| label: "select-td-advanced"
 
-my_td_table <- select_regs(ABS[, 1:3], context = my_context)
+my_td_table <- select_td(ABS[, seq_len(3L)], context = my_context)
 print(my_td_table)
 ```

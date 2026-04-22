@@ -1,4 +1,4 @@
-#' @title INSEE Regressors and Modelling Context
+#' @title French modelling context, calendar and trading days regressors.
 #'
 #' @description
 #' These functions allow to construct the standard regressors and modelling
@@ -21,7 +21,7 @@
 #' (passed to `rjd3toolkit`).
 #' @param cal a calendar of class `JD3_CALENDAR`.
 #'
-#' @return
+#' @returns
 #' - `create_french_calendar()` returns a `national_calendar` object.
 #' - `create_insee_regressors()` returns a matrix of regressors (working days
 #' + LY).
@@ -29,7 +29,7 @@
 #' `REG2`, …, `REG6`, with or without LY).
 #' - `create_insee_context()` returns a `modelling_context` object.
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' # 1. Create the French calendar
 #' cal <- create_french_calendar()
 #' cal
@@ -56,10 +56,10 @@ NULL
 create_french_calendar <- function() {
     cal_FR <- rjd3toolkit::national_calendar(
         days = list(
-            Bastille_day = rjd3toolkit::fixed_day(7, 14), # Bastille Day
+            Bastille_day = rjd3toolkit::fixed_day(7L, 14L), # Bastille Day
             Victory_day = rjd3toolkit::fixed_day(
-                5,
-                8,
+                5L,
+                8L,
                 validity = list(start = "1982-05-08")
             ), # Victoire 2nd guerre mondiale
             NEWYEAR = rjd3toolkit::special_day("NEWYEAR"), # Nouvelle année
@@ -99,6 +99,10 @@ create_insee_regressors <- function(
         REG6 = c(1L, 2L, 3L, 4L, 5L, 6L, 0L)
     )
 
+    if (!missing(s) && !is.null(ncol(s)) && ncol(s) > 1L) {
+        s <- s[, 1L]
+    }
+
     regs_td <- lapply(
         X = groups,
         FUN = rjd3toolkit::calendar_td,
@@ -121,7 +125,7 @@ create_insee_regressors <- function(
         ),
         regs_td
     )
-    colnames(regs_td)[-1] <- cols
+    colnames(regs_td)[-1L] <- cols
 
     return(regs_td)
 }
@@ -158,30 +162,30 @@ create_insee_regressors_sets <- function(
     attr(LY, "class") <- c("mts", "ts", "matrix", "array")
 
     REG2 <- regs_td[, id_REG2]
-    colnames(REG2) <- substr(colnames(REG2), 6, 50)
+    colnames(REG2) <- substr(colnames(REG2), 6L, 50L)
 
     REG3 <- regs_td[, id_REG3]
-    colnames(REG3) <- substr(colnames(REG3), 6, 50)
+    colnames(REG3) <- substr(colnames(REG3), 6L, 50L)
 
     REG5 <- regs_td[, id_REG5]
-    colnames(REG5) <- substr(colnames(REG5), 6, 50)
+    colnames(REG5) <- substr(colnames(REG5), 6L, 50L)
 
     REG6 <- regs_td[, id_REG6]
-    colnames(REG6) <- substr(colnames(REG6), 6, 50)
+    colnames(REG6) <- substr(colnames(REG6), 6L, 50L)
 
     REG1_LY <- regs_td[, id_REG1 | id_LY]
 
     REG2_LY <- regs_td[, id_REG2 | id_LY]
-    colnames(REG2_LY)[-1] <- substr(colnames(REG2_LY)[-1], 6, 50)
+    colnames(REG2_LY)[-1L] <- substr(colnames(REG2_LY)[-1L], 6L, 50L)
 
     REG3_LY <- regs_td[, id_REG3 | id_LY]
-    colnames(REG3_LY)[-1] <- substr(colnames(REG3_LY)[-1], 6, 50)
+    colnames(REG3_LY)[-1L] <- substr(colnames(REG3_LY)[-1L], 6L, 50L)
 
     REG5_LY <- regs_td[, id_REG5 | id_LY]
-    colnames(REG5_LY)[-1] <- substr(colnames(REG5_LY)[-1], 6, 50)
+    colnames(REG5_LY)[-1L] <- substr(colnames(REG5_LY)[-1L], 6L, 50L)
 
     REG6_LY <- regs_td[, id_REG6 | id_LY]
-    colnames(REG6_LY)[-1] <- substr(colnames(REG6_LY)[-1], 6, 50)
+    colnames(REG6_LY)[-1L] <- substr(colnames(REG6_LY)[-1L], 6L, 50L)
 
     sets <- list(
         REG1 = REG1,
@@ -238,9 +242,9 @@ create_insee_context <- function(
 #' - `type`: vector of outlier types (e.g. "AO", "LS", "TC")
 #' - `date`: vector of corresponding dates
 #'
-#' @return A list of named X13 specifications (TD and variants).
+#' @returns A list of named X13 specifications (TD and variants).
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' my_context <- create_insee_context()
 #' create_specs_set(context = my_context)
 #'
@@ -261,8 +265,11 @@ create_specs_set <- function(
         spec_0 <- rjd3x13::x13_spec(name = "RSA3")
     }
     if (!is.null(span_start)) {
-        spec_0 <- spec_0 |>
-            rjd3toolkit::set_estimate(type = "From", d0 = span_start)
+        spec_0 <- rjd3toolkit::set_estimate(
+            x = spec_0,
+            type = "From",
+            d0 = span_start
+        )
     }
     if (!is.null(outliers)) {
         spec_0 <- spec_0 |>

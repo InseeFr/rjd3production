@@ -28,10 +28,28 @@ date be removed?
 (Small crutch while waiting for the resolution of jdemetra/jdplus-main issue
 858.)}
 }
+\value{
+the modify specification (an \code{JD3_X13_SPEC} or \code{JD3_TRAMOSEATS_SPEC}
+object).
+}
 \description{
 Set span minimum to a value
 }
 \details{
 model_span = estimation_span
 series_span = basic_span
+}
+\examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
+
+library("rjd3toolkit")
+library("rjd3x13")
+library("rjd3workspace")
+
+\donttest{
+# Two demo workspaces (RSA3 and RSA5)
+spec <- x13_spec("rsa3")
+set_minimum_span(spec, "2012-01-01")
+}
+\dontshow{\}) # examplesIf}
 }

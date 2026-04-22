@@ -9,20 +9,31 @@
 #' @param ... [character] Workspace file paths.
 #' @param series_names [character] Vector of SAI names to compare.
 #'
-#' @return A `data.frame` with columns:
+#' @returns A `data.frame` with columns:
 #' - `ws`: workspace name (derived from file basename),
 #' - `SAI`: SAI name,
 #' - `series`: type of series,
 #' - `date`: observation date,
 #' - `value`: numeric value.
 #'
-#' @examples
-#' \dontrun{
-#' # Two demo workspaces (RSA3 and RSA5)
-#' path1 <- file.path(tempdir(), "workspace_RSA3.xml")
-#' path2 <- file.path(tempdir(), "workspace_RSA5.xml")
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #'
-#' df <- compare(path1, path2, series_names = "series_1")
+#' library("rjd3toolkit")
+#' library("rjd3x13")
+#' library("rjd3workspace")
+#'
+#' \donttest{
+#' # Two demo workspaces (RSA3 and RSA5)
+#' jws_rsa3 <- create_ws_from_data(ABS, x13_spec("rsa3"))
+#' jws_rsa5 <- create_ws_from_data(ABS, x13_spec("rsa5"))
+#'
+#' path_rsa3 <- tempfile(pattern = "ws-rsa3", fileext = ".xml")
+#' path_rsa5 <- tempfile(pattern = "ws-rsa5", fileext = ".xml")
+#'
+#' save_workspace(jws_rsa3, file = path_rsa3)
+#' save_workspace(jws_rsa5, file = path_rsa5)
+#'
+#' df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
 #' head(df)
 #' }
 #'
@@ -68,12 +79,33 @@ compare <- function(..., series_names) {
 #'   the columns `ws`, `SAI`, `series`, `date`, and `value`.
 #' @param ... Additional arguments passed to [shiny::shinyApp()].
 #'
-#' @return Runs a Shiny app in the R session (no return value).
+#' @returns Runs a Shiny app in the R session (no return value).
 #'
-#' @examples
-#' \dontrun{
-#' df <- compare(path1, path2)
-#' run_app(df)
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#'
+#' library("rjd3toolkit")
+#' library("rjd3x13")
+#' library("rjd3workspace")
+#'
+#' \donttest{
+#' # Two demo workspaces (RSA3 and RSA5)
+#' jws_rsa3 <- create_ws_from_data(ABS, x13_spec("rsa3"))
+#' jws_rsa5 <- create_ws_from_data(ABS, x13_spec("rsa5"))
+#'
+#' path_rsa3 <- tempfile(pattern = "ws-rsa3", fileext = ".xml")
+#' path_rsa5 <- tempfile(pattern = "ws-rsa5", fileext = ".xml")
+#'
+#' save_workspace(jws_rsa3, file = path_rsa3)
+#' save_workspace(jws_rsa5, file = path_rsa5)
+#'
+#' # Compare the two workspace
+#' df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
+#' head(df)
+#'
+#' # Launch the shiny app
+#' if (interactive()) {
+#'     run_app(df)
+#' }
 #' }
 #'
 #' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput
@@ -96,13 +128,13 @@ run_app <- function(data, ...) {
                     "sai",
                     "Choisir un SAI :",
                     choices = unique(data$SAI),
-                    selected = unique(data$SAI)[1]
+                    selected = unique(data$SAI)[1L]
                 ),
                 shiny::selectInput(
                     "serie",
                     "Choisir une s\u00e9rie :",
                     choices = unique(data$series),
-                    selected = unique(data$series)[1]
+                    selected = unique(data$series)[1L]
                 ),
                 shiny::checkboxInput(
                     "filter_by_sai",

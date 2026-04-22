@@ -4,7 +4,7 @@
 \alias{select_td}
 \title{Select Calendar Regressors for One or Multiple Series}
 \usage{
-select_td(series, context = NULL, ...)
+select_td(series, context = NULL, ..., verbose = TRUE)
 }
 \arguments{
 \item{series}{[\link[stats]{ts} or mts or matrix or \link[base]{data.frame}] A univariate time series (\code{ts}) or a
@@ -22,12 +22,14 @@ of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
 \code{"YYYY-MM-DD"}).}
 \item{...}{Other arguments accepted by \code{\link[=create_specs_set]{create_specs_set()}}.}
 }}
+
+\item{verbose}{Boolean. Print additional informations. Default is \code{TRUE}.}
 }
 \value{
 A data.frame with two columns:
 \describe{
 \item{series}{Name of the series (column name if \code{series} is multivariate).}
-\item{reg_selected}{Name of the selected regressor set.}
+\item{regs}{Name of the selected regressor set.}
 }
 }
 \description{
@@ -36,15 +38,20 @@ If multiple series are provided as columns of a matrix or data.frame, each serie
 is processed separately. The function returns the selected set of regressors for each series.
 }
 \examples{
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
+library("rjd3toolkit")
+
+\donttest{
 # Single series
-select_td(AirPassengers)
+select_td(ABS[, 1])
 
 # Multiple series
-select_td(Seatbelts[, -8])
+select_td(ABS)
 
 # Restrict regressors sets
-my_context <- create_insee_context()
+my_context <- create_insee_context(s = ABS)
 my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
-select_td(Seatbelts[, -8], context = my_context)
-
+select_td(ABS, context = my_context)
+}
+\dontshow{\}) # examplesIf}
 }

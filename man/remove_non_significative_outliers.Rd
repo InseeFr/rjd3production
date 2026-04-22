@@ -8,7 +8,8 @@ remove_non_significative_outliers(
   ws_path,
   threshold = 0.3,
   domain = FALSE,
-  estimation = FALSE
+  estimation = FALSE,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ modified.}
 
 \item{estimation}{Boolean indicating if the estimation specification should
 be modified.}
+
+\item{verbose}{Boolean. Print additional informations. Default is \code{TRUE}.}
 }
 \value{
 The function invisibly returns \code{NULL}, but it \strong{modifies the workspace file
@@ -51,9 +54,21 @@ The function:
 }
 }
 \examples{
-\dontrun{
-# Remove non-significant outliers (p > 0.3) from a workspace
-remove_non_significative_outliers("workspace.xml", threshold = 0.3)
-}
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
+library("rjd3workspace")
+library("rjd3x13")
+library("rjd3toolkit")
+
+\donttest{
+new_spec <- x13_spec() |>
+    add_outlier(type = "LS", date = "1990-01-01")
+jws <- create_ws_from_data(x = ABS[, 1, drop = FALSE], spec = new_spec)
+path_ws <- tempfile(pattern = "ws", fileext = ".xml")
+save_workspace(jws, file = path_ws)
+
+# Remove non-significant outliers (p > 0.3) from a workspace
+remove_non_significative_outliers(path_ws, threshold = 0.3, domain = TRUE)
+}
+\dontshow{\}) # examplesIf}
 }

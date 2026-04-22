@@ -4,7 +4,7 @@ library("rjd3toolkit")
 library("rjd3x13")
 library("rjd3workspace")
 
-set.seed(2025)
+set.seed(2025L)
 
 context_FR <- create_insee_context()
 
@@ -13,10 +13,10 @@ jsap <- jws_sap_new(jws, name = "ABS")
 
 for (id_series in seq_len(ncol(ABS))) {
     # Outliers - domain
-    nb_out <- sample.int(10, size = 1)
+    nb_out <- sample.int(10L, size = 1L)
     out_date <- paste(
-        sample(1983:2017, size = nb_out, replace = TRUE),
-        sample(sprintf("%02d", 1:12), size = nb_out, replace = TRUE),
+        sample(1983L:2017L, size = nb_out, replace = TRUE),
+        sample(sprintf("%02d", seq_len(12L)), size = nb_out, replace = TRUE),
         "01",
         sep = "-"
     )
@@ -37,30 +37,28 @@ for (id_series in seq_len(ncol(ABS))) {
             "UserDefined",
             "Stock"
         ),
-        size = 1
+        size = 1L
     )
 
     if (td == "Stock") {
-        dspec <- dspec |>
-            set_tradingdays(stocktd = sample.int(31, size = 1))
+        dspec <- set_tradingdays(
+            x = dspec,
+            stocktd = sample.int(31L, size = 1L)
+        )
     } else if (td == "UserDefined") {
-        set <- sample(names(context_FR$variables), size = 1)
-        dspec <- dspec |>
-            set_tradingdays(
-                option = "UserDefined",
-                uservariable = paste0(
-                    set,
-                    ".",
-                    names(context_FR$variables[[set]])
-                ),
-                test = "None"
-            )
+        set <- sample(names(context_FR$variables), size = 1L)
+        dspec <- set_tradingdays(
+            x = dspec,
+            option = "UserDefined",
+            uservariable = paste0(
+                set,
+                ".",
+                names(context_FR$variables[[set]])
+            ),
+            test = "None"
+        )
     } else {
-        dspec <- dspec |>
-            set_tradingdays(
-                option = td,
-                test = "None"
-            )
+        dspec <- set_tradingdays(x = dspec, option = td, test = "None")
     }
 
     add_sa_item(
@@ -71,17 +69,16 @@ for (id_series in seq_len(ncol(ABS))) {
     )
 
     # Outliers - estimation
-    nb_out <- sample.int(10, size = 1)
+    nb_out <- sample.int(10L, size = 1L)
     out_date <- paste(
-        sample(1983:2017, size = nb_out, replace = TRUE),
-        sample(sprintf("%02d", 1:12), size = nb_out, replace = TRUE),
+        sample(1983L:2017L, size = nb_out, replace = TRUE),
+        sample(sprintf("%02d", seq_len(12L)), size = nb_out, replace = TRUE),
         "01",
         sep = "-"
     )
     out_type <- sample(c("AO", "TC", "LS"), size = nb_out, replace = TRUE)
 
-    espec <- dspec |>
-        add_outlier(type = out_type, date = out_date)
+    espec <- add_outlier(x = dspec, type = out_type, date = out_date)
     set_specification(jsap, idx = id_series, spec = espec)
 }
 

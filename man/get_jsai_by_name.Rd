@@ -20,13 +20,19 @@ Searches a workspace for a seasonal adjustment item (SAI) whose name matches
 the user-supplied string and returns the corresponding object.
 }
 \examples{
-\dontrun{
-path <- file.path(tempdir(), "workspace_RSA3.xml")
-jws <- jws_open(path)
-jws_compute(jws)
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
-jsai <- get_jsai_by_name(jws, "series_1")
+library("rjd3toolkit")
+library("rjd3workspace")
+\donttest{
+# Demo workspace
+jws <- create_ws_from_data(ABS)
+jws_compute(jws)
+jsap <- jws_sap(jws, 1L)
+
+jsai <- get_jsai_by_name(jws, "X0.2.09.10.M")
 df <- get_series(jsai)
 head(df)
 }
+\dontshow{\}) # examplesIf}
 }

@@ -1,11 +1,16 @@
 Package: rjd3production
-Title: Prepare for production of seasonnal adjustment with JDemetra+
-Version: 1.0.0.9000
+Title: Prepare for Production of Seasonal Adjustment with 'JDemetra+'
+Version: 1.1.0
 Authors@R: 
     person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art"))
-Description: You can use this package as a toolbox to prepare and make in production your seasonnal series.
+Description: A comprehensive tool for setting up seasonal data pipelines using 
+  'JDemetra+' (version 3) and 'rjdverse'. This includes setting up a new working 
+  environment, creating and selecting calendar regressors, managing 
+  specifications (trading-days regressors and outliers) at the workspace level, 
+  making a workspace usable by the 'cruncher', removing insignificant outliers, 
+  and comparing workspaces. 
 Depends:
-    R (>= 4.1.0)
+    R (>= 4.2.0)
 Imports:
     rjd3toolkit,
     rjd3x13,
@@ -23,20 +28,21 @@ Imports:
     constructive,
     usethis, 
     TBox, 
-    date4ts
-Remotes: 
-    github::rjdverse/rjd3workspace@develop
-Suggest:
-    waldo
-License: EUPL
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+    date4ts, 
+    lintr
 Suggests: 
     testthat (>= 3.0.0), 
     knitr,
     quarto,
-    rmarkdown
-VignetteBuilder: knitr, quarto
+    rmarkdown, 
+    waldo
+License: EUPL
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE, roclets = c("collate", "rd", "namespace", "devtag::dev_roclet"))
+RoxygenNote: 7.3.3
+VignetteBuilder: 
+    knitr, 
+    quarto
 Config/testthat/edition: 3
 URL: https://inseefr.github.io/rjd3production/
+Config/Needs/build: moodymudskipper/devtag

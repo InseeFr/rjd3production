@@ -17,6 +17,7 @@
 #'
 #' @importFrom TBox write_data
 #' @importFrom date4ts ts2df
+#' @importFrom utils tail
 #' @importFrom rjd3workspace ws_sap_count
 #' @importFrom rjd3workspace jws_sap
 #' @importFrom rjd3workspace sap_sai_count
@@ -28,16 +29,17 @@
 #'
 #' @export
 #'
-#' @examples
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
 #' library("rjd3workspace")
 #' library("rjd3x13")
+#' library("rjd3toolkit")
 #'
 #' jws <- jws_new()
 #' jsap <- jws_sap_new(jws, "sap1")
 #' add_sa_item(
 #'     jsap = jsap,
 #'     name = "series_3",
-#'     x = AirPassengers,
+#'     x = ABS[, 1],
 #'     spec = x13_spec("RSA3")
 #' )
 #' jws <- make_ws_crunchable(jws)
@@ -56,8 +58,12 @@ make_ws_crunchable <- function(jws, verbose = TRUE) {
             }
             jsai <- rjd3workspace::jsap_sai(jsap, id_sai)
             name <- tail(
-                unlist(strsplit(rjd3workspace::sai_name(jsai), split = "\n", fixed = TRUE)),
-                n = 1
+                unlist(strsplit(
+                    rjd3workspace::sai_name(jsai),
+                    split = "\n",
+                    fixed = TRUE
+                )),
+                n = 1L
             )
             data_sai <- date4ts::ts2df(rjd3workspace::get_ts(jsai)$data)
             colnames(data_sai) <- c("date", name)
@@ -95,19 +101,14 @@ make_ws_crunchable <- function(jws, verbose = TRUE) {
 #' A JDemetra+ workspace object (Java pointer) containing one SA-Processing with
 #' one SA-Item per column of `x`.
 #'
-#' @examples
-#' data(AirPassengers)
-#'
-#' # Create a multivariate time series
-#' x <- cbind(
-#'   series1 = AirPassengers,
-#'   series2 = log(AirPassengers)
-#' )
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' library("rjd3toolkit")
 #'
 #' # Create workspace
-#' ws <- create_ws_from_data(x)
+#' ws <- create_ws_from_data(ABS)
 #'
 #' @importFrom rjd3workspace jws_new add_sa_item jws_sap_new
+#' @importFrom rjd3x13 x13_spec
 #' @export
 create_ws_from_data <- function(x, spec = rjd3x13::x13_spec()) {
     jws <- rjd3workspace::jws_new()
@@ -122,4 +123,84 @@ create_ws_from_data <- function(x, spec = rjd3x13::x13_spec()) {
         )
     }
     return(jws)
+}
+
+#' @title Add raw data from a file to a JWS workspace
+#'
+#' @description
+#' This function completes the ts metadata (moniker) to make the workspace
+#' refreshable and crunchable.
+#'
+#' @inheritParams make_ws_crunchable
+#' @param path A character string. Path to the input data file. Must be a
+#'   \code{.csv} file (support for \code{.xlsx} is not yet implemented).
+#' @param ... Addional arguments passed to
+#'   \code{rjd3providers::txt_data()} (e.g., delimiter, date format, clean
+#'   missing argument...).
+#'
+#' @details
+#' Currently, only CSV files are supported. Each column of the input file is
+#' interpreted as a time series and matched against the series names in the
+#' workspace.
+#'
+#' The difference with the function [`make_ws_crunchable`] is that
+#' `add_raw_data_path()` will associate the workspace with a non temporary data
+#' path.
+#'
+#' @returns The modified \code{jws} object invisibly.
+#'
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#'
+#' library("rjd3workspace")
+#' library("rjd3x13")
+#' library("rjd3toolkit")
+#'
+#' my_data <- ABS
+#' path_ABS <- system.file("extdata", "ABS.csv", package = "rjd3providers")
+#' \donttest{
+#' jws <- create_ws_from_data(my_data)
+#' add_raw_data_path(jws, path_ABS, delimiter = "COMMA")
+#' }
+#'
+#' @export
+#' @importFrom rjd3workspace jws_sap sap_sai_count jsap_sai sai_name set_ts
+#' @importFrom rjd3providers txt_data
+#' @importFrom tools file_ext
+add_raw_data_path <- function(jws, path, ...) {
+    jsap <- rjd3workspace::jws_sap(jws, 1L)
+    nb_sai <- rjd3workspace::sap_sai_count(jsap)
+
+    if (tools::file_ext(path) == "csv") {
+        my_data <- rjd3providers::txt_data(path, ...)
+    } else if (tools::file_ext(path) == "xlsx") {
+        stop("Not implemened yet.", call. = FALSE)
+    } else {
+        stop("The data file must be a .csv or an .xlsx file.", call. = FALSE)
+    }
+
+    for (id_sai in seq_len(nb_sai)) {
+        jsai <- rjd3workspace::jsap_sai(jsap, id_sai)
+        series_name <- rjd3workspace::sai_name(jsai)
+        pos <- which(series_name == names(my_data$series))
+        if (length(pos) == 1L) {
+            rjd3workspace::set_ts(jsap, id_sai, my_data$series[[pos]])
+        } else if (length(pos) == 0L) {
+            warning(
+                "There are no columns called ",
+                series_name,
+                " in ",
+                basename(path),
+                call. = FALSE
+            )
+        } else if (length(pos) > 1L) {
+            warning(
+                "Columns ",
+                toString(pos),
+                " have the same name : ",
+                series_name,
+                call. = FALSE
+            )
+        }
+    }
+    return(invisible(jws))
 }

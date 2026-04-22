@@ -19,6 +19,7 @@
 #' modified.
 #' @param estimation Boolean indicating if the estimation specification should
 #' be modified.
+#' @inheritParams make_ws_crunchable
 #'
 #' @details
 #' The function:
@@ -30,14 +31,25 @@
 #'   `estimationSpec` and, if present, `domainSpec`,
 #' - saves the workspace file.
 #'
-#' @return
+#' @returns
 #' The function invisibly returns `NULL`, but it **modifies the workspace file
 #' in place** (saved at the same location as `ws_path`).
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#'
+#' library("rjd3workspace")
+#' library("rjd3x13")
+#' library("rjd3toolkit")
+#'
+#' \donttest{
+#' new_spec <- x13_spec() |>
+#'     add_outlier(type = "LS", date = "1990-01-01")
+#' jws <- create_ws_from_data(x = ABS[, 1, drop = FALSE], spec = new_spec)
+#' path_ws <- tempfile(pattern = "ws", fileext = ".xml")
+#' save_workspace(jws, file = path_ws)
+#'
 #' # Remove non-significant outliers (p > 0.3) from a workspace
-#' remove_non_significative_outliers("workspace.xml", threshold = 0.3)
+#' remove_non_significative_outliers(path_ws, threshold = 0.3, domain = TRUE)
 #' }
 #'
 #' @importFrom rjd3workspace jws_open jws_compute jws_sap sap_sai_count jsap_sai
@@ -50,7 +62,8 @@ remove_non_significative_outliers <- function(
     ws_path,
     threshold = 0.3,
     domain = FALSE,
-    estimation = FALSE
+    estimation = FALSE,
+    verbose = TRUE
 ) {
     if (!domain && !estimation) {
         warning(
@@ -59,16 +72,24 @@ remove_non_significative_outliers <- function(
         return(invisible(NULL))
     }
     ws_name <- tools::file_path_sans_ext(basename(ws_path))
-    cat("\n\U1F3F7 WS ", ws_name, "\n")
+    if (verbose) {
+        cat("\n\U1F3F7 WS ", ws_name, "\n")
+    }
     jws <- rjd3workspace::jws_open(file = ws_path)
     rjd3workspace::jws_compute(jws)
     jsap <- rjd3workspace::jws_sap(jws, 1L)
     nb_sai <- rjd3workspace::sap_sai_count(jsap)
 
-    outliers_table <- data.frame(series = character(), name = character(), stringsAsFactors = FALSE)
+    outliers_table <- data.frame(
+        series = character(),
+        name = character(),
+        stringsAsFactors = FALSE
+    )
 
     for (id_sai in seq_len(nb_sai)) {
-        cat("\U1F4CC SAI n\UB0", id_sai, "\n")
+        if (verbose) {
+            cat("\U1F4CC SAI n\UB0", id_sai, "\n")
+        }
         jsai <- rjd3workspace::jsap_sai(jsap, idx = id_sai)
         sai <- rjd3workspace::read_sai(jsai)
         series_name <- rjd3workspace::sai_name(jsai)
@@ -82,7 +103,7 @@ remove_non_significative_outliers <- function(
             }),
             what = c
         )
-        xregs <- summary(sai)$preprocessing$xregs
+        xregs <- summary(sai$results)$preprocessing$xregs
         outliers_to_remove <- NULL
         for (id_out in seq_along(outliers)) {
             outlier <- outliers[[id_out]]
@@ -93,7 +114,9 @@ remove_non_significative_outliers <- function(
                     !is.na(xregs[outlier_name, "Pr(>|t|)"]) &&
                     xregs[outlier_name, "Pr(>|t|)"] > threshold
             ) {
-                cat("\U274C Suppression de l'outlier :", outlier_name, "\n")
+                if (verbose) {
+                    cat("\U274C Suppression de l'outlier :", outlier_name, "\n")
+                }
                 new_estimationSpec <- rjd3toolkit::remove_outlier(
                     new_estimationSpec,
                     type = outlier$code,
@@ -105,7 +128,9 @@ remove_non_significative_outliers <- function(
                         type = outlier$code,
                         date = outlier$pos
                     )
-                    cat("L'outlier est dans la domainSpec.\n")
+                    if (verbose) {
+                        cat("L'outlier est dans la domainSpec.\n")
+                    }
                 }
                 outliers_to_remove <- c(outlier_name, outliers_to_remove)
             }
@@ -126,7 +151,9 @@ remove_non_significative_outliers <- function(
             data.frame(series = series_name, name = outliers_to_remove)
         )
     }
-    cat("\U1F4BE Saving WS file\n")
+    if (verbose) {
+        cat("\U1F4BE Saving WS file\n")
+    }
     rjd3workspace::save_workspace(
         jws = jws,
         file = ws_path,
@@ -134,7 +161,7 @@ remove_non_significative_outliers <- function(
     )
 }
 
-#' Set span minimum to a value
+#' @title Set span minimum to a value
 #'
 #' @param spec Specification (object of class `JD3_X13_SPEC` or
 #' `JD3_TRAMOSEATS_SPEC`
@@ -151,9 +178,24 @@ remove_non_significative_outliers <- function(
 #' model_span = estimation_span
 #' series_span = basic_span
 #'
+#' @importFrom zoo as.Date
 #' @importFrom rjd3toolkit set_basic set_estimate
 #'
+#' @returns the modify specification (an `JD3_X13_SPEC` or `JD3_TRAMOSEATS_SPEC`
+#'  object).
+#'
 #' @export
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#'
+#' library("rjd3toolkit")
+#' library("rjd3x13")
+#' library("rjd3workspace")
+#'
+#' \donttest{
+#' # Two demo workspaces (RSA3 and RSA5)
+#' spec <- x13_spec("rsa3")
+#' set_minimum_span(spec, "2012-01-01")
+#' }
 #'
 set_minimum_span <- function(
     spec,
@@ -187,8 +229,7 @@ set_minimum_span <- function(
         if (!is.null(current_span) && as.Date(span) < as.Date(current_span)) {
             span <- current_span
         }
-        spec <- spec |>
-            rjd3toolkit::set_basic(type = "From", d0 = span)
+        spec <- rjd3toolkit::set_basic(x = spec, type = "From", d0 = span)
     }
     if (model_span) {
         span <- d0
@@ -200,8 +241,7 @@ set_minimum_span <- function(
         if (!is.null(current_span) && as.Date(span) < as.Date(current_span)) {
             span <- current_span
         }
-        spec <- spec |>
-            rjd3toolkit::set_estimate(type = "From", d0 = span)
+        spec <- rjd3toolkit::set_estimate(x = spec, type = "From", d0 = span)
     }
     return(spec)
 }

@@ -4,9 +4,9 @@
 \name{rjd3production-package}
 \alias{rjd3production}
 \alias{rjd3production-package}
-\title{rjd3production: Prepare for production of seasonnal adjustment with JDemetra+}
+\title{rjd3production: Prepare for Production of Seasonal Adjustment with 'JDemetra+'}
 \description{
-You can use this package as a toolbox to prepare and make in production your seasonnal series.
+A comprehensive tool for setting up CVS-CJO data pipelines using 'JDemetra+' (version 3) and 'rjdverse'. This includes setting up a new working environment, creating and selecting calendar regressors, managing specifications (CJO and outliers) at the workspace level, making a workspace crunchable, removing insignificant outliers, and comparing workspaces.
 }
 \seealso{
 Useful links:

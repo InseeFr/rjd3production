@@ -13,11 +13,13 @@ retrieve_outliers <- function(
         stop("You have to choose one specification.")
     }
 
-    if (point) {
-        ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
-    } else {
-        ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
-    }
+    ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    # Waiting for #108
+    # if (point) {
+    #     ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    # } else {
+    #     ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
+    # }
 
     sap <- ws[["processing"]][[1L]]
     ps_outliers <- data.frame(
@@ -58,7 +60,7 @@ retrieve_outliers <- function(
             ]]
         }
 
-        outliers <- regression_section[["outliers"]] |> unique()
+        outliers <- unique(regression_section[["outliers"]])
 
         if (!is.null(outliers)) {
             type <- vapply(
@@ -101,7 +103,7 @@ extract_td <- function(spec) {
     }
 
     regressors_ud <- regression_section[["td"]][["users"]]
-    if (is.null(regressors_ud) || length(regressors_ud) == 0) {
+    if (is.null(regressors_ud) || length(regressors_ud) == 0L) {
         return("No_TD")
     }
 
@@ -154,11 +156,13 @@ retrieve_td <- function(
         stop("You have to choose one specification.")
     }
 
-    if (point) {
-        ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
-    } else {
-        ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
-    }
+    ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    # Waiting for #108
+    # if (point) {
+    #     ws <- rjd3workspace::read_workspace(jws, compute = TRUE)
+    # } else {
+    #     ws <- rjd3workspace::read_workspace(jws, compute = FALSE)
+    # }
 
     sap <- ws[["processing"]][[1L]]
     td <- data.frame(
@@ -169,15 +173,17 @@ retrieve_td <- function(
 
     for (id_sai in seq_along(sap)) {
         series_name <- names(sap)[id_sai]
-        cat(paste0(
-            "S\u00e9rie ",
-            series_name,
-            ", ",
-            id_sai,
-            "/",
-            length(sap),
-            "\n"
-        ))
+        if (verbose) {
+            cat(paste0(
+                "S\u00e9rie ",
+                series_name,
+                ", ",
+                id_sai,
+                "/",
+                length(sap),
+                "\n"
+            ))
+        }
 
         sai <- sap[[id_sai]]
 

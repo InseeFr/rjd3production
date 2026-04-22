@@ -89,16 +89,19 @@
 #'   of the YAML file written.
 #' - `assign_XXX()` functions invisibly return the updated workspace `jws`.
 #'
-#' @examples
-#' library(rjd3workspace)
-#' file <- system.file("workspaces", "workspace_test.xml",
-#'                     package = "rjd3workspace")
-#' jws <- jws_open(file)
+#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#'
+#' library("rjd3workspace")
+#' library("rjd3toolkit")
+#' \donttest{
+#' my_data <- ABS[, 1:3]
+#' jws <- create_ws_from_data(my_data)
+#' set_context(jws, create_insee_context(start = c(2015L, 1L)))
 #'
 #' ## Outliers
 #'
 #' # Read all the outliers from a workspace
-#' outs <- retrieve_outliers(jws)
+#' outs <- retrieve_outliers(jws, point = TRUE, domain = FALSE)
 #'
 #' # Export outliers
 #' path_outs <- tempfile(pattern = "outliers-table", fileext = ".yaml")
@@ -108,7 +111,7 @@
 #' outs2 <- import_outliers(path_outs)
 #'
 #' # Assign the outliers to a WS
-#' assign_outliers(outs2, jws)
+#' assign_outliers(jws = jws, outliers = outs2)
 #'
 #'
 #' ## Trading day workflow
@@ -123,8 +126,12 @@
 #' # Import td variable from a file
 #' td2 <- import_td(path_td)
 #'
+#' # Select td
+#' td3 <- select_td(my_data)
+#'
 #' # Assign the td variables to a WS
-#' assign_td(td2, jws)
+#' assign_td(jws = jws, td = td3)
+#' }
 #'
 #' @name regression_tools
 #' @family regression tools
