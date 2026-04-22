@@ -30,13 +30,23 @@ A Java Seasonal Adjustment Item object (`jsai`).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-path <- file.path(tempdir(), "workspace_RSA3.xml")
-jws <- jws_open(path)
+library("rjd3toolkit")
+library("rjd3workspace")
+# \donttest{
+# Demo workspace
+jws <- create_ws_from_data(ABS)
 jws_compute(jws)
+jsap <- jws_sap(jws, 1L)
 
-jsai <- get_jsai_by_name(jws, "series_1")
+jsai <- get_jsai_by_name(jws, "X0.2.09.10.M")
 df <- get_series(jsai)
 head(df)
-} # }
+#>            SAI series       date value
+#> 1 X0.2.09.10.M     a1 1982-04-01 460.1
+#> 2 X0.2.09.10.M     a1 1982-05-01 502.6
+#> 3 X0.2.09.10.M     a1 1982-06-01 443.8
+#> 4 X0.2.09.10.M     a1 1982-07-01 459.1
+#> 5 X0.2.09.10.M     a1 1982-08-01 438.4
+#> 6 X0.2.09.10.M     a1 1982-09-01 465.1
+# }
 ```

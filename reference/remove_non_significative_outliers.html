@@ -22,7 +22,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">rjd3production</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/process.html">Production processus</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/process.html">Mise en place d'une chaîne de production</a></li>
     <li><a class="dropdown-item" href="../articles/td-selection.html">Selection of calendar td regressors</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -68,7 +68,8 @@ simplify the regression specification.</p>
 <span>  <span class="va">ws_path</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="fl">0.3</span>,</span>
 <span>  domain <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  estimation <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  estimation <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -96,6 +97,10 @@ modified.</p></dd>
 <dd><p>Boolean indicating if the estimation specification should
 be modified.</p></dd>
 
+
+<dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
+<dd><p>Boolean. Print additional informations. Default is <code>TRUE</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -114,11 +119,27 @@ in place</strong> (saved at the same location as <code>ws_path</code>).</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># Remove non-significant outliers (p &gt; 0.3) from a workspace</span></span></span>
-<span class="r-in"><span><span class="fu">remove_non_significative_outliers</span><span class="op">(</span><span class="st">"workspace.xml"</span>, threshold <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3workspace" class="external-link">"rjd3workspace"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3x13" class="external-link">"rjd3x13"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3toolkit" class="external-link">"rjd3toolkit"</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">new_spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3x13/reference/x13_spec.html" class="external-link">x13_spec</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/add_outlier.html" class="external-link">add_outlier</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"LS"</span>, date <span class="op">=</span> <span class="st">"1990-01-01"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">jws</span> <span class="op">&lt;-</span> <span class="fu"><a href="create_ws_from_data.html">create_ws_from_data</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ABS</span><span class="op">[</span>, <span class="fl">1</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span>, spec <span class="op">=</span> <span class="va">new_spec</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">path_ws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"ws"</span>, fileext <span class="op">=</span> <span class="st">".xml"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/save_workspace.html" class="external-link">save_workspace</a></span><span class="op">(</span><span class="va">jws</span>, file <span class="op">=</span> <span class="va">path_ws</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Remove non-significant outliers (p &gt; 0.3) from a workspace</span></span></span>
+<span class="r-in"><span><span class="fu">remove_non_significative_outliers</span><span class="op">(</span><span class="va">path_ws</span>, threshold <span class="op">=</span> <span class="fl">0.3</span>, domain <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 🏷 WS  ws247777516433 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 📌 SAI n° 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ❌ Suppression de l'outlier : LS (1990-01-01) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> L'outlier est dans la domainSpec.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 💾 Saving WS file</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

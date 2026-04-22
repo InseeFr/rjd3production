@@ -10,7 +10,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">rjd3production</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/process.html">Production processus</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/process.html">Mise en place d'une chaîne de production</a></li>
     <li><a class="dropdown-item" href="../articles/td-selection.html">Selection of calendar td regressors</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -40,36 +40,52 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.0.0.9000" id="rjd3production-1009000">rjd3production 1.0.0.9000<a class="anchor" aria-label="anchor" href="#rjd3production-1009000"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.1.0" id="rjd3production-110">rjd3production 1.1.0<a class="anchor" aria-label="anchor" href="#rjd3production-110"></a></h2><p class="text-muted">CRAN release: 2026-04-21</p>
 <p>All notable changes to this project will be documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/" class="external-link">Keep a Changelog</a>, and this project adheres to <a href="https://semver.org/spec/v2.0.0.html" class="external-link">Semantic Versioning</a>.</p>
 <div class="section level3">
-<h3 id="unreleased-1-0-0-9000"><a href="https://github.com/InseeFr/rjd3production/compare/v1.0.0...HEAD" class="external-link">Unreleased</a><a class="anchor" aria-label="anchor" href="#unreleased-1-0-0-9000"></a></h3>
+<h3 id="unreleased-1-1-0"><a href="https://github.com/InseeFr/rjd3production/compare/v1.0.0...HEAD" class="external-link">Unreleased</a><a class="anchor" aria-label="anchor" href="#unreleased-1-1-0"></a></h3>
 <div class="section level4">
-<h4 id="added-1-0-0-9000">Added<a class="anchor" aria-label="anchor" href="#added-1-0-0-9000"></a></h4>
-<ul><li>New function to create a ws from datasets and a default specification</li>
+<h4 id="added-1-1-0">Added<a class="anchor" aria-label="anchor" href="#added-1-1-0"></a></h4>
+<ul><li>New argument <code>verbose</code> to display some information while computing</li>
+<li>New function to create a ws from datasets and a default specification</li>
 <li>New function to make a ws crunchable</li>
 <li>Shiny app to compare WS with button to export table</li>
+<li>New functions to reverse-engineer a specification</li>
+<li>New functions to create random specifications</li>
 <li>New WS example and code to generate it</li>
+<li>
+<code><a href="../reference/init_env.html">init_env()</a></code> fill the .lintr, DESCRIPTION and README files</li>
+<li>
+<code><a href="../reference/init_env.html">init_env()</a></code> add Git structure</li>
 </ul></div>
 <div class="section level4">
-<h4 id="changed-1-0-0-9000">Changed<a class="anchor" aria-label="anchor" href="#changed-1-0-0-9000"></a></h4>
+<h4 id="changed-1-1-0">Changed<a class="anchor" aria-label="anchor" href="#changed-1-1-0"></a></h4>
 <ul><li>Rename <code>affect_XXX</code> functions in <code>assign_XXX</code> functions</li>
 <li>Rename <code>cjo</code> to <code>td</code> in functions name (<code>assign_cjo</code>, <code>export_cjo</code>, <code>retrieve_cjo</code>, <code>import_cjo</code>, ) and argument (<code>cjo</code> -&gt; <code>td</code>)</li>
 <li>The <code>assign_XXX</code> and <code>retrieve_XXX</code> functions are using <code>jws</code> instead of the <code>ws_path</code>.</li>
 <li>
 <code>select_regs</code> takes a new argument <code>context</code> to define the different regressors sets to use.</li>
+<li>
+<code>export_XXX</code> and <code>import_XXX</code> functions don’t support anymore <code>ws_name</code> argument.</li>
+<li>
+<code>export_XXX</code> functions are using <code>td</code> or <code>outliers</code> to replace <code>x</code>.</li>
+<li>
+<code>get_LY_info</code> works now with a X13 model and not a summary_x13 model</li>
+<li>The column of the data.frame generated by <code><a href="../reference/select_td.html">select_td()</a></code> are <code>series</code> and <code>regs</code>.</li>
 </ul></div>
 <div class="section level4">
-<h4 id="fixed-1-0-0-9000">Fixed<a class="anchor" aria-label="anchor" href="#fixed-1-0-0-9000"></a></h4>
-<ul><li>Bug in select regressors solved</li>
+<h4 id="fixed-1-1-0">Fixed<a class="anchor" aria-label="anchor" href="#fixed-1-1-0"></a></h4>
+<ul><li>Bug in select regressors solved (when no TD is significative)</li>
+<li>If s has multiple columns, the first one will be taken into account in <code><a href="../reference/insee_modelling.html">create_insee_regressors()</a></code>
+</li>
 </ul></div>
 </div>
 <div class="section level3">
-<h3 id="id_100---1-0-0-9000">
-<a href="https://github.com/InseeFr/rjd3production/releases/tag/v1.0.0" class="external-link">1.0.0</a> - 2025-08-29<a class="anchor" aria-label="anchor" href="#id_100---1-0-0-9000"></a></h3>
+<h3 id="id_100---1-1-0">
+<a href="https://github.com/InseeFr/rjd3production/releases/tag/v1.0.0" class="external-link">1.0.0</a> - 2025-08-29<a class="anchor" aria-label="anchor" href="#id_100---1-1-0"></a></h3>
 <div class="section level4">
-<h4 id="added-1-0-0-9000-1">Added<a class="anchor" aria-label="anchor" href="#added-1-0-0-9000-1"></a></h4>
+<h4 id="added-1-1-0-1">Added<a class="anchor" aria-label="anchor" href="#added-1-1-0-1"></a></h4>
 <ul><li>New function to choose calendar regressors adapted to series</li>
 <li>New function to create calendar regressors, french calendar, specification with regressors</li>
 </ul></div>

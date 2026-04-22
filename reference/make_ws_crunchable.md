@@ -12,11 +12,14 @@ make_ws_crunchable(jws, verbose = TRUE)
 
 - jws:
 
-  The java representation of the workspace
+  A Java Workspace object, as returned by
+  [`rjd3workspace::jws_open()`](https://rjdverse.github.io/rjd3workspace/reference/jws_open.html)
+  or
+  [`rjd3workspace::jws_new()`](https://rjdverse.github.io/rjd3workspace/reference/jws_new.html).
 
 - verbose:
 
-  Boolean. Print additional informations.
+  Boolean. Print additional informations. Default is `TRUE`.
 
 ## Value
 
@@ -35,18 +38,14 @@ data.
 ``` r
 library("rjd3workspace")
 library("rjd3x13")
-#> 
-#> Attaching package: ‘rjd3x13’
-#> The following object is masked from ‘package:grDevices’:
-#> 
-#>     x11
+library("rjd3toolkit")
 
 jws <- jws_new()
 jsap <- jws_sap_new(jws, "sap1")
 add_sa_item(
     jsap = jsap,
     name = "series_3",
-    x = AirPassengers,
+    x = ABS[, 1],
     spec = x13_spec("RSA3")
 )
 jws <- make_ws_crunchable(jws)

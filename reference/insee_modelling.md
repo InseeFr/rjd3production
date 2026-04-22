@@ -1,4 +1,4 @@
-# INSEE Regressors and Modelling Context
+# French modelling context, calendar and trading days regressors.
 
 These functions allow to construct the standard regressors and modelling
 context used by INSEE for seasonal adjustment:
@@ -75,7 +75,13 @@ create_insee_context(
 - `create_french_calendar()` returns a `national_calendar` object.
 
 - `create_insee_regressors()` returns a matrix of regressors (working
-  days + LY).
+  days
+
+&nbsp;
+
+- LY).
+
+&nbsp;
 
 - `create_insee_regressors_sets()` returns a list of regressor sets
   (`REG1`, `REG2`, …, `REG6`, with or without LY).

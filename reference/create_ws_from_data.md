@@ -37,14 +37,8 @@ All series share the same specification (`spec`).
 ## Examples
 
 ``` r
-data(AirPassengers)
-
-# Create a multivariate time series
-x <- cbind(
-  series1 = AirPassengers,
-  series2 = log(AirPassengers)
-)
+library("rjd3toolkit")
 
 # Create workspace
-ws <- create_ws_from_data(x)
+ws <- create_ws_from_data(ABS)
 ```

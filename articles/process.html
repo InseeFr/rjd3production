@@ -5,12 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Production processus • rjd3production</title>
+<title>Mise en place d’une chaîne de production • rjd3production</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Production processus">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="process_files/libs/quarto-html/popper.min.js"></script><script src="process_files/libs/quarto-html/tippy.umd.min.js"></script><link href="process_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="process_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Mise en place d’une chaîne de production">
 <script type="module"> import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
 document.addEventListener("DOMContentLoaded", function () {
 document.querySelectorAll("pre.mermaid").forEach(pre => { if (pre.querySelector("code")) { const code = pre.querySelector("code"); pre.innerHTML = code.innerHTML; } });
@@ -24,7 +26,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 
     <a class="navbar-brand me-2" href="../index.html">rjd3production</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +39,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/process.html">Production processus</a></li>
+<li><a class="dropdown-item" href="../articles/process.html">Mise en place d'une chaîne de production</a></li>
     <li><a class="dropdown-item" href="../articles/td-selection.html">Selection of calendar td regressors</a></li>
   </ul>
 </li>
@@ -52,30 +54,255 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 
 
   </div>
-</nav><div class="container template-article">
-
-
-
-
+</nav><div class="container template-quarto">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Production processus</h1>
-            
-      
+      <h1>Mise en place d’une chaîne de production</h1>
 
-      <div class="d-none name"><code>process.Rmd</code></div>
+
+
+
+
+      <div class="d-none name"><code></code></div>
     </div>
 
-    
-    
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://inseefr.github.io/rjd3production/">"rjd3production"</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: replacing previous import 'rjd3jars::current_java_version' by</span></span>
-<span><span class="co">#&gt; 'rjd3toolkit::current_java_version' when loading 'rjd3x13'</span></span></code></pre></div>
-  </main>
-</div>
 
+
+
+
+
+    <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://inseefr.github.io/rjd3production/">"rjd3production"</a></span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Le package {rjd3production} est utile pour mettre en place une chaîne de production de séries désaisonnalisées.</p>
+<p>Avant de créer notre chaîne de production, il faut créer notre environnement de travail, notre projet. La fonction <code><a href="../reference/init_env.html">init_env()</a></code> créer une structure :</p>
+<ul>
+<li>un dossier <code>data/</code> : nos données brutes</li>
+<li>un dossier <code>Workspaces/</code> : nos workspaces</li>
+<li>un dossier <code>output/</code> : les séries, tableaux et graphiques en sortie</li>
+<li>un dossier <code>specs/</code> : les spécifications propres au workspace (régresseurs de calendrier, outliers…)</li>
+<li>un dossier <code>BQ/</code> : les bilans qualité et fichiers de décisions</li>
+<li>un fichier DESCRIPTION pour gérer les dépendances de notre projet</li>
+<li>un fichier <code>.lintr</code> pour faire l’analyse statique du code (bonnes pratiques de formattage)</li>
+<li>un fichier README.md pour expliquer notre projet</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">path_project</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"my_sa_project"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/init_env.html">init_env</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">path_project</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Dans cette vignette, nous allons créer une chaîne de production à partir du jeu de données ABS du package {rjd3toolkit}. Le jeu de données se trouve aussi sous la forme du fichier <code>ABS.csv</code> sous /home/runner/work/_temp/Library/rjd3providers/extdata/ABS.csv dans le package {rjd3providers}.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3toolkit" class="external-link">"rjd3toolkit"</a></span><span class="op">)</span></span>
+<span><span class="va">path_ABS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ABS.csv"</span>, package <span class="op">=</span> <span class="st">"rjd3providers"</span><span class="op">)</span></span>
+<span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="va">ABS</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">3L</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">2L</span>, stop <span class="op">=</span> <span class="fl">11L</span><span class="op">)</span></span></code></pre></div>
+</div>
+<section class="level2"><h2 id="sélection-des-régresseurs-de-calendrier">Sélection des régresseurs de calendrier<a class="anchor" aria-label="anchor" href="#s%C3%A9lection-des-r%C3%A9gresseurs-de-calendrier"></a>
+</h2>
+<p>Dans le cas où nos séries sont sensibles aux effets de calendrier, on peut corriger ses effets avec des régresseurs de calendrier.</p>
+<p>Pour cela, consulter la vignette <code>td-selection</code> au sujet de la manière de traiter ces effets et comment produire la table <code>td</code> contenant nos régresseurs de calendrier personnalisés selectionnés.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">td</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_td.html">select_td</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Série 0.2.09.10. en cours... 1/3 </span></span>
+<span><span class="co">#&gt; Computing spec No_TD ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6_LY ...Done !</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Série 0.2.08.10. en cours... 2/3 </span></span>
+<span><span class="co">#&gt; Computing spec No_TD ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6_LY ...Done !</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Série 0.2.07.10. en cours... 3/3 </span></span>
+<span><span class="co">#&gt; Computing spec No_TD ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6_LY ...Done !</span></span></code></pre></div>
+</div>
+</section><section class="level2"><h2 id="création-dun-workspace">Création d’un workspace<a class="anchor" aria-label="anchor" href="#cr%C3%A9ation-dun-workspace"></a>
+</h2>
+<p>Nous utiliserons le package {rjd3workspace} pour les fonctions de création et manipulation des workspaces.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3workspace" class="external-link">"rjd3workspace"</a></span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Pour créer un nouveau worspace, vous avez le choix entre le créer à la main depuis 0 ou à partir d’un jeu de données. Si vous utilisez des variables externes, des régresseurs de calendrier ou un calendrier personnalisé, il ne faut pas oublier de mettre tout cela dans un modelling context.</p>
+<p>A l’Insee, nous utilisons la fonction <code><a href="../reference/insee_modelling.html">create_insee_context()</a></code> pour nous créer nos context:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_context</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/insee_modelling.html">create_insee_context</a></span><span class="op">(</span>s <span class="op">=</span> <span class="va">my_data</span><span class="op">[</span>, <span class="fl">1L</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Nous utiliserons le package {rjd3x13} pour créer les specs X13.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3x13" class="external-link">"rjd3x13"</a></span><span class="op">)</span></span></code></pre></div>
+</div>
+<ul>
+<li>Créer un workspace à partir de 0</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">jws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_new.html" class="external-link">jws_new</a></span><span class="op">(</span>modelling_context <span class="op">=</span> <span class="va">my_context</span><span class="op">)</span></span>
+<span><span class="va">jsap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_new.html" class="external-link">jws_sap_new</a></span><span class="op">(</span><span class="va">jws</span>, <span class="st">"Nouveau SAP"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/add_sa_item.html" class="external-link">add_sa_item</a></span><span class="op">(</span>jsap <span class="op">=</span> <span class="va">jsap</span>, name <span class="op">=</span> <span class="st">"Première série"</span>, x <span class="op">=</span> <span class="va">my_data</span><span class="op">[</span>, <span class="fl">1L</span><span class="op">]</span>, spec <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3x13/reference/x13_spec.html" class="external-link">x13_spec</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/add_sa_item.html" class="external-link">add_sa_item</a></span><span class="op">(</span>jsap <span class="op">=</span> <span class="va">jsap</span>, name <span class="op">=</span> <span class="st">"Seconde série"</span>, x <span class="op">=</span> <span class="va">my_data</span><span class="op">[</span>, <span class="fl">2L</span><span class="op">]</span>, spec <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3x13/reference/x13_spec.html" class="external-link">x13_spec</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#... avec autant de commande que de séries</span></span></code></pre></div>
+</div>
+<ul>
+<li>Créer un workspace à partir d’un dataset</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">jws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_ws_from_data.html">create_ws_from_data</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/set_context.html" class="external-link">set_context</a></span><span class="op">(</span><span class="va">jws</span>, <span class="fu"><a href="../reference/insee_modelling.html">create_insee_context</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2015L</span>, <span class="fl">1L</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>Si nous en avons, il faut assigner les régresseurs de calendrier à chaque série :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_compute.html" class="external-link">jws_compute</a></span><span class="op">(</span><span class="va">jws</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/regression_tools.html">assign_td</a></span><span class="op">(</span>td <span class="op">=</span> <span class="va">td</span>, jws <span class="op">=</span> <span class="va">jws</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Série 0.2.09.10., 1/3</span></span>
+<span><span class="co">#&gt; Série 0.2.08.10., 2/3</span></span>
+<span><span class="co">#&gt; Série 0.2.07.10., 3/3</span></span></code></pre></div>
+</div>
+<p>Il ne faut pas oublier de mettre à jour les metadonnées de notre workspace avec le chemin vers nos données brutes :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/add_raw_data_path.html">add_raw_data_path</a></span><span class="op">(</span><span class="va">jws</span>, <span class="va">path_ABS</span>, delimiter <span class="op">=</span> <span class="st">"COMMA"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: There are no columns called 0.2.09.10. in ABS.csv</span></span>
+<span><span class="co">#&gt; Warning: There are no columns called 0.2.08.10. in ABS.csv</span></span>
+<span><span class="co">#&gt; Warning: There are no columns called 0.2.07.10. in ABS.csv</span></span></code></pre></div>
+</div>
+<p>Enfin, nous pouvons sauvegarder notre workspace !</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">path_ws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">path_project</span>, <span class="st">"Workspaces"</span>, <span class="st">"workspace_travail"</span>, <span class="st">"my_ws.xml"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/save_workspace.html" class="external-link">save_workspace</a></span><span class="op">(</span><span class="va">jws</span>, <span class="va">path_ws</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+</div>
+</section><section class="level2"><h2 id="appel-du-cruncher">Appel du cruncher<a class="anchor" aria-label="anchor" href="#appel-du-cruncher"></a>
+</h2>
+<p>Dans une chaîne de production en R, le cruncher est très important car il permet de :</p>
+<ol type="1">
+<li>Mettre à jour les données brutes à partir du fichier de données</li>
+<li>Mettre à jour le modèle d’ajustement saisonnier (selon une politique de rafraichissement)</li>
+</ol></section><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
+</div>
 
 
     <footer><div class="pkgdown-footer-left">

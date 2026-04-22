@@ -10,7 +10,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">rjd3production</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/process.html">Production processus</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/process.html">Mise en place d'une chaîne de production</a></li>
     <li><a class="dropdown-item" href="../articles/td-selection.html">Selection of calendar td regressors</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -50,17 +50,10 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
       <dl><dt>
 
-          <code><a href="assign_outliers.html">assign_outliers()</a></code>
+          <code><a href="add_raw_data_path.html">add_raw_data_path()</a></code>
 
         </dt>
-        <dd>Assign outliers to a JDemetra+ workspace</dd>
-
-        <dt>
-
-          <code><a href="assign_td.html">assign_td()</a></code>
-
-        </dt>
-        <dd>Assign calendar (TD) regressors to a JDemetra+ workspace</dd>
+        <dd>Add raw data from a file to a JWS workspace</dd>
 
         <dt>
 
@@ -106,10 +99,17 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
         <dt>
 
+          <code><a href="init_env.html">init_env()</a></code>
+
+        </dt>
+        <dd>Initialize a seasonal adjustment project environment</dd>
+
+        <dt>
+
           <code><a href="insee_modelling.html">create_french_calendar()</a></code> <code><a href="insee_modelling.html">create_insee_regressors()</a></code> <code><a href="insee_modelling.html">create_insee_regressors_sets()</a></code> <code><a href="insee_modelling.html">create_insee_context()</a></code>
 
         </dt>
-        <dd>INSEE Regressors and Modelling Context</dd>
+        <dd>French modelling context, calendar and trading days regressors.</dd>
 
         <dt>
 
@@ -120,10 +120,17 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
         <dt>
 
-          <code><a href="outliers_tools.html">export_outliers()</a></code> <code><a href="outliers_tools.html">import_outliers()</a></code> <code><a href="outliers_tools.html">retrieve_outliers()</a></code>
+          <code><a href="random-spec.html">random_spec()</a></code>
 
         </dt>
-        <dd>Manage outliers from JDemetra+ workspaces</dd>
+        <dd>Random JDemetra+ Specifications Generator</dd>
+
+        <dt>
+
+          <code><a href="regression_tools.html">assign_outliers()</a></code> <code><a href="regression_tools.html">assign_td()</a></code> <code><a href="regression_tools.html">export_outliers()</a></code> <code><a href="regression_tools.html">import_outliers()</a></code> <code><a href="regression_tools.html">export_td()</a></code> <code><a href="regression_tools.html">import_td()</a></code> <code><a href="regression_tools.html">retrieve_outliers()</a></code> <code><a href="regression_tools.html">retrieve_td()</a></code>
+
+        </dt>
+        <dd>Manage regression components in JDemetra+ workspaces</dd>
 
         <dt>
 
@@ -141,7 +148,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
         <dt>
 
-          <code><a href="select_regs.html">select_regs()</a></code>
+          <code><a href="select_td.html">select_td()</a></code>
 
         </dt>
         <dd>Select Calendar Regressors for One or Multiple Series</dd>
@@ -155,10 +162,10 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
         <dt>
 
-          <code><a href="td_tools.html">export_td()</a></code> <code><a href="td_tools.html">import_td()</a></code> <code><a href="td_tools.html">retrieve_td()</a></code>
+          <code><a href="translate-spec.html">rev_spec()</a></code>
 
         </dt>
-        <dd>Manage trading-day regressors (TD) from JDemetra+ workspaces</dd>
+        <dd>Reverse Engineering of rjd3 Specifications</dd>
       </dl></div>
   </main></div>
 

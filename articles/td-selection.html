@@ -10,7 +10,9 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Selection of calendar td regressors">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="td-selection_files/libs/quarto-html/popper.min.js"></script><script src="td-selection_files/libs/quarto-html/tippy.umd.min.js"></script><link href="td-selection_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="td-selection_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Selection of calendar td regressors">
 <script type="module"> import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
 document.addEventListener("DOMContentLoaded", function () {
 document.querySelectorAll("pre.mermaid").forEach(pre => { if (pre.querySelector("code")) { const code = pre.querySelector("code"); pre.innerHTML = code.innerHTML; } });
@@ -24,7 +26,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 
     <a class="navbar-brand me-2" href="../index.html">rjd3production</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +39,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/process.html">Production processus</a></li>
+<li><a class="dropdown-item" href="../articles/process.html">Mise en place d'une chaîne de production</a></li>
     <li><a class="dropdown-item" href="../articles/td-selection.html">Selection of calendar td regressors</a></li>
   </ul>
 </li>
@@ -52,30 +54,286 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 
 
   </div>
-</nav><div class="container template-article">
-
-
-
-
+</nav><div class="container template-quarto">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Selection of calendar td regressors</h1>
-            
-      
 
-      <div class="d-none name"><code>td-selection.Rmd</code></div>
+
+
+
+
+      <div class="d-none name"><code></code></div>
     </div>
 
-    
-    
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://inseefr.github.io/rjd3production/">"rjd3production"</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: replacing previous import 'rjd3jars::current_java_version' by</span></span>
-<span><span class="co">#&gt; 'rjd3toolkit::current_java_version' when loading 'rjd3x13'</span></span></code></pre></div>
-  </main>
-</div>
 
+
+
+
+
+    <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://inseefr.github.io/rjd3production/">"rjd3production"</a></span><span class="op">)</span></span></code></pre></div>
+</div>
+<section class="level3"><h3 id="regressor-selection">Regressor selection<a class="anchor" aria-label="anchor" href="#regressor-selection"></a>
+</h3>
+<p>To select a set of regressors, use the <code><a href="../reference/select_td.html">select_td()</a></code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3toolkit" class="external-link">"rjd3toolkit"</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'rjd3toolkit'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     aggregate, mad</span></span>
+<span><span class="va">td_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_td.html">select_td</a></span><span class="op">(</span><span class="va">ABS</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">3L</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Série X0.2.09.10.M en cours... 1/3 </span></span>
+<span><span class="co">#&gt; Computing spec No_TD ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6_LY ...Done !</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Série X0.2.08.10.M en cours... 2/3 </span></span>
+<span><span class="co">#&gt; Computing spec No_TD ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6_LY ...Done !</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Série X0.2.07.10.M en cours... 3/3 </span></span>
+<span><span class="co">#&gt; Computing spec No_TD ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6 ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG1_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG2_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG3_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG5_LY ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec REG6_LY ...Done !</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">td_table</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         series regs</span></span>
+<span><span class="co">#&gt; 1 X0.2.09.10.M REG6</span></span>
+<span><span class="co">#&gt; 2 X0.2.08.10.M REG6</span></span>
+<span><span class="co">#&gt; 3 X0.2.07.10.M REG6</span></span></code></pre></div>
+</div>
+</section><section class="level3"><h3 id="importexport">Import/Export<a class="anchor" aria-label="anchor" href="#importexport"></a>
+</h3>
+<p>Once the regressors have been selected, you can export the table in <code>.yaml</code> format and reimport it later:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">path_td</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"td-table"</span>, fileext <span class="op">=</span> <span class="st">".yaml"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/regression_tools.html">export_td</a></span><span class="op">(</span><span class="va">td_table</span>, <span class="va">path_td</span><span class="op">)</span></span>
+<span><span class="co">#&gt; The td table will be written at  /tmp/RtmpTQmxDi/td-table26e63dddb0b8.yaml</span></span>
+<span><span class="va">td_table2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/regression_tools.html">import_td</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">path_td</span><span class="op">)</span></span>
+<span><span class="co">#&gt; The td table will be read at  /tmp/RtmpTQmxDi/td-table26e63dddb0b8.yaml</span></span>
+<span><span class="fu">waldo</span><span class="fu">::</span><span class="fu"><a href="https://waldo.r-lib.org/reference/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">td_table</span>, <span class="va">td_table2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ✔ No differences</span></span></code></pre></div>
+</div>
+</section><section class="level3"><h3 id="assignment">Assignment<a class="anchor" aria-label="anchor" href="#assignment"></a>
+</h3>
+<p>Finally, to assign calendar regressors to a workspace, you can use the <code><a href="../reference/regression_tools.html">assign_td()</a></code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3workspace" class="external-link">"rjd3workspace"</a></span><span class="op">)</span></span>
+<span><span class="va">my_ws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_open.html" class="external-link">jws_open</a></span><span class="op">(</span><span class="st">"my_workspace"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/regression_tools.html">assign_td</a></span><span class="op">(</span><span class="va">td_table</span>, <span class="va">my_ws</span><span class="op">)</span></span></code></pre></div>
+</div>
+</section><section class="level3"><h3 id="advanced-selection">Advanced selection<a class="anchor" aria-label="anchor" href="#advanced-selection"></a>
+</h3>
+<p>By default, the regressors proposed are those used by INSEE (and in the SSP). To use custom regressor sets, simply create a modelling context](https://rjdverse.github.io/rjd3toolkit/reference/modelling_context.html) containing as many variables as you want regressor sets and one regressor set per variable.</p>
+<p>For example, for the INSEE regressor sets, here is the structure of the corresponding modelling context:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/insee_modelling.html">create_insee_context</a></span><span class="op">(</span><span class="op">)</span>, max.level <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 2</span></span>
+<span><span class="co">#&gt;  $ calendars:List of 1</span></span>
+<span><span class="co">#&gt;   ..$ FR:List of 2</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:2] "JD3_CALENDAR" "JD3_CALENDARDEFINITION"</span></span>
+<span><span class="co">#&gt;  $ variables:List of 11</span></span>
+<span><span class="co">#&gt;   ..$ REG1   :List of 1</span></span>
+<span><span class="co">#&gt;   ..$ REG2   :List of 2</span></span>
+<span><span class="co">#&gt;   ..$ REG3   :List of 3</span></span>
+<span><span class="co">#&gt;   ..$ REG5   :List of 5</span></span>
+<span><span class="co">#&gt;   ..$ REG6   :List of 6</span></span>
+<span><span class="co">#&gt;   ..$ LY     :List of 1</span></span>
+<span><span class="co">#&gt;   ..$ REG1_LY:List of 2</span></span>
+<span><span class="co">#&gt;   ..$ REG2_LY:List of 3</span></span>
+<span><span class="co">#&gt;   ..$ REG3_LY:List of 4</span></span>
+<span><span class="co">#&gt;   ..$ REG5_LY:List of 6</span></span>
+<span><span class="co">#&gt;   ..$ REG6_LY:List of 7</span></span></code></pre></div>
+</div>
+<p>Let’s imagine that I only want to test three types of sets:</p>
+<ul>
+<li>a first regressor set (<code>TD2_TB</code>) containing two regressors: Thursday, week (and weekend in contrast)</li>
+<li>a second set (<code>TD3_TB</code>) containing three regressors: Thursday, week (and weekend in contrast) and leap-year regressor</li>
+<li>a third set (<code>TD6_TB</code>) that differentiates between all days of the week</li>
+</ul>
+<p>We then create our sets of regressors and create the modelling context:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">series_example</span> <span class="op">&lt;-</span> <span class="va">ABS</span><span class="op">[</span>, <span class="fl">1L</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">TD2_TB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/calendar_td.html" class="external-link">calendar_td</a></span><span class="op">(</span></span>
+<span>    s <span class="op">=</span> <span class="va">series_example</span>,</span>
+<span>    groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">1L</span>, <span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">1L</span>, <span class="fl">0L</span>, <span class="fl">0L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">TD3_TB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/calendar_td.html" class="external-link">calendar_td</a></span><span class="op">(</span></span>
+<span>        s <span class="op">=</span> <span class="va">series_example</span>,</span>
+<span>        groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">1L</span>, <span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">1L</span>, <span class="fl">0L</span>, <span class="fl">0L</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/lp_variable.html" class="external-link">lp_variable</a></span><span class="op">(</span>s <span class="op">=</span> <span class="va">series_example</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">TD3_TB</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"group_1"</span>, <span class="st">"group_2"</span>, <span class="st">"ly"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">TD6_TB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/calendar_td.html" class="external-link">calendar_td</a></span><span class="op">(</span></span>
+<span>    s <span class="op">=</span> <span class="va">series_example</span>,</span>
+<span>    groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">3L</span>, <span class="fl">4L</span>, <span class="fl">5L</span>, <span class="fl">6L</span>, <span class="fl">0L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">my_regressors_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    TD2_TB <span class="op">=</span> <span class="va">TD2_TB</span>,</span>
+<span>    TD3_TB <span class="op">=</span> <span class="va">TD3_TB</span>,</span>
+<span>    TD6_TB <span class="op">=</span> <span class="va">TD6_TB</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">my_context</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/modelling_context.html" class="external-link">modelling_context</a></span><span class="op">(</span>variables <span class="op">=</span> <span class="va">my_regressors_sets</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>We can now use our context to select the calendar regressors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_td_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_td.html">select_td</a></span><span class="op">(</span><span class="va">ABS</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">3L</span><span class="op">)</span><span class="op">]</span>, context <span class="op">=</span> <span class="va">my_context</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Série X0.2.09.10.M en cours... 1/3 </span></span>
+<span><span class="co">#&gt; Computing spec No_TD ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec TD2_TB ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec TD3_TB ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec TD6_TB ...Done !</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Série X0.2.08.10.M en cours... 2/3 </span></span>
+<span><span class="co">#&gt; Computing spec No_TD ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec TD2_TB ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec TD3_TB ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec TD6_TB ...Done !</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Série X0.2.07.10.M en cours... 3/3 </span></span>
+<span><span class="co">#&gt; Computing spec No_TD ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec TD2_TB ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec TD3_TB ...Done !</span></span>
+<span><span class="co">#&gt; Computing spec TD6_TB ...Done !</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">my_td_table</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         series   regs</span></span>
+<span><span class="co">#&gt; 1 X0.2.09.10.M TD6_TB</span></span>
+<span><span class="co">#&gt; 2 X0.2.08.10.M TD6_TB</span></span>
+<span><span class="co">#&gt; 3 X0.2.07.10.M TD6_TB</span></span></code></pre></div>
+</div>
+</section><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
+</div>
 
 
     <footer><div class="pkgdown-footer-left">
