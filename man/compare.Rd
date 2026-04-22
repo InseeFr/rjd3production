@@ -22,19 +22,31 @@ A \code{data.frame} with columns:
 }
 }
 \description{
-Reads multiple Demetra+ workspaces and extracts comparable series
+Reads multiple JDemetra+ workspaces and extracts comparable series
 (by SAI and series type), returning them in a tidy format.
 This is particularly useful to compare results across different
 specifications (e.g. RSA3 vs RSA5).
 }
 \examples{
-\dontrun{
-# Two demo workspaces (RSA3 and RSA5)
-path1 <- file.path(tempdir(), "workspace_RSA3.xml")
-path2 <- file.path(tempdir(), "workspace_RSA5.xml")
+\dontshow{if (rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version) withAutoprint(\{ # examplesIf}
 
-df <- compare(path1, path2, series_names = "series_1")
+library("rjd3toolkit")
+library("rjd3x13")
+library("rjd3workspace")
+
+\donttest{
+# Two demo workspaces (RSA3 and RSA5)
+jws_rsa3 <- create_ws_from_data(ABS, x13_spec("rsa3"))
+jws_rsa5 <- create_ws_from_data(ABS, x13_spec("rsa5"))
+
+path_rsa3 <- tempfile(pattern = "ws-rsa3", fileext = ".xml")
+path_rsa5 <- tempfile(pattern = "ws-rsa5", fileext = ".xml")
+
+save_workspace(jws_rsa3, file = path_rsa3)
+save_workspace(jws_rsa5, file = path_rsa5)
+
+df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
 head(df)
 }
-
+\dontshow{\}) # examplesIf}
 }
