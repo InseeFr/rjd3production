@@ -1,6 +1,6 @@
 Package: rjd3production
 Title: Prepare for Production of Seasonal Adjustment with 'JDemetra+'
-Version: 1.1.0
+Version: 1.1.0.9000
 Authors@R: 
     person("Tanguy", "Barthelemy", , "tanguy.barthelemy@insee.fr", role = c("aut", "cre", "art"))
 Description: A comprehensive tool for setting up seasonal data pipelines using 
