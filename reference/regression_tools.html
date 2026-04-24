@@ -12,7 +12,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">rjd3production</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Manage regression components in JDemetra+ workspaces</h1>
-      <small class="dont-index">Source: <a href="https://github.com/InseeFr/rjd3production/blob/v1.1.0/R/assign.R" class="external-link"><code>R/assign.R</code></a>, <a href="https://github.com/InseeFr/rjd3production/blob/v1.1.0/R/io.R" class="external-link"><code>R/io.R</code></a>, <a href="https://github.com/InseeFr/rjd3production/blob/v1.1.0/R/regression-tools.R" class="external-link"><code>R/regression-tools.R</code></a>, and 1 more</small>
+      <small class="dont-index">Source: <a href="https://github.com/InseeFr/rjd3production/blob/develop/R/assign.R" class="external-link"><code>R/assign.R</code></a>, <a href="https://github.com/InseeFr/rjd3production/blob/develop/R/io.R" class="external-link"><code>R/io.R</code></a>, <a href="https://github.com/InseeFr/rjd3production/blob/develop/R/regression-tools.R" class="external-link"><code>R/regression-tools.R</code></a>, and 1 more</small>
       <div class="d-none name"><code>regression_tools.Rd</code></div>
     </div>
 
@@ -211,11 +211,11 @@ the point, estimation or domainSpec, while the assignment step
 <span class="r-in"><span><span class="co"># Export outliers</span></span></span>
 <span class="r-in"><span><span class="va">path_outs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"outliers-table"</span>, fileext <span class="op">=</span> <span class="st">".yaml"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">export_outliers</span><span class="op">(</span><span class="va">outs</span>, <span class="va">path_outs</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The outliers table will be written at  /tmp/RtmpFlN7Yr/outliers-table24a649a73873.yaml </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The outliers table will be written at  /tmp/RtmpxIDxsE/outliers-table24767c55b8f.yaml </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Import outliers from a file</span></span></span>
 <span class="r-in"><span><span class="va">outs2</span> <span class="op">&lt;-</span> <span class="fu">import_outliers</span><span class="op">(</span><span class="va">path_outs</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The outliers table will be read at  /tmp/RtmpFlN7Yr/outliers-table24a649a73873.yaml </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The outliers table will be read at  /tmp/RtmpxIDxsE/outliers-table24767c55b8f.yaml </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Assign the outliers to a WS</span></span></span>
 <span class="r-in"><span><span class="fu">assign_outliers</span><span class="op">(</span>jws <span class="op">=</span> <span class="va">jws</span>, outliers <span class="op">=</span> <span class="va">outs2</span><span class="op">)</span></span></span>
@@ -235,11 +235,11 @@ the point, estimation or domainSpec, while the assignment step
 <span class="r-in"><span><span class="co"># Export td variables</span></span></span>
 <span class="r-in"><span><span class="va">path_td</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"td-table"</span>, fileext <span class="op">=</span> <span class="st">".yaml"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">export_td</span><span class="op">(</span><span class="va">td</span>, <span class="va">path_td</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The td table will be written at  /tmp/RtmpFlN7Yr/td-table24a66c360203.yaml </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The td table will be written at  /tmp/RtmpxIDxsE/td-table247668a0341e.yaml </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Import td variable from a file</span></span></span>
 <span class="r-in"><span><span class="va">td2</span> <span class="op">&lt;-</span> <span class="fu">import_td</span><span class="op">(</span><span class="va">path_td</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The td table will be read at  /tmp/RtmpFlN7Yr/td-table24a66c360203.yaml </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The td table will be read at  /tmp/RtmpxIDxsE/td-table247668a0341e.yaml </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Select td</span></span></span>
 <span class="r-in"><span><span class="va">td3</span> <span class="op">&lt;-</span> <span class="fu"><a href="select_td.html">select_td</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span></span></span>

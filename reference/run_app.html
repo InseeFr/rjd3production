@@ -12,7 +12,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">rjd3production</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Run the Shiny comparison app</h1>
-      <small class="dont-index">Source: <a href="https://github.com/InseeFr/rjd3production/blob/v1.1.0/R/compare.R" class="external-link"><code>R/compare.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/InseeFr/rjd3production/blob/develop/R/compare.R" class="external-link"><code>R/compare.R</code></a></small>
       <div class="d-none name"><code>run_app.Rd</code></div>
     </div>
 
@@ -93,12 +93,12 @@ the columns <code>ws</code>, <code>SAI</code>, <code>series</code>, <code>date</
 <span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="compare.html">compare</a></span><span class="op">(</span><span class="va">path_rsa3</span>, <span class="va">path_rsa5</span>, series_names <span class="op">=</span> <span class="st">"X0.2.09.10.M"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    ws          SAI series       date value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 ws-rsa324a664152d20 X0.2.09.10.M     a1 1982-04-01 460.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 ws-rsa324a664152d20 X0.2.09.10.M     a1 1982-05-01 502.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 ws-rsa324a664152d20 X0.2.09.10.M     a1 1982-06-01 443.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 ws-rsa324a664152d20 X0.2.09.10.M     a1 1982-07-01 459.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 ws-rsa324a664152d20 X0.2.09.10.M     a1 1982-08-01 438.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 ws-rsa324a664152d20 X0.2.09.10.M     a1 1982-09-01 465.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 ws-rsa3247678ca09a1 X0.2.09.10.M     a1 1982-04-01 460.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 ws-rsa3247678ca09a1 X0.2.09.10.M     a1 1982-05-01 502.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 ws-rsa3247678ca09a1 X0.2.09.10.M     a1 1982-06-01 443.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 ws-rsa3247678ca09a1 X0.2.09.10.M     a1 1982-07-01 459.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 ws-rsa3247678ca09a1 X0.2.09.10.M     a1 1982-08-01 438.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 ws-rsa3247678ca09a1 X0.2.09.10.M     a1 1982-09-01 465.1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Launch the shiny app</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
