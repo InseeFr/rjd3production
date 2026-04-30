@@ -129,7 +129,7 @@ remotes::install_github("InseeFr/rjd3production")
 <!-- library("rjd3production") -->
 
 <!-- ``` -->
-
+## 🇬🇧 README in english
 ### Overview
 
 **{rjd3production}** helps producers of seasonal data to set up
