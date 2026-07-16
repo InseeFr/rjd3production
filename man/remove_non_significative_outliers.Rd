@@ -7,7 +7,7 @@
 remove_non_significative_outliers(
   ws_path,
   threshold = 0.3,
-  domain = FALSE,
+  reference = FALSE,
   estimation = FALSE,
   verbose = TRUE
 )
@@ -20,7 +20,7 @@ remove_non_significative_outliers(
 an outlier. Outliers with \verb{Pr(>|t|) > threshold} are removed.
 Default is \code{0.3}.}
 
-\item{domain}{Boolean indicating if the domain specification should be
+\item{reference}{Boolean indicating if the reference specification should be
 modified.}
 
 \item{estimation}{Boolean indicating if the estimation specification should
@@ -35,7 +35,7 @@ in place} (saved at the same location as \code{ws_path}).
 \description{
 This function scans a JDemetra+ workspace (\code{.xml}) and removes
 regression outliers whose p-values are above a given threshold.
-Both the estimation specification and the domain specification are
+Both the estimation specification and the reference specification are
 updated accordingly, and the workspace file is saved in place.
 
 Typical use case: after estimation with user pre-specified outliers, outliers with
@@ -49,7 +49,7 @@ The function:
 \item identifies outliers in the \code{regarima} specification,
 \item checks their p-values in the pre-processing regression summary,
 \item removes those with p-values above the threshold from both
-\code{estimationSpec} and, if present, \code{domainSpec},
+\code{estimationSpec} and, if present, \code{referenceSpec},
 \item saves the workspace file.
 }
 }
@@ -68,7 +68,7 @@ path_ws <- tempfile(pattern = "ws", fileext = ".xml")
 save_workspace(jws, file = path_ws)
 
 # Remove non-significant outliers (p > 0.3) from a workspace
-remove_non_significative_outliers(path_ws, threshold = 0.3, domain = TRUE)
+remove_non_significative_outliers(path_ws, threshold = 0.3, reference = TRUE)
 }
 \dontshow{\}) # examplesIf}
 }

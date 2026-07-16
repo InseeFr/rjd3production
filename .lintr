@@ -1,10 +1,10 @@
 linters: lintr::all_linters(
         indentation_linter = lintr::indentation_linter(indent = 4L),
-        # line_length_linter = lintr::line_length_linter(80L),
-        line_length_linter = lintr::line_length_linter(130L),
+        line_length_linter = lintr::line_length_linter(95L),
         library_call_linter = NULL,
         return_linter = NULL,
         cyclocomp_linter = lintr::cyclocomp_linter(complexity_limit = 65L),
+        namespace_linter = NULL,
         object_length_linter = NULL,
         object_name_linter = NULL,
         commented_code_linter = NULL,

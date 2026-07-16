@@ -84,7 +84,11 @@ spec <- my_set[[8L]]
 rjd3production:::one_diagnostic(series = ABS[, 1], spec, context = my_context)
 
 # Compute diagnostics for all specs
-rjd3production:::all_diagnostics(series = ABS[, 1], specs_set = my_set, context = my_context)
+rjd3production:::all_diagnostics(
+    series = ABS[, 1],
+    specs_set = my_set,
+    context = my_context
+)
 
 # Check whether LY should be removed
 diags <- rjd3production:::all_diagnostics(

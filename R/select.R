@@ -78,7 +78,11 @@ is_compatible <- function(series, reg) {
 #' rjd3production:::one_diagnostic(series = ABS[, 1], spec, context = my_context)
 #'
 #' # Compute diagnostics for all specs
-#' rjd3production:::all_diagnostics(series = ABS[, 1], specs_set = my_set, context = my_context)
+#' rjd3production:::all_diagnostics(
+#'     series = ABS[, 1],
+#'     specs_set = my_set,
+#'     context = my_context
+#' )
 #'
 #' # Check whether LY should be removed
 #' diags <- rjd3production:::all_diagnostics(
@@ -299,18 +303,22 @@ select_td_one_series <- function(
 #'
 #' @description
 #' Applies the X13 regression selection procedure to one or more time series.
-#' If multiple series are provided as columns of a matrix or data.frame, each series
-#' is processed separately. The function returns the selected set of regressors for each series.
+#' If multiple series are provided as columns of a matrix or data.frame, each
+#' series is processed separately. The function returns the selected set of
+#' regressors for each series.
 #'
-#' @param series [\link[stats]{ts} or mts or matrix or \link[base]{data.frame}] A univariate time series (`ts`) or a
-#'   multivariate series (columns as separate series).
+#' @param series [\link[stats]{ts} or mts or matrix or \link[base]{data.frame}]
+#'   A univariate time series (`ts`) or a multivariate series (columns as
+#'   separate series).
 #' @param context [list] Modeling context created by
 #' [rjd3toolkit::modelling_context()].
 #' @inheritParams get_LY_info
 #'
 #' @returns A data.frame with two columns:
 #' \describe{
-#'   \item{series}{Name of the series (column name if `series` is multivariate).}
+#'   \item{series}{
+#'     Name of the series (column name if `series` is multivariate).
+#'   }
 #'   \item{regs}{Name of the selected regressor set.}
 #' }
 #'

@@ -7,8 +7,9 @@
 select_td(series, context = NULL, ..., verbose = TRUE)
 }
 \arguments{
-\item{series}{[\link[stats]{ts} or mts or matrix or \link[base]{data.frame}] A univariate time series (\code{ts}) or a
-multivariate series (columns as separate series).}
+\item{series}{[\link[stats]{ts} or mts or matrix or \link[base]{data.frame}]
+A univariate time series (\code{ts}) or a multivariate series (columns as
+separate series).}
 
 \item{context}{\link{list} Modeling context created by
 \code{\link[rjd3toolkit:modelling_context]{rjd3toolkit::modelling_context()}}.}
@@ -28,14 +29,17 @@ of types, e.g., "AO", "LS", "TC") and \code{date} (vector of dates).}
 \value{
 A data.frame with two columns:
 \describe{
-\item{series}{Name of the series (column name if \code{series} is multivariate).}
+\item{series}{
+Name of the series (column name if \code{series} is multivariate).
+}
 \item{regs}{Name of the selected regressor set.}
 }
 }
 \description{
 Applies the X13 regression selection procedure to one or more time series.
-If multiple series are provided as columns of a matrix or data.frame, each series
-is processed separately. The function returns the selected set of regressors for each series.
+If multiple series are provided as columns of a matrix or data.frame, each
+series is processed separately. The function returns the selected set of
+regressors for each series.
 }
 \examples{
 \dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}
