@@ -147,10 +147,17 @@ remove_non_significative_outliers <- function(
             )
         }
         rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
-        outliers_table <- rbind(
-            outliers_table,
-            data.frame(series = series_name, name = outliers_to_remove)
-        )
+
+        if (length(outliers_to_remove) > 0) {
+
+            outliers_table <- rbind(
+                outliers_table,
+                data.frame(
+                    series = series_name,
+                    name = outliers_to_remove
+                )
+            )
+        }
     }
     if (verbose) {
         cat("\U1F4BE Saving WS file\n")
