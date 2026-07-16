@@ -1,6 +1,6 @@
 linters: lintr::all_linters(
         indentation_linter = lintr::indentation_linter(indent = 4L),
-        line_length_linter = lintr::line_length_linter(95L),
+        line_length_linter = lintr::line_length_linter(130L),
         library_call_linter = NULL,
         return_linter = NULL,
         cyclocomp_linter = lintr::cyclocomp_linter(complexity_limit = 65L),

@@ -67,7 +67,8 @@ remove_non_significative_outliers <- function(
 ) {
     if (!reference && !estimation) {
         warning(
-            "No SA-Items will be modified if neither referenceSpec nor estimationspec are selected."
+            "No SA-Items will be modified if neither referenceSpec",
+            "nor estimationspec are selected."
         )
         return(invisible(NULL))
     }
