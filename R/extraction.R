@@ -31,7 +31,7 @@ regroup_ts <- function(x) {
 #' - `date`: observation dates,
 #' - `value`: numeric values of the series.
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #'
 #' library("rjd3toolkit")
 #' library("rjd3workspace")
@@ -137,7 +137,7 @@ get_series.jobjRef <- function(x, ...) {
 #'
 #' @returns A Java Seasonal Adjustment Item object (`jsai`).
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #'
 #' library("rjd3toolkit")
 #' library("rjd3workspace")
@@ -177,7 +177,7 @@ get_jsai_by_name <- function(jws, series_name) {
 #'
 #' @returns a list with all the groups and named variables
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #' context_FR <- create_insee_context()
 #' get_named_variables(context_FR)
 #'

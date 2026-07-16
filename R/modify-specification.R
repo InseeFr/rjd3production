@@ -35,7 +35,7 @@
 #' The function invisibly returns `NULL`, but it **modifies the workspace file
 #' in place** (saved at the same location as `ws_path`).
 #'
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #'
 #' library("rjd3workspace")
 #' library("rjd3x13")
@@ -185,7 +185,7 @@ remove_non_significative_outliers <- function(
 #'  object).
 #'
 #' @export
-#' @examplesIf rjd3toolkit::get_java_version() >= rjd3toolkit::minimal_java_version
+#' @examplesIf rjd3jars::check_java_version(silent = TRUE)
 #'
 #' library("rjd3toolkit")
 #' library("rjd3x13")
