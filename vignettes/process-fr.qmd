@@ -41,6 +41,7 @@ Avant de créer notre chaîne de production, il faut créer notre environnement 
 - un fichier DESCRIPTION pour gérer les dépendances de notre projet
 - un fichier `.lintr` pour faire l'analyse statique du code (bonnes pratiques de formattage)
 - un fichier README.md pour expliquer notre projet
+- une structure de projet Git
 
 ```{r}
 #| echo: true
