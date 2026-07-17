@@ -13,12 +13,18 @@ NULL
 #' @rdname deprecated-rjd3production
 #' @export
 remove_non_significative_outliers <- function(
-        ws_path,
-        threshold = 0.3,
-        reference = FALSE,
-        estimation = FALSE,
-        verbose = TRUE
+    ws_path,
+    threshold = 0.3,
+    reference = FALSE,
+    estimation = FALSE,
+    verbose = TRUE
 ) {
     .Deprecated("remove_non_significant_outliers")
-    remove_non_significant_outliers(ws_path, threshold, reference, estimation, verbose)
+    remove_non_significant_outliers(
+        ws_path,
+        threshold,
+        reference,
+        estimation,
+        verbose
+    )
 }
