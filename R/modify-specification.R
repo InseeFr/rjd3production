@@ -148,7 +148,7 @@ remove_non_significant_outliers <- function(
         }
         rjd3workspace::set_name(jsap, idx = id_sai, name = series_name)
 
-        if (length(outliers_to_remove) > 0) {
+        if (length(outliers_to_remove) > 0L) {
             outliers_table <- rbind(
                 outliers_table,
                 data.frame(
