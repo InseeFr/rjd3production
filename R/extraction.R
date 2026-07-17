@@ -1,6 +1,6 @@
 #' @importFrom stats is.ts
 regroup_ts <- function(x) {
-    if (is.ts(x)) {
+    if (stats::is.ts(x)) {
         return(list(x))
     }
     if (is.list(x)) {
@@ -78,7 +78,7 @@ get_series.JD3_TRAMOSEATS_RSLTS <- function(x, name, ...) {
                 output,
                 data.frame(
                     series = s,
-                    date = series |> time() |> zoo::as.Date(),
+                    date = series |> stats::time() |> zoo::as.Date(),
                     value = as.numeric(series)
                 )
             )
