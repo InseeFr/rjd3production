@@ -1,7 +1,7 @@
 set.seed(2026L)
 
 test_that("rev_set_x11 works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -23,7 +23,7 @@ test_that("rev_set_x11 works", {
 })
 
 test_that("rev_add_ramp works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -45,7 +45,7 @@ test_that("rev_add_ramp works", {
 })
 
 test_that("rev_set_transform works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -67,7 +67,7 @@ test_that("rev_set_transform works", {
 })
 
 test_that("rev_set_easter works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -89,7 +89,7 @@ test_that("rev_set_easter works", {
 })
 
 test_that("rev_set_basic works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -111,7 +111,7 @@ test_that("rev_set_basic works", {
 })
 
 test_that("rev_set_estimate works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -133,7 +133,7 @@ test_that("rev_set_estimate works", {
 })
 
 test_that("rev_add_usrdefvar works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -155,7 +155,7 @@ test_that("rev_add_usrdefvar works", {
 })
 
 test_that("rev_set_automodel works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -177,7 +177,7 @@ test_that("rev_set_automodel works", {
 })
 
 test_that("rev_set_arima works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -201,7 +201,7 @@ test_that("rev_set_arima works", {
 })
 
 test_that("rev_set_benchmarking works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -223,7 +223,7 @@ test_that("rev_set_benchmarking works", {
 })
 
 test_that("rev_set_outlier works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -245,7 +245,7 @@ test_that("rev_set_outlier works", {
 })
 
 test_that("rev_set_tradingdays works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
@@ -267,7 +267,7 @@ test_that("rev_set_tradingdays works", {
 })
 
 test_that("rev_spec works", {
-    testthat::skip_if(
+    testthat::skip_if_not(
         condition = rjd3jars::check_java_version(silent = TRUE),
         message = "Java version is not sufficient."
     )
