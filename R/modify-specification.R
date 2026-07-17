@@ -49,7 +49,7 @@
 #' save_workspace(jws, file = path_ws)
 #'
 #' # Remove non-significant outliers (p > 0.3) from a workspace
-#' remove_non_significative_outliers(path_ws, threshold = 0.3, reference = TRUE)
+#' remove_non_significant_outliers(path_ws, threshold = 0.3, reference = TRUE)
 #' }
 #'
 #' @importFrom rjd3workspace jws_open jws_compute jws_sap sap_sai_count jsap_sai
@@ -58,7 +58,7 @@
 #' @importFrom rjd3toolkit remove_outlier
 #' @importFrom tools file_path_sans_ext
 #' @export
-remove_non_significative_outliers <- function(
+remove_non_significant_outliers <- function(
     ws_path,
     threshold = 0.3,
     reference = FALSE,
