@@ -5,11 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [Unreleased]
 
-## [1.1.0] - 2026-04-22
+## [1.1.1] - 2026-07-20
 
+### Changed
+
+* The domain spec has been renamed in reference spec.
+* The `domain` argument from `remove_non_significant_outliers()`, `retrieve_outliers()`, `retrieve_td()` have been renamed in `reference`.
+* The point spec has been renamed in result spec.
+* The `point` argument from `retrieve_outliers()`, `retrieve_td()` have been renamed in `result`.
+
+### Fixed
+
+* The function `setwd()` has been moved in `init_env()` to fix a bug when setting working directory
+
+### Deprecated
+
+* The function `remove_non_significative_outliers()` is now deprecated in favour of `remove_non_significant_outliers()`. [#78](https://github.com/InseeFr/rjd3production/issues/78)
+
+## [1.1.0] - 2026-04-22
 
 ### Added
 
@@ -20,7 +35,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * New functions to reverse-engineer a specification
 * New functions to create random specifications
 * New WS example and code to generate it
-* `init_env()` fill the .lintr, DESCRIPTION and README files 
+* `init_env()` fill the .lintr, DESCRIPTION and README files
 * `init_env()` add Git structure
 
 ### Changed
@@ -39,7 +54,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * Bug in select regressors solved (when no TD is significative)
 * If s has multiple columns, the first one will be taken into account in `create_insee_regressors()`
 
-
 ## [1.0.0] - 2025-08-29
 
 ### Added
@@ -47,6 +61,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 * New function to choose calendar regressors adapted to series
 * New function to create calendar regressors, french calendar, specification with regressors
 
-[Unreleased]: https://github.com/InseeFr/rjd3production/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/InseeFr/rjd3production/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/InseeFr/rjd3production/compare/v1.1.0...1.1.1
 [1.1.0]: https://github.com/InseeFr/rjd3production/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/InseeFr/rjd3production/releases/tag/v1.0.0
