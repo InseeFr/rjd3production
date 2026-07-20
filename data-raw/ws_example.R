@@ -12,7 +12,7 @@ jws <- jws_new(modelling_context = context_FR)
 jsap <- jws_sap_new(jws, name = "ABS")
 
 for (id_series in seq_len(ncol(ABS))) {
-    # Outliers - domain
+    # Outliers - reference
     nb_out <- sample.int(10L, size = 1L)
     out_date <- paste(
         sample(1983L:2017L, size = nb_out, replace = TRUE),

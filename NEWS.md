@@ -8,8 +8,23 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [1.1.0] - 2026-04-22
+### Changed
 
+* The domain spec has been renamed in reference spec.
+* The `domain` argument from `remove_non_significant_outliers()`, `retrieve_outliers()`, `retrieve_td()` have been renamed in `reference`.
+* The point spec has been renamed in result spec.
+* The `point` argument from `retrieve_outliers()`, `retrieve_td()` have been renamed in `result`.
+
+### Fixed
+
+* The function `setwd()` has been moved in `init_env()` to fix a bug when setting working directory
+
+### Deprecated
+
+* The function `remove_non_significative_outliers()` is now deprecated in favour of `remove_non_significant_outliers()`. [#78](https://github.com/InseeFr/rjd3production/issues/78)
+
+
+## [1.1.0] - 2026-04-22
 
 ### Added
 
