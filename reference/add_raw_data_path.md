@@ -47,6 +47,7 @@ temporary data path.
 ## Examples
 
 ``` r
+
 library("rjd3workspace")
 library("rjd3x13")
 #> 

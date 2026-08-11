@@ -48,15 +48,16 @@ A `data.frame` with columns:
 ## Details
 
 `x` can be a Java SAI object, typically obtained via
-[`rjd3workspace::jsap_sai()`](https://rjdverse.github.io/rjd3workspace/reference/jws_sap.html)
+[`jsap_sai()`](https://rjdverse.github.io/rjd3workspace/reference/jws_sap.html)
 after opening and computing a workspace with
-[`rjd3workspace::jws_open()`](https://rjdverse.github.io/rjd3workspace/reference/jws_open.html)
+[`jws_open()`](https://rjdverse.github.io/rjd3workspace/reference/jws_open.html)
 and
-[`rjd3workspace::jws_compute()`](https://rjdverse.github.io/rjd3workspace/reference/jws_compute.html).
+[`jws_compute()`](https://rjdverse.github.io/rjd3workspace/reference/jws_compute.html).
 
 ## Examples
 
 ``` r
+
 library("rjd3toolkit")
 library("rjd3workspace")
 
@@ -68,6 +69,7 @@ jsap <- jws_sap(jws, 1L)
 jsai <- jsap_sai(jsap, 1L)
 
 df <- get_series(jsai)
+#> Warning: NAs introduced by coercion
 head(df)
 #>            SAI series       date value
 #> 1 X0.2.09.10.M     a1 1982-04-01 460.1

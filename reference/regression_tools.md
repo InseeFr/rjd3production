@@ -20,17 +20,17 @@ import_td(path, verbose = TRUE)
 
 retrieve_outliers(
   jws,
-  domain = TRUE,
+  reference = TRUE,
   estimation = FALSE,
-  point = FALSE,
+  result = FALSE,
   verbose = TRUE
 )
 
 retrieve_td(
   jws,
-  domain = TRUE,
+  reference = TRUE,
   estimation = FALSE,
-  point = FALSE,
+  result = FALSE,
   verbose = TRUE
 )
 ```
@@ -52,7 +52,8 @@ retrieve_td(
 
 - verbose:
 
-  Boolean. Print additional informations. Default is `TRUE`.
+  Boolean indicating whether to print additional information. Default is
+  `TRUE`.
 
 - td:
 
@@ -65,9 +66,9 @@ retrieve_td(
   [character](https://rdrr.io/r/base/character.html) Path to a YAML file
   to read or write a table.
 
-- domain:
+- reference:
 
-  Boolean indicating if outliers should be extracted from the domain
+  Boolean indicating if outliers should be extracted from the reference
   specification.
 
 - estimation:
@@ -75,9 +76,9 @@ retrieve_td(
   Boolean indicating if outliers should be extracted from the estimation
   specification.
 
-- point:
+- result:
 
-  Boolean indicating if outliers should be extracted from the point
+  Boolean indicating if outliers should be extracted from the result
   specification.
 
 ## Value
@@ -148,13 +149,14 @@ The assignment functions (`assign_XXX()`) modify the **first
 SA-Processing** of the workspace.
 
 Currently, regression information can be extracted (`retrieve_XXX()`)
-from the point, estimation or domainSpec, while the assignment step
-(`assign_XXX()`) is performed in both the domainSpec and the
-estimationSpec.
+from the resultSpec, estimationSpec or referenceSpec, while the
+assignment step (`assign_XXX()`) is performed in both the referenceSpec
+and the estimationSpec.
 
 ## Examples
 
 ``` r
+
 library("rjd3workspace")
 library("rjd3toolkit")
 # \donttest{
@@ -165,7 +167,7 @@ set_context(jws, create_insee_context(start = c(2015L, 1L)))
 ## Outliers
 
 # Read all the outliers from a workspace
-outs <- retrieve_outliers(jws, point = TRUE, domain = FALSE)
+outs <- retrieve_outliers(jws, result = TRUE, reference = FALSE)
 #> Série X0.2.09.10.M, 1/3
 #> Série X0.2.08.10.M, 2/3
 #> Série X0.2.07.10.M, 3/3
@@ -173,11 +175,11 @@ outs <- retrieve_outliers(jws, point = TRUE, domain = FALSE)
 # Export outliers
 path_outs <- tempfile(pattern = "outliers-table", fileext = ".yaml")
 export_outliers(outs, path_outs)
-#> The outliers table will be written at  /tmp/RtmpxIDxsE/outliers-table24767c55b8f.yaml 
+#> The outliers table will be written at  /tmp/RtmpSoplj9/outliers-table203d3db7012e.yaml 
 
 # Import outliers from a file
 outs2 <- import_outliers(path_outs)
-#> The outliers table will be read at  /tmp/RtmpxIDxsE/outliers-table24767c55b8f.yaml 
+#> The outliers table will be read at  /tmp/RtmpSoplj9/outliers-table203d3db7012e.yaml 
 
 # Assign the outliers to a WS
 assign_outliers(jws = jws, outliers = outs2)
@@ -197,11 +199,11 @@ td <- retrieve_td(jws)
 # Export td variables
 path_td <- tempfile(pattern = "td-table", fileext = ".yaml")
 export_td(td, path_td)
-#> The td table will be written at  /tmp/RtmpxIDxsE/td-table247668a0341e.yaml 
+#> The td table will be written at  /tmp/RtmpSoplj9/td-table203d69e42c79.yaml 
 
 # Import td variable from a file
 td2 <- import_td(path_td)
-#> The td table will be read at  /tmp/RtmpxIDxsE/td-table247668a0341e.yaml 
+#> The td table will be read at  /tmp/RtmpSoplj9/td-table203d69e42c79.yaml 
 
 # Select td
 td3 <- select_td(my_data)

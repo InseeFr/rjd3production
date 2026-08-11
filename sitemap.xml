@@ -1,8 +1,10 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://inseefr.github.io/rjd3production/404.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/articles/index.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3production/articles/process.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3production/articles/td-selection.html</loc></url>
+<url><loc>https://inseefr.github.io/rjd3production/articles/process-en.html</loc></url>
+<url><loc>https://inseefr.github.io/rjd3production/articles/process-fr.html</loc></url>
+<url><loc>https://inseefr.github.io/rjd3production/articles/td-selection-en.html</loc></url>
+<url><loc>https://inseefr.github.io/rjd3production/articles/td-selection-fr.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/authors.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/index.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/news/index.html</loc></url>
@@ -10,6 +12,7 @@
 <url><loc>https://inseefr.github.io/rjd3production/reference/compare.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/create_specs_set.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/create_ws_from_data.html</loc></url>
+<url><loc>https://inseefr.github.io/rjd3production/reference/deprecated-rjd3production.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/get_LY_info.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/get_jsai_by_name.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/get_named_variables.html</loc></url>
@@ -20,7 +23,7 @@
 <url><loc>https://inseefr.github.io/rjd3production/reference/make_ws_crunchable.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/random-spec.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/regression_tools.html</loc></url>
-<url><loc>https://inseefr.github.io/rjd3production/reference/remove_non_significative_outliers.html</loc></url>
+<url><loc>https://inseefr.github.io/rjd3production/reference/remove_non_significant_outliers.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/rjd3production-package.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/run_app.html</loc></url>
 <url><loc>https://inseefr.github.io/rjd3production/reference/select_td.html</loc></url>

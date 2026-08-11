@@ -19,7 +19,8 @@ get_LY_info(mod, verbose = TRUE)
 
 - verbose:
 
-  Boolean. Print additional informations. Default is `TRUE`.
+  Boolean indicating whether to print additional information. Default is
+  `TRUE`.
 
 - series:
 
@@ -136,7 +137,11 @@ rjd3production:::one_diagnostic(series = ABS[, 1], spec, context = my_context)
 #> 1    3 4303.737 Multiplicative 0.03630864 0.002140071
 
 # Compute diagnostics for all specs
-rjd3production:::all_diagnostics(series = ABS[, 1], specs_set = my_set, context = my_context)
+rjd3production:::all_diagnostics(
+    series = ABS[, 1],
+    specs_set = my_set,
+    context = my_context
+)
 #> Computing spec No_TD ...Done !
 #> Computing spec REG1 ...Done !
 #> Computing spec REG2 ...Done !

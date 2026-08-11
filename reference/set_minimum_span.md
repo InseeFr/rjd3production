@@ -51,6 +51,7 @@ model_span = estimation_span series_span = basic_span
 ## Examples
 
 ``` r
+
 library("rjd3toolkit")
 library("rjd3x13")
 library("rjd3workspace")

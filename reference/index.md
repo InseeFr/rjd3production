@@ -10,6 +10,8 @@
   : Creating a set of X13 specifications
 - [`create_ws_from_data()`](https://inseefr.github.io/rjd3production/reference/create_ws_from_data.md)
   : Create a Workspace from Data
+- [`remove_non_significative_outliers()`](https://inseefr.github.io/rjd3production/reference/deprecated-rjd3production.md)
+  : Deprecated functions
 - [`get_jsai_by_name()`](https://inseefr.github.io/rjd3production/reference/get_jsai_by_name.md)
   : Retrieve a SA-Item by its name
 - [`get_named_variables()`](https://inseefr.github.io/rjd3production/reference/get_named_variables.md)
@@ -36,7 +38,7 @@
   [`retrieve_outliers()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md)
   [`retrieve_td()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md)
   : Manage regression components in JDemetra+ workspaces
-- [`remove_non_significative_outliers()`](https://inseefr.github.io/rjd3production/reference/remove_non_significative_outliers.md)
+- [`remove_non_significant_outliers()`](https://inseefr.github.io/rjd3production/reference/remove_non_significant_outliers.md)
   : Remove non-significant outliers from a JDemetra+ workspace
 - [`run_app()`](https://inseefr.github.io/rjd3production/reference/run_app.md)
   : Run the Shiny comparison app

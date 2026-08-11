@@ -45,6 +45,7 @@ parameters.
 ## Examples
 
 ``` r
+
 spec_init <- rjd3x13::x13_spec("RSA3") |>
     rjd3toolkit::set_basic(type = "All") |>
     rjd3toolkit::set_automodel(enabled = FALSE)

@@ -1,6 +1,6 @@
 # Changelog
 
-## rjd3production 1.1.0.9000
+## rjd3production 1.1.1.9000
 
 All notable changes to this project will be documented in this file.
 
@@ -8,7 +8,43 @@ The format is based on [Keep a
 Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [Unreleased](https://github.com/InseeFr/rjd3production/compare/v1.1.0...HEAD)
+### [Unreleased](https://github.com/InseeFr/rjd3production/compare/v1.1.1...HEAD)
+
+#### Fixed
+
+- `retrieve_td` works now with LY as only td regressor
+  [\#91](https://github.com/InseeFr/rjd3production/issues/91)
+
+### [1.1.1](https://github.com/InseeFr/rjd3production/compare/v1.1.0...v1.1.1) - 2026-07-20
+
+#### Changed
+
+- The domain spec has been renamed in reference spec.
+- The `domain` argument from
+  [`remove_non_significant_outliers()`](https://inseefr.github.io/rjd3production/reference/remove_non_significant_outliers.md),
+  [`retrieve_outliers()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md),
+  [`retrieve_td()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md)
+  have been renamed in `reference`.
+- The point spec has been renamed in result spec.
+- The `point` argument from
+  [`retrieve_outliers()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md),
+  [`retrieve_td()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md)
+  have been renamed in `result`.
+
+#### Fixed
+
+- The function [`setwd()`](https://rdrr.io/r/base/getwd.html) has been
+  moved in
+  [`init_env()`](https://inseefr.github.io/rjd3production/reference/init_env.md)
+  to fix a bug when setting working directory
+
+#### Deprecated
+
+- The function
+  [`remove_non_significative_outliers()`](https://inseefr.github.io/rjd3production/reference/deprecated-rjd3production.md)
+  is now deprecated in favour of
+  [`remove_non_significant_outliers()`](https://inseefr.github.io/rjd3production/reference/remove_non_significant_outliers.md).
+  [\#78](https://github.com/InseeFr/rjd3production/issues/78)
 
 ### [1.1.0](https://github.com/InseeFr/rjd3production/compare/v1.0.0...v1.1.0) - 2026-04-22
 

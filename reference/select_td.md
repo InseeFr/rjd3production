@@ -49,7 +49,8 @@ select_td(series, context = NULL, ..., verbose = TRUE)
 
 - verbose:
 
-  Boolean. Print additional informations. Default is `TRUE`.
+  Boolean indicating whether to print additional information. Default is
+  `TRUE`.
 
 ## Value
 

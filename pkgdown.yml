@@ -1,10 +1,12 @@
-pandoc: 3.1.11
-pkgdown: 2.2.0
+pandoc: 3.8.3
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
-  process: process.html
-  td-selection: td-selection.html
-last_built: 2026-04-24T14:50Z
+  process-en: process-en.html
+  process-fr: process-fr.html
+  td-selection-en: td-selection-en.html
+  td-selection-fr: td-selection-fr.html
+last_built: 2026-08-11T13:06Z
 urls:
   reference: https://inseefr.github.io/rjd3production/reference
   article: https://inseefr.github.io/rjd3production/articles
