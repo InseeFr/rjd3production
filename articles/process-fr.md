@@ -1,5 +1,8 @@
 # Mise en place d’une chaîne de production
 
+    #> Installing package into '/home/runner/work/_temp/Library'
+    #> (as 'lib' is unspecified)
+
 ``` r
 
 library("rjd3production")

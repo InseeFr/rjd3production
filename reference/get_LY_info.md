@@ -126,7 +126,7 @@ my_set <- create_specs_set(context = my_context)
 
 # Extract LY info
 mod <- rjd3x13::x13(ABS[, 1], spec = "RSA3")
-rjd3production:::get_LY_info(summary(mod))
+rjd3production:::get_LY_info(mod)
 #>   LY_coeff LY_p_value
 #> 1       NA         NA
 
