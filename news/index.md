@@ -12,6 +12,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 #### Changed
 
+- `create_ws_from_data` has new arguments to personnalize the workspace:
+  context, sap_name and path
+- `create_insee_regressors` gives new names for calendar regressors :
+  “REG2_week” instead of “REG2_group1” etc.
 - [`init_env()`](https://inseefr.github.io/rjd3production/reference/init_env.md)
   creates a project with DESCRIPTION file with `Type: Project` and
   {rjd3qr} as dependency
@@ -19,6 +23,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 #### Fixed
 
+- `import_td`, `export_td` and `import_outliers`: fixed typo in error
+  message
 - [`retrieve_td()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md)
   works now with LY as only td regressor
   [\#91](https://github.com/InseeFr/rjd3production/issues/91)

@@ -70,40 +70,43 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">context_FR</span> <span class="op">&lt;-</span> <span class="fu"><a href="insee_modelling.html">create_insee_context</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">get_named_variables</span><span class="op">(</span><span class="va">context_FR</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG1.REG1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG1.week"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG2.group_1" "REG2.group_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG2.week"     "REG2.saturday"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG3.group_1" "REG3.group_2" "REG3.group_3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG3.monday"            "REG3.tuesday_to_friday" "REG3.saturday"         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG5.group_1" "REG5.group_2" "REG5.group_3" "REG5.group_4" "REG5.group_5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG5.monday"    "REG5.tuesday"   "REG5.wednesday" "REG5.thursday" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "REG5.friday"   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG6.group_1" "REG6.group_2" "REG6.group_3" "REG6.group_4" "REG6.group_5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "REG6.group_6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG6.monday"    "REG6.tuesday"   "REG6.wednesday" "REG6.thursday" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "REG6.friday"    "REG6.saturday" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $LY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "LY.LY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG1_LY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG1_LY.LY"   "REG1_LY.REG1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG1_LY.LY"        "REG1_LY.REG1_week"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG2_LY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG2_LY.LY"      "REG2_LY.group_1" "REG2_LY.group_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG2_LY.LY"       "REG2_LY.week"     "REG2_LY.saturday"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG3_LY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG3_LY.LY"      "REG3_LY.group_1" "REG3_LY.group_2" "REG3_LY.group_3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG3_LY.LY"                "REG3_LY.monday"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "REG3_LY.tuesday_to_friday" "REG3_LY.saturday"         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG5_LY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG5_LY.LY"      "REG5_LY.group_1" "REG5_LY.group_2" "REG5_LY.group_3"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "REG5_LY.group_4" "REG5_LY.group_5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG5_LY.LY"        "REG5_LY.monday"    "REG5_LY.tuesday"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "REG5_LY.wednesday" "REG5_LY.thursday"  "REG5_LY.friday"   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $REG6_LY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG6_LY.LY"      "REG6_LY.group_1" "REG6_LY.group_2" "REG6_LY.group_3"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "REG6_LY.group_4" "REG6_LY.group_5" "REG6_LY.group_6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "REG6_LY.LY"        "REG6_LY.monday"    "REG6_LY.tuesday"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "REG6_LY.wednesday" "REG6_LY.thursday"  "REG6_LY.friday"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "REG6_LY.saturday" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

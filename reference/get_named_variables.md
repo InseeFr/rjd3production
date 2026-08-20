@@ -24,39 +24,42 @@ a list with all the groups and named variables
 context_FR <- create_insee_context()
 get_named_variables(context_FR)
 #> $REG1
-#> [1] "REG1.REG1"
+#> [1] "REG1.week"
 #> 
 #> $REG2
-#> [1] "REG2.group_1" "REG2.group_2"
+#> [1] "REG2.week"     "REG2.saturday"
 #> 
 #> $REG3
-#> [1] "REG3.group_1" "REG3.group_2" "REG3.group_3"
+#> [1] "REG3.monday"            "REG3.tuesday_to_friday" "REG3.saturday"         
 #> 
 #> $REG5
-#> [1] "REG5.group_1" "REG5.group_2" "REG5.group_3" "REG5.group_4" "REG5.group_5"
+#> [1] "REG5.monday"    "REG5.tuesday"   "REG5.wednesday" "REG5.thursday" 
+#> [5] "REG5.friday"   
 #> 
 #> $REG6
-#> [1] "REG6.group_1" "REG6.group_2" "REG6.group_3" "REG6.group_4" "REG6.group_5"
-#> [6] "REG6.group_6"
+#> [1] "REG6.monday"    "REG6.tuesday"   "REG6.wednesday" "REG6.thursday" 
+#> [5] "REG6.friday"    "REG6.saturday" 
 #> 
 #> $LY
 #> [1] "LY.LY"
 #> 
 #> $REG1_LY
-#> [1] "REG1_LY.LY"   "REG1_LY.REG1"
+#> [1] "REG1_LY.LY"        "REG1_LY.REG1_week"
 #> 
 #> $REG2_LY
-#> [1] "REG2_LY.LY"      "REG2_LY.group_1" "REG2_LY.group_2"
+#> [1] "REG2_LY.LY"       "REG2_LY.week"     "REG2_LY.saturday"
 #> 
 #> $REG3_LY
-#> [1] "REG3_LY.LY"      "REG3_LY.group_1" "REG3_LY.group_2" "REG3_LY.group_3"
+#> [1] "REG3_LY.LY"                "REG3_LY.monday"           
+#> [3] "REG3_LY.tuesday_to_friday" "REG3_LY.saturday"         
 #> 
 #> $REG5_LY
-#> [1] "REG5_LY.LY"      "REG5_LY.group_1" "REG5_LY.group_2" "REG5_LY.group_3"
-#> [5] "REG5_LY.group_4" "REG5_LY.group_5"
+#> [1] "REG5_LY.LY"        "REG5_LY.monday"    "REG5_LY.tuesday"  
+#> [4] "REG5_LY.wednesday" "REG5_LY.thursday"  "REG5_LY.friday"   
 #> 
 #> $REG6_LY
-#> [1] "REG6_LY.LY"      "REG6_LY.group_1" "REG6_LY.group_2" "REG6_LY.group_3"
-#> [5] "REG6_LY.group_4" "REG6_LY.group_5" "REG6_LY.group_6"
+#> [1] "REG6_LY.LY"        "REG6_LY.monday"    "REG6_LY.tuesday"  
+#> [4] "REG6_LY.wednesday" "REG6_LY.thursday"  "REG6_LY.friday"   
+#> [7] "REG6_LY.saturday" 
 #> 
 ```

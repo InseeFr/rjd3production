@@ -165,34 +165,34 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-in"><span><span class="co"># 2. Generate regressors</span></span></span>
 <span class="r-in"><span><span class="va">regs</span> <span class="op">&lt;-</span> <span class="fu">create_insee_regressors</span><span class="op">(</span>start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">1</span><span class="op">)</span>, frequency <span class="op">=</span> <span class="fl">12</span>, length <span class="op">=</span> <span class="fl">240</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">regs</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            LY      REG1 REG2_group_1 REG2_group_2 REG3_group_1 REG3_group_2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2000 0.00 -1.500000    -4.000000   -1.0000000    0.0000000    -4.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2000 0.75  1.000000     1.000000    0.0000000    0.0000000     1.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2000 0.00  3.711127     4.219075    0.2031791    0.4063583     3.812717</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2000 0.00 -5.694195    -6.190049   -0.1983415   -1.4015207    -4.788529</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> May 2000 0.00  6.487909    10.407843    1.5679739    1.1775113     9.230332</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2000 0.00 -3.504840    -7.436869   -1.5728115   -2.1823489    -5.254520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          REG3_group_3 REG5_group_1 REG5_group_2 REG5_group_3 REG5_group_4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2000   -1.0000000    0.5000000   -0.5000000   -0.5000000   -0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2000    0.0000000    0.0000000    1.0000000    0.0000000    0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2000    0.2031791    0.3047687    0.1015896    1.1015896    1.1015896</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2000   -0.1983415   -1.3023499   -1.0991708   -1.0991708   -1.0943332</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> May 2000    1.5679739    0.3935244    1.7839869    1.7839869    1.7424234</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2000   -1.5728115   -1.3959432   -0.7864057   -0.7864057   -0.7496798</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          REG5_group_5 REG6_group_1 REG6_group_2 REG6_group_3 REG6_group_4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2000   -0.5000000    0.0000000   -1.0000000    -1.000000    -1.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2000    0.0000000    0.0000000    1.0000000     0.000000     0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2000    1.1015896    0.4063583    0.2031791     1.203179     1.203179</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2000   -1.0991708   -1.4015207   -1.1983415    -1.198342    -1.193504</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> May 2000    0.7839869    1.1775113    2.5679739     2.567974     2.526410</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2000    0.2135943   -2.1823489   -1.5728115    -1.572811    -1.536086</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          REG6_group_5 REG6_group_6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2000   -1.0000000   -1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2000    0.0000000    0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2000    1.2031791    0.2031791</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2000   -1.1983415   -0.1983415</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> May 2000    1.5679739    1.5679739</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2000   -0.5728115   -1.5728115</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            LY REG1_week REG2_week REG2_saturday REG3_monday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2000 0.00 -1.500000 -4.000000    -1.0000000   0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2000 0.75  1.000000  1.000000     0.0000000   0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2000 0.00  3.711127  4.219075     0.2031791   0.4063583</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2000 0.00 -5.694195 -6.190049    -0.1983415  -1.4015207</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> May 2000 0.00  6.487909 10.407843     1.5679739   1.1775113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2000 0.00 -3.504840 -7.436869    -1.5728115  -2.1823489</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          REG3_tuesday_to_friday REG3_saturday REG5_monday REG5_tuesday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2000              -4.000000    -1.0000000   0.5000000   -0.5000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2000               1.000000     0.0000000   0.0000000    1.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2000               3.812717     0.2031791   0.3047687    0.1015896</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2000              -4.788529    -0.1983415  -1.3023499   -1.0991708</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> May 2000               9.230332     1.5679739   0.3935244    1.7839869</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2000              -5.254520    -1.5728115  -1.3959432   -0.7864057</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          REG5_wednesday REG5_thursday REG5_friday REG6_monday REG6_tuesday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2000     -0.5000000    -0.5000000  -0.5000000   0.0000000   -1.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2000      0.0000000     0.0000000   0.0000000   0.0000000    1.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2000      1.1015896     1.1015896   1.1015896   0.4063583    0.2031791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2000     -1.0991708    -1.0943332  -1.0991708  -1.4015207   -1.1983415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> May 2000      1.7839869     1.7424234   0.7839869   1.1775113    2.5679739</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2000     -0.7864057    -0.7496798   0.2135943  -2.1823489   -1.5728115</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          REG6_wednesday REG6_thursday REG6_friday REG6_saturday</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jan 2000      -1.000000     -1.000000  -1.0000000    -1.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Feb 2000       0.000000      0.000000   0.0000000     0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mar 2000       1.203179      1.203179   1.2031791     0.2031791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Apr 2000      -1.198342     -1.193504  -1.1983415    -0.1983415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> May 2000       2.567974      2.526410   1.5679739     1.5679739</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jun 2000      -1.572811     -1.536086  -0.5728115    -1.5728115</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 3. Organize into standard sets</span></span></span>
 <span class="r-in"><span><span class="va">sets</span> <span class="op">&lt;-</span> <span class="fu">create_insee_regressors_sets</span><span class="op">(</span>start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">1</span><span class="op">)</span>, frequency <span class="op">=</span> <span class="fl">12</span>, length <span class="op">=</span> <span class="fl">240</span><span class="op">)</span></span></span>
@@ -223,7 +223,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG1$REG1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG1$week</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Jan          Feb          Mar          Apr          May</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.500000000  1.000000000  3.711127004 -5.694195409  6.487908640</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  2.000000000  0.000000000  0.211127004 -2.194195409  2.987908640</span>
@@ -290,7 +290,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG2$group_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG2$week</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -4.0000000  1.0000000  4.2190749 -6.1900493 10.4078434 -7.4368690</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  2.0000000  0.0000000  3.2190749 -5.1900493  4.4078434 -2.4368690</span>
@@ -334,7 +334,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -3.0000000  2.0000000 -5.0000000  3.0000000  6.0000000 -5.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  8.0000000  1.0000000 -4.0000000  3.0000000 -1.0000000 -4.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG2$group_2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG2$saturday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  0.2031791 -0.1983415  1.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1983415  0.5679739  0.4271885</span>
@@ -380,7 +380,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3$group_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3$monday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000  0.0000000  0.0000000  0.4063583 -1.4015207  1.1775113 -2.1823489</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  0.4063583 -0.4015207  1.1775113 -1.1823489</span>
@@ -424,7 +424,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.0000000  0.0000000 -1.0000000  1.0000000  1.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  2.0000000  0.0000000  0.0000000  0.0000000 -1.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3$group_2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3$tuesday_to_friday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -4.0000000  1.0000000  3.8127166 -4.7885286  9.2303321 -5.2545200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  2.0000000  0.0000000  2.8127166 -4.7885286  3.2303321 -1.2545200</span>
@@ -468,7 +468,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -3.0000000  2.0000000 -4.0000000  2.0000000  5.0000000 -5.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  6.0000000  1.0000000 -4.0000000  3.0000000  0.0000000 -4.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3$group_3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3$saturday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  0.2031791 -0.1983415  1.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1983415  0.5679739  0.4271885</span>
@@ -514,7 +514,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$group_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$monday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000  0.5000000  0.0000000  0.3047687 -1.3023499  0.3935244 -1.3959432</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000 -0.1952313  0.1976501  0.8935244 -1.3959432</span>
@@ -558,7 +558,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  1.0000000  0.0000000 -1.0000000  1.0000000  0.5000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.5000000 -0.5000000  0.5000000  0.0000000 -1.5000000  0.5000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$group_2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$tuesday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Jan         Feb         Mar         Apr         May         Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -0.50000000  1.00000000  0.10158957 -1.09917077  1.78398695 -0.78640575</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  1.00000000  0.00000000 -0.39841043 -0.59917077 -0.71601305 -0.78640575</span>
@@ -602,7 +602,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  1.00000000  0.00000000 -1.00000000  1.00000000  0.50000000 -2.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.50000000 -0.50000000 -0.50000000  1.00000000 -0.50000000  0.50000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$group_3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$wednesday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Jan         Feb         Mar         Apr         May         Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -0.50000000  0.00000000  1.10158957 -1.09917077  1.78398695 -0.78640575</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  1.00000000  0.00000000 -0.39841043 -0.59917077  1.28398695 -0.78640575</span>
@@ -646,7 +646,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.00000000  0.00000000 -1.00000000  1.00000000  0.50000000 -1.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.50000000 -0.50000000 -0.50000000  1.00000000 -0.50000000 -1.50000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$group_4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$thursday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Jan         Feb         Mar         Apr         May         Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -0.50000000  0.00000000  1.10158957 -1.09433317  1.74242341 -0.74967981</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.00000000  0.00000000  0.60158957 -0.59433317  1.24242341 -0.74967981</span>
@@ -690,7 +690,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.00000000  1.00000000 -1.00000000  0.00000000  0.50000000 -1.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  0.50000000 -0.50000000 -0.50000000  1.00000000 -0.50000000 -0.50000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$group_5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5$friday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Jan         Feb         Mar         Apr         May         Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -0.50000000  0.00000000  1.10158957 -1.09917077  0.78398695  0.21359425</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.00000000  0.00000000  0.60158957 -0.59917077  0.28398695  0.21359425</span>
@@ -736,7 +736,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$group_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$monday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000  0.0000000  0.0000000  0.4063583 -1.4015207  1.1775113 -2.1823489</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  0.4063583 -0.4015207  1.1775113 -1.1823489</span>
@@ -780,7 +780,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.0000000  0.0000000 -1.0000000  1.0000000  1.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  2.0000000  0.0000000  0.0000000  0.0000000 -1.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$group_2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$tuesday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  1.0000000  0.2031791 -1.1983415  2.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  1.0000000  0.0000000  0.2031791 -1.1983415 -0.4320261 -0.5728115</span>
@@ -824,7 +824,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.0000000  0.0000000 -1.0000000  1.0000000  1.0000000 -2.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  2.0000000  0.0000000 -1.0000000  1.0000000  0.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$group_3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$wednesday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  1.2031791 -1.1983415  2.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  1.0000000  0.0000000  0.2031791 -1.1983415  1.5679739 -0.5728115</span>
@@ -868,7 +868,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -1.0000000  0.0000000 -1.0000000  1.0000000  1.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  2.0000000  0.0000000 -1.0000000  1.0000000  0.0000000 -2.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$group_4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$thursday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  1.2031791 -1.1935039  2.5264104 -1.5360856</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1935039  1.5264104 -0.5360856</span>
@@ -912,7 +912,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -1.0000000  1.0000000 -1.0000000  0.0000000  1.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.0000000  0.0000000 -1.0000000  1.0000000  0.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$group_5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$friday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  1.2031791 -1.1983415  1.5679739 -0.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1983415  0.5679739  0.4271885</span>
@@ -956,7 +956,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -1.0000000  1.0000000 -1.0000000  0.0000000  2.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.0000000  1.0000000 -1.0000000  0.0000000  0.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$group_6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6$saturday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  0.2031791 -0.1983415  1.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1983415  0.5679739  0.4271885</span>
@@ -1050,7 +1050,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG1_LY$REG1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG1_LY$REG1_week</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Jan          Feb          Mar          Apr          May</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.500000000  1.000000000  3.711127004 -5.694195409  6.487908640</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  2.000000000  0.000000000  0.211127004 -2.194195409  2.987908640</span>
@@ -1140,7 +1140,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG2_LY$group_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG2_LY$week</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -4.0000000  1.0000000  4.2190749 -6.1900493 10.4078434 -7.4368690</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  2.0000000  0.0000000  3.2190749 -5.1900493  4.4078434 -2.4368690</span>
@@ -1184,7 +1184,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -3.0000000  2.0000000 -5.0000000  3.0000000  6.0000000 -5.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  8.0000000  1.0000000 -4.0000000  3.0000000 -1.0000000 -4.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG2_LY$group_2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG2_LY$saturday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  0.2031791 -0.1983415  1.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1983415  0.5679739  0.4271885</span>
@@ -1253,7 +1253,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3_LY$group_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3_LY$monday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000  0.0000000  0.0000000  0.4063583 -1.4015207  1.1775113 -2.1823489</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  0.4063583 -0.4015207  1.1775113 -1.1823489</span>
@@ -1297,7 +1297,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.0000000  0.0000000 -1.0000000  1.0000000  1.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  2.0000000  0.0000000  0.0000000  0.0000000 -1.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3_LY$group_2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3_LY$tuesday_to_friday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -4.0000000  1.0000000  3.8127166 -4.7885286  9.2303321 -5.2545200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  2.0000000  0.0000000  2.8127166 -4.7885286  3.2303321 -1.2545200</span>
@@ -1341,7 +1341,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -3.0000000  2.0000000 -4.0000000  2.0000000  5.0000000 -5.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  6.0000000  1.0000000 -4.0000000  3.0000000  0.0000000 -4.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3_LY$group_3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG3_LY$saturday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  0.2031791 -0.1983415  1.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1983415  0.5679739  0.4271885</span>
@@ -1410,7 +1410,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$group_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$monday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000  0.5000000  0.0000000  0.3047687 -1.3023499  0.3935244 -1.3959432</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000 -0.1952313  0.1976501  0.8935244 -1.3959432</span>
@@ -1454,7 +1454,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  1.0000000  0.0000000 -1.0000000  1.0000000  0.5000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.5000000 -0.5000000  0.5000000  0.0000000 -1.5000000  0.5000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$group_2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$tuesday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Jan         Feb         Mar         Apr         May         Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -0.50000000  1.00000000  0.10158957 -1.09917077  1.78398695 -0.78640575</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  1.00000000  0.00000000 -0.39841043 -0.59917077 -0.71601305 -0.78640575</span>
@@ -1498,7 +1498,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  1.00000000  0.00000000 -1.00000000  1.00000000  0.50000000 -2.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.50000000 -0.50000000 -0.50000000  1.00000000 -0.50000000  0.50000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$group_3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$wednesday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Jan         Feb         Mar         Apr         May         Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -0.50000000  0.00000000  1.10158957 -1.09917077  1.78398695 -0.78640575</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  1.00000000  0.00000000 -0.39841043 -0.59917077  1.28398695 -0.78640575</span>
@@ -1542,7 +1542,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.00000000  0.00000000 -1.00000000  1.00000000  0.50000000 -1.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.50000000 -0.50000000 -0.50000000  1.00000000 -0.50000000 -1.50000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$group_4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$thursday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Jan         Feb         Mar         Apr         May         Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -0.50000000  0.00000000  1.10158957 -1.09433317  1.74242341 -0.74967981</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.00000000  0.00000000  0.60158957 -0.59433317  1.24242341 -0.74967981</span>
@@ -1586,7 +1586,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.00000000  1.00000000 -1.00000000  0.00000000  0.50000000 -1.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  0.50000000 -0.50000000 -0.50000000  1.00000000 -0.50000000 -0.50000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$group_5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG5_LY$friday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Jan         Feb         Mar         Apr         May         Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -0.50000000  0.00000000  1.10158957 -1.09917077  0.78398695  0.21359425</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.00000000  0.00000000  0.60158957 -0.59917077  0.28398695  0.21359425</span>
@@ -1655,7 +1655,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  0.00 -0.25  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00  0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$group_1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$monday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000  0.0000000  0.0000000  0.4063583 -1.4015207  1.1775113 -2.1823489</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  0.4063583 -0.4015207  1.1775113 -1.1823489</span>
@@ -1699,7 +1699,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.0000000  0.0000000 -1.0000000  1.0000000  1.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  2.0000000  0.0000000  0.0000000  0.0000000 -1.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$group_2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$tuesday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  1.0000000  0.2031791 -1.1983415  2.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  1.0000000  0.0000000  0.2031791 -1.1983415 -0.4320261 -0.5728115</span>
@@ -1743,7 +1743,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018  0.0000000  0.0000000 -1.0000000  1.0000000  1.0000000 -2.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  2.0000000  0.0000000 -1.0000000  1.0000000  0.0000000  0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$group_3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$wednesday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  1.2031791 -1.1983415  2.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  1.0000000  0.0000000  0.2031791 -1.1983415  1.5679739 -0.5728115</span>
@@ -1787,7 +1787,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -1.0000000  0.0000000 -1.0000000  1.0000000  1.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  2.0000000  0.0000000 -1.0000000  1.0000000  0.0000000 -2.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$group_4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$thursday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  1.2031791 -1.1935039  2.5264104 -1.5360856</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1935039  1.5264104 -0.5360856</span>
@@ -1831,7 +1831,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -1.0000000  1.0000000 -1.0000000  0.0000000  1.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.0000000  0.0000000 -1.0000000  1.0000000  0.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$group_5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$friday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  1.2031791 -1.1983415  1.5679739 -0.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1983415  0.5679739  0.4271885</span>
@@ -1875,7 +1875,7 @@ that can be used directly with <code>rjd3toolkit</code>.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018 -1.0000000  1.0000000 -1.0000000  0.0000000  2.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2019  1.0000000  1.0000000 -1.0000000  0.0000000  0.0000000 -1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$group_6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $variables$REG6_LY$saturday</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Jan        Feb        Mar        Apr        May        Jun</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2000 -1.0000000  0.0000000  0.2031791 -0.1983415  1.5679739 -1.5728115</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2001  0.0000000  0.0000000  1.2031791 -1.1983415  0.5679739  0.4271885</span>

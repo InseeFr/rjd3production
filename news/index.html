@@ -51,12 +51,18 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 <div class="section level4">
 <h4 id="changed-1-1-1-9000">Changed<a class="anchor" aria-label="anchor" href="#changed-1-1-1-9000"></a></h4>
 <ul><li>
+<code>create_ws_from_data</code> has new arguments to personnalize the workspace: context, sap_name and path</li>
+<li>
+<code>create_insee_regressors</code> gives new names for calendar regressors : “REG2_week” instead of “REG2_group1” etc.</li>
+<li>
 <code><a href="../reference/init_env.html">init_env()</a></code> creates a project with DESCRIPTION file with <code>Type: Project</code> and {rjd3qr} as dependency <a href="https://github.com/InseeFr/rjd3production/issues/83" class="external-link">#83</a>
 </li>
 </ul></div>
 <div class="section level4">
 <h4 id="fixed-1-1-1-9000">Fixed<a class="anchor" aria-label="anchor" href="#fixed-1-1-1-9000"></a></h4>
 <ul><li>
+<code>import_td</code>, <code>export_td</code> and <code>import_outliers</code>: fixed typo in error message</li>
+<li>
 <code><a href="../reference/regression_tools.html">retrieve_td()</a></code> works now with LY as only td regressor <a href="https://github.com/InseeFr/rjd3production/issues/91" class="external-link">#91</a>
 </li>
 <li>

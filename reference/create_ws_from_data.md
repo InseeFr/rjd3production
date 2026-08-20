@@ -9,7 +9,13 @@ a newly created Seasonal Adjustment Processing (SAP).
 ## Usage
 
 ``` r
-create_ws_from_data(x, spec = rjd3x13::x13_spec())
+create_ws_from_data(
+  x,
+  spec = rjd3x13::x13_spec(),
+  context = NULL,
+  sap_name = "SAP1",
+  path = NULL
+)
 ```
 
 ## Arguments
@@ -24,6 +30,19 @@ create_ws_from_data(x, spec = rjd3x13::x13_spec())
 
   A JDemetra+ specification. Defaults to
   [`rjd3x13::x13_spec()`](https://rjdverse.github.io/rjd3x13/reference/x13_spec.html).
+
+- context:
+
+  A modelling context for a Workspace. Defaults to NULL.
+
+- sap_name:
+
+  Name of the SA-Processing created. Defaults to "SAP1"
+
+- path:
+
+  Path leading to an input data file with metadata. If not NULL, the ts
+  metadata are completed with the input file.
 
 ## Value
 
