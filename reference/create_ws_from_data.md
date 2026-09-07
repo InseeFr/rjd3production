@@ -14,7 +14,8 @@ create_ws_from_data(
   spec = rjd3x13::x13_spec(),
   context = NULL,
   sap_name = "SAP1",
-  path = NULL
+  path = NULL,
+  name_series = "my_series"
 )
 ```
 
@@ -43,6 +44,11 @@ create_ws_from_data(
 
   Path leading to an input data file with metadata. If not NULL, the ts
   metadata are completed with the input file.
+
+- name_series:
+
+  Name of the series. Only used with univariate time series (with no
+  colnames).
 
 ## Value
 

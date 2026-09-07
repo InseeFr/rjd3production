@@ -76,11 +76,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 
 
     <div class="cell">
-<pre><code><span><span class="co">#&gt; Installing package into '/home/runner/work/_temp/Library'</span></span>
-<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span></code></pre>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/InseeFr/rjd3production" class="external-link">"rjd3production"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>The {rjd3production} package is useful for setting up a production pipeline for seasonally adjusted time series.</p>
@@ -97,13 +93,13 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 <li>a Git project structure</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path_project</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"my_sa_project"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/init_env.html">init_env</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">path_project</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>In this tutorial, we will create a production pipeline using the ABS dataset from the {rjd3toolkit} package. The dataset is also available as the file <code>ABS.csv</code> at /home/runner/work/_temp/Library/rjd3providers/extdata/ABS.csv in the {rjd3providers} package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3toolkit" class="external-link">"rjd3toolkit"</a></span><span class="op">)</span></span>
 <span><span class="va">path_ABS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ABS.csv"</span>, package <span class="op">=</span> <span class="st">"rjd3providers"</span><span class="op">)</span></span>
 <span><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="va">ABS</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">3L</span><span class="op">)</span><span class="op">]</span></span>
@@ -114,7 +110,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 <p>If our time series are sensitive to calendar effects, we can correct for these effects using calendar regressors.</p>
 <p>To do this, refer to the <code>td-selection</code> vignette for guidance on how to handle these effects and how to generate the <code>td</code> table containing our selected custom calendar regressors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">td</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_td.html">select_td</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Série 0.2.09.10.M en cours... 1/3 </span></span>
@@ -163,25 +159,25 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 </h2>
 <p>We will use the {rjd3workspace} package for functions relating to the creation and manipulation of workspaces.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3workspace" class="external-link">"rjd3workspace"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>To create a new workspace, you can either create it manually from scratch or from a dataset. If you are using external variables, calendar regressors or a custom calendar, don’t forget to place all of these within a modelling context.</p>
 <p>At INSEE, we use the <code><a href="../reference/insee_modelling.html">create_insee_context()</a></code> function to create our contexts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_context</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/insee_modelling.html">create_insee_context</a></span><span class="op">(</span>s <span class="op">=</span> <span class="va">my_data</span><span class="op">[</span>, <span class="fl">1L</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>We will use the {rjd3x13} package to create the X13 specs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3x13" class="external-link">"rjd3x13"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <ul>
 <li>Create a workspace from scratch</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">jws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_new.html" class="external-link">jws_new</a></span><span class="op">(</span>modelling_context <span class="op">=</span> <span class="va">my_context</span><span class="op">)</span></span>
 <span><span class="va">jsap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_new.html" class="external-link">jws_sap_new</a></span><span class="op">(</span><span class="va">jws</span>, <span class="st">"Nouveau SAP"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/add_sa_item.html" class="external-link">add_sa_item</a></span><span class="op">(</span>jsap <span class="op">=</span> <span class="va">jsap</span>, name <span class="op">=</span> <span class="st">"Première série"</span>, x <span class="op">=</span> <span class="va">my_data</span><span class="op">[</span>, <span class="fl">1L</span><span class="op">]</span>, spec <span class="op">=</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3x13/reference/x13_spec.html" class="external-link">x13_spec</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -192,13 +188,13 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 <li>Create a workspace from a dataset</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">jws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_ws_from_data.html">create_ws_from_data</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/set_context.html" class="external-link">set_context</a></span><span class="op">(</span><span class="va">jws</span>, <span class="fu"><a href="../reference/insee_modelling.html">create_insee_context</a></span><span class="op">(</span>s <span class="op">=</span> <span class="va">my_data</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>If we have any, we need to assign calendar regressors to each series:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_compute.html" class="external-link">jws_compute</a></span><span class="op">(</span><span class="va">jws</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/regression_tools.html">assign_td</a></span><span class="op">(</span>td <span class="op">=</span> <span class="va">td</span>, jws <span class="op">=</span> <span class="va">jws</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Série 0.2.09.10.M, 1/3</span></span>
@@ -207,12 +203,12 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 </div>
 <p>Don’t forget to update the metadata for our workspace with the path to our raw data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/add_raw_data_path.html">add_raw_data_path</a></span><span class="op">(</span><span class="va">jws</span>, <span class="va">path_ABS</span>, delimiter <span class="op">=</span> <span class="st">"COMMA"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>At last, we can save our workspace!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path_ws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">path_project</span>, <span class="st">"Workspaces"</span>, <span class="st">"workspace_travail"</span>, <span class="st">"my_ws.xml"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/save_workspace.html" class="external-link">save_workspace</a></span><span class="op">(</span><span class="va">jws</span>, <span class="va">path_ws</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>

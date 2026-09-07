@@ -76,20 +76,14 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 
 
     <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Installing package into '/home/runner/work/_temp/Library'
-(as 'lib' is unspecified)</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/InseeFr/rjd3production" class="external-link">"rjd3production"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <section class="level3"><h3 id="sélection-des-régresseurs">Sélection des régresseurs<a class="anchor" aria-label="anchor" href="#s%C3%A9lection-des-r%C3%A9gresseurs"></a>
 </h3>
 <p>Pour sélectionner un jeu de régresseurs de calendrier, on utilise la fonction <code><a href="../reference/select_td.html">select_td()</a></code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3toolkit" class="external-link">"rjd3toolkit"</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'rjd3toolkit'</span></span>
@@ -149,12 +143,12 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 </h3>
 <p>Une fois les régresseurs sélectionnées, vous pouvez exporter le tableau au format <code>.yaml</code> et le réimporter ultérieurement :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">path_td</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"td-table"</span>, fileext <span class="op">=</span> <span class="st">".yaml"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/regression_tools.html">export_td</a></span><span class="op">(</span><span class="va">td_table</span>, <span class="va">path_td</span><span class="op">)</span></span>
-<span><span class="co">#&gt; The td table will be written at  /tmp/RtmpIs51mP/td-table2499365319f3.yaml</span></span>
+<span><span class="co">#&gt; The td table will be written at /tmp/Rtmpz92SAa/td-table235bde12b8c.yaml</span></span>
 <span><span class="va">td_table2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/regression_tools.html">import_td</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">path_td</span><span class="op">)</span></span>
-<span><span class="co">#&gt; The td table will be read at  /tmp/RtmpIs51mP/td-table2499365319f3.yaml</span></span>
+<span><span class="co">#&gt; The td table will be read at  /tmp/Rtmpz92SAa/td-table235bde12b8c.yaml</span></span>
 <span><span class="fu">waldo</span><span class="fu">::</span><span class="fu"><a href="https://waldo.r-lib.org/reference/compare.html" class="external-link">compare</a></span><span class="op">(</span><span class="va">td_table</span>, <span class="va">td_table2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ No differences</span></span></code></pre></div>
 </div>
@@ -162,7 +156,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 </h3>
 <p>Enfin, pour affecter des régresseurs de calendrier à un workspace, vous pouvez utiliser la fonction <code><a href="../reference/regression_tools.html">assign_td()</a></code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rjdverse/rjd3workspace" class="external-link">"rjd3workspace"</a></span><span class="op">)</span></span>
 <span><span class="va">my_ws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3workspace/reference/jws_open.html" class="external-link">jws_open</a></span><span class="op">(</span><span class="st">"my_workspace"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/regression_tools.html">assign_td</a></span><span class="op">(</span><span class="va">td_table</span>, <span class="va">my_ws</span><span class="op">)</span></span></code></pre></div>
@@ -172,7 +166,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 <p>Par défaut, les régresseurs proposés sont ceux utilisés par l’INSEE (et dans le SSP). Pour utiliser des ensembles de régresseurs personnalisés, il suffit de créer un <a href="https://rjdverse.github.io/rjd3toolkit/reference/modelling_context.html" class="external-link">modelling context</a> contenant autant de variables qu’il y a de jeux de régresseurs et un jeu de régresseurs par variable.</p>
 <p>Par exemple, pour les jeux de régresseurs de l’INSEE, voici la structure du modelling context correspondant :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/insee_modelling.html">create_insee_context</a></span><span class="op">(</span><span class="op">)</span>, max.level <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 2</span></span>
@@ -200,7 +194,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 </ul>
 <p>Nous créons ensuite nos jeux de régresseurs et définissons le modelling context :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">series_example</span> <span class="op">&lt;-</span> <span class="va">ABS</span><span class="op">[</span>, <span class="fl">1L</span><span class="op">]</span></span>
 <span></span>
 <span><span class="va">TD2_TB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rjdverse.github.io/rjd3toolkit/reference/calendar_td.html" class="external-link">calendar_td</a></span><span class="op">(</span></span>
@@ -231,7 +225,7 @@ mermaid.initialize({ startOnLoad: true }); }); </script>
 </div>
 <p>Nous pouvons désormais utiliser notre contexte pour sélectionner les régresseurs de calendrier pour chaque séries :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_td_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_td.html">select_td</a></span><span class="op">(</span><span class="va">ABS</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">3L</span><span class="op">)</span><span class="op">]</span>, context <span class="op">=</span> <span class="va">my_context</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Série X0.2.09.10.M en cours... 1/3 </span></span>

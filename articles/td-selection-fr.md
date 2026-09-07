@@ -1,8 +1,5 @@
 # Selection des régresseurs de calendriers
 
-    Installing package into '/home/runner/work/_temp/Library'
-    (as 'lib' is unspecified)
-
 ``` r
 
 library("rjd3production")
@@ -82,9 +79,9 @@ au format `.yaml` et le réimporter ultérieurement :
 
 path_td <- tempfile(pattern = "td-table", fileext = ".yaml")
 export_td(td_table, path_td)
-#> The td table will be written at  /tmp/RtmpIs51mP/td-table2499365319f3.yaml
+#> The td table will be written at /tmp/Rtmpz92SAa/td-table235bde12b8c.yaml
 td_table2 <- import_td(path = path_td)
-#> The td table will be read at  /tmp/RtmpIs51mP/td-table2499365319f3.yaml
+#> The td table will be read at  /tmp/Rtmpz92SAa/td-table235bde12b8c.yaml
 waldo::compare(td_table, td_table2)
 #> ✔ No differences
 ```

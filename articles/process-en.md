@@ -1,8 +1,5 @@
 # Setup a production chain with JDemetra+
 
-    #> Installing package into '/home/runner/work/_temp/Library'
-    #> (as 'lib' is unspecified)
-
 ``` r
 
 library("rjd3production")

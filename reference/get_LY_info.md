@@ -81,6 +81,12 @@ get_LY_info(mod, verbose = TRUE)
   :   Other arguments accepted by
       [`create_specs_set()`](https://inseefr.github.io/rjd3production/reference/create_specs_set.md).
 
+- thresholds:
+
+  The thresholds used to compare the different model and set a grade to
+  an adjustment based on the td residuals p-value and leap year
+  significancy.
+
 ## Value
 
 - `get_LY_info()` : A data.frame with `LY_coeff` and `LY_p_value`.
@@ -134,7 +140,7 @@ rjd3production:::get_LY_info(mod)
 spec <- my_set[[8L]]
 rjd3production:::one_diagnostic(series = ABS[, 1], spec, context = my_context)
 #>   note     aicc           mode   LY_coeff  LY_p_value
-#> 1    3 4303.737 Multiplicative 0.03630864 0.002140071
+#> 1   15 4303.737 Multiplicative 0.03630864 0.002140071
 
 # Compute diagnostics for all specs
 rjd3production:::all_diagnostics(
@@ -155,17 +161,17 @@ rjd3production:::all_diagnostics(
 #> Computing spec REG5_LY ...Done !
 #> Computing spec REG6_LY ...Done !
 #>            regs note     aicc           mode   LY_coeff   LY_p_value
-#> No_TD     No_TD    3 4309.092 Multiplicative         NA           NA
-#> REG1       REG1    3 4311.162 Multiplicative         NA           NA
-#> REG2       REG2    3 4307.333 Multiplicative         NA           NA
-#> REG3       REG3    3 4254.210 Multiplicative         NA           NA
-#> REG5       REG5    3 4252.708 Multiplicative         NA           NA
+#> No_TD     No_TD   15 4309.092 Multiplicative         NA           NA
+#> REG1       REG1   15 4311.162 Multiplicative         NA           NA
+#> REG2       REG2   15 4307.333 Multiplicative         NA           NA
+#> REG3       REG3   15 4254.210 Multiplicative         NA           NA
+#> REG5       REG5   15 4252.708 Multiplicative         NA           NA
 #> REG6       REG6    3 4232.844 Multiplicative         NA           NA
-#> LY           LY    3 4301.656 Multiplicative 0.03633466 0.0021077834
-#> REG1_LY REG1_LY    3 4303.737 Multiplicative 0.03630864 0.0021400711
-#> REG2_LY REG2_LY    3 4299.263 Multiplicative 0.03721476 0.0015120248
-#> REG3_LY REG3_LY    3 4233.953 Multiplicative 0.04192377 0.0001223889
-#> REG5_LY REG5_LY    3 4242.804 Multiplicative 0.03814784 0.0005888958
+#> LY           LY   15 4301.656 Multiplicative 0.03633466 0.0021077834
+#> REG1_LY REG1_LY   15 4303.737 Multiplicative 0.03630864 0.0021400711
+#> REG2_LY REG2_LY   15 4299.263 Multiplicative 0.03721476 0.0015120248
+#> REG3_LY REG3_LY   15 4233.953 Multiplicative 0.04192377 0.0001223889
+#> REG5_LY REG5_LY   15 4242.804 Multiplicative 0.03814784 0.0005888958
 #> REG6_LY REG6_LY    3 4221.123 Multiplicative 0.03900895 0.0002281020
 
 # Check whether LY should be removed

@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Tanguy Barthelemy**. Author, maintainer, artist.
+- **Tanguy Barthelemy**. Author, maintainer, artist, copyright holder.
 
 ## Citation
 

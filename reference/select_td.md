@@ -8,7 +8,13 @@ the selected set of regressors for each series.
 ## Usage
 
 ``` r
-select_td(series, context = NULL, ..., verbose = TRUE)
+select_td(
+  series,
+  context = NULL,
+  ...,
+  thresholds = getOption("rjd3production.thresholds"),
+  verbose = TRUE
+)
 ```
 
 ## Arguments
@@ -46,6 +52,12 @@ select_td(series, context = NULL, ..., verbose = TRUE)
 
   :   Other arguments accepted by
       [`create_specs_set()`](https://inseefr.github.io/rjd3production/reference/create_specs_set.md).
+
+- thresholds:
+
+  The thresholds used to compare the different model and set a grade to
+  an adjustment based on the td residuals p-value and leap year
+  significancy.
 
 - verbose:
 
