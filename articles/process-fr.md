@@ -158,7 +158,7 @@ chaque série :
 ``` r
 
 jws_compute(jws)
-assign_td(td = td, jws = jws)
+assign_td(td = td, jws = jws, spec_type = c("Estimation", "Reference"))
 #> Série 0.2.09.10.M, 1/3
 #> Série 0.2.08.10.M, 2/3
 #> Série 0.2.07.10.M, 3/3

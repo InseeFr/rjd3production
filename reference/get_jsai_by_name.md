@@ -41,7 +41,6 @@ jsap <- jws_sap(jws, 1L)
 
 jsai <- get_jsai_by_name(jws, "X0.2.09.10.M")
 df <- get_series(jsai)
-#> Warning: NAs introduced by coercion
 head(df)
 #>            SAI series       date value
 #> 1 X0.2.09.10.M     a1 1982-04-01 460.1

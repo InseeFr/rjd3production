@@ -8,5 +8,5 @@
   production](https://inseefr.github.io/rjd3production/articles/process-fr.md):
 - [Selection of calendar td
   regressors](https://inseefr.github.io/rjd3production/articles/td-selection-en.md):
-- [Selection des régresseurs de
+- [Sélection des régresseurs de
   calendriers](https://inseefr.github.io/rjd3production/articles/td-selection-fr.md):

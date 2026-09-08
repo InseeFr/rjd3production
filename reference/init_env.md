@@ -33,46 +33,8 @@ The project path invisibly.
 ``` r
 project_path <- tempfile(pattern = "my-project")
 
-# \donttest{
+if (interactive()) {
 # Create a new project
 init_env(path = project_path)
-#> ✔ Setting active project to "/tmp/RtmpX5VRsV/my-project20067e72d9b0".
-#> ✔ Creating R/.
-#> ✔ Writing my-project20067e72d9b0.Rproj.
-#> ✔ Adding ".Rproj.user" to .gitignore.
-#> ✔ Setting active project to "<no active project>".
-#> ✔ Setting active project to "/tmp/RtmpX5VRsV/my-project20067e72d9b0".
-#> ✔ Writing DESCRIPTION.
-#> Type: Project
-#> Package: my-project20067e72d9b0
-#> Title: What the Package Does (One Line, Title Case)
-#> Version: 0.0.0.9000
-#> Authors@R (parsed):
-#>     * First Last <first.last@example.com> [aut, cre]
-#> Description: What the package does (one paragraph).
-#> License: `use_mit_license()`, `use_gpl3_license()` or friends to
-#>     pick a license
-#> Imports:
-#>     rjd3production,
-#>     rjd3providers,
-#>     rjd3qr,
-#>     rjd3toolkit,
-#>     rjd3workspace,
-#>     rjd3x13
-#> Suggests:
-#>     cyclocomp,
-#>     devtools,
-#>     lintr,
-#>     remotes,
-#>     rmarkdown,
-#>     usethis
-#> Encoding: UTF-8
-#> Roxygen: list(markdown = TRUE)
-#> RoxygenNote: 7.0.0
-#> ✔ Configuring init.defaultBranch as "main".
-#> ℹ Remember: this only affects repos you create in the future!
-#> ✔ Initialising Git repo.
-#> ✔ Adding ".Rhistory", ".RData", ".httr-oauth", ".DS_Store", and ".quarto" to
-#>   .gitignore.
-# }
+}
 ```

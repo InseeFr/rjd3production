@@ -6,9 +6,9 @@ regression components used in JDemetra+ workspaces.
 ## Usage
 
 ``` r
-assign_outliers(jws, outliers, verbose = TRUE)
+assign_outliers(jws, outliers, spec_type = NULL, verbose = TRUE)
 
-assign_td(jws, td, verbose = TRUE)
+assign_td(jws, td, spec_type = NULL, verbose = TRUE)
 
 export_outliers(outliers, path = NULL, verbose = TRUE)
 
@@ -18,21 +18,9 @@ export_td(td, path = NULL, verbose = TRUE)
 
 import_td(path, verbose = TRUE)
 
-retrieve_outliers(
-  jws,
-  reference = TRUE,
-  estimation = FALSE,
-  result = FALSE,
-  verbose = TRUE
-)
+retrieve_outliers(jws, spec_type = NULL, verbose = TRUE)
 
-retrieve_td(
-  jws,
-  reference = TRUE,
-  estimation = FALSE,
-  result = FALSE,
-  verbose = TRUE
-)
+retrieve_td(jws, spec_type = NULL, verbose = TRUE)
 ```
 
 ## Arguments
@@ -50,6 +38,11 @@ retrieve_td(
   created with retrieve_outliers or import_outliers. See Format section
   for more information about the format of this argument.
 
+- spec_type:
+
+  Character. Indicating the type of spec where the outliers whould be
+  extracted. Accepted values : "Reference", "Estimation" or "Result".
+
 - verbose:
 
   Boolean indicating whether to print additional information. Default is
@@ -65,21 +58,6 @@ retrieve_td(
 
   [character](https://rdrr.io/r/base/character.html) Path to a YAML file
   to read or write a table.
-
-- reference:
-
-  Boolean indicating if outliers should be extracted from the reference
-  specification.
-
-- estimation:
-
-  Boolean indicating if outliers should be extracted from the estimation
-  specification.
-
-- result:
-
-  Boolean indicating if outliers should be extracted from the result
-  specification.
 
 ## Value
 
@@ -110,7 +88,9 @@ Outliers are represented by a `data.frame` with **three columns**:
 
 - `series` : name of the series in the workspace.
 
-- `type` : type of outlier (`AO`, `LS`, `TC` or `SO`).
+- `name` : name of the outlier (by default "type date").
+
+- `type` : type of the outlier (`AO`, `LS`, `TC` or `SO`).
 
 - `date` : date of the outlier in `YYYY-MM-DD` format.
 
@@ -167,7 +147,7 @@ set_context(jws, create_insee_context(start = c(2015L, 1L)))
 ## Outliers
 
 # Read all the outliers from a workspace
-outs <- retrieve_outliers(jws, result = TRUE, reference = FALSE)
+outs <- retrieve_outliers(jws, spec_type = "Result")
 #> Série X0.2.09.10.M, 1/3
 #> Série X0.2.08.10.M, 2/3
 #> Série X0.2.07.10.M, 3/3
@@ -175,14 +155,14 @@ outs <- retrieve_outliers(jws, result = TRUE, reference = FALSE)
 # Export outliers
 path_outs <- tempfile(pattern = "outliers-table", fileext = ".yaml")
 export_outliers(outs, path_outs)
-#> The outliers table will be written at  /tmp/RtmpX5VRsV/outliers-table20062407f266.yaml 
+#> The outliers table will be written at  /tmp/Rtmp6rSrQc/outliers-table1f3d4fb36621.yaml 
 
 # Import outliers from a file
 outs2 <- import_outliers(path_outs)
-#> The outliers table will be read at  /tmp/RtmpX5VRsV/outliers-table20062407f266.yaml 
+#> The outliers table will be read at  /tmp/Rtmp6rSrQc/outliers-table1f3d4fb36621.yaml 
 
 # Assign the outliers to a WS
-assign_outliers(jws = jws, outliers = outs2)
+assign_outliers(jws = jws, outliers = outs2, spec_type = "Reference")
 #> Série X0.2.09.10.M, 1/3
 #> Série X0.2.08.10.M, 2/3
 #> Série X0.2.07.10.M, 3/3
@@ -191,7 +171,7 @@ assign_outliers(jws = jws, outliers = outs2)
 ## Trading day workflow
 
 # Read all the td variables from a workspace
-td <- retrieve_td(jws)
+td <- retrieve_td(jws, spec_type = "Estimation")
 #> Série X0.2.09.10.M, 1/3
 #> Série X0.2.08.10.M, 2/3
 #> Série X0.2.07.10.M, 3/3
@@ -199,11 +179,11 @@ td <- retrieve_td(jws)
 # Export td variables
 path_td <- tempfile(pattern = "td-table", fileext = ".yaml")
 export_td(td, path_td)
-#> The td table will be written at /tmp/RtmpX5VRsV/td-table200627bc82d2.yaml 
+#> The td table will be written at /tmp/Rtmp6rSrQc/td-table1f3d1d469f57.yaml 
 
 # Import td variable from a file
 td2 <- import_td(path_td)
-#> The td table will be read at  /tmp/RtmpX5VRsV/td-table200627bc82d2.yaml 
+#> The td table will be read at  /tmp/Rtmp6rSrQc/td-table1f3d1d469f57.yaml 
 
 # Select td
 td3 <- select_td(my_data)
@@ -251,7 +231,7 @@ td3 <- select_td(my_data)
 #> Computing spec REG6_LY ...Done !
 
 # Assign the td variables to a WS
-assign_td(jws = jws, td = td3)
+assign_td(jws = jws, td = td3, spec_type = "Estimation")
 #> Série X0.2.09.10.M, 1/3
 #> Série X0.2.08.10.M, 2/3
 #> Série X0.2.07.10.M, 3/3

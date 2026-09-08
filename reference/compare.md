@@ -57,15 +57,13 @@ save_workspace(jws_rsa3, file = path_rsa3)
 save_workspace(jws_rsa5, file = path_rsa5)
 
 df <- compare(path_rsa3, path_rsa5, series_names = "X0.2.09.10.M")
-#> Warning: NAs introduced by coercion
-#> Warning: NAs introduced by coercion
 head(df)
 #>                    ws          SAI series       date value
-#> 1 ws-rsa320061998cf21 X0.2.09.10.M     a1 1982-04-01 460.1
-#> 2 ws-rsa320061998cf21 X0.2.09.10.M     a1 1982-05-01 502.6
-#> 3 ws-rsa320061998cf21 X0.2.09.10.M     a1 1982-06-01 443.8
-#> 4 ws-rsa320061998cf21 X0.2.09.10.M     a1 1982-07-01 459.1
-#> 5 ws-rsa320061998cf21 X0.2.09.10.M     a1 1982-08-01 438.4
-#> 6 ws-rsa320061998cf21 X0.2.09.10.M     a1 1982-09-01 465.1
+#> 1 ws-rsa31f3d42020670 X0.2.09.10.M     a1 1982-04-01 460.1
+#> 2 ws-rsa31f3d42020670 X0.2.09.10.M     a1 1982-05-01 502.6
+#> 3 ws-rsa31f3d42020670 X0.2.09.10.M     a1 1982-06-01 443.8
+#> 4 ws-rsa31f3d42020670 X0.2.09.10.M     a1 1982-07-01 459.1
+#> 5 ws-rsa31f3d42020670 X0.2.09.10.M     a1 1982-08-01 438.4
+#> 6 ws-rsa31f3d42020670 X0.2.09.10.M     a1 1982-09-01 465.1
 # }
 ```

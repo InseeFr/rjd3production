@@ -18,18 +18,23 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Home"><span class="fa fa-home fa-lg"></span></a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Package functions</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/process-en.html">Setup a production chain with JDemetra+</a></li>
-    <li><a class="dropdown-item" href="../articles/process-fr.html">Mise en place d'une chaîne de production</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-vignette" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Vignette</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-vignette"><li><a class="dropdown-item" href="../articles/process-en.html">Setup a production chain with {rjd3production}</a></li>
+    <li><a class="dropdown-item" href="../articles/process-fr.html">Mise en place d'une chaîne de production avec {rjd3production}</a></li>
     <li><a class="dropdown-item" href="../articles/td-selection-en.html">Selection of calendar td regressors</a></li>
-    <li><a class="dropdown-item" href="../articles/td-selection-fr.html">Selection des régresseurs de calendriers</a></li>
+    <li><a class="dropdown-item" href="../articles/td-selection-fr.html">Sélection des régresseurs de calendriers</a></li>
   </ul></li>
-<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
-      </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/InseeFr/rjd3production/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">News</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-jdemetra-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">JDemetra+</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-jdemetra-"><li><a class="external-link dropdown-item" href="https://github.com/jdemetra/jdemetra-app/releases">To download JDemetra+</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/jdemetra/jwsacruncher/releases">To download the JDemetra+ cruncher</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/InseeFr/rjd3qr/wiki/Installation-&amp;-configuration#installation-de-jdemetra-fr">Set up with a portable version of Java</a></li>
+  </ul></li>
+      </ul><ul class="navbar-nav"><li class="nav-item"><a class="external-link nav-link" href="https://github.com/InseeFr/rjd3production" aria-label="GitHub"><span class="fa fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -42,9 +47,9 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="initialisation">Initialisation<a class="anchor" aria-label="anchor" href="#initialisation"></a></h2>
 
-
+      <div class="section-desc"><p>Functions to create object with default Insee information</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -53,17 +58,26 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
       <dl><dt>
 
-          <code><a href="add_raw_data_path.html">add_raw_data_path()</a></code>
+          <code><a href="init_env.html">init_env()</a></code>
 
         </dt>
-        <dd>Add raw data from a file to a JWS workspace</dd>
+        <dd>Initialize a seasonal adjustment project environment</dd>
+      </dl></div><div class="section level2">
+      <h2 id="creation">Creation<a class="anchor" aria-label="anchor" href="#creation"></a></h2>
 
-        <dt>
+      <div class="section-desc"><p>Functions to create object with default Insee information</p></div>
 
-          <code><a href="compare.html">compare()</a></code>
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="insee_modelling.html">create_french_calendar()</a></code> <code><a href="insee_modelling.html">create_insee_regressors()</a></code> <code><a href="insee_modelling.html">create_insee_regressors_sets()</a></code> <code><a href="insee_modelling.html">create_insee_context()</a></code>
 
         </dt>
-        <dd>Compare series across workspaces</dd>
+        <dd>French modelling context, calendar and trading days regressors.</dd>
 
         <dt>
 
@@ -78,15 +92,40 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
         </dt>
         <dd>Create a Workspace from Data</dd>
+      </dl></div><div class="section level2">
+      <h2 id="comparison">Comparison<a class="anchor" aria-label="anchor" href="#comparison"></a></h2>
 
-        <dt>
+      <div class="section-desc"><p>Compare different WS</p></div>
 
-          <code><a href="deprecated-rjd3production.html">remove_non_significative_outliers()</a></code>
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="compare.html">compare()</a></code>
 
         </dt>
-        <dd>Deprecated functions</dd>
+        <dd>Compare series across workspaces</dd>
 
         <dt>
+
+          <code><a href="run_app.html">run_app()</a></code>
+
+        </dt>
+        <dd>Run the Shiny comparison app</dd>
+      </dl></div><div class="section level2">
+      <h2 id="retrieve-information">Retrieve information<a class="anchor" aria-label="anchor" href="#retrieve-information"></a></h2>
+
+      <div class="section-desc"><p>Get information from a whole WS and identify by name</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
 
           <code><a href="get_jsai_by_name.html">get_jsai_by_name()</a></code>
 
@@ -106,41 +145,22 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
         </dt>
         <dd>Extract all series from a SA-Item</dd>
+      </dl></div><div class="section level2">
+      <h2 id="modify-ws">Modify WS<a class="anchor" aria-label="anchor" href="#modify-ws"></a></h2>
 
-        <dt>
+      <div class="section-desc"><p>Modification of a WS with applying a property to each SAP and SAI</p></div>
 
-          <code><a href="init_env.html">init_env()</a></code>
+      <dl></dl></div><div class="section level2">
 
-        </dt>
-        <dd>Initialize a seasonal adjustment project environment</dd>
 
-        <dt>
 
-          <code><a href="insee_modelling.html">create_french_calendar()</a></code> <code><a href="insee_modelling.html">create_insee_regressors()</a></code> <code><a href="insee_modelling.html">create_insee_regressors_sets()</a></code> <code><a href="insee_modelling.html">create_insee_context()</a></code>
 
-        </dt>
-        <dd>French modelling context, calendar and trading days regressors.</dd>
+      <dl><dt>
 
-        <dt>
-
-          <code><a href="make_ws_crunchable.html">make_ws_crunchable()</a></code>
+          <code><a href="add_raw_data_path.html">add_raw_data_path()</a></code>
 
         </dt>
-        <dd>Make a workspace crunchable</dd>
-
-        <dt>
-
-          <code><a href="random-spec.html">random_spec()</a></code>
-
-        </dt>
-        <dd>Random JDemetra+ Specifications Generator</dd>
-
-        <dt>
-
-          <code><a href="regression_tools.html">assign_outliers()</a></code> <code><a href="regression_tools.html">assign_td()</a></code> <code><a href="regression_tools.html">export_outliers()</a></code> <code><a href="regression_tools.html">import_outliers()</a></code> <code><a href="regression_tools.html">export_td()</a></code> <code><a href="regression_tools.html">import_td()</a></code> <code><a href="regression_tools.html">retrieve_outliers()</a></code> <code><a href="regression_tools.html">retrieve_td()</a></code>
-
-        </dt>
-        <dd>Manage regression components in JDemetra+ workspaces</dd>
+        <dd>Add raw data from a file to a JWS workspace</dd>
 
         <dt>
 
@@ -151,20 +171,6 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
         <dt>
 
-          <code><a href="run_app.html">run_app()</a></code>
-
-        </dt>
-        <dd>Run the Shiny comparison app</dd>
-
-        <dt>
-
-          <code><a href="select_td.html">select_td()</a></code>
-
-        </dt>
-        <dd>Select Calendar Regressors for One or Multiple Series</dd>
-
-        <dt>
-
           <code><a href="set_minimum_span.html">set_minimum_span()</a></code>
 
         </dt>
@@ -172,12 +178,75 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
 
         <dt>
 
+          <code><a href="make_ws_crunchable.html">make_ws_crunchable()</a></code>
+
+        </dt>
+        <dd>Make a workspace crunchable</dd>
+      </dl></div><div class="section level2">
+      <h2 id="rev-engineer">Rev-engineer<a class="anchor" aria-label="anchor" href="#rev-engineer"></a></h2>
+
+      <div class="section-desc"><p>Get code from a specification and generate random specifications</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
           <code><a href="translate-spec.html">rev_spec()</a></code>
 
         </dt>
         <dd>Reverse Engineering of rjd3 Specifications</dd>
+
+        <dt>
+
+          <code><a href="random-spec.html">random_spec()</a></code>
+
+        </dt>
+        <dd>Random JDemetra+ Specifications Generator</dd>
+      </dl></div><div class="section level2">
+      <h2 id="global-workflow">Global workflow<a class="anchor" aria-label="anchor" href="#global-workflow"></a></h2>
+
+      <div class="section-desc"><p>Function to retrieve regressions information, apply, export and import it</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="regression_tools.html">assign_outliers()</a></code> <code><a href="regression_tools.html">assign_td()</a></code> <code><a href="regression_tools.html">export_outliers()</a></code> <code><a href="regression_tools.html">import_outliers()</a></code> <code><a href="regression_tools.html">export_td()</a></code> <code><a href="regression_tools.html">import_td()</a></code> <code><a href="regression_tools.html">retrieve_outliers()</a></code> <code><a href="regression_tools.html">retrieve_td()</a></code>
+
+        </dt>
+        <dd>Manage regression components in JDemetra+ workspaces</dd>
+
+        <dt>
+
+          <code><a href="select_td.html">select_td()</a></code>
+
+        </dt>
+        <dd>Select Calendar Regressors for One or Multiple Series</dd>
+      </dl></div><div class="section level2">
+      <h2 id="deprecated">Deprecated<a class="anchor" aria-label="anchor" href="#deprecated"></a></h2>
+
+      <div class="section-desc"><p>Deprecated functions</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="deprecated-rjd3production.html">remove_non_significative_outliers()</a></code>
+
+        </dt>
+        <dd>Deprecated functions</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

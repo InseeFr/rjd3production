@@ -24,18 +24,23 @@ mermaid.initialize({ startOnLoad: true }); }); </script></head><body>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Home"><span class="fa fa-home fa-lg"></span></a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Package functions</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/process-en.html">Setup a production chain with JDemetra+</a></li>
-    <li><a class="dropdown-item" href="../articles/process-fr.html">Mise en place d'une chaîne de production</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-vignette" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Vignette</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-vignette"><li><a class="dropdown-item" href="../articles/process-en.html">Setup a production chain with {rjd3production}</a></li>
+    <li><a class="dropdown-item" href="../articles/process-fr.html">Mise en place d'une chaîne de production avec {rjd3production}</a></li>
     <li><a class="dropdown-item" href="../articles/td-selection-en.html">Selection of calendar td regressors</a></li>
-    <li><a class="dropdown-item" href="../articles/td-selection-fr.html">Selection des régresseurs de calendriers</a></li>
+    <li><a class="dropdown-item" href="../articles/td-selection-fr.html">Sélection des régresseurs de calendriers</a></li>
   </ul></li>
-<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
-      </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/InseeFr/rjd3production/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">News</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-jdemetra-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">JDemetra+</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-jdemetra-"><li><a class="external-link dropdown-item" href="https://github.com/jdemetra/jdemetra-app/releases">To download JDemetra+</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/jdemetra/jwsacruncher/releases">To download the JDemetra+ cruncher</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/InseeFr/rjd3qr/wiki/Installation-&amp;-configuration#installation-de-jdemetra-fr">Set up with a portable version of Java</a></li>
+  </ul></li>
+      </ul><ul class="navbar-nav"><li class="nav-item"><a class="external-link nav-link" href="https://github.com/InseeFr/rjd3production" aria-label="GitHub"><span class="fa fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -146,9 +151,9 @@ Default is <code>TRUE</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 my_series REG6</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Multiple series</span></span></span>
-<span class="r-in"><span><span class="fu">select_td</span><span class="op">(</span><span class="va">ABS</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">select_td</span><span class="op">(</span><span class="va">ABS</span><span class="op">[</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.09.10.M en cours... 1/22 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.05.10.M en cours... 1/3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
@@ -162,7 +167,7 @@ Default is <code>TRUE</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.08.10.M en cours... 2/22 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.04.10.M en cours... 2/3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
@@ -176,7 +181,7 @@ Default is <code>TRUE</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.07.10.M en cours... 3/22 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.03.10.M en cours... 3/3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
@@ -189,477 +194,40 @@ Default is <code>TRUE</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.06.10.M en cours... 4/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.05.10.M en cours... 5/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.04.10.M en cours... 6/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.03.10.M en cours... 7/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.02.10.M en cours... 8/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.01.10.M en cours... 9/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.15.10.M en cours... 10/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.46.10.M en cours... 11/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.14.10.M en cours... 12/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.45.10.M en cours... 13/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.13.10.M en cours... 14/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.44.10.M en cours... 15/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.12.10.M en cours... 16/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.43.10.M en cours... 17/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.11.10.M en cours... 18/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.42.10.M en cours... 19/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.10.10.M en cours... 20/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.41.10.M en cours... 21/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.20.10.M en cours... 22/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG2_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG3_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG5_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          series    regs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  X0.2.09.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  X0.2.08.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  X0.2.07.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  X0.2.06.10.M    REG3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  X0.2.05.10.M    REG3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  X0.2.04.10.M    REG3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  X0.2.03.10.M    REG5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  X0.2.02.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  X0.2.01.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 X0.2.15.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 X0.2.46.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 X0.2.14.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 X0.2.45.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 X0.2.13.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 X0.2.44.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 X0.2.12.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 X0.2.43.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 X0.2.11.10.M REG3_LY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 X0.2.42.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 X0.2.10.10.M    REG3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 X0.2.41.10.M    REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 X0.2.20.10.M    REG6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         series regs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 X0.2.05.10.M REG3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 X0.2.04.10.M REG3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 X0.2.03.10.M REG5</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Restrict regressors sets</span></span></span>
 <span class="r-in"><span><span class="va">my_context</span> <span class="op">&lt;-</span> <span class="fu"><a href="insee_modelling.html">create_insee_context</a></span><span class="op">(</span>s <span class="op">=</span> <span class="va">ABS</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_context</span><span class="op">$</span><span class="va">variables</span> <span class="op">&lt;-</span> <span class="va">my_context</span><span class="op">$</span><span class="va">variables</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"REG1"</span>, <span class="st">"REG1_LY"</span>, <span class="st">"REG6"</span>, <span class="st">"REG6_LY"</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="fu">select_td</span><span class="op">(</span><span class="va">ABS</span>, context <span class="op">=</span> <span class="va">my_context</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">select_td</span><span class="op">(</span><span class="va">ABS</span><span class="op">[</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span>, context <span class="op">=</span> <span class="va">my_context</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.09.10.M en cours... 1/22 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.05.10.M en cours... 1/3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.08.10.M en cours... 2/22 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.04.10.M en cours... 2/3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.07.10.M en cours... 3/22 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.03.10.M en cours... 3/3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.06.10.M en cours... 4/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.05.10.M en cours... 5/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.04.10.M en cours... 6/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.03.10.M en cours... 7/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.02.10.M en cours... 8/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.01.10.M en cours... 9/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.15.10.M en cours... 10/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.46.10.M en cours... 11/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.14.10.M en cours... 12/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.45.10.M en cours... 13/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.13.10.M en cours... 14/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.44.10.M en cours... 15/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.12.10.M en cours... 16/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.43.10.M en cours... 17/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.11.10.M en cours... 18/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.42.10.M en cours... 19/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.10.10.M en cours... 20/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.41.10.M en cours... 21/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Série X0.2.20.10.M en cours... 22/22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec No_TD ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG1_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6 ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing spec REG6_LY ...Done !</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          series regs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  X0.2.09.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  X0.2.08.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  X0.2.07.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  X0.2.06.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  X0.2.05.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  X0.2.04.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  X0.2.03.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  X0.2.02.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  X0.2.01.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 X0.2.15.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 X0.2.46.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 X0.2.14.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 X0.2.45.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 X0.2.13.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 X0.2.44.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 X0.2.12.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 X0.2.43.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 X0.2.11.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 X0.2.42.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 X0.2.10.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 X0.2.41.10.M REG6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 X0.2.20.10.M REG6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         series regs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 X0.2.05.10.M REG6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 X0.2.04.10.M REG6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 X0.2.03.10.M REG6</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
