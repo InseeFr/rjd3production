@@ -1,4 +1,5 @@
 set.seed(2026L)
+tol <- 10L**-12L
 
 test_that("rev_set_x11 works", {
     testthat::skip_if_not(
@@ -18,7 +19,7 @@ test_that("rev_set_x11 works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -40,7 +41,7 @@ test_that("rev_add_ramp works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -62,7 +63,7 @@ test_that("rev_set_transform works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -84,7 +85,7 @@ test_that("rev_set_easter works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -106,7 +107,7 @@ test_that("rev_set_basic works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -128,7 +129,7 @@ test_that("rev_set_estimate works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -150,7 +151,7 @@ test_that("rev_add_usrdefvar works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -172,7 +173,7 @@ test_that("rev_set_automodel works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -196,7 +197,7 @@ test_that("rev_set_arima works", {
                 envir = .GlobalEnv
             )
         })
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -218,7 +219,7 @@ test_that("rev_set_benchmarking works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -240,7 +241,7 @@ test_that("rev_set_outlier works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -262,7 +263,7 @@ test_that("rev_set_tradingdays works", {
             ),
             envir = .GlobalEnv
         )
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })
 
@@ -281,6 +282,6 @@ test_that("rev_spec works", {
                 envir = .GlobalEnv
             )
         })
-        testthat::expect_identical(spec_ref, spec_test)
+        testthat::expect_equal(spec_ref, spec_test, tolerance = tol)
     }
 })

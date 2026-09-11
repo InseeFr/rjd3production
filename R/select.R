@@ -37,7 +37,7 @@ is_compatible <- function(series, reg) {
     return(TRUE)
 }
 
-#' @title Diagnostics Extraction on Calendar Correction with different sets of regressors
+#' @title Diagnostics on Calendar Correction with different sets of regressors
 #'
 #' @description
 #' These functions allow to extract diagnostics from X13-Arima models with
@@ -102,7 +102,11 @@ is_compatible <- function(series, reg) {
 #'
 #' # Compute diagnostics for one spec
 #' spec <- my_set[[8L]]
-#' rjd3production:::one_diagnostic(series = ABS[, 1], spec, context = my_context)
+#' rjd3production:::one_diagnostic(
+#'     series = ABS[, 1],
+#'     spec,
+#'     context = my_context
+#' )
 #'
 #' # Compute diagnostics for all specs
 #' rjd3production:::all_diagnostics(
@@ -120,7 +124,10 @@ is_compatible <- function(series, reg) {
 #' rjd3production:::verif_LY("REG6_LY", diags)
 #'
 #' # Select regressions for one series
-#' rjd3production:::select_td_one_series(series = ABS[, 1], context = my_context)
+#' rjd3production:::select_td_one_series(
+#'     series = ABS[, 1],
+#'     context = my_context
+#' )
 #'
 #' @dev
 #'
@@ -372,10 +379,11 @@ select_td_one_series <- function(
 
     if (is.null(context)) {
         context <- create_insee_context(s = series)
+    } else {
+        checkmate::assert_list(context)
+        checkmate::assert_named(context)
+        checkmate::assert_set_equal(names(context), c("calendars", "variables"))
     }
-    checkmate::assert_list(context)
-    checkmate::assert_named(context)
-    checkmate::assert_set_equal(names(context), c("calendars", "variables"))
 
     if (is.null(specs_set)) {
         specs_set <- create_specs_set(context = context, ...)
@@ -458,7 +466,8 @@ select_td_one_series <- function(
 #'
 #' # Restrict regressors sets
 #' my_context <- create_insee_context(s = ABS)
-#' my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
+#' variables <- c("REG1", "REG1_LY", "REG6", "REG6_LY")
+#' my_context$variables <- my_context$variables[variables]
 #' select_td(ABS[, 5:7], context = my_context)
 #' }
 #' @export
@@ -490,10 +499,11 @@ select_td <- function(
 
     if (is.null(context)) {
         context <- create_insee_context(s = series)
+    } else {
+        checkmate::assert_list(context)
+        checkmate::assert_named(context)
+        checkmate::assert_set_equal(names(context), c("calendars", "variables"))
     }
-    checkmate::assert_list(context)
-    checkmate::assert_named(context)
-    checkmate::assert_set_equal(names(context), c("calendars", "variables"))
 
     specs_set <- create_specs_set(context = context, ...)
 
@@ -507,31 +517,6 @@ select_td <- function(
         X = seq_len(ncol(series)),
         FUN = function(k) {
             series_name <- colnames(series)[k]
-
-            # if (with_outliers) {
-            #     # On récupère les outliers
-            #     sai_ref <- sap_ref |> RJDemetra::get_object(which(series_name_ref == series_name))
-            #     sai_mod <- sai_ref |> RJDemetra::get_model(workspace = ws_ref)
-            #     regressors <- sai_mod$regarima$regression.coefficients |> rownames()
-            #     regressors <- regressors[substr(regressors, 1, 2) %in% c("AO", "TC", "LS", "SO")]
-            #
-            #     if (length(regressors) > 0) {
-            #         outliers_type <- regressors |> substr(start = 1, stop = 2)
-            #         outliers_date <- regressors |>
-            #             substr(start = 5, stop = nchar(regressors) - 1) |>
-            #             paste0("01-", ... = _) |>
-            #             as.Date(format = "%d-%m-%Y")
-            #
-            #         outliers_type <- outliers_type[outliers_date >= as.Date(span_start)]
-            #         outliers_date <- outliers_date[outliers_date >= as.Date(span_start)]
-            #
-            #         if (length(outliers_date) > 0) {
-            #             outliers <- list(type = outliers_type,
-            #                              date = outliers_date)
-            #         }
-            #     }
-            # }
-
             if (verbose) {
                 cat(
                     paste0(

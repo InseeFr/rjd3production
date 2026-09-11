@@ -6,8 +6,8 @@
 #' Both the estimation specification and the reference specification are
 #' updated accordingly, and the workspace file is saved in place.
 #'
-#' Typical use case: after estimation with user pre-specified outliers, outliers with
-#' weak statistical significance (e.g. `p > 0.3`) are dropped to
+#' Typical use case: after estimation with user pre-specified outliers, outliers
+#' with weak statistical significance (e.g. `p > 0.3`) are dropped to
 #' simplify the regression specification.
 #'
 #' @param ws_path [\link[base]{character}] Path to a JDemetra+ workspace file

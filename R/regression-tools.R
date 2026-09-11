@@ -69,7 +69,8 @@
 #'
 #' Currently, regression information can be extracted (`retrieve_XXX()`) from
 #' the resultSpec, estimationSpec or referenceSpec, while the assignment step
-#' (`assign_XXX()`) is performed in both the referenceSpec and the estimationSpec.
+#' (`assign_XXX()`) is performed in both the referenceSpec and the
+#' estimationSpec.
 #'
 #' @returns
 #'

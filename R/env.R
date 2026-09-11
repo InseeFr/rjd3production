@@ -108,14 +108,29 @@ exclusions: list(\"renv\", \"packrat\")
     usethis::proj_set(path)
     usethis::use_description(
         fields = list(
-            Imports = "rjd3toolkit, rjd3x13, rjd3providers, rjd3workspace, rjd3production, rjd3qr",
-            Suggests = "devtools, usethis, remotes, cyclocomp, lintr, rmarkdown",
+            Imports = paste(
+                "rjd3toolkit",
+                "rjd3x13",
+                "rjd3providers",
+                "rjd3workspace",
+                "rjd3production",
+                "rjd3qr",
+                sep = ", "
+            ),
+            Suggests = paste(
+                "devtools",
+                "usethis",
+                "remotes",
+                "cyclocomp",
+                "lintr",
+                "rmarkdown",
+                sep = ", "
+            ),
             Type = "Project"
         ),
         check_name = FALSE
     )
 
-    # system(paste("git -C", normalizePath(path), "init -b main"))
     usethis::git_default_branch_configure(name = "main")
     usethis::use_git(message = "Nouveau projet de d\U0E9saisonnalisation !")
 

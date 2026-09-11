@@ -16,7 +16,7 @@ Depends:
     R (>= 4.2.0)
 Imports:
     checkmate,
-    constructive,
+    rlang,
     date4ts,
     dygraphs,
     flextable,
@@ -39,6 +39,7 @@ Suggests:
     knitr,
     quarto,
     rmarkdown,
+    spelling,
     testthat (>= 3.0.0),
     waldo
 VignetteBuilder: 
@@ -50,3 +51,4 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE, roclets = c("collate", "rd", "namespace",
     "devtag::dev_roclet"))
+Language: en-US

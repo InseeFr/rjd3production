@@ -1,13 +1,11 @@
-#' @importFrom constructive construct
+#' @importFrom rlang expr_text
 keep_format <- function(x) {
     if (is.list(x)) {
         output <- x |>
-            lapply(FUN = keep_format) |>
+            lapply(FUN = rlang::expr_text) |>
             lapply(FUN = paste0, collapse = "\n\t")
     } else {
-        output <- x |>
-            constructive::construct() |>
-            base::`[[`("code")
+        output <- rlang::expr_text(x)
     }
     return(output)
 }

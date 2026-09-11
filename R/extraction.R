@@ -189,11 +189,19 @@ get_jsai_by_name <- function(jws, series_name) {
 #'
 #' @export
 #'
+#' @importFrom checkmate assert_list
+#' @importFrom checkmate assert_named
+#' @importFrom checkmate assert_set_equal
 get_named_variables <- function(context = NULL) {
     if (is.null(context)) {
         message("Without context, the output is NULL.")
         return(invisible(NULL))
     }
+
+    checkmate::assert_list(context)
+    checkmate::assert_named(context)
+    checkmate::assert_set_equal(names(context), c("calendars", "variables"))
+
     all_vars <- context$variables
     named_vars <- lapply(seq_along(all_vars), function(k) {
         paste0(names(all_vars)[k], ".", names(all_vars[[k]]))

@@ -4,7 +4,7 @@
 \alias{compare}
 \title{Compare series across workspaces}
 \usage{
-compare(..., series_names)
+compare(..., series_names = NULL)
 }
 \arguments{
 \item{...}{\link{character} Workspace file paths.}

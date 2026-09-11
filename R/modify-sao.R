@@ -125,6 +125,9 @@ make_ws_crunchable <- function(jws, verbose = TRUE) {
 #' # Create workspace
 #' ws <- create_ws_from_data(ABS)
 #'
+#' @importFrom checkmate assert_list
+#' @importFrom checkmate assert_named
+#' @importFrom checkmate assert_set_equal
 #' @importFrom rjd3workspace jws_new add_sa_item jws_sap_new
 #' @importFrom rjd3x13 x13_spec
 #' @export
@@ -136,6 +139,12 @@ create_ws_from_data <- function(
     path = NULL,
     name_series = "my_series"
 ) {
+    if (!is.null(context)) {
+        checkmate::assert_list(context)
+        checkmate::assert_named(context)
+        checkmate::assert_set_equal(names(context), c("calendars", "variables"))
+    }
+
     jws <- rjd3workspace::jws_new()
     rjd3workspace::set_context(jws, modelling_context = context)
     if (!is.null(path)) {

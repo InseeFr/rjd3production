@@ -19,7 +19,8 @@ merge_lists <- function(list1, list2, verbose = TRUE) {
     if (length(setdiff_elts) > 0L && verbose) {
         message(
             setdiff_elts,
-            " are present in the second object and will be added to the first one."
+            " are present in the second object and ",
+            "will be added to the first one."
         )
     }
     return(c(list1, list2[setdiff_elts]))
@@ -56,7 +57,8 @@ merge_contexts <- function(context1 = NULL, context2 = NULL, verbose = TRUE) {
 }
 
 #' @importFrom rjd3workspace jws_sap sap_sai_count jsap_sai sai_name read_sai
-#' @importFrom rjd3workspace set_specification set_reference_specification set_name
+#' @importFrom rjd3workspace set_specification set_reference_specification
+#' @importFrom rjd3workspace set_name
 #' @importFrom rjd3toolkit add_outlier
 #' @importFrom checkmate assert_character
 #' @importFrom checkmate assert_flag
@@ -132,8 +134,8 @@ assign_outliers <- function(jws, outliers, spec_type = NULL, verbose = TRUE) {
 #' @importFrom checkmate assert_flag
 #' @importFrom checkmate assert_data_frame
 #' @importFrom rjd3workspace jws_sap sap_sai_count jsap_sai sai_name read_sai
-#' @importFrom rjd3workspace set_specification set_reference_specification set_name
-#' @importFrom rjd3workspace get_context
+#' @importFrom rjd3workspace set_specification set_reference_specification
+#' @importFrom rjd3workspace get_context set_name
 #' @importFrom rjd3toolkit set_tradingdays
 #' @family regression tools
 #' @rdname regression_tools

@@ -1,19 +1,20 @@
 linters: lintr::all_linters(
         indentation_linter = lintr::indentation_linter(indent = 4L),
-        line_length_linter = lintr::line_length_linter(100L),
+        line_length_linter = lintr::line_length_linter(80L),
         library_call_linter = NULL,
         return_linter = NULL,
         cyclocomp_linter = lintr::cyclocomp_linter(complexity_limit = 65L),
         namespace_linter = NULL,
         object_length_linter = NULL,
-        object_name_linter = NULL,
-        undesirable_function_linter = NULL,
-        commented_code_linter = NULL
+        object_name_linter = NULL
     )
 encoding: "UTF-8"
 exclusions: list(
     "vignettes/process-en.qmd" = list(
         unused_import_linter = Inf,
+        undesirable_function_linter = Inf
+    ),
+    "R/zzz.R" = list(
         undesirable_function_linter = Inf
     ),
     "vignettes/process-fr.qmd" = list(

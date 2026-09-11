@@ -35,16 +35,19 @@ importFrom(TBox,write_data)
 importFrom(checkmate,
   assert_character,
   assert_class,
+  assert_count,
   assert_data_frame,
+  assert_date,
   assert_flag,
+  assert_integerish,
   assert_list,
   assert_named,
+  assert_number,
   assert_numeric,
   assert_set_equal,
   check_class,
   check_data_frame
 )
-importFrom(constructive,construct)
 importFrom(date4ts,ts2df)
 importFrom(dygraphs,
   dygraph,
@@ -110,6 +113,7 @@ importFrom(rjd3x13,
   x13,
   x13_spec
 )
+importFrom(rlang,expr_text)
 importFrom(shiny,
   br,
   checkboxInput,
