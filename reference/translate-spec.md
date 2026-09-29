@@ -69,8 +69,8 @@ cat(code)
 #>      enabled = FALSE,
 #>      tsig = 1,
 #>      ubfinal = 1.05,
-#>      ub1 = 1.0309278350515465,
-#>      ub2 = 1.1363636363636365,
+#>      ub1 = 1.03092783505155,
+#>      ub2 = 1.13636363636364,
 #>      cancel = 0.1,
 #>      mixed = TRUE,
 #>      balanced = FALSE,
@@ -123,7 +123,7 @@ cat(code)
 #>      n0 = 0L,
 #>      n1 = 0L,
 #>      outliers.type = c("AO", "LS", "TC"),
-#>      critical.value = numeric(3),
+#>      critical.value = c(0, 0, 0),
 #>      tc.rate = 0.7,
 #>      span.type = "ALL"
 #>  ) |>

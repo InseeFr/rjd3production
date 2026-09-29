@@ -13,29 +13,38 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 #### Added
 
 - Set a new option `rjd3production.thresholds` with the new thresholds
-  to fit the td regressors in `select_td`.
+  to fit the td regressors in
+  [`select_td()`](https://inseefr.github.io/rjd3production/reference/select_td.md).
   [\#7](https://github.com/InseeFr/rjd3production/issues/7)
 
 #### Changed
 
-- `create_ws_from_data` has new arguments to personnalize the workspace:
-  context, sap_name and path
-- `create_insee_regressors` gives new names for calendar regressors :
-  “REG2_week” instead of “REG2_group1” etc.
+- [`create_ws_from_data()`](https://inseefr.github.io/rjd3production/reference/create_ws_from_data.md)
+  has new arguments to personnalize the workspace: context, sap_name and
+  path
+- [`create_insee_regressors()`](https://inseefr.github.io/rjd3production/reference/insee_modelling.md)
+  gives new names for calendar regressors : “REG2_week” instead of
+  “REG2_group1” etc.
 - [`init_env()`](https://inseefr.github.io/rjd3production/reference/init_env.md)
   creates a project with DESCRIPTION file with `Type: Project` and
   {rjd3qr} as dependency
   [\#83](https://github.com/InseeFr/rjd3production/issues/83)
-- `retrieve_XXX` and `assign_XXX` functions now takes a `spec_type`
+- `retrieve_XXX()` and `assign_XXX()` functions now takes a `spec_type`
   argument to specify nthe specification used to retrieve information or
   assign information
   [\#59](https://github.com/InseeFr/rjd3production/issues/59) and
   [\#31](https://github.com/InseeFr/rjd3production/issues/31)
+- [`set_minimum_span()`](https://inseefr.github.io/rjd3production/reference/set_minimum_span.md)
+  uses now `span_type` instead of `series_span` and `model_span` to
+  specify which span should be modified.
 
 #### Fixed
 
-- `import_td`, `export_td` and `import_outliers`: fixed typo in error
-  message
+- [`import_td()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md),
+  [`export_td()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md)
+  and
+  [`import_outliers()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md):
+  fixed typo in error message
 - [`retrieve_td()`](https://inseefr.github.io/rjd3production/reference/regression_tools.md)
   works now with LY as only td regressor
   [\#91](https://github.com/InseeFr/rjd3production/issues/91)

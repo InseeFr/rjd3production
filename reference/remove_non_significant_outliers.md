@@ -15,8 +15,7 @@ to simplify the regression specification.
 remove_non_significant_outliers(
   ws_path,
   threshold = 0.3,
-  reference = FALSE,
-  estimation = FALSE,
+  spec_type = NULL,
   verbose = TRUE
 )
 ```
@@ -34,13 +33,10 @@ remove_non_significant_outliers(
   keeping an outlier. Outliers with `Pr(>|t|) > threshold` are removed.
   Default is `0.3`.
 
-- reference:
+- spec_type:
 
-  Boolean indicating if the reference specification should be modified.
-
-- estimation:
-
-  Boolean indicating if the estimation specification should be modified.
+  Character. Indicating the type of spec where the outliers whould be
+  extracted. Accepted values : "Reference" or "Estimation".
 
 - verbose:
 
@@ -83,10 +79,17 @@ path_ws <- tempfile(pattern = "ws", fileext = ".xml")
 save_workspace(jws, file = path_ws)
 
 # Remove non-significant outliers (p > 0.3) from a workspace
-remove_non_significant_outliers(path_ws, threshold = 0.3, reference = TRUE)
+remove_non_significant_outliers(
+    path_ws,
+    threshold = 0.3,
+    spec_type = c("Reference", "Estimation")
+)
 #> 
-#> 🏷 WS  ws1f3d78d0d76e 
+#> 🏷 WS  ws1f6436d2863c 
 #> 📌 SAI n° 1 
+#> [1] "X0.2.09.10.M"
+#>         series            name type       date
+#> 1 X0.2.09.10.M LS (1990-01-01)   LS 1990-01-01
 #> 💾 Saving WS file
 # }
 ```

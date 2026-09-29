@@ -8,15 +8,14 @@ Deprecated functions
 remove_non_significative_outliers(
   ws_path,
   threshold = 0.3,
-  reference = FALSE,
-  estimation = FALSE,
+  spec_type = NULL,
   verbose = TRUE
 )
 ```
 
 ## Arguments
 
-- ws_path, threshold, reference, estimation, verbose:
+- ws_path, threshold, spec_type, verbose:
 
   Parameters.
 
@@ -45,10 +44,17 @@ save_workspace(jws, file = path_ws)
 # Use `remove_non_significant_outliers` instead
 
 # Remove non-significant outliers (p > 0.3) from a workspace
-remove_non_significant_outliers(path_ws, threshold = 0.3, reference = TRUE)
+remove_non_significant_outliers(
+    path_ws,
+    threshold = 0.3,
+    spec_type = c("Reference", "Estimation")
+)
 #> 
-#> 🏷 WS  ws1f3d6019cb32 
+#> 🏷 WS  ws1f641fdd3603 
 #> 📌 SAI n° 1 
+#> [1] "X0.2.09.10.M"
+#>         series            name type       date
+#> 1 X0.2.09.10.M LS (1990-01-01)   LS 1990-01-01
 #> 💾 Saving WS file
 # }
 ```

@@ -110,7 +110,11 @@ cal
 #> Mean correction: Yes
 
 # 2. Generate regressors
-regs <- create_insee_regressors(start = c(2000, 1), frequency = 12, length = 240)
+regs <- create_insee_regressors(
+    start = c(2000, 1),
+    frequency = 12,
+    length = 240
+)
 head(regs)
 #>            LY REG1_week REG2_week REG2_saturday REG3_monday
 #> Jan 2000 0.00 -1.500000 -4.000000    -1.0000000   0.0000000
@@ -142,13 +146,21 @@ head(regs)
 #> Jun 2000      -1.572811     -1.536086  -0.5728115    -1.5728115
 
 # 3. Organize into standard sets
-sets <- create_insee_regressors_sets(start = c(2000, 1), frequency = 12, length = 240)
+sets <- create_insee_regressors_sets(
+    start = c(2000, 1),
+    frequency = 12,
+    length = 240
+)
 names(sets)
 #>  [1] "REG1"    "REG2"    "REG3"    "REG5"    "REG6"    "LY"      "REG1_LY"
 #>  [8] "REG2_LY" "REG3_LY" "REG5_LY" "REG6_LY"
 
 # 4. Build a complete context for rjd3toolkit
-context <- create_insee_context(start = c(2000, 1), frequency = 12, length = 240)
+context <- create_insee_context(
+    start = c(2000, 1),
+    frequency = 12,
+    length = 240
+)
 context
 #> $calendars
 #> $calendars$FR

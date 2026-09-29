@@ -1,4 +1,4 @@
-# Diagnostics Extraction on Calendar Correction with different sets of regressors
+# Diagnostics on Calendar Correction with different sets of regressors
 
 These functions allow to extract diagnostics from X13-Arima models with
 different sets of calendar regressors in order to evaluate different
@@ -138,7 +138,11 @@ rjd3production:::get_LY_info(mod)
 
 # Compute diagnostics for one spec
 spec <- my_set[[8L]]
-rjd3production:::one_diagnostic(series = ABS[, 1], spec, context = my_context)
+rjd3production:::one_diagnostic(
+    series = ABS[, 1],
+    spec,
+    context = my_context
+)
 #>   note     aicc           mode   LY_coeff  LY_p_value
 #> 1   15 4303.737 Multiplicative 0.03630864 0.002140071
 
@@ -196,7 +200,10 @@ rjd3production:::verif_LY("REG6_LY", diags)
 #> [1] "REG6"
 
 # Select regressions for one series
-rjd3production:::select_td_one_series(series = ABS[, 1], context = my_context)
+rjd3production:::select_td_one_series(
+    series = ABS[, 1],
+    context = my_context
+)
 #> Computing spec No_TD ...Done !
 #> Computing spec REG1 ...Done !
 #> Computing spec REG2 ...Done !

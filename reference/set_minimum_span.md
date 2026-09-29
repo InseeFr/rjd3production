@@ -5,13 +5,7 @@ Set span minimum to a value
 ## Usage
 
 ``` r
-set_minimum_span(
-  spec,
-  d0,
-  model_span = TRUE,
-  series_span = TRUE,
-  without_outliers = TRUE
-)
+set_minimum_span(spec, d0, span_type = NULL, without_outliers = TRUE)
 ```
 
 ## Arguments
@@ -23,15 +17,13 @@ set_minimum_span(
 - d0:
 
   characters in the format "YYYY-MM-DD" to specify first date of the
-  span
+  span.
 
-- model_span:
+- span_type:
 
-  Boolean. Should the estimation (= model) span be modifed?
-
-- series_span:
-
-  Boolean. Should the series (= basic) span be modifed?
+  Character vector. Span that should be modified. Accepted values are
+  `"basic"` or `"series"` for the span of the series and `"estimation"`,
+  `"estimate"` or `"model"` for the estimation span.
 
 - without_outliers:
 
@@ -59,7 +51,7 @@ library("rjd3workspace")
 # \donttest{
 # Two demo workspaces (RSA3 and RSA5)
 spec <- x13_spec("rsa3")
-set_minimum_span(spec, "2012-01-01")
+set_minimum_span(spec, "2012-01-01", span_type = c("series", "model"))
 #> Specification
 #> 
 #> Series
@@ -110,6 +102,8 @@ set_minimum_span(spec, "2012-01-01")
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No

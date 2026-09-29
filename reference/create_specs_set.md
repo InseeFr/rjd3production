@@ -99,6 +99,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -155,6 +157,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -211,6 +215,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -267,6 +273,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -323,6 +331,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -379,6 +389,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -435,6 +447,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -491,6 +505,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -547,6 +563,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -603,6 +621,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -659,6 +679,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No
@@ -715,6 +737,8 @@ create_specs_set(context = my_context)
 #> Nb of forecasts: -1
 #> Nb of backcasts: 0
 #> Calendar sigma: NONE
+#> Mode X-11: UNKNOWN
+#> Bias: RATIO
 #> 
 #> Benchmarking
 #> Is enabled: No

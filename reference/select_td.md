@@ -152,7 +152,8 @@ select_td(ABS[, 5:7])
 
 # Restrict regressors sets
 my_context <- create_insee_context(s = ABS)
-my_context$variables <- my_context$variables[c("REG1", "REG1_LY", "REG6", "REG6_LY")]
+variables <- c("REG1", "REG1_LY", "REG6", "REG6_LY")
+my_context$variables <- my_context$variables[variables]
 select_td(ABS[, 5:7], context = my_context)
 #> 
 #> Série X0.2.05.10.M en cours... 1/3 
