@@ -88,8 +88,10 @@ is_compatible <- function(series, reg) {
 #' - `select_td_one_series()` : Name of the selected regression set.
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
+#'
 #' library("rjd3toolkit")
 #'
+#' \donttest{
 #' # Create a modelling context
 #' my_context <- create_insee_context(s = ABS)
 #'
@@ -128,9 +130,14 @@ is_compatible <- function(series, reg) {
 #'     series = ABS[, 1],
 #'     context = my_context
 #' )
+#' }
 #'
-#' @dev
+#' @name diagnostics_selection
+#' @keywords internal
 #'
+NULL
+
+#' @rdname diagnostics_selection
 #' @importFrom checkmate assert_class
 #' @importFrom checkmate assert_flag
 get_LY_info <- function(mod, verbose = TRUE) {
@@ -164,6 +171,7 @@ get_LY_info <- function(mod, verbose = TRUE) {
     return(data.frame(LY_coeff = LY_coeff, LY_p_value = LY_p_value))
 }
 
+#' @rdname diagnostics_selection
 #' @importFrom checkmate assert_class
 #' @importFrom checkmate assert_numeric
 #' @importFrom checkmate assert_flag
@@ -245,6 +253,7 @@ one_diagnostic <- function(
     return(diagnostic)
 }
 
+#' @rdname diagnostics_selection
 #' @importFrom checkmate assert_class
 #' @importFrom checkmate assert_numeric
 #' @importFrom checkmate assert_flag
@@ -294,6 +303,7 @@ all_diagnostics <- function(
     return(diagnostics)
 }
 
+#' @rdname diagnostics_selection
 #' @importFrom checkmate assert_character
 #' @importFrom checkmate assert_data_frame
 #' @importFrom checkmate assert_set_equal
@@ -356,6 +366,7 @@ verif_LY <- function(
     return(jeu_final)
 }
 
+#' @rdname diagnostics_selection
 #' @importFrom checkmate assert_class
 #' @importFrom checkmate assert_numeric
 #' @importFrom checkmate assert_flag

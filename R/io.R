@@ -77,7 +77,7 @@ export_outliers <- function(outliers, path = NULL, verbose = TRUE) {
     checkmate::assert_flag(verbose)
     checkmate::assert_data_frame(outliers, types = rep("character", 4L))
     stopifnot(outliers$type %in% c("AO", "LS", "TC", "SO"))
-    checkmate::assert_date(as.Date(outliers$date))
+    checkmate::assert_date(base::as.Date(outliers$date, origin = "1970-01-01"))
     path <- prepare_path(path, "outliers")
 
     if (verbose) {

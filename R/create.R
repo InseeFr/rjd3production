@@ -330,7 +330,7 @@ create_specs_set <- function(
         checkmate::assert_set_equal(names(context), c("calendars", "variables"))
     }
     if (!is.null(span_start)) {
-        checkmate::assert_date(as.Date(span_start))
+        checkmate::assert_date(base::as.Date(span_start, origin = "1970-01-01"))
     }
 
     var_names <- get_named_variables(context)
