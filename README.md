@@ -26,8 +26,9 @@ coverage](https://codecov.io/gh/InseeFr/rjd3production/graph/badge.svg)](https:/
 
 **{rjd3production}** aide les producteurs de données CVS-CJO à mettre en
 place des chaînes de production en utilisant
-[JDemetra+](www.jdemetra.org). Les utilisateurs de l’interface graphique
-peuvent automatiser un grand nombre d’opérations intensives en “clics”.
+[JDemetra+](https://jdemetra.org/). Les utilisateurs de l’interface
+graphique peuvent automatiser un grand nombre d’opérations intensives en
+“clics”.
 
 Il permet notamment de :
 
@@ -36,7 +37,7 @@ Il permet notamment de :
 - Créer un calendrier français et des régresseurs de calendrier
   compatibles avec JDemetra+
 
-- Selectionner le jeux de regresseurs de calendrier optimal pour une ou
+- Sélectionner le jeux de regresseurs de calendrier optimal pour une ou
   plusieurs séries
 
 - Manipuler les régresseurs de calendrier et les outliers d’un Workspace
@@ -97,7 +98,7 @@ de mettre en place une telle configuration dans R est expliquée
 
 ### Latest release
 
-Pour obtenir la derinère release :
+Pour obtenir la dernière release :
 
 - Depuis le CRAN :
 
@@ -142,8 +143,8 @@ remotes::install_github("InseeFr/rjd3production")
 ### Overview
 
 **{rjd3production}** helps setting up a production process of seasonally
-adjusted (SA) data with [JDemetra+](www.jdemetra.org). User of the
-Graphical User Interface can automate may operation which would
+adjusted (SA) data with [JDemetra+](https://jdemetra.org/). User of the
+Graphical User Interface can automate many operations which would
 otherwise be click-intensive.
 
 In particular, it allows to:
