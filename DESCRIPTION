@@ -1,15 +1,16 @@
 Package: rjd3production
-Title: Prepare for Production of Seasonal Adjustment with 'JDemetra+'
+Title: Automate production  of seasonally Adjusted data with 'JDemetra+'
 Version: 1.2.0.9000
 Authors@R: c(
     person("Tanguy", "Barthelemy", , "timeserieswithjdemetraandr@gmail.com", role = c("aut", "cre", "art", "cph")),
-    person("Eulalie", "Delaune", , "eulalie.delaune-virrion@insee.fr", role = "aut")
+    person("Eulalie", "Delaune", , "eulalie.delaune-virrion@insee.fr", role = "aut"),
+     person("Anna", "Smyk", , "anna.smyk@insee.fr", role = ("aut","cre","trl")
     )
-Description: A comprehensive tool for setting up seasonal data pipelines
-    using 'JDemetra+' (version 3) and 'rjdverse'. This includes setting up
+Description: A comprehensive tool for setting up production processes of seasonally adjusted data,
+    using 'JDemetra+' (version 3) and 'rjdverse' packages. This includes setting up
     a new working environment, creating and selecting calendar regressors,
-    managing specifications (trading-days regressors and outliers) at the
-    workspace level, making a workspace usable by the 'cruncher', removing
+    managing specifications (trading-days regressors and outliers) at a
+    workspace level, making a workspace usable by the 'cruncher' and the Graphical user Interface, removing
     insignificant outliers, and comparing workspaces.
 License: EUPL
 URL: https://github.com/InseeFr/rjd3production,

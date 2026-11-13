@@ -25,20 +25,22 @@ coverage](https://codecov.io/gh/InseeFr/rjd3production/graph/badge.svg)](https:/
 ### Présentation
 
 **{rjd3production}** aide les producteurs de données CVS-CJO à mettre en
-place des chaînes de production.
+place des chaînes de production en utilisant
+[JDemetra+](www.jdemetra.org). Les utilisateurs de l’interface graphique
+peuvent automatiser un grand nombre d’opérations intensives en “clics”.
 
 Il permet notamment de :
 
+- Identifier des SA-Items par leur nom
+
 - Créer un calendrier français et des régresseurs de calendrier
   compatibles avec JDemetra+
-
-- Identifier des SAI par leur nom
 
 - Selectionner le jeux de regresseurs de calendrier optimal pour une ou
   plusieurs séries
 
 - Manipuler les régresseurs de calendrier et les outliers d’un Workspace
-  selon la dynamique suivante:
+  JDemetra+ selon la dynamique suivante:
 
   - Les fonctions `import_XXX()` et `export_XXX()` permettent de
     convertir les data.frame contenant les outliers et régresseurs de
@@ -95,8 +97,13 @@ de mettre en place une telle configuration dans R est expliquée
 
 ### Latest release
 
-Pour obtenir la version stable actuelle (à partir de la dernière
-version) :
+Pour obtenir la derinère release :
+
+- Depuis le CRAN :
+
+``` r
+install.packages("rjd3production")
+```
 
 - Depuis GitHub :
 
@@ -135,15 +142,17 @@ remotes::install_github("InseeFr/rjd3production")
 ### Overview
 
 **{rjd3production}** helps setting up a production process of seasonally
-adjusted (SA) data.
+adjusted (SA) data with [JDemetra+](www.jdemetra.org). User of the
+Graphical User Interface can automate may operation which would
+otherwise be click-intensive.
 
 In particular, it allows to:
 
-- Create JDemetra+-compatible (French) calendars and calendar regressors
-
 - Identify SA-items by name
 
-- Select optimal calendar regressors for one or more series
+- Create JDemetra+-compatible (French) calendars and calendar regressors
+
+- Select optimal calendar regressors for one or several series
 
 - Wrangle calendar regressors and outliers in a workspace with the
   following dynamics:
@@ -199,7 +208,13 @@ Running rjd3 packages requires **Java 21 or higher**. Instructions on
 how to set up this configuration in R are available
 [here](https://doc.jdemetra.org/#Rconfig).
 
-To get the current stable version (from the latest release):
+To get the latest release:
+
+- From CRAN :
+
+``` r
+install.packages("rjd3production")
+```
 
 - From GitHub:
 
