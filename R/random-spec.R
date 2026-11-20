@@ -381,7 +381,7 @@ random_add_ramp <- function(x) {
     spec_args$coef <- sample(c(rep(0.0, n), stats::rnorm(n)), size = n)
     spec_args$name <- sample(
         x = c(
-            paste0(spec_args$type, " (", spec_args$date, ")"),
+            paste0("Ramp (", spec_args$start, " - ", spec_args$end, ")"),
             paste0("Ramp", seq_len(n), "_rnd")
         ),
         size = n
