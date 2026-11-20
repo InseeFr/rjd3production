@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+* `random_name()`: removed the self-referencing default `n = n`; `n` is now a required argument.
+
 ## [1.2.0] - 2026-10-02
 
 ### Added

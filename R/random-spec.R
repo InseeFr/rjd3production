@@ -3,7 +3,7 @@ random_flag <- function() {
 }
 
 #' @importFrom checkmate assert_count
-random_name <- function(n = n) {
+random_name <- function(n) {
     checkmate::assert_count(n)
 
     nom <- paste(
