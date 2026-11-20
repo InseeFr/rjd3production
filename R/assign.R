@@ -94,7 +94,7 @@ assign_outliers <- function(jws, outliers, spec_type = NULL, verbose = TRUE) {
         }
 
         # Outliers
-        outliers_series <- outliers[outliers$series == "RF1011", , drop = FALSE]
+        outliers_series <- outliers[outliers$series == series_name, , drop = FALSE]
 
         if (nrow(outliers_series) > 0L) {
             sai <- rjd3workspace::read_sai(jsai)
