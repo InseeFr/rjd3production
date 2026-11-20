@@ -347,7 +347,7 @@ verif_LY <- function(
         return(rownames(diags_jeu)[which.min(diags_jeu$note)])
     }
 
-    if (mode_decompo == "Multiplicatif") {
+    if (mode_decompo == "Multiplicative") {
         LY_coeff <- 100.0 * LY_coeff
     }
     LY_coeff <- round(LY_coeff)
