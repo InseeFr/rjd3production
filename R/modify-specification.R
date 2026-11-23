@@ -272,8 +272,8 @@ set_minimum_span <- function(
             FUN.VALUE = double(1L),
             "pos"
         ) |>
-            as.Date()
-        cond <- outliers_date < as.Date(d0)
+            base::as.Date(origin = "1970-01-01")
+        cond <- outliers_date < base::as.Date(d0, origin = "1970-01-01")
         if (!is.null(outliers) && any(cond)) {
             spec$regarima$regression$outliers <- outliers[!cond]
         }
@@ -286,7 +286,11 @@ set_minimum_span <- function(
             base::`[[`("basic") |>
             base::`[[`("span") |>
             base::`[[`("d0")
-        if (!is.null(current_span) && as.Date(span) < as.Date(current_span)) {
+        if (
+            !is.null(current_span) &&
+                base::as.Date(span, origin = "1970-01-01") <
+                    base::as.Date(current_span, origin = "1970-01-01")
+        ) {
             span <- current_span
         }
         spec <- rjd3toolkit::set_basic(x = spec, type = "From", d0 = span)
@@ -298,7 +302,11 @@ set_minimum_span <- function(
             base::`[[`("estimate") |>
             base::`[[`("span") |>
             base::`[[`("d0")
-        if (!is.null(current_span) && as.Date(span) < as.Date(current_span)) {
+        if (
+            !is.null(current_span) &&
+                base::as.Date(span, origin = "1970-01-01") <
+                    base::as.Date(current_span, origin = "1970-01-01")
+        ) {
             span <- current_span
         }
         spec <- rjd3toolkit::set_estimate(x = spec, type = "From", d0 = span)

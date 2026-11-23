@@ -40,8 +40,14 @@ random_span <- function() {
     ))
     val_n0 <- random_choice(0L:20L)
     val_n1 <- random_choice(0L:20L)
-    val_d0 <- base::as.Date(sample.int(15000L, size = 1L))
-    val_d1 <- base::as.Date(val_d0 + sample.int(5000L, size = 1L))
+    val_d0 <- base::as.Date(
+        sample.int(15000L, size = 1L),
+        origin = "1970-01-01"
+    )
+    val_d1 <- base::as.Date(
+        val_d0 + sample.int(5000L, size = 1L),
+        origin = "1970-01-01"
+    )
     if (is.na(out$type)) {
         out$d0 <- format(val_d0)
         out$d1 <- format(val_d1)
@@ -77,7 +83,10 @@ random_add_outlier <- function(x) {
         size = n,
         replace = TRUE
     )
-    spec_args$date <- as.character(as.Date(sample.int(20000L, size = n)))
+    spec_args$date <- as.character(base::as.Date(
+        sample.int(20000L, size = n),
+        origin = "1970-01-01"
+    ))
     spec_args$coef <- sample(c(rep(0.0, n), stats::rnorm(n)), size = n)
     spec_args$name <- sample(
         x = c(
@@ -361,8 +370,14 @@ random_add_ramp <- function(x) {
     n <- sample.int(15L, size = 1L)
     spec_args$start <- sample.int(18000L, size = n)
     spec_args$end <- spec_args$start + sample.int(2000L, size = n)
-    spec_args$start <- as.character(as.Date(spec_args$start))
-    spec_args$end <- as.character(as.Date(spec_args$end))
+    spec_args$start <- as.character(base::as.Date(
+        spec_args$start,
+        origin = "1970-01-01"
+    ))
+    spec_args$end <- as.character(base::as.Date(
+        spec_args$end,
+        origin = "1970-01-01"
+    ))
     spec_args$coef <- sample(c(rep(0.0, n), stats::rnorm(n)), size = n)
     spec_args$name <- sample(
         x = c(

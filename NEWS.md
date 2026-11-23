@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+* `verif_LY()`: fix typo with `"Multiplicatif"` instead of `"Multiplicative"`, to select the mod.
+
 ## [1.2.0] - 2026-10-02
 
 ### Added

@@ -4,7 +4,7 @@ Version: 1.2.0.9000
 Authors@R: c(
     person("Tanguy", "Barthelemy", , "timeserieswithjdemetraandr@gmail.com", role = c("aut", "cre", "art", "cph")),
     person("Eulalie", "Delaune", , "eulalie.delaune-virrion@insee.fr", role = "aut"),
-     person("Anna", "Smyk", , "anna.smyk@insee.fr", role = ("aut","cre","trl")
+    person("Anna", "Smyk", , "anna.smyk@insee.fr", role = c("aut", "trl"))
     )
 Description: A comprehensive tool for setting up production processes of seasonally adjusted data,
     using 'JDemetra+' (version 3) and 'rjdverse' packages. This includes setting up
