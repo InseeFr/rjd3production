@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+* `random_add_ramp()`: ramp names are now generated from the ramp start/end dates instead of the (non-existent) outlier type/date fields, which used to produce invalid names.
+
 ## [1.2.0] - 2026-10-02
 
 ### Added
