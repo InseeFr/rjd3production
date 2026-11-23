@@ -88,7 +88,7 @@ retrieve_outliers <- function(
                 FUN.VALUE = double(1L),
                 "pos"
             ) |>
-                as.Date() |>
+                base::as.Date(origin = "1970-01-01") |>
                 as.character()
 
             ps_outliers <- rbind(
