@@ -4,9 +4,9 @@
 \name{rjd3production-package}
 \alias{rjd3production}
 \alias{rjd3production-package}
-\title{rjd3production: Prepare for Production of Seasonal Adjustment with 'JDemetra+'}
+\title{rjd3production: Automate production of seasonally Adjusted data with 'JDemetra+'}
 \description{
-A comprehensive tool for setting up seasonal data pipelines using 'JDemetra+' (version 3) and 'rjdverse'. This includes setting up a new working environment, creating and selecting calendar regressors, managing specifications (trading-days regressors and outliers) at the workspace level, making a workspace usable by the 'cruncher', removing insignificant outliers, and comparing workspaces.
+A comprehensive tool for setting up production processes of seasonally adjusted data, using 'JDemetra+' (version 3) and 'rjdverse' packages. This includes setting up a new working environment, creating and selecting calendar regressors, managing specifications (trading-days regressors and outliers) at a workspace level, making a workspace usable by the 'cruncher' and the Graphical user Interface, removing insignificant outliers, and comparing workspaces.
 }
 \seealso{
 Useful links:
@@ -23,6 +23,7 @@ Authors:
 \itemize{
   \item Tanguy Barthelemy \email{timeserieswithjdemetraandr@gmail.com} [artist, copyright holder]
   \item Eulalie Delaune \email{eulalie.delaune-virrion@insee.fr}
+  \item Anna Smyk \email{anna.smyk@insee.fr} [translator]
 }
 
 }
