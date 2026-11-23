@@ -1,36 +1,67 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+
+name: R-CMD-check
+
 on:
   push:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
   workflow_dispatch:
-
-name: R-CMD-check
+    inputs:
+      full_check:
+        description: 'Execute full tests'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
+  setup-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        shell: bash
+        env:
+          FULL_CHECK: ${{ inputs.full_check || false }}
+        run: |
+          if [ "$FULL_CHECK" = "true" ]; then
+            MATRIX='[
+              {"os":"macos-latest","r":"release","java":"21"},
+              {"os":"macos-latest","r":"oldrel-1","java":"21"},
+              {"os":"macos-latest","r":"oldrel-2","java":"21"},
+              {"os":"macos-latest","r":"4.2.0","java":"21"},
+
+              {"os":"ubuntu-latest","r":"devel","http-user-agent":"release","java":"21"},
+              {"os":"ubuntu-latest","r":"next","http-user-agent":"release","java":"21"},
+              {"os":"ubuntu-latest","r":"release","java":"21"},
+              {"os":"ubuntu-latest","r":"oldrel-1","java":"21"},
+              {"os":"ubuntu-latest","r":"oldrel-2","java":"21"},
+              {"os":"ubuntu-latest","r":"oldrel-3","java":"21"},
+              {"os":"ubuntu-latest","r":"4.2.0","java":"21"},
+              {"os":"ubuntu-latest","r":"release","java":"11"}
+            ]'
+          else
+            MATRIX='[
+              {"os":"macos-latest","r":"release","java":"21"},
+              {"os":"ubuntu-latest","r":"release","java":"21"}
+            ]'
+          fi
+
+          echo "matrix=$(echo "$MATRIX" | jq -c .)" >> "$GITHUB_OUTPUT"
+
   R-CMD-check:
+    needs: setup-matrix
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: ${{ matrix.config.os }} (R ${{ matrix.config.r }}, Java ${{ matrix.config.java }})
 
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - {os: macos-latest,   r: 'release'}
-          - {os: macos-latest,   r: 'oldrel-1'}
-          - {os: macos-latest,   r: 'oldrel-2'}
-
-          #- {os: windows-latest,  r: 'release'}
-          #- {os: windows-latest,  r: 'oldrel-1'}
-          #- {os: windows-latest,  r: 'oldrel-2'}
-
-          - {os: ubuntu-latest,  r: 'devel'}
-          - {os: ubuntu-latest,  r: 'release'}
-          - {os: ubuntu-latest,  r: 'oldrel-1'}
-          - {os: ubuntu-latest,  r: 'oldrel-2'}
+        config: ${{ fromJSON(needs.setup-matrix.outputs.matrix) }}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -43,8 +74,8 @@ jobs:
 
       - uses: actions/setup-java@v5
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
-          java-version: '21'
+          distribution: 'zulu'
+          java-version: ${{ matrix.config.java }}
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -56,15 +87,27 @@ jobs:
         if: runner.os == 'Windows'
         run: choco install protoc
 
-      - name: Set up for RProtoBuf on macos
+      - name: Set up for RProtoBuf on macOS
         if: runner.os == 'macOS'
         run: brew install protobuf
 
-      - name: Set up for RProtoBuf on ubuntu
+      - name: Set up for RProtoBuf on Ubuntu
         if: runner.os == 'Linux'
         run: sudo apt-get update -y && sudo apt-get install protobuf-compiler libprotobuf-dev libprotoc-dev
 
+      - name: Install XQuartz
+        if: runner.os == 'macOS'
+        run: brew install --cask xquartz
+
+      - name: Configure C++17 for RProtoBuf
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          echo 'CXX = g++ -std=gnu++17' > "$RUNNER_TEMP/Makevars"
+
       - uses: r-lib/actions/setup-r-dependencies@v2
+        env:
+          R_MAKEVARS_USER: ${{ runner.temp }}/Makevars
         with:
           extra-packages: any::rcmdcheck
           needs: check

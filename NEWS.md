@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+* `assign_outliers()`: outliers are now assigned to the matching series instead of a hardcoded series name.
+
 ## [1.2.0] - 2026-10-02
 
 ### Added
