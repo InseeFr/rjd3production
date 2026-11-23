@@ -9,7 +9,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-* `verif_LY()`: the leap-year coefficient is now rescaled in multiplicative mode. The comparison was against `"Multiplicatif"` (French) while the stored mode is `"Multiplicative"`, so the condition never matched.
+* `verif_LY()`: fix typo with `"Multiplicatif"` instead of `"Multiplicative"`, to select the mod.
 
 ## [1.2.0] - 2026-10-02
 
