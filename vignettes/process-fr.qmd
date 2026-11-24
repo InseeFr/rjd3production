@@ -96,11 +96,11 @@ Nous utiliserons le package {rjd3workspace} pour les fonctions de création et m
 library("rjd3workspace")
 ```
 
-To create a new workspace, you can either create an empty one and populate it, or create it directly from a dataset.
+Pour créer un nouvel workspace, vous pouvez soit en créer un vide et le remplir, soit le créer directement à partir d' ensemble de données brutes.
 
-If you use external variables, regressors, or a custom calendar, be sure to place all of these within a `modeling context.
+Si vous utilisez des variables externes, des régresseurs ou un calendrier personnalisé, veillez à les placer tous dans un `modelling context`.
 
-At INSEE, we use the `create_insee_context()` function to create our `contexts`:
+À l'INSEE, nous utilisons la fonction `create_insee_context()` pour créer nos `contextes` :
 
 ```{r}
 #| echo: true

@@ -52,13 +52,17 @@ navbar:
       text: News
       href: news/index.html
     jdemetra:
-      text: JDemetra+
+      text: Useful links around JDemetra+
       menu:
-      - text: Download JDemetra+
+      - text: JDemetra+ web portal and Documentation
+        href: https://www.jdemetra.org
+     -  text: Production of Seasonally Adjusted series: JDemetra+ and R Cookbook
+        href: https://prod.jdemetra.org
+      - text: Download JDemetra+ Graphical User Interface
         href: https://github.com/jdemetra/jdplus-main/releases
       - text: Download the Cruncher
         href: https://github.com/jdemetra/jdplus-main/releases
-      - text: Set up portable Java version
+      - text: Set up a portable version ofJava
         href: https://doc.jdemetra.org/#Rconfig
     github:
       icon: fa-github fa-lg
