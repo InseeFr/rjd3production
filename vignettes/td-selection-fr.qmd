@@ -1,5 +1,5 @@
 ---
-title: "Sélection des régresseurs de calendriers"
+title: "Sélection des régresseurs de calendrier"
 vignette: >
   %\VignetteIndexEntry{Selection des régresseurs de calendriers}
   %\VignetteEngine{quarto::html}
