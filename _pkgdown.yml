@@ -35,7 +35,7 @@ navbar:
       href: index.html
       aria-label: Home
     reference:
-      text: Package functions
+      text: Functions
       href: reference/index.html
     articles:
       text: Vignettes
@@ -52,7 +52,7 @@ navbar:
       text: News
       href: news/index.html
     jdemetra:
-      text: Useful links around JDemetra+
+      text: Around JDemetra+
       menu:
       - text: JDemetra+ web portal and Documentation
         href: https://www.jdemetra.org
