@@ -71,31 +71,32 @@ navbar:
 
 reference:
 - title: Initialisation
-  desc: Functions to create objects with default Insee information
+  desc: Functions to initialise a R prject structure structure suitable for SA production
   contents:
   - '`init_env`'
 - title: Creation
-  desc: Functions to create objects with default Insee information
+  desc: Functions to create objects (with default Insee information)
   contents:
+  - '`create_ws_from_data`'
+  - '`create_specs_set`'
   - '`create_french_calendar`'
   - '`create_insee_regressors`'
   - '`create_insee_regressors_sets`'
   - '`create_insee_context`'
-  - '`create_specs_set`'
-  - '`create_ws_from_data`'
+
 - title: Comparison
-  desc: Compare different Worksapces
+  desc: Compare different Workspaces
   contents:
   - '`compare`'
   - '`run_app`'
 - title: Retrieve information
-  desc: Retrieve information from an entire Workspace and identify by name
+  desc: Retrieve information from an entire Workspace and identify it by name
   contents:
   - '`get_jsai_by_name`'
   - '`get_named_variables`'
   - '`get_series`'
 - title: Modify a Workspace
-  desc: Modification of a Workspace by applying a property to each SA-Processing (SAP) and SA-Items (SAI)
+  desc: Modification of a Workspace by applying a property to each SA-Processing (SAP) and SA-Item (SAI)
   contents:
   - '`add_raw_data_path`'
   - '`remove_non_significant_outliers`'
@@ -106,8 +107,8 @@ reference:
   contents:
   - '`rev_spec`'
   - '`random_spec`'
-- title: Global workflow
-  desc: Function to retrieve regression information, apply, export and import it
+- title: Parametrize regression variables in the preadjustment phase
+  desc: Functions to retrieve and assign regression variables
   contents:
   - '`regression_tools`'
   - '`select_td`'
