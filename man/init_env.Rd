@@ -7,7 +7,7 @@
 init_env(path, open = FALSE)
 }
 \arguments{
-\item{path}{A character string. Path where the project will be created.}
+\item{path}{A character string. Path to the repository inside which the project will be created.}
 
 \item{open}{Boolean. Should the project be opened in RStudio after creation?
 Default is \code{FALSE}.}
@@ -22,6 +22,9 @@ configuration files, and development tools.
 
 The generated structure is designed for workflows based on the 'rjdverse'.
 }
+\details{
+The final repository pointed at by \code{path} has to not yet exist as it will be created.
+}
 \examples{
 project_path <- tempfile(pattern = "my-project")
 
@@ -30,4 +33,8 @@ if (interactive()) {
 init_env(path = project_path)
 }
 
+}
+\references{
+More information on SA production process structure
+\url{https://prod.jdemetra.org/}
 }

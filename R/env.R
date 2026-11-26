@@ -14,7 +14,7 @@
 #' @returns The project path invisibly.
 #'
 #' @details
-#' The repository pointed at by `path` has to not yet exist as it will be created.
+#' The final repository pointed at by `path` has to not yet exist as it will be created.
 #'
 #' @references
 #' More information on SA production process structure
