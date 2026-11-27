@@ -117,11 +117,10 @@ install.packages("rjd3production")
 remotes::install_github("InseeFr/rjd3production@*release")
 ```
 
-- De
-  [r-universe](https://TanguyBarthelemy.r-universe.dev/rjd3production) :
+- De [r-universe](https://InseeFr.r-universe.dev/rjd3production) :
 
 ``` r
-install.packages("rjd3production", repos = c("https://TanguyBarthelemy.r-universe.dev", "https://cloud.r-project.org"))
+install.packages("rjd3production", repos = c("https://InseeFr.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ### Version de développement
@@ -232,11 +231,10 @@ install.packages("rjd3production")
 remotes::install_github("InseeFr/rjd3production@*release")
 ```
 
-- From
-  [r-universe](https://TanguyBarthelemy.r-universe.dev/rjd3production):
+- From [r-universe](https://InseeFr.r-universe.dev/rjd3production):
 
 ``` r
-install.packages("rjd3production", repos = c("https://TanguyBarthelemy.r-universe.dev", "https://cloud.r-project.org"))
+install.packages("rjd3production", repos = c("https://InseeFr.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ### Development version

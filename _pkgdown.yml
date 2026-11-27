@@ -56,13 +56,13 @@ navbar:
       menu:
       - text: JDemetra+ web portal and Documentation
         href: https://www.jdemetra.org
-     -  text: Production of Seasonally Adjusted series: JDemetra+ and R Cookbook
+      - text: "Production of Seasonally Adjusted series: JDemetra+ and R Cookbook"
         href: https://prod.jdemetra.org
       - text: Download JDemetra+ Graphical User Interface
         href: https://github.com/jdemetra/jdplus-main/releases
       - text: Download the Cruncher
         href: https://github.com/jdemetra/jdplus-main/releases
-      - text: Set up a portable version ofJava
+      - text: Set up a portable version of Java
         href: https://doc.jdemetra.org/#Rconfig
     github:
       icon: fa-github fa-lg
@@ -71,7 +71,7 @@ navbar:
 
 reference:
 - title: Initialisation
-  desc: Functions to initialise a R prject structure structure suitable for SA production
+  desc: Functions to initialise a R project structure structure suitable for SA production
   contents:
   - '`init_env`'
 - title: Creation
@@ -83,7 +83,6 @@ reference:
   - '`create_insee_regressors`'
   - '`create_insee_regressors_sets`'
   - '`create_insee_context`'
-
 - title: Comparison
   desc: Compare different Workspaces
   contents:
