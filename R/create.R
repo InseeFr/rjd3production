@@ -1,15 +1,15 @@
 #' @title French modelling context, calendar and trading days regressors.
 #'
 #' @description
-#' These functions allow to construct the standard regressors and modelling
+#' These functions allow to build the calendar regressors and modelling
 #' context used by INSEE for seasonal adjustment:
 #'
 #' - [create_french_calendar()] creates the French national calendar.
 #' - [create_insee_regressors()] generates trading day regressors and leap-year
 #' effect (LY).
 #' - [create_insee_regressors_sets()] organizes these regressors into standard
-#' sets (REG1, REG2, …, REG6, with or without LY).
-#' - [create_insee_context()] combines the regressors and calendar into a
+#' sets (REG1, REG2, …, REG6, with or without Leap Year).
+#' - [create_insee_context()] combines regressors and calendar into a
 #' `modelling_context` object
 #'   that can be used directly with `rjd3toolkit`.
 #'
@@ -23,10 +23,10 @@
 #'
 #' @returns
 #' - `create_french_calendar()` returns a `national_calendar` object.
-#' - `create_insee_regressors()` returns a matrix of regressors (working days
-#' + LY).
+#' - `create_insee_regressors()` returns a matrix of calendar regressors (trading days
+#' + Leap Year).
 #' - `create_insee_regressors_sets()` returns a list of regressor sets (`REG1`,
-#' `REG2`, …, `REG6`, with or without LY).
+#' `REG2`, …, `REG6`, with or without Leap Year).
 #' - `create_insee_context()` returns a `modelling_context` object.
 #'
 #' @examplesIf rjd3jars::check_java_version(silent = TRUE)
@@ -84,9 +84,9 @@ create_french_calendar <- function() {
             MAYDAY = rjd3toolkit::special_day("MAYDAY"),
             # Lundi de Pâques
             EASTERMONDAY = rjd3toolkit::special_day("EASTERMONDAY"),
-            # attention +39 et pas 40 jeudi ascension
+            # Jeudi ascension
             ASCENSION = rjd3toolkit::special_day("ASCENSION"),
-            # Lundi de Pentecôte (1/2 en 2005 a verif)
+            # Lundi de Pentecôte
             WHITMONDAY = rjd3toolkit::special_day("WHITMONDAY"),
             # Assomption
             ASSUMPTION = rjd3toolkit::special_day("ASSUMPTION"),
@@ -147,21 +147,21 @@ create_insee_regressors <- function(
     cols <- c(
         "REG1_week",
         "REG2_week",
-        "REG2_saturday",
-        "REG3_monday",
-        "REG3_tuesday_to_friday",
-        "REG3_saturday",
-        "REG5_monday",
-        "REG5_tuesday",
-        "REG5_wednesday",
-        "REG5_thursday",
-        "REG5_friday",
-        "REG6_monday",
-        "REG6_tuesday",
-        "REG6_wednesday",
-        "REG6_thursday",
-        "REG6_friday",
-        "REG6_saturday"
+        "REG2_Saturday",
+        "REG3_Monday",
+        "REG3_Tuesday_to_Friday",
+        "REG3_Saturday",
+        "REG5_Monday",
+        "REG5_Tuesday",
+        "REG5_Wednesday",
+        "REG5_Thursday",
+        "REG5_Friday",
+        "REG6_Monday",
+        "REG6_Tuesday",
+        "REG6_Wednesday",
+        "REG6_Thursday",
+        "REG6_Friday",
+        "REG6_Saturday"
     )
     regs_td <- cbind(
         LY = rjd3toolkit::lp_variable(
@@ -294,11 +294,11 @@ create_insee_context <- function(
 #'
 #' @description
 #' Builds a set of X13 specifications from a start date,
-#' a modelling context (explanatory variables) and outliers (optional).
+#' a modelling context (prregression variables) and outliers (optional).
 #'
 #' @param spec_0 Basic specification
 #' @param span_start [character] Estimation start date (format "YYYY-MM-DD").
-#' @param context [list] Modeling context created by
+#' @param context [list] Modelling context created by
 #' [rjd3toolkit::modelling_context()].
 #' @param outliers [\link[base]{list} or NULL] Optional list with elements :
 #' - `type`: vector of outlier types (e.g. "AO", "LS", "TC")

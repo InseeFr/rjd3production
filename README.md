@@ -26,9 +26,13 @@ coverage](https://codecov.io/gh/InseeFr/rjd3production/graph/badge.svg)](https:/
 
 **{rjd3production}** aide les producteurs de données CVS-CJO à mettre en
 place des chaînes de production en utilisant
-[JDemetra+](https://jdemetra.org/). Les utilisateurs de l’interface
-graphique peuvent automatiser un grand nombre d’opérations intensives en
-“clics”.
+[JDemetra+](https://jdemetra.org/).
+
+Pour plus d’information sur les processus de production de données
+désaisonnalisées consulter <https://prod.jdemetra.org/>
+
+Les utilisateurs de l’interface graphique peuvent automatiser un grand
+nombre d’opérations intensives en “clics”.
 
 Il permet notamment de :
 
@@ -143,9 +147,13 @@ remotes::install_github("InseeFr/rjd3production")
 ### Overview
 
 **{rjd3production}** helps setting up a production process of seasonally
-adjusted (SA) data with [JDemetra+](https://jdemetra.org/). User of the
-Graphical User Interface can automate many operations which would
-otherwise be click-intensive.
+adjusted (SA) data with [JDemetra+](https://jdemetra.org/).
+
+Form more information on this type of statistical production check out
+<https://prod.jdemetra.org/>.
+
+Users of the Graphical User Interface can automate many operations which
+would otherwise be click-intensive.
 
 In particular, it allows to:
 

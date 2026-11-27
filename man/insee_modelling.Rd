@@ -49,27 +49,27 @@ create_insee_context(
 \value{
 \itemize{
 \item \code{create_french_calendar()} returns a \code{national_calendar} object.
-\item \code{create_insee_regressors()} returns a matrix of regressors (working days
+\item \code{create_insee_regressors()} returns a matrix of calendar regressors (trading days
 }
 \itemize{
-\item LY).
+\item Leap Year).
 }
 \itemize{
 \item \code{create_insee_regressors_sets()} returns a list of regressor sets (\code{REG1},
-\code{REG2}, …, \code{REG6}, with or without LY).
+\code{REG2}, …, \code{REG6}, with or without Leap Year).
 \item \code{create_insee_context()} returns a \code{modelling_context} object.
 }
 }
 \description{
-These functions allow to construct the standard regressors and modelling
+These functions allow to build the calendar regressors and modelling
 context used by INSEE for seasonal adjustment:
 \itemize{
 \item \code{\link[=create_french_calendar]{create_french_calendar()}} creates the French national calendar.
 \item \code{\link[=create_insee_regressors]{create_insee_regressors()}} generates trading day regressors and leap-year
 effect (LY).
 \item \code{\link[=create_insee_regressors_sets]{create_insee_regressors_sets()}} organizes these regressors into standard
-sets (REG1, REG2, …, REG6, with or without LY).
-\item \code{\link[=create_insee_context]{create_insee_context()}} combines the regressors and calendar into a
+sets (REG1, REG2, …, REG6, with or without Leap Year).
+\item \code{\link[=create_insee_context]{create_insee_context()}} combines regressors and calendar into a
 \code{modelling_context} object
 that can be used directly with \code{rjd3toolkit}.
 }

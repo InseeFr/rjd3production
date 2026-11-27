@@ -14,7 +14,7 @@ create_specs_set(
 \arguments{
 \item{spec_0}{Basic specification}
 
-\item{context}{\link{list} Modeling context created by
+\item{context}{\link{list} Modelling context created by
 \code{\link[rjd3toolkit:modelling_context]{rjd3toolkit::modelling_context()}}.}
 
 \item{outliers}{[\link[base]{list} or NULL] Optional list with elements :
@@ -30,7 +30,7 @@ A list of named X13 specifications (TD and variants).
 }
 \description{
 Builds a set of X13 specifications from a start date,
-a modelling context (explanatory variables) and outliers (optional).
+a modelling context (prregression variables) and outliers (optional).
 }
 \examples{
 \dontshow{if (rjd3jars::check_java_version(silent = TRUE)) withAutoprint(\{ # examplesIf}

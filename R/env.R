@@ -7,11 +7,19 @@
 #'
 #' The generated structure is designed for workflows based on the 'rjdverse'.
 #'
-#' @param path A character string. Path where the project will be created.
+#' @param path A character string. Path to the repository inside which the project will be created.
 #' @param open Boolean. Should the project be opened in RStudio after creation?
 #' Default is \code{FALSE}.
 #'
 #' @returns The project path invisibly.
+#'
+#' @details
+#' The final repository pointed at by `path` has to not yet exist as it will be created.
+#'
+#' @references
+#' More information on SA production process structure
+#' \url{https://prod.jdemetra.org/}
+#'
 #'
 #' @examples
 #' project_path <- tempfile(pattern = "my-project")
